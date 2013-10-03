@@ -1,7 +1,7 @@
 package eastone.common.factory;
 
-public interface Factory<T> {
+public interface Factory<T,E extends Exception> {
 
-	public T getInstance();
+	public T getInstance() throws E;
 	
 }

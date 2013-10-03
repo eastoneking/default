@@ -29,7 +29,7 @@ public class ObjectTest extends TestCase {
 	 * @return the suite of tests being tested
 	 */
 	public static Test suite() {
-		return new TestSuite(AppTest.class);
+		return new TestSuite(ObjectTest.class);
 	}
 
 	/**
