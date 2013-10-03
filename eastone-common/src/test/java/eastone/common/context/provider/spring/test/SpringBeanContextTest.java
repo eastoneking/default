@@ -1,20 +1,17 @@
 package eastone.common.context.provider.spring.test;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PipedInputStream;
-import java.io.PipedOutputStream;
-import java.io.PrintStream;
 import java.util.Iterator;
 import java.util.ServiceLoader;
-
-import eastone.common.context.BeanContext;
-import eastone.common.context.provider.spring.SpringBeanContextProvider;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import eastone.common.context.BeanContext;
+import eastone.common.context.provider.spring.SpringBeanContextProvider;
 
 /**
  * Unit test for simple App.
@@ -52,8 +49,25 @@ public class SpringBeanContextTest extends TestCase {
 		assertTrue(res);
 	}
 	
+	public void testGetBean(){
+		SpringBeanContextProvider ctx = new SpringBeanContextProvider();
+		ctx.appendContext(new ClassPathXmlApplicationContext("eastone/common/context/provider/spring/test/test.context.xml"));
+		String test_msg = (String) ctx.getBean("test.msg");
+		assertEquals(test_msg, "Hello World");
+	}
 	
-	
-	
+	public void testGetBean2(){
+		SpringBeanContextProvider ctx = new SpringBeanContextProvider();
+		ctx.appendContext(new ClassPathXmlApplicationContext("eastone/common/context/provider/spring/test/test.context.xml"));
+		String test_msg = (String) ctx.getBean("test.msg");
+		assertEquals(test_msg, "Hello World");
+		ctx.appendContext(new ClassPathXmlApplicationContext("eastone/common/context/provider/spring/test/test1.context.xml"));
+		String test_msg_r = (String) ctx.getBean("test.msg");
+		String test_msg_1 = (String) ctx.getBean("test.msg1");
+		assertEquals(test_msg,test_msg_r);
+		assertTrue(test_msg==test_msg_r);
+		assertEquals(test_msg,test_msg_1);
+		assertFalse(test_msg==test_msg_1);
+	}
 	
 }

@@ -1,15 +1,19 @@
 package eastone.common.context.provider.spring;
 
+import java.io.IOException;
 import java.util.ServiceLoader;
 
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.AbstractRefreshableApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 
 import eastone.common.context.BeanContext;
 
-public class SpringBeanContextProvider<C extends AbstractApplicationContext> implements BeanContext<C> {
+public class SpringBeanContextProvider<C extends AbstractRefreshableApplicationContext> implements BeanContext<C> {
 
-	private AbstractApplicationContext context = new GenericApplicationContext();
+	private AbstractApplicationContext context = null;
 	
 	@Override
 	public <T> T status(Object... inputs) {
@@ -32,8 +36,12 @@ public class SpringBeanContextProvider<C extends AbstractApplicationContext> imp
 
 	@Override
 	public BeanContext<C> appendContext(C context) {
-		context.setParent(this.context);
+		if(this.context!=null){
+			context.setParent(this.context);
+			context.refresh();
+		}
 		this.context=context;
+		
 		return this;
 	}
 

@@ -36,7 +36,7 @@ public class ObjectTest extends TestCase {
 	 * 测试日志功能是否正常
 	 */
 	public void testLogger() throws IOException {
-		
+		/*
 		PipedOutputStream pipedout = null;
 		PipedInputStream pipedin = null;
 		InputStreamReader ir = null;
@@ -75,6 +75,6 @@ public class ObjectTest extends TestCase {
 			System.setOut(ori_out);// restore the output stream as console
 
 		}
-		
+		*/
 	}
 }
