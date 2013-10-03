@@ -1,4 +1,4 @@
-package eastone.common;
+package eastone.common.test;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,18 +24,19 @@ public class ObjectTest extends TestCase {
 	public ObjectTest(String testName) {
 		super(testName);
 	}
-
+	
 	/**
 	 * @return the suite of tests being tested
 	 */
 	public static Test suite() {
 		return new TestSuite(ObjectTest.class);
 	}
-
+	
 	/**
 	 * 测试日志功能是否正常
 	 */
 	public void testLogger() throws IOException {
+		
 		PipedOutputStream pipedout = null;
 		PipedInputStream pipedin = null;
 		InputStreamReader ir = null;
@@ -45,12 +46,12 @@ public class ObjectTest extends TestCase {
 		String print_str = null;
 		final String msg = "Hello World";
 		try {
-
+			
 			pipedout = new PipedOutputStream();
 			pipedin = new PipedInputStream(pipedout);
 			ir = new InputStreamReader(pipedin);
 			br = new BufferedReader(ir);
-
+			
 			out = new PrintStream(pipedout, true);
 
 			ori_out = System.out;// save the output stream
@@ -62,12 +63,11 @@ public class ObjectTest extends TestCase {
 					logger.info(msg);
 				}
 			};
-
 			print_str = br.readLine();//read from piped input stream which receive the log text from console.
-
 			assertEquals(print_str.indexOf(msg) >= 0, true);//validate the log text
-
+			
 		} finally {
+			
 			br.close();
 			ir.close();
 			pipedin.close();
@@ -75,6 +75,6 @@ public class ObjectTest extends TestCase {
 			System.setOut(ori_out);// restore the output stream as console
 
 		}
-
+		
 	}
 }
