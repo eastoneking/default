@@ -1,13 +1,9 @@
 package eastone.common.context.provider.spring;
 
-import java.io.IOException;
-import java.util.ServiceLoader;
+import java.util.Locale;
 
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.AbstractRefreshableApplicationContext;
-import org.springframework.context.support.GenericApplicationContext;
 
 import eastone.common.context.BeanContext;
 
@@ -43,6 +39,16 @@ public class SpringBeanContextProvider<C extends AbstractRefreshableApplicationC
 		this.context=context;
 		
 		return this;
+	}
+	
+	public String getMessage(String code, Locale locale, Object ... args ){
+		String res=null;
+		if(context==null){
+			res = "message initialized failrue.";
+		}else{
+			res = context.getMessage(code, args, "unkown infomation." , locale);
+		}
+		return res;
 	}
 
 
