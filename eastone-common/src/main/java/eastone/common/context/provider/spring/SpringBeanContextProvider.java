@@ -19,6 +19,7 @@ public class SpringBeanContextProvider<C extends AbstractRefreshableApplicationC
 		return getBean((String)inputs[0],args);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <B> B getBean(String beanid,Object... args) {
 		B res = null;
@@ -51,5 +52,5 @@ public class SpringBeanContextProvider<C extends AbstractRefreshableApplicationC
 		return res;
 	}
 
-
+	
 }
