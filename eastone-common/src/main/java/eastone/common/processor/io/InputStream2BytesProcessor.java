@@ -43,7 +43,7 @@ public class InputStream2BytesProcessor extends AbstractProcessorWithResult<byte
 				logger.warn("",e);
 			}
 		}
-		
+		res = buf.toByteArray();
 		return res;
 	}
 	

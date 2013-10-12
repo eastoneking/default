@@ -40,15 +40,17 @@ public class Bytes2FileProcessor extends eastone.common.Object implements Proces
 	
 	@Override
 	public void run() throws IOException {
-		if(!validateParentPath(file)){
-			throw new IOException();
-		}
+		assert file!=null;
 		if(this.data!=null&&this.file!=null){
+			if(!validateParentPath(file)){
+				throw new IOException();
+			}
 			writeData2File(this.data,this.file);
 		}
 	}
 
 	private void writeData2File(byte[] data, File file) throws IOException {
+		assert file!=null;
 		FileOutputStream fos = null;
 		try{
 			fos = new FileOutputStream(file);
