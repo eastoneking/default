@@ -7,7 +7,11 @@ package eastone.common.context;
  *均被称为状态，即将上下文理解为一个状态机。给定指定输入条件时，可以从状态机中获得相
  *同的输出。
  * </p>
- * @author 王东石 <wangds@gmail.com> 2013-10-12 22:00
+ * <p>修改列表:
+ * <ol>
+ * 	<li>补充注释. wangds@gmail.com 2013-10-12 22:00</li>
+ * </ol></p>
+ * @author 王东石 <wangds@gmail.com>
  * @version 0.1 
  * 
  */

@@ -4,17 +4,20 @@ package eastone.common.convertor;
  * <p>把一种类型的对象转换为另一种类型的对象.一般来说，是通过现有对象的属性，生成一个
  * 新的对象，新对象的一些属性与原有对象有一定的映射关系.</p>
  * 
- * @author 王东石 <wangds@gmail.com>
+ * <p>修改列表:
+ * <ol>
+ * 	<li>2013-10-12 23:55 补充注释</li>
+ * </ol>
+ * </p>
  *
  * @param <S> 输入源类型.
  * @param <T> 输出目标类型.
  * @param <E> 转换时可能抛出的异常.
  * 
  * @version 0.1.1
- * @modifyList
- * <ol>
- * 	<li>2013-10-12 23:55 补充注释</li>
- * </ol>
+ * @since 0.1
+ * @author 王东石 <wangds@gmail.com>
+ * 
  */
 public interface Convertor<S,T,E extends Exception>{
 	

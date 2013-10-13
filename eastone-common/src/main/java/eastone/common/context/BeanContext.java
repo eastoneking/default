@@ -4,16 +4,21 @@ import java.util.Locale;
 /**
  * 以java bean作为媒介存储的上下文.
  * 
- * @author 王东石 <wangds@gmail.com> 2013-10-12 22:00
+ * <p>
+ * 修改列表:<br/>
+ * <ol>
+ * 	<li>确认建立版本,并补充注释. by wangds@gmail.com 2013-10-12 22:10 </li>
+ * <ol>
+ * </p>
+ * 
  * 
  * @param <C> 泛型参数,指定上下文中用于保存bean的容器类型.
  * 
- * @version 0.1
+ * @author 王东石 <wangds@gmail.com> 2013-10-12 22:00
  * 
- * @modifyList 
- * <ol>
- * 	<li>2013-10-12 22:10 确认建立版本，并补充注释.</li>
- * <ol>
+ * @version 0.1.1
+ * @since 0.1
+ * 
  */
 public interface BeanContext<C> extends Context{
 	

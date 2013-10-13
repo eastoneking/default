@@ -5,10 +5,12 @@ import org.slf4j.LoggerFactory;
 /**
  * 基础对象类.
  * <p>该类是对{@link java.lang.Object}的扩展.目前扩展的功能只有日志接口.</p>
+ * <p>修改列表:
+ * <ol><li> 补充注释. wangds@gmail.com 2013-10-13 00:10</li></ol>
+ * </p>
  * @author 王东石 <wangds@gmail.com>
- * @version 0.1.1 by wangds@gmail.com
- * @modifyList
- * 	<ol><li>2013-10-13 00:10 补充注释</li></ol>
+ * @version 0.1.1 
+ * @since 0.1
  */
 public class Object{
 	/**

@@ -28,7 +28,7 @@ public class Bytes2OutputStreamProcessor extends eastone.common.Object implement
 	}
 	
 	@Override
-	public void run() throws IOException {
+	public void process() throws IOException {
 		if(outputStream!=null){
 			outputStream.write(data);
 			outputStream.flush();

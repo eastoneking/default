@@ -39,7 +39,7 @@ public class Bytes2FileProcessor extends eastone.common.Object implements Proces
 	}
 	
 	@Override
-	public void run() throws IOException {
+	public void process() throws IOException {
 		assert file!=null;
 		if(this.data!=null&&this.file!=null){
 			if(!validateParentPath(file)){
