@@ -2,6 +2,8 @@ package eastone.common;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+
 /**
  * 基础对象类.
  * <p>该类是对{@link java.lang.Object}的扩展.目前扩展的功能只有日志接口.</p>
@@ -32,5 +34,6 @@ public class Object{
     	assert res!=null;
     	return res;
     }
+    
 
 }
