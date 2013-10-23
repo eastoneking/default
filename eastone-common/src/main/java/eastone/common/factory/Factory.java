@@ -12,12 +12,12 @@ package eastone.common.factory;
  * @version 0.1.1
  * @since 0.1
  */
-public interface Factory<T,E extends Exception> {
+public interface Factory<T, E extends Exception> {
 	/**
-	 * 工厂方法
+	 * 工厂方法.
 	 * @return 实例
 	 * @throws E 可能的异常
 	 */
-	public T getInstance() throws E;
+	T getInstance() throws E;
 	
 }

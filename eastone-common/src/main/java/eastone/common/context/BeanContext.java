@@ -8,7 +8,7 @@ import java.util.Locale;
  * 修改列表:<br/>
  * <ol>
  * 	<li>确认建立版本,并补充注释. by wangds@gmail.com 2013-10-12 22:10 </li>
- * <ol>
+ * </ol>
  * </p>
  * 
  * 
@@ -20,15 +20,16 @@ import java.util.Locale;
  * @since 0.1
  * 
  */
-public interface BeanContext<C> extends Context{
+public interface BeanContext<C> extends Context {
 	
 	/**
 	 * 获得上下文中的bean对象.
 	 * @param beanid bean的唯一编号.
 	 * @param args 生成对象的初始化参数.
+	 * @param <B> 返回值类型.
 	 * @return 参数对应的对象.
 	 */
-	public <B> B getBean(String beanid,Object... args);
+	<B> B getBean(String beanid, Object... args);
 	
 	/**
 	 * 添加实际存储对象的容器.
@@ -46,7 +47,7 @@ public interface BeanContext<C> extends Context{
 	 * </ol>
 	 * </p>
 	 */
-	public BeanContext<C> appendContext(C context);
+	BeanContext<C> appendContext(C context);
 	
 	/**
 	 * 获得以{@link java.util.ResourceBundle}为基础的消息值.
@@ -54,10 +55,10 @@ public interface BeanContext<C> extends Context{
 	 * @param code 消息key值.
 	 * @param locale 语言地区代码.
 	 * @param args 替换参数.
-	 * @return
+	 * @return 获得消息.
 	 * @see java.util.ResourceBundle
 	 * 
 	 */
-	public String getMessage(String code, Locale locale, Object ... args );
+	String getMessage(String code, Locale locale, Object ... args);
 	
 }

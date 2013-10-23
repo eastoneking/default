@@ -3,7 +3,8 @@ package eastone.common.context.provider.spring;
 import java.util.Locale;
 
 import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.AbstractRefreshableApplicationContext;
+import org.springframework.context.support.
+		AbstractRefreshableApplicationContext;
 
 import eastone.common.context.BeanContext;
 /**
@@ -17,7 +18,9 @@ import eastone.common.context.BeanContext;
  * 	<li>2013-10-12 22:53 确认版本,补充注释.</li>
  * </ol>
  */
-public class SpringBeanContextProvider<C extends AbstractRefreshableApplicationContext> implements BeanContext<C> {
+public class SpringBeanContextProvider
+	<C extends AbstractRefreshableApplicationContext> 
+	implements BeanContext<C> {
 	
 	/**
 	 * 
@@ -25,42 +28,47 @@ public class SpringBeanContextProvider<C extends AbstractRefreshableApplicationC
 	private AbstractApplicationContext context = null;
 	
 	@Override
-	public <T> T status(Object... inputs) {
-		assert inputs!=null:"";
-		int args_length = inputs.length-1;
+	public final <T> T status(final Object... inputs) {
+		assert inputs != null : "";
+		int args_length = inputs.length - 1;
 		Object[] args = new Object[args_length];
 		System.arraycopy(inputs, 1, args, 0, args_length);
-		return getBean((String)inputs[0],args);
+		return getBean((String) inputs[0], args);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <B> B getBean(String beanid,Object... args) {
+	public final <B> B getBean(final String beanid, final Object... args) {
 		B res = null;
-		if(args==null||args.length==0){
-			res = (B)context.getBean(beanid);
-		}else{
-			res = (B)context.getBean(beanid,args);
+		if (args == null || args.length == 0) {
+			res = (B) context.getBean(beanid);
+		} else {
+			res = (B) context.getBean(beanid, args);
 		}
-		return res ;
+		return res;
 	}
 
 	@Override
-	public BeanContext<C> appendContext(C context) {
-		if(this.context!=null){
+	public final BeanContext<C> appendContext(final C newer) {
+		if (this.context != null) {
 			context.setParent(this.context);
 			context.refresh();
 		}
-		this.context=context;
+		this.context = newer;
 		
 		return this;
 	}
 	
-	public String getMessage(String code, Locale locale, Object ... args ){
-		String res=null;
-		if(context==null){
+	@Override
+	public final String getMessage(
+			final String code, 
+			final Locale locale, 
+			final Object ... args) {
+		
+		String res = null;
+		if (context == null) {
 			res = "message initialized failrue.";
-		}else{
+		} else {
 			res = context.getMessage(code, args, "unkown infomation." , locale);
 		}
 		return res;

@@ -27,15 +27,22 @@ import eastone.common.processor.AbstractProcessorWithResult;
  * @since 0.1
  *
  */
-public class InputStream2BytesProcessor extends AbstractProcessorWithResult<byte[],IOException> implements Convertor<InputStream, byte[], IOException>{
+public class InputStream2BytesProcessor 
+	extends AbstractProcessorWithResult<byte[], IOException> 
+	implements Convertor<InputStream, byte[], IOException> {
 	
+	/**
+	 * 默认缓冲大小.
+	 */
+	private static final int DEFAULT_BUFFER_SIZE = 524288;
+
 	/**
 	 * 每次读取的数据长度.
 	 * <p>
 	 * 默认值5M.
 	 * </p>
 	 */
-	private int bufferSize=524288;
+	private int bufferSize = DEFAULT_BUFFER_SIZE;
 	
 	/**
 	 * 要读取的输入流.
@@ -52,24 +59,24 @@ public class InputStream2BytesProcessor extends AbstractProcessorWithResult<byte
 	}
 	
 	/**
-	 * 获取每次读取的数据长度
-	 * @return 每次读取的数据长度
+	 * 获取每次读取的数据长度.
+	 * @return 每次读取的数据长度.
 	 */
 	public int getBufferSize() {
 		return bufferSize;
 	}
 	
 	/**
-	 * 设置要读取的输入流
-	 * @param inputStream 要读取的输入流
+	 * 设置要读取的输入流.
+	 * @param inputStream 要读取的输入流.
 	 */
 	public void setInputStream(InputStream inputStream) {
 		this.inputStream = inputStream;
 	}
 	
 	/**
-	 * 获取要读取的输入流
-	 * @return 要读取的输入流
+	 * 获取要读取的输入流.
+	 * @return 要读取的输入流.
 	 */
 	public InputStream getInputStream() {
 		return inputStream;
@@ -122,29 +129,32 @@ public class InputStream2BytesProcessor extends AbstractProcessorWithResult<byte
 	 *                ◎
 	 *</pre>
 	 * </p>
+	 * @param src 输入流.
+	 * @return 文件内容.
+	 * @throws IOException 异常.
 	 */
 	@Override
 	public byte[] convert(InputStream src) throws IOException {
 		byte[] res = null;
 		
-		if(src==null){
+		if (src == null) {
 			return res;
 		}
 		
 		ByteArrayOutputStream buf = null;
-		try{
+		try {
 			buf = new ByteArrayOutputStream();
 			byte[] cur = new byte[bufferSize];
 			int len = -1;
-			while((len=src.read(cur))>=0){
-				buf.write(cur,0,len);
+			while ((len = src.read(cur)) >= 0) {
+				buf.write(cur, 0, len);
 			}
 			buf.flush();
-		}finally{
-			try{
+		} finally {
+			try {
 				buf.close();
-			}catch(Exception e){
-				logger.warn("",e);
+			} catch (Exception e) {
+				logger.warn("", e);
 			}
 		}
 		res = buf.toByteArray();

@@ -16,6 +16,7 @@ package eastone.common.processor;
  * @version 0.1.1
  * @since 0.1
  */
-public interface ProcessorWithResult<T,E extends Exception> extends Processor<E>,ResultContainer<T>{
+public interface ProcessorWithResult<T, E extends Exception> 
+	extends Processor<E>, ResultContainer<T> {
 
 }

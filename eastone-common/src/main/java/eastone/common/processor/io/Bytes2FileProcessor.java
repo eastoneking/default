@@ -26,7 +26,9 @@ import eastone.common.processor.Processor;
  * @since 0.1
  * 
  */
-public class Bytes2FileProcessor extends eastone.common.Object implements Processor<IOException>,Clearable{
+public class Bytes2FileProcessor 
+	extends eastone.common.Object 
+	implements Processor<IOException>, Clearable {
 	
 	/**
 	 * 是否创建父目录.
@@ -51,11 +53,11 @@ public class Bytes2FileProcessor extends eastone.common.Object implements Proces
 	
 	/**
 	 * 设置文件写入模式.
-	 * @param overwrite 写入模式.
+	 * @param overWrite 写入模式.
 	 * @see eastone.common.processor.io.FileOverwriteEnum
 	 */
-	public void setOverwrite(FileOverwriteEnum overwrite) {
-		this.overwrite = overwrite;
+	public void setOverwrite(FileOverwriteEnum overWrite) {
+		this.overwrite = overWrite;
 	}
 	
 	/**
@@ -104,21 +106,21 @@ public class Bytes2FileProcessor extends eastone.common.Object implements Proces
 	 * 设置当文件所在目录不存在时是否创建目录.
 	 * @param makeParentDirectory 是否创建.
 	 * <p>
-	 * <table style="border-spacing: 0px;border-collapse: 0px;border:black;border-style:solid;border-width:0px 1px 1px 0px;">
+	 * <table>
 	 * 	<tr>
-	 * 		<th style="border:black;border-style:solid;border-width:1px 0px 0px 1px;">值</th>
-	 * 		<th style="border:black;border-style:solid;border-width:1px 0px 0px 1px;">描述</th>
-	 * 		<th style="border:black;border-style:solid;border-width:1px 0px 0px 1px;">默认值</th>
+	 * 		<th>值</th>
+	 * 		<th>描述</th>
+	 * 		<th>默认值</th>
 	 *  </tr>
 	 *  <tr>
-	 *  	<th style="border:black;border-style:solid;border-width:1px 0px 0px 1px;">true</th>
-	 *  	<td style="border:black;border-style:solid;border-width:1px 0px 0px 1px;">创建不存在的目录,如果缺失多个目录,则一同创建.</td>
-	 *  	<td style="border:black;border-style:solid;border-width:1px 0px 0px 1px;">是</td>
+	 *  	<th>true</th>
+	 *  	<td>创建不存在的目录,如果缺失多个目录,则一同创建.</td>
+	 *  	<td>是</td>
 	 *  </tr>
 	 *  <tr>
-	 *  	<th style="border:black;border-style:solid;border-width:1px 0px 0px 1px;">false</th>
-	 *  	<td style="border:black;border-style:solid;border-width:1px 0px 0px 1px;">如果不存在则不创建,并抛出异常.</td>
-	 *  	<td style="border:black;border-style:solid;border-width:1px 0px 0px 1px;">否</td>
+	 *  	<th>false</th>
+	 *  	<td>如果不存在则不创建,并抛出异常.</td>
+	 *  	<td>否</td>
 	 *  </tr>
 	 * </table>
 	 * </p>
@@ -172,15 +174,16 @@ public class Bytes2FileProcessor extends eastone.common.Object implements Proces
 	 *         ◎
 	 * </pre>
 	 * </p>
+	 * @throws IOException 异常
 	 */
 	@Override
 	public void process() throws IOException {
-		assert file!=null;
-		if(this.data!=null&&this.file!=null){
-			if(!validateParentPath(file)){
+		assert file != null;
+		if (this.data != null && this.file != null) {
+			if (!validateParentPath(file)) {
 				throw new IOException();
 			}
-			writeData2File(this.data,this.file);
+			writeData2File(this.data, this.file);
 		}
 	}
 
@@ -191,24 +194,24 @@ public class Bytes2FileProcessor extends eastone.common.Object implements Proces
 	 * @throws IOException 可能出现的异常.
 	 */
 	private void writeData2File(byte[] data, File file) throws IOException {
-		assert file!=null;
+		assert file != null;
 		FileOutputStream fos = null;
-		try{
+		try {
 			
 			boolean is_append = 
 					FileOverwriteEnum.APPEND.equals(this.overwrite)
-					||this.overwrite==null;
+					|| this.overwrite == null;
 			
-			fos = new FileOutputStream(file,is_append);
-			assert fos!=null;
+			fos = new FileOutputStream(file, is_append);
+			assert fos != null;
 			fos.write(data);
 			fos.flush();
-		}finally{
-			if(fos!=null){
+		} finally {
+			if (fos != null) {
 				try {
 					fos.close();
 				} catch (IOException e) {
-					logger.warn("",e);
+					logger.warn("", e);
 				}
 			}
 		}
@@ -247,12 +250,13 @@ public class Bytes2FileProcessor extends eastone.common.Object implements Proces
 		boolean res = false;
 		File parent = file.getParentFile();
 		res = parent.exists();
-		if((!res)&&makeParentDirectory){
-			try{
+		if ((!res) && makeParentDirectory) {
+			try {
 				parent.mkdirs();
 				res = true;
-			}catch(Exception e){
-				logger.warn("can't create the path \""+parent.getPath()+"\".");
+			} catch (Exception e) {
+				logger.warn(
+						"can't create the path \"" + parent.getPath() + "\".");
 			}
 		}
 		return res;
@@ -263,11 +267,11 @@ public class Bytes2FileProcessor extends eastone.common.Object implements Proces
 	 * <p>属性{@link #data}设置为空;属性{@link #file}设置为空;
 	 * 属性{@link #makeParentDirectory}设置为"true";写入模式为追加.</p>
 	 */
-	public void clear(){
-		this.data=null;
-		this.file=null;
-		this.makeParentDirectory=true;
-		this.overwrite=FileOverwriteEnum.APPEND;
+	public void clear() {
+		this.data = null;
+		this.file = null;
+		this.makeParentDirectory = true;
+		this.overwrite = FileOverwriteEnum.APPEND;
 	}
 
 }

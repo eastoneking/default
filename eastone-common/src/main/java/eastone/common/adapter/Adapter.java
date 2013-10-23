@@ -18,6 +18,6 @@ public interface Adapter<T> {
 	 * 获得实现功能的内部对象.
 	 * @return 被适配的对象.
 	 */
-	public T getInner();
+	T getInner();
 	
 }

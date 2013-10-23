@@ -18,6 +18,6 @@ public interface Clearable {
 	/**
 	 * 清理方法.
 	 */
-	public void clear();
+	void clear();
 	
 }

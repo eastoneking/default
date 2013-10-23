@@ -19,7 +19,8 @@ import eastone.common.processor.Processor;
  * @since 0.1
  *
  */
-public class Bytes2OutputStreamProcessor extends eastone.common.Object implements Processor<IOException>,Clearable{
+public class Bytes2OutputStreamProcessor extends eastone.common.Object 
+implements Processor<IOException>, Clearable {
 	
 	/**
 	 * 用于数据的输出流.
@@ -57,7 +58,7 @@ public class Bytes2OutputStreamProcessor extends eastone.common.Object implement
 	}
 	
 	/**
-	 * 获得输出数据
+	 * 获得输出数据.
 	 * @return 输出数据.
 	 */
 	public byte[] getData() {
@@ -67,7 +68,7 @@ public class Bytes2OutputStreamProcessor extends eastone.common.Object implement
 	/**
 	 * 输出数据的开始偏移量,默认值为"0".
 	 */
-	private int offset=0;
+	private int offset = 0;
 	
 	/**
 	 * 设置输出数据的开始偏移量.
@@ -81,7 +82,7 @@ public class Bytes2OutputStreamProcessor extends eastone.common.Object implement
 	/**
 	 * 输出数据的长度,-1为动态计算.
 	 */
-	private int length=-1;
+	private int length = -1;
 	
 	/**
 	 * 设置输出数据的长度.
@@ -140,14 +141,15 @@ public class Bytes2OutputStreamProcessor extends eastone.common.Object implement
 	 *                ◎
 	 * </pre>
 	 * </p>
+	 * @throws IOException 异常.
 	 */
 	@Override
 	public void process() throws IOException {
-		if(outputStream!=null&&this.data!=null){
+		if (outputStream != null && this.data != null) {
 			int max_length = data.length;
 			int offset = calculateOffset(max_length);
-			int length = calculateLength(offset,max_length);
-			outputStream.write(data,offset,length);
+			int length = calculateLength(offset, max_length);
+			outputStream.write(data, offset, length);
 			outputStream.flush();
 		}
 	}
@@ -197,10 +199,10 @@ public class Bytes2OutputStreamProcessor extends eastone.common.Object implement
 	 * @param maxLength 输出数据数组的长度.
 	 * @return 安全的输出长度.
 	 */
-	private int calculateLength(int offset,int maxLength) {
-		int res=this.length;
-		if(res<0||offset+res>maxLength){
-			res = maxLength-offset;
+	private int calculateLength(int offset, int maxLength) {
+		int res = this.length;
+		if (res < 0 || offset + res > maxLength) {
+			res = maxLength - offset;
 		}
 		return res;
 	}
@@ -245,10 +247,10 @@ public class Bytes2OutputStreamProcessor extends eastone.common.Object implement
 	 */
 	private int calculateOffset(int maxLength) {
 		int res = this.offset;
-		if(res<0){
+		if (res < 0) {
 			res = 0;
 		}
-		if(res>maxLength){
+		if (res > maxLength) {
 			res = maxLength;
 		}
 		return res;
@@ -269,9 +271,9 @@ public class Bytes2OutputStreamProcessor extends eastone.common.Object implement
 	 */
 	@Override
 	public void clear() {
-		this.data=new byte[0];
-		this.offset=0;
-		this.length=-1;
-		this.outputStream=null;
+		this.data = new byte[0];
+		this.offset = 0;
+		this.length = -1;
+		this.outputStream = null;
 	}
 }

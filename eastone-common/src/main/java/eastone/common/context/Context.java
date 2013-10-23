@@ -20,8 +20,9 @@ public interface Context {
 	/**
 	 * 从上下文中获得状态.
 	 * @param inputs 输入条件.
+	 * @param <T> 状态类型.
 	 * @return 与输入条件对应的状态.
 	 */
-	public <T> T status(Object ... inputs);
+	<T> T status(Object ... inputs);
 	
 }

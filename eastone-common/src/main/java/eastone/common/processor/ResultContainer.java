@@ -17,16 +17,16 @@ package eastone.common.processor;
  * @since 0.1
  * 
  */
-public interface ResultContainer <T>{
+public interface ResultContainer <T> {
 	/**
 	 * 获得结果.
 	 * @return 结果实例.
 	 */
-	public T getResult();
+	T getResult();
 	/**
 	 * 设置结果.
 	 * @param result 结果内容.
 	 */
-	public void setResult(T result);
+	void setResult(T result);
 
 }

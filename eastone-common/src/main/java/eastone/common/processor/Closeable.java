@@ -16,6 +16,6 @@ public interface Closeable {
 	/**
 	 * 关闭方法.
 	 */
-	public void close();
+	void close();
 
 }

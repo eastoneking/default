@@ -32,7 +32,8 @@ public class BeanContextFactory implements
 	/**
 	 * 默认工厂对象.
 	 */
-	private final static BeanContextFactory default_factory = new BeanContextFactory();
+	private static final BeanContextFactory DEFAULT_FACTORY 
+		= new BeanContextFactory();
 
 	/**
 	 * 从默认工厂对象中获得上下文.
@@ -43,7 +44,7 @@ public class BeanContextFactory implements
 	 * @return 默认工厂类的上下文对象.
 	 */
 	public static BeanContext getBeanContext() {
-		return default_factory.getInstance();
+		return DEFAULT_FACTORY.getInstance();
 	}
 
 	/**
@@ -66,9 +67,10 @@ public class BeanContextFactory implements
 	 * META-INF/services/eastone.common.context.BeanContext文件定义。如果存在多份
 	 * 配置返回第一个配置对应的实例。
 	 * </p>
-	 */
+	 * @return 上下文.
+	 */ 
 	@Override
-	public BeanContext getInstance() throws RuntimeException {
+	public BeanContext getInstance() {
 		BeanContext res = null;
 		if (instance == null) {
 			synchronized (lock) {

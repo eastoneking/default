@@ -19,14 +19,14 @@ package eastone.common.convertor;
  * @author 王东石 <wangds@gmail.com>
  * 
  */
-public interface Convertor<S,T,E extends Exception>{
+public interface Convertor<S, T, E extends Exception> {
 	
 	/**
-	 * 转换功能
+	 * 转换功能.
 	 * @param src 输入参数
 	 * @return 输出对象
 	 * @throws E 可能的异常
 	 */
-	public T convert(S src) throws E;
+	T convert(S src) throws E;
 
 }

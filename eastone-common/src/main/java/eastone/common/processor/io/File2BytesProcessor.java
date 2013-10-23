@@ -29,9 +29,13 @@ import eastone.common.processor.Processor;
  * @version 0.1.1
  * @since 0.1
  */
-public class File2BytesProcessor extends AbstractProcessorWithResult<byte[],IOException> implements Convertor<File,byte[], IOException>, Adapter<Convertor<InputStream,byte[],IOException>>, Processor<IOException>{
+public class File2BytesProcessor 
+	extends AbstractProcessorWithResult<byte[], IOException> 
+	implements Convertor<File, byte[], IOException>, 
+		Adapter<Convertor<InputStream, byte[], IOException>>, 
+		Processor<IOException> {
 	/**
-	 * 要读取的文件。
+	 * 要读取的文件.
 	 */
 	private File file;
 	
@@ -44,7 +48,7 @@ public class File2BytesProcessor extends AbstractProcessorWithResult<byte[],IOEx
 	}
 	
 	/**
-	 * 获得要读取的文件
+	 * 获得要读取的文件.
 	 * @return 文件
 	 */
 	public File getFile() {
@@ -55,10 +59,12 @@ public class File2BytesProcessor extends AbstractProcessorWithResult<byte[],IOEx
 	 * 用于从文件对应的数据流读取数据的转换器.
 	 * <p>默认值为 {@link InputStream2BytesProcessor}类型.</p>
 	 */
-	private Convertor<InputStream, byte[], IOException> inner=new InputStream2BytesProcessor();
+	private Convertor<InputStream, byte[], IOException> inner
+		= new InputStream2BytesProcessor();
 	
 	/**
-	 * 获得转换器
+	 * 获得转换器.
+	 * @return 获得转换器.
 	 */
 	@Override
 	public Convertor<InputStream, byte[], IOException> getInner() {
@@ -127,29 +133,33 @@ public class File2BytesProcessor extends AbstractProcessorWithResult<byte[],IOEx
 	 *                ⊙
 	 * </pre>
 	 * </p>
+	 * @param src 输入文件.
+	 * @throws IOException 异常.
+	 * @return 转换结果.
 	 */
 	@Override
 	public byte[] convert(File src) throws IOException {
 		byte[] res = null;
-		if(src==null||this.inner==null){
+		if (src == null || this.inner == null) {
 			return res;
 		}
-		if(!src.exists()){
+		if (!src.exists()) {
 			throw new FileNotFoundException(src.getPath());
 		}
-		if(!src.canRead()){
-			throw new IOException("file can't be read. the file is "+src.getPath());
+		if (!src.canRead()) {
+			throw new IOException("file can't be read. the file is "
+					+ src.getPath());
 		}
 		FileInputStream fis = null;
-		try{
+		try {
 			fis = new FileInputStream(src);
 			res = this.inner.convert(fis);
-		}finally{
-			if(fis!=null){
-				try{
+		} finally {
+			if (fis != null) {
+				try {
 					fis.close();
-				}catch(Exception e){
-					logger.warn("",e);
+				} catch (Exception e) {
+					this.getLogger().warn("", e);
 				}
 			}
 		}

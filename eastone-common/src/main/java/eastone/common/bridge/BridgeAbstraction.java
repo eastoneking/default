@@ -14,7 +14,15 @@ package eastone.common.bridge;
  * @since 0.1
  * @see eastone.common.bridge.BridgeImplementor
  */
-public interface BridgeAbstraction <T extends BridgeImplementor>{
-	public T getImplementor();
-	public void setImplementor(T implementor);
+public interface BridgeAbstraction <T extends BridgeImplementor> {
+	/**
+	 * 获得实现对象.
+	 * @return 桥接对象.
+	 */
+	T getImplementor();
+	/**
+	 * 设置实现对象.
+	 * @param implementor 桥接对象.
+	 */
+	void setImplementor(T implementor);
 }

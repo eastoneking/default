@@ -30,12 +30,12 @@ package eastone.common.processor;
  * @since 0.1
  * 
  */
-public interface Processor <E extends Exception>{
+public interface Processor <E extends Exception> {
 	
 	/**
 	 * 执行功能的方法.
 	 * @throws E 可能出现的异常类型.
 	 */
-	public void process() throws E;
+	void process() throws E;
 	
 }
