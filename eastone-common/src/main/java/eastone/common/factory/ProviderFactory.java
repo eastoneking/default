@@ -4,8 +4,6 @@
  */
 package eastone.common.factory;
 
-import java.lang.reflect.Method;
-import java.lang.reflect.Type;
 import java.util.Iterator;
 import java.util.ServiceLoader;
 
@@ -18,25 +16,23 @@ import eastone.common.context.provider.spring.SpringBeanContextProvider;
  *    <li>初始版本, by wangds@gmail.com, 2013-10-27 下午6:04:31</li>
  *  </ol>
  * </p>
- * @param <T> 返回类型.
  * @author 王东石 <wangds@gmail.com>
  * @version 0.1.1
  * @since 0.1
  */
-public class ProviderFactory <T> implements Factory<T, RuntimeException> {
+public class ProviderFactory {
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@Override
-	public T getInstance() {
+	/**
+	 * 获得Provider.
+	 * @param <T> 目标类型
+	 * @param interfaceclass 目标类型
+	 * @return 目标实例.
+	 */
+	public <T> T getInstance(Class<T> interfaceclass) {
 		T res = null;
 		try {
-			Class c = this.getClass();
-			Method method = c.getMethod("getInstance", new Class[]{});
-			Type[] types = method.getGenericParameterTypes();
-			Class clz = Class.forName(types[0].toString());
-
 			ServiceLoader<T> loader
-            = ServiceLoader.load(clz);
+            = ServiceLoader.load(interfaceclass);
 	        Iterator<T> it = loader.iterator();
 	        while (it.hasNext()) {
 	            res = it.next();
@@ -44,9 +40,7 @@ public class ProviderFactory <T> implements Factory<T, RuntimeException> {
 	            	break;
 	            }
 	        }
-		} catch (NoSuchMethodException e) {
-			throw new RuntimeException(e);
-		} catch (ClassNotFoundException e) {
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 		return res;
