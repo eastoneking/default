@@ -154,7 +154,7 @@ public class InputStream2BytesProcessor
 			try {
 				buf.close();
 			} catch (Exception e) {
-				logger.warn("", e);
+				this.getLogger().warn("", e);
 			}
 		}
 		res = buf.toByteArray();

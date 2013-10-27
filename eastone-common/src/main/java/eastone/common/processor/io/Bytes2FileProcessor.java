@@ -211,7 +211,7 @@ public class Bytes2FileProcessor
 				try {
 					fos.close();
 				} catch (IOException e) {
-					logger.warn("", e);
+					this.getLogger().warn("", e);
 				}
 			}
 		}
@@ -255,7 +255,7 @@ public class Bytes2FileProcessor
 				parent.mkdirs();
 				res = true;
 			} catch (Exception e) {
-				logger.warn(
+				this.getLogger().warn(
 						"can't create the path \"" + parent.getPath() + "\".");
 			}
 		}

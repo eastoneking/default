@@ -11,6 +11,9 @@ import org.apache.ibatis.session.SqlSession;
  * <p>
  *  <ol>
  *    <li>初始版本,wangdongshi@neusoft.com,2013-10-17 上午12:24:08</li>
+ *    <li>根据CheckStyle检查结果修改格式,
+ *    		by wangdongshi@gmail.com 2013-10-27 14:33
+ *    </li>
  *  </ol>
  * </p>
  * @author 王东石 <wangdongshi@neusoft.com>
@@ -19,21 +22,16 @@ import org.apache.ibatis.session.SqlSession;
  */
 public class DeleteSQL extends MyBatisSQLExecutor<Integer> {
 
-	/* (non-Javadoc)
-	 * @see eastone.component.database.mybatis.MyBatisSQLExecutor#executeOperation(org.apache.ibatis.session.SqlSession, java.lang.String, java.lang.Object)
-	 */
 	@Override
 	protected Integer executeOperation(SqlSession session,
 			String commandText, Object parameters) {
 		int res = -1;
-		try{
-			res= session.delete(commandText, parameters);
-		}finally{
+		try {
+			res = session.delete(commandText, parameters);
+		} finally {
 			session.commit();
 		}
 		return res;
 	}
-	
-	
 
 }

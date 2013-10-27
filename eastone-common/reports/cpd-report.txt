@@ -1,0 +1,21 @@
+Found a 7 line (38 tokens) duplication in the following files: 
+Starting at line 58 of C:\Users\quzl\git\default\eastone-common\src\test\java\eastone\common\context\provider\spring\test\SpringBeanContextTest.java
+Starting at line 71 of C:\Users\quzl\git\default\eastone-common\src\test\java\eastone\common\context\provider\spring\test\SpringBeanContextTest.java
+
+    public final void testGetBean() {
+        SpringBeanContextProvider ctx = new SpringBeanContextProvider();
+        ctx.appendContext(new ClassPathXmlApplicationContext(
+        "eastone/common/context/provider/spring/test/test.context.xml"
+        ));
+        String testmsg = (String) ctx.getBean("test.msg");
+        assertEquals(testmsg, "Hello World");
+=====================================================================
+Found a 5 line (25 tokens) duplication in the following files: 
+Starting at line 155 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\processor\io\InputStream2BytesProcessor.java
+Starting at line 160 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\processor\io\File2BytesProcessor.java
+
+				buf.close();
+			} catch (Exception e) {
+				this.getLogger().warn("", e);
+			}
+		}

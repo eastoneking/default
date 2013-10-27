@@ -12,30 +12,32 @@ import eastone.common.Object;
 import eastone.component.database.AbstractSQLExecutor;
 
 /**
- * mybatis抽象类
+ * mybatis抽象类.
  * <p>
  *  <ol>
- *    <li>初始版本,wangdongshi@neusoft.com,2013-10-17 上午12:00:19</li>
+ *    <li>初始版本,wangds@gmail.com,2013-10-17 12:00:19</li>
+ *    <li>根据check style修改格式,by wangds@gmail.com 2013-10-27 14:36</li>
  *  </ol>
  * </p>
+ * @param <R> 资源类型
  * @author 王东石 <wangdongshi@neusoft.com>
  * @version 0.1.1
  * @since 0.1
  */
-public abstract class MyBatisSQLExecutor<R> extends AbstractSQLExecutor<SqlSessionFactoryBean,R,Exception>{
+public abstract class MyBatisSQLExecutor<R>
+	extends AbstractSQLExecutor<SqlSessionFactoryBean, R, Exception> {
 
-	/* (non-Javadoc)
-	 * @see eastone.component.database.AbstractSQLExecutor#executeSQL(java.lang.Object, java.lang.String, eastone.common.Object)
-	 */
 	@Override
 	protected R executeSQL(SqlSessionFactoryBean dBResource,
 			String commandText, Object parameters) throws Exception {
 		SqlSessionFactory fac = dBResource.getObject();
 		SqlSession session = openSession(fac);
 		R res = null;
-		try{
-			res = executeOperation(session,this.getCommandText(),this.getParameters());
-		}finally{
+		try {
+			res = executeOperation(
+					session, this.getCommandText(), this.getParameters()
+				);
+		} finally {
 			session.close();
 		}
 		return res;
@@ -43,13 +45,15 @@ public abstract class MyBatisSQLExecutor<R> extends AbstractSQLExecutor<SqlSessi
 
 	/**
 	 * 执行SQL操作.
-	 * @param session 会话
-	 * @param commandText SQL唯一标识
-	 * @param parameters 参数
-	 * @return
+	 * @param session 会话.
+	 * @param commandText SQL唯一标识.
+	 * @param parameters 参数.
+	 * @return 执行结果.
 	 */
-	protected abstract R executeOperation(SqlSession session, String commandText,
-			java.lang.Object parameters) ;
+	protected abstract R executeOperation(
+			SqlSession session,
+			String commandText,
+			java.lang.Object parameters);
 
 	/**
 	 * 建立Session.

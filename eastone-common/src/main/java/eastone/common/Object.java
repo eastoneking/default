@@ -11,16 +11,16 @@ import org.slf4j.LoggerFactory;
  * <ol><li> 补充注释. wangds@gmail.com 2013-10-13 00:10</li></ol>
  * </p>
  * @author 王东石 <wangds@gmail.com>
- * @version 0.1.1 
+ * @version 0.1.1
  * @since 0.1
  */
-public class Object {
+public class Object extends java.lang.Object {
 	/**
 	 * 通用日志对象.
 	 * <p>因为要给子类使用，所以定义成了保护级别.</p>
 	 */
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    
+
     /**
      * 获得日志对象.
      * @return 日志对象.
@@ -28,7 +28,7 @@ public class Object {
     protected Logger getLogger() {
     	return this.logger;
     }
-    
+
     /**
      * 获得静态块或方法中能够使用的日志对象.
      * @param c 调用日志的类的类型.
@@ -42,6 +42,6 @@ public class Object {
     	assert res != null;
     	return res;
     }
-    
+
 
 }

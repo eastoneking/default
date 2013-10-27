@@ -4,7 +4,6 @@
  */
 package eastone.component.database;
 
-import javax.sql.DataSource;
 
 /**
  * 使用数据库资源接口.
@@ -12,26 +11,26 @@ import javax.sql.DataSource;
  * <p>
  *  <ol>
  *    <li>初始版本,wangdongshi@neusoft.com,2013-10-16 下午11:11:25</li>
+ *    <li>根据check style修改格式, by wangds@gmail.com, 2013-10-27 15:11</li>
  *  </ol>
  * </p>
- * @param T 数据资源,一遍为{@link DataSource}等.
- * 
+ * @param <T> 数据资源.
  * @author 王东石 <wangdongshi@neusoft.com>
  * @version 0.1.1
  * @since 0.1
  */
-public interface WithDBResource <T>{
-	
+public interface WithDBResource <T> {
+
 	/**
-	 * 获得数据资源
-	 * @return
+	 * 获得数据资源.
+	 * @return 数据源.
 	 */
-	public T getDBResource();
-	
+	T getDBResource();
+
 	/**
-	 * 设置数据资源
-	 * @param resource
+	 * 设置数据资源.
+	 * @param resource 数据源.
 	 */
-	public void setDBResource(T resource);
-	
+	void setDBResource(T resource);
+
 }
