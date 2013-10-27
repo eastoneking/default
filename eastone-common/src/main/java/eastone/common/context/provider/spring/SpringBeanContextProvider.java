@@ -11,7 +11,7 @@ import eastone.common.context.BeanContext;
  * 以Spring IoC容器作为基础实现的{@link BeanContext}接口的实现类.
  * @author 王东石 <wangds@gmail.com>
  * @param <C> 参数类型 限定了Spring上下文类型必须是可以更新的上下文.
- * 
+ *
  * @version 0.1
  * @modifyList
  * <ol>
@@ -19,14 +19,14 @@ import eastone.common.context.BeanContext;
  * </ol>
  */
 public class SpringBeanContextProvider
-	<C extends AbstractRefreshableApplicationContext> 
+	<C extends AbstractRefreshableApplicationContext>
 	implements BeanContext<C> {
-	
+
 	/**
-	 * 
+	 *
 	 */
 	private AbstractApplicationContext context = null;
-	
+
 	@Override
 	public final <T> T status(final Object... inputs) {
 		assert inputs != null : "";
@@ -51,20 +51,20 @@ public class SpringBeanContextProvider
 	@Override
 	public final BeanContext<C> appendContext(final C newer) {
 		if (this.context != null) {
-			context.setParent(this.context);
-			context.refresh();
+			newer.setParent(this.context);
+			newer.refresh();
 		}
 		this.context = newer;
-		
+
 		return this;
 	}
-	
+
 	@Override
 	public final String getMessage(
-			final String code, 
-			final Locale locale, 
+			final String code,
+			final Locale locale,
 			final Object ... args) {
-		
+
 		String res = null;
 		if (context == null) {
 			res = "message initialized failrue.";
@@ -74,5 +74,5 @@ public class SpringBeanContextProvider
 		return res;
 	}
 
-	
+
 }
