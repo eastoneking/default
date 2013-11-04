@@ -19,11 +19,11 @@ import eastone.common.factory.Factory;
  * by wangds@gmail.com 2013-10-12 23:04</li>
  * </ol>
  * </p>
- * 
+ *
  * @author 王东石 <wangds@gmail.com>
  * @version 0.1.2
  * @see java.util.ServiceLoader
- * 
+ *
  */
 @SuppressWarnings("rawtypes")
 public class BeanContextFactory implements
@@ -32,7 +32,7 @@ public class BeanContextFactory implements
 	/**
 	 * 默认工厂对象.
 	 */
-	private static final BeanContextFactory DEFAULT_FACTORY 
+	private static final BeanContextFactory DEFAULT_FACTORY
 		= new BeanContextFactory();
 
 	/**
@@ -40,7 +40,7 @@ public class BeanContextFactory implements
 	 * <p>
 	 * 如果想获得整个应用的上下文，应该使用本方法.
 	 * </p>
-	 * 
+	 *
 	 * @return 默认工厂类的上下文对象.
 	 */
 	public static BeanContext getBeanContext() {
@@ -67,18 +67,18 @@ public class BeanContextFactory implements
 	 * META-INF/services/eastone.common.context.BeanContext文件定义。如果存在多份
 	 * 配置返回第一个配置对应的实例。
 	 * </p>
+	 *
 	 * @return 上下文.
-	 */ 
+	 */
 	@Override
 	public BeanContext getInstance() {
 		BeanContext res = null;
-		if (instance == null) {
-			synchronized (lock) {
-				if (instance == null) { // 双检查
-					instance = loadNewInstance();
-				}
+		synchronized (lock) {
+			if (instance == null) {
+				instance = loadNewInstance();
 			}
 		}
+
 		res = instance;
 		return res;
 	}
@@ -88,7 +88,7 @@ public class BeanContextFactory implements
 	 * <p>
 	 * 使用了Service-Provider方式.
 	 * </p>
-	 * 
+	 *
 	 * @return 上下文对象.
 	 * @see #getInstance()
 	 * @see java.util.ServiceLoader

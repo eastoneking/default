@@ -21,30 +21,29 @@ package eastone.common.processor;
  * @version 0.1.1
  * @since 0.1
  */
-public abstract class AbstractProcessorWithResult<T, E extends Exception> 
-	extends eastone.common.Object 
+public abstract class AbstractProcessorWithResult<T, E extends Exception>
+	extends eastone.common.GeneralParentObject
 	implements ProcessorWithResult<T, E> {
-	
+
 	/**
 	 * 保存执行结果的属性.
 	 */
 	private T result = null;
-	
+
 	@Override
 	public void setResult(T result) {
 		this.result = result;
 	}
-	
+
 	@Override
 	public T getResult() {
 		return this.result;
 	}
-	
+
 	@Override
 	public void process() throws E {
 		if (this.result != null) {
-			//TODO 提示消息使用i18n.
-			new RuntimeException("上次执行结果尚未清空.请在执行之前调用方法clear().");
+			return;
 		}
 		this.setResult(execute());
 	}
@@ -62,5 +61,5 @@ public abstract class AbstractProcessorWithResult<T, E extends Exception>
 	public void clear() {
 		this.result = null;
 	}
-	
+
 }

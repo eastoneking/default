@@ -3,6 +3,7 @@ package eastone.common.processor.io;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import eastone.common.GeneralParentObject;
 import eastone.common.processor.Clearable;
 import eastone.common.processor.Processor;
 
@@ -19,14 +20,14 @@ import eastone.common.processor.Processor;
  * @since 0.1
  *
  */
-public class Bytes2OutputStreamProcessor extends eastone.common.Object 
+public class Bytes2OutputStreamProcessor extends GeneralParentObject
 implements Processor<IOException>, Clearable {
-	
+
 	/**
 	 * 用于数据的输出流.
 	 */
 	private OutputStream outputStream;
-	
+
 	/**
 	 * 设置用于输出的输出流.
 	 * @param outputStream 输出流.
@@ -35,7 +36,7 @@ implements Processor<IOException>, Clearable {
 	public void setOutputStream(OutputStream outputStream) {
 		this.outputStream = outputStream;
 	}
-	
+
 	/**
 	 * 获得用于输出的输出流.
 	 * @return 输出流.
@@ -43,12 +44,12 @@ implements Processor<IOException>, Clearable {
 	public OutputStream getOutputStream() {
 		return outputStream;
 	}
-	
+
 	/**
 	 * 输出数据.
 	 */
 	private byte[] data;
-	
+
 	/**
 	 * 设置输出数据.
 	 * @param data 输出数据.
@@ -56,7 +57,7 @@ implements Processor<IOException>, Clearable {
 	public void setData(byte[] data) {
 		this.data = data;
 	}
-	
+
 	/**
 	 * 获得输出数据.
 	 * @return 输出数据.
@@ -64,12 +65,12 @@ implements Processor<IOException>, Clearable {
 	public byte[] getData() {
 		return data;
 	}
-	
+
 	/**
 	 * 输出数据的开始偏移量,默认值为"0".
 	 */
 	private int offset = 0;
-	
+
 	/**
 	 * 设置输出数据的开始偏移量.
 	 * @param offset 输出数的开始偏移量.
@@ -78,12 +79,12 @@ implements Processor<IOException>, Clearable {
 	public void setOffset(int offset) {
 		this.offset = offset;
 	}
-	
+
 	/**
 	 * 输出数据的长度,-1为动态计算.
 	 */
 	private int length = -1;
-	
+
 	/**
 	 * 设置输出数据的长度.
 	 * @param length 输出长度.
@@ -92,7 +93,7 @@ implements Processor<IOException>, Clearable {
 	public void setLength(int length) {
 		this.length = length;
 	}
-	
+
 	/**
 	 * 获得输出数据的长度.
 	 * @return 输出数据的长度.
@@ -101,7 +102,7 @@ implements Processor<IOException>, Clearable {
 	public int getLength() {
 		return length;
 	}
-	
+
 	/**
 	 * 执行输出数据.
 	 * <p>处理过程:<br/>
@@ -172,8 +173,8 @@ implements Processor<IOException>, Clearable {
 	 *                ▽
 	 *       ┌──┬─────┴────────┐
 	 *       │if│testing the   │if the result has been little than zero,
-	 *       ├──┘result value  │that mean the length would be calculate when 
-	 *       │ has been little │write; if the offset add the result has been  
+	 *       ├──┘result value  │that mean the length would be calculate when
+	 *       │ has been little │write; if the offset add the result has been
 	 *       │ than zero, or   │ greate than the max length value, the result
 	 *       │ the offset add  │ is a wrong value
 	 *       │ the result is   │       ┌─────────────────┐
@@ -190,8 +191,8 @@ implements Processor<IOException>, Clearable {
 	 *                                ▽
 	 *                                │
 	 *                                ◎
-	 *                                
-	 *       
+	 *
+	 *
 	 * </pre>
 	 * </p>
 	 * @param offset 已经计算过的偏移量.
@@ -255,7 +256,7 @@ implements Processor<IOException>, Clearable {
 		}
 		return res;
 	}
-	
+
 	/**
 	 * 清理现有状态.
 	 * <p>方法{@link #clear()}不会关闭{@link #outputStream}.<br/>

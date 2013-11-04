@@ -27,7 +27,7 @@ import eastone.common.processor.Processor;
  * 
  */
 public class Bytes2FileProcessor 
-	extends eastone.common.Object 
+	extends eastone.common.GeneralParentObject 
 	implements Processor<IOException>, Clearable {
 	
 	/**
