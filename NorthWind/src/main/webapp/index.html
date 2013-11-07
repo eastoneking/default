@@ -3,22 +3,22 @@
 	<head>
 		<meta charset="UTF-8">
 		<META http-equiv="X-UA-Compatible" content="IE=9" />
-		
+
 		<title>北风</title>
 		<link rel="stylesheet" type="text/css" href="css/easyui.css">
 		<link rel="stylesheet" type="text/css" href="css/icon.css">
 		<link rel="stylesheet" type="text/css" href="css/demo.css">
-		
+
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
 		<script type="text/javascript" src="js/jquery.form.js"></script>
 		<script type="text/javascript" src="js/common.js"></script>
-		
+
 		<script type="text/javascript">
 			var cvs = null;
 			function init(){
 				var $center_panel = $("body");
-				
+
 				var canvas_width = $center_panel.width();
 				var canvas_height = $center_panel.height();
 				console.log("{canvas|width:"+canvas_width+"px;height:"+canvas_height+"px}");
@@ -27,14 +27,13 @@
 				cvs = $("#GG")[0].getContext("2d");
 				cvs.fillStyle="red";
 				cvs.translate(canvas_width/2,canvas_height/2);
-				
+
 			}
+
 			$(init);
-			
-			
-			
+
 		</script>
-		
+
 	</head>
 	<body>
 	</body>

@@ -8,7 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 
-import eastone.common.Object;
 import eastone.component.database.AbstractSQLExecutor;
 
 /**
@@ -53,7 +52,7 @@ public abstract class MyBatisSQLExecutor<R>
 	protected abstract R executeOperation(
 			SqlSession session,
 			String commandText,
-			java.lang.Object parameters);
+			Object parameters);
 
 	/**
 	 * 建立Session.

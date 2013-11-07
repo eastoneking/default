@@ -4,7 +4,7 @@
  */
 package eastone.component.database;
 
-import eastone.common.Object;
+import eastone.common.GeneralParentObject;;
 
 /**
  * 数据库执行抽象接口.
@@ -25,7 +25,7 @@ import eastone.common.Object;
  * @since 0.1
  */
 public abstract class AbstractSQLExecutor<S, R, E extends Exception>
-	extends Object implements SQLExecutor<S, R, E> {
+	extends GeneralParentObject implements SQLExecutor<S, R, E> {
 
 	/**
 	 * 保存执行结果.
