@@ -16,7 +16,7 @@ package eastone.common.convertor;
  * 
  * @version 0.1.1
  * @since 0.1
- * @author 王东石 <wangds@gmail.com>
+ * @author 王东石 <wangdongshi@neusoft.com>
  * 
  */
 public interface Convertor<S, T, E extends Exception> {

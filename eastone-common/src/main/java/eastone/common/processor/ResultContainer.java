@@ -6,13 +6,13 @@ package eastone.common.processor;
  * 
  * <p>修改列表:
  * <ol>
- * 		<li> 补充注释 by wangds@gmail.com 2013-10-13 10:30</li>
+ * 		<li> 补充注释 by wangdongshi@neusoft.com 2013-10-13 10:30</li>
  *  </ol>
  * </p>
  * 
  * @param <T> 结果类型
  * 
- * @author 王东石 <wangds@gmail.com>
+ * @author 王东石 <wangdongshi@neusoft.com>
  * @version 0.1.1
  * @since 0.1
  * 

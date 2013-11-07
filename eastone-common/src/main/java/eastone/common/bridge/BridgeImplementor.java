@@ -5,10 +5,10 @@ package eastone.common.bridge;
  * 
  * <p>修改列表:<br/>
  * <ol>
- * 	<li>创建接口. by wangds@gmail.com 2013-10-13 15:35</li>
+ * 	<li>创建接口. by wangdongshi@neusoft.com 2013-10-13 15:35</li>
  * </ol>
  * </p>
- * @author 王东石 <wangds@gmail.com>
+ * @author 王东石 <wangdongshi@neusoft.com>
  * @version 0.1.1
  * @since 0.1
  * 

@@ -9,11 +9,11 @@ import org.slf4j.LoggerFactory;
  * <p>该类是对{@link java.lang.Object}的扩展.目前扩展的功能只有日志接口.</p>
  * <p>修改列表:
  * <ol>
- * 	<li> 补充注释. wangds@gmail.com 2013-10-13 00:10</li>
- * 	<li> 根据Check Style提示更改类名, by wangds@gmail.com 2013-10-13 00:10</li>
+ * 	<li> 补充注释. wangdongshi@neusoft.com 2013-10-13 00:10</li>
+ * 	<li> 根据Check Style提示更改类名, by wangdongshi@neusoft.com 2013-10-13 00:10</li>
  * </ol>
  * </p>
- * @author 王东石 <wangds@gmail.com>
+ * @author 王东石 <wangdongshi@neusoft.com>
  * @version 0.1.1
  * @since 0.1
  */

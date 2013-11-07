@@ -15,14 +15,14 @@ import eastone.common.processor.AbstractProcessorWithResult;
  * </p>
  * <p>修改列表:
  * <ol>
- * 	<li>by wangds@gmail.com, 2013-10-16 12:16
+ * 	<li>by wangdongshi@neusoft.com, 2013-10-16 12:16
  * 		<ul>
  * 			<li>补充注释.</li>
  * 		</ul>
  * 	</li>
  * </ol>
  * </p>
- * @author 王东石 <wangds@gmail.com>
+ * @author 王东石 <wangdongshi@neusoft.com>
  * @version 0.1.1
  * @since 0.1
  *

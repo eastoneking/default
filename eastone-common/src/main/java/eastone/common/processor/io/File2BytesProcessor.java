@@ -15,7 +15,7 @@ import eastone.common.processor.Processor;
  * <p>修改列表:
  * 	<ol>
  * 		<li>
- * 			by wangds@gmail.com, 2013-10-16 08:13
+ * 			by wangdongshi@neusoft.com, 2013-10-16 08:13
  * 			<ul>
  * 				<li>补充注释.</li>
  * 				<li>设置属性{@link #inner}的默认值.</li>
@@ -25,20 +25,20 @@ import eastone.common.processor.Processor;
  * 		</li>
  * 	</ol>
  * </p>
- * @author 王东石 <wangds@gmail.com>
- * @version 0.1.1
+ * @author 王东石 <wangdongshi@neusoft.com>
+ * @version 0.1.3
  * @since 0.1
  */
-public class File2BytesProcessor 
-	extends AbstractProcessorWithResult<byte[], IOException> 
-	implements Convertor<File, byte[], IOException>, 
-		Adapter<Convertor<InputStream, byte[], IOException>>, 
+public class File2BytesProcessor
+	extends AbstractProcessorWithResult<byte[], IOException>
+	implements Convertor<File, byte[], IOException>,
+		Adapter<Convertor<InputStream, byte[], IOException>>,
 		Processor<IOException> {
 	/**
 	 * 要读取的文件.
 	 */
 	private File file;
-	
+
 	/**
 	 * 设置要读取的文件.
 	 * @param file 文件
@@ -46,7 +46,7 @@ public class File2BytesProcessor
 	public void setFile(File file) {
 		this.file = file;
 	}
-	
+
 	/**
 	 * 获得要读取的文件.
 	 * @return 文件
@@ -54,23 +54,23 @@ public class File2BytesProcessor
 	public File getFile() {
 		return file;
 	}
-	
+
 	/**
 	 * 用于从文件对应的数据流读取数据的转换器.
 	 * <p>默认值为 {@link InputStream2BytesProcessor}类型.</p>
 	 */
 	private Convertor<InputStream, byte[], IOException> inner
 		= new InputStream2BytesProcessor();
-	
+
 	/**
 	 * 获得转换器.
 	 * @return 获得转换器.
 	 */
 	@Override
-	public Convertor<InputStream, byte[], IOException> getInner() {
+	public Convertor<InputStream, byte[], IOException> getAdaptee() {
 		return inner;
 	}
-	
+
 	/**
 	 * 设置转换器.
 	 * @param inner 转换器.
@@ -87,7 +87,7 @@ public class File2BytesProcessor
 	 * <p>处理过程：
 	 * <pre>
 	 *                ○
-	 *                ↓              
+	 *                ↓
 	 *   ┌──┬─────────┴────────────┐ if the argument is null.
 	 *   │if│ test input argument. ├→────────────────────────⊙
 	 *   └──┴─────────┬────────────┘
@@ -106,28 +106,28 @@ public class File2BytesProcessor
 	 *   ├──┘                      │                        │exception      │
 	 *   └────────────┬────────────┘                        └───────┬───────┘
 	 *                ↓   else                                      ⊙
-	 *   ┌──┬─────────┴────────────┐ 
+	 *   ┌──┬─────────┴────────────┐
 	 *   │if│ test the file.       │
 	 *   ├──┘                      │
 	 *   └────────────┬────────────┘
 	 *                ↓
-	 *   ┌────────────┴────────────┐ 
+	 *   ┌────────────┴────────────┐
 	 *   │ build the file's input  │
 	 *   │stream object "fis".     │
 	 *   └────────────┬────────────┘
 	 *                ↓
-	 *   ┌────────────┴────────────┐ 
+	 *   ┌────────────┴────────────┐
 	 *   │ invoke inner's function │
 	 *   │ "convert",and save the  │
-	 *   │ convert result as "res".│ 
+	 *   │ convert result as "res".│
 	 *   └────────────┬────────────┘
 	 *                ↓
-	 *   ┌────────────┴────────────┐ 
+	 *   ┌────────────┴────────────┐
 	 *   │ close the file input    │
 	 *   │ stream.                 │
 	 *   └────────────┬────────────┘
 	 *                ↓
-	 *   ┌────────────┴────────────┐ 
+	 *   ┌────────────┴────────────┐
 	 *   │ return "res" as result. │
 	 *   └────────────┬────────────┘
 	 *                ⊙
@@ -165,7 +165,7 @@ public class File2BytesProcessor
 		}
 		return res;
 	}
-	
+
 
 	@Override
 	protected byte[] execute() throws IOException {

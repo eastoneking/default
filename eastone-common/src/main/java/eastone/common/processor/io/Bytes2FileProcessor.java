@@ -14,43 +14,43 @@ import eastone.common.processor.Processor;
  * <p>
  * 	修改记录:
  * 	<ol>
- * 		<li>补充注释. by wangds@gmail.com 2013-10-13 21:33</li>
- * 		<li>增加实现接口{@link eastone.common.processor.Clearable}, 
- * 			by wangds@gmail.com 2013-10-13 22:36</li>
- * 		<li>增加覆盖写入或追加写入模式的处理,wangds@gmail.com 2013-10-13 22:46.
- * 		<li>
+ * 		<li>补充注释. by wangdongshi@neusoft.com 2013-10-13 21:33</li>
+ * 		<li>增加实现接口{@link eastone.common.processor.Clearable},
+ * 			by wangdongshi@neusoft.com 2013-10-13 22:36</li>
+ * 		<li>增加覆盖写入或追加写入模式的处理,wangdongshi@neusoft.com 2013-10-13 22:46.
+ * 		</li>
  *  </ol>
  * </p>
- * @author 王东石 <wangds@gmail.com>
- * @version 0.1.1
+ * @author 王东石 <wangdongshi@neusoft.com>
+ * @version 0.1.3
  * @since 0.1
- * 
+ *
  */
-public class Bytes2FileProcessor 
-	extends eastone.common.GeneralParentObject 
+public class Bytes2FileProcessor
+	extends eastone.common.GeneralParentObject
 	implements Processor<IOException>, Clearable {
-	
+
 	/**
 	 * 是否创建父目录.
 	 */
 	private boolean makeParentDirectory;
-	
+
 	/**
 	 * 要写入文件的数据.
 	 */
 	private byte[] data;
-	
+
 	/**
 	 * 要操作的文件.
 	 */
 	private File file;
-	
+
 	/**
 	 * 文件是覆盖写入或追加写入模式.
 	 * <p>默认值为追加写入模式.</p>
 	 */
 	private FileOverwriteEnum overwrite = FileOverwriteEnum.APPEND;
-	
+
 	/**
 	 * 设置文件写入模式.
 	 * @param overWrite 写入模式.
@@ -59,7 +59,7 @@ public class Bytes2FileProcessor
 	public void setOverwrite(FileOverwriteEnum overWrite) {
 		this.overwrite = overWrite;
 	}
-	
+
 	/**
 	 * 获得文件写入模式.
 	 * @return 写入模式.
@@ -68,7 +68,7 @@ public class Bytes2FileProcessor
 	public FileOverwriteEnum getOverwrite() {
 		return overwrite;
 	}
-	
+
 	/**
 	 * 设置要写入的数据.
 	 * @param data 要写入的数据.
@@ -76,12 +76,12 @@ public class Bytes2FileProcessor
 	public void setData(byte[] data) {
 		this.data = data;
 	}
-	
+
 	/**
 	 * 设置要操作的文件.
 	 * @param file 要操作的文件.
 	 * <p>文件可以不存在.</p>
-	 * 
+	 *
 	 */
 	public void setFile(File file) {
 		this.file = file;
@@ -93,7 +93,7 @@ public class Bytes2FileProcessor
 	public byte[] getData() {
 		return data;
 	}
-	
+
 	/**
 	 * 获得要操作的文件.
 	 * @return 要操作的文件.
@@ -101,7 +101,7 @@ public class Bytes2FileProcessor
 	public File getFile() {
 		return file;
 	}
-	
+
 	/**
 	 * 设置当文件所在目录不存在时是否创建目录.
 	 * @param makeParentDirectory 是否创建.
@@ -128,7 +128,7 @@ public class Bytes2FileProcessor
 	public void setMakeParentDirectory(boolean makeParentDirectory) {
 		this.makeParentDirectory = makeParentDirectory;
 	}
-	
+
 	/**
 	 * 获得是否创建缺失的目录.
 	 * @return 是否创建缺失的目录.
@@ -136,7 +136,7 @@ public class Bytes2FileProcessor
 	public boolean isMakeParentDirectory() {
 		return makeParentDirectory;
 	}
-	
+
 	/**
 	 * 执行处理过程.
 	 * <p>
@@ -197,11 +197,11 @@ public class Bytes2FileProcessor
 		assert file != null;
 		FileOutputStream fos = null;
 		try {
-			
-			boolean is_append = 
+
+			boolean is_append =
 					FileOverwriteEnum.APPEND.equals(this.overwrite)
 					|| this.overwrite == null;
-			
+
 			fos = new FileOutputStream(file, is_append);
 			assert fos != null;
 			fos.write(data);
@@ -224,7 +224,7 @@ public class Bytes2FileProcessor
 	 * 父目录是指参数文件的父目录.如果本参数文件为"/home/appuser/test.txt",则父目录
 	 * 为"/home/appuser"
 	 * </p>
-	 * 
+	 *
 	 * @return 父目录是否存在.
 	 * <p>返回值列表:<br/>
 	 * <table>
@@ -261,7 +261,7 @@ public class Bytes2FileProcessor
 		}
 		return res;
 	}
-	
+
 	/**
 	 * 清理处理器,以便重新利用.
 	 * <p>属性{@link #data}设置为空;属性{@link #file}设置为空;

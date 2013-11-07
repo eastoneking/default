@@ -9,9 +9,9 @@ package eastone.common.context;
  * </p>
  * <p>修改列表:
  * <ol>
- * 	<li>补充注释. wangds@gmail.com 2013-10-12 22:00</li>
+ * 	<li>补充注释. wangdongshi@neusoft.com 2013-10-12 22:00</li>
  * </ol></p>
- * @author 王东石 <wangds@gmail.com>
+ * @author 王东石 <wangdongshi@neusoft.com>
  * @version 0.1 
  * 
  */

@@ -18,14 +18,14 @@ package eastone.common.processor;
  * 				{@link java.lang.Thread#start()}实现线程并发的效果.
  * 				</li>
  * 			</ul>
- *			by wangds@gmail.com 2013-10-13 09:20
+ *			by wangdongshi@neusoft.com 2013-10-13 09:20
  * 		</li>
  * </ol>
  * </p>
  * 
  * @param <E> 执行过程中可能抛出的异常
  * 
- * @author 王东石 <wangds@gmail.com>
+ * @author 王东石 <wangdongshi@neusoft.com>
  * @version 0.1.1
  * @since 0.1
  * 

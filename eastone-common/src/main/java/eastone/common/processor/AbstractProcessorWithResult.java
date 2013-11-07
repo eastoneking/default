@@ -11,13 +11,13 @@ package eastone.common.processor;
  * 			<li>增加方法{@link #clear()},用于清理结果.</li>
  * 			<li>修改方法{@link #process()},在开始处理之前检查结果是否为空,如果不为空,抛出异常,提示结果未清理.</li>
  * 		</ul>
- * 		by wangds@gmail.com 2013-10-13 10:40
+ * 		by wangdongshi@neusoft.com 2013-10-13 10:40
  * 	</li>
  * </ol>
  * </p>
  * @param <T> 执行结果的类型.
  * @param <E> 执行过程中可能出现的异常,必须继承自{@link java.lang.Exception}.
- * @author 王东石 <wangds@gmail.com>
+ * @author 王东石 <wangdongshi@neusoft.com>
  * @version 0.1.1
  * @since 0.1
  */

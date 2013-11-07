@@ -10,17 +10,17 @@ import eastone.common.factory.Factory;
  * <p>
  * 修改列表:
  * <ol>
- * <li>确定版本,补充注释. by wangds@gmail.com 2013-10-12 22:43</li>
+ * <li>确定版本,补充注释. by wangdongshi@neusoft.com 2013-10-12 22:43</li>
  * <li>
  * <ul>
  * <li>一个工厂类只能产生单例的BeanContext;</li>
  * <li>添加静态工厂方法{@link #getBeanContext()}，使用此方法永远只能 获得同一单例上下文.</li>
  * </ul>
- * by wangds@gmail.com 2013-10-12 23:04</li>
+ * by wangdongshi@neusoft.com 2013-10-12 23:04</li>
  * </ol>
  * </p>
  *
- * @author 王东石 <wangds@gmail.com>
+ * @author 王东石 <wangdongshi@neusoft.com>
  * @version 0.1.2
  * @see java.util.ServiceLoader
  *

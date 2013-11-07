@@ -9,7 +9,7 @@ import org.springframework.context.support.
 import eastone.common.context.BeanContext;
 /**
  * 以Spring IoC容器作为基础实现的{@link BeanContext}接口的实现类.
- * @author 王东石 <wangds@gmail.com>
+ * @author 王东石 <wangdongshi@neusoft.com>
  * @param <C> 参数类型 限定了Spring上下文类型必须是可以更新的上下文.
  *
  * @version 0.1
