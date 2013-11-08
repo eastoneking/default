@@ -9,7 +9,7 @@ import java.security.Security;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 /**
- *
+ * BouncyCastle安全包Provider加载类.
  * <p>
  * 	<h1>修改列表:</h1>
  *  <ol>

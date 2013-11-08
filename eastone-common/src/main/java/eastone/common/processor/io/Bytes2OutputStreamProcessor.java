@@ -12,7 +12,9 @@ import eastone.common.processor.Processor;
  * <ol>
  * 	<li>补充注释,by wangdongshi@neusoft.com,2013-10-13 22:58.</li>
  * 	<li>增加偏移量和长度的支持,by wangdongshi@neusoft.com,2013-10-13 23:08.</li>
- * 	<li>增加实现接口{@link Clearable}, by wangdongshi@neusoft.com,2013-10-16 08:00.</li>
+ * 	<li>增加实现接口{@link Clearable},
+ * 		by wangdongshi@neusoft.com,2013-10-16 08:00.
+ * 	</li>
  * </ol>
  * </p>
  * @author 王东石 <wangdongshi@neusoft.com>

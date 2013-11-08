@@ -6,7 +6,8 @@ package eastone.common.i18n.test;
 
 import java.util.Locale;
 
-import org.junit.BeforeClass;
+import junit.framework.TestCase;
+
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -14,8 +15,6 @@ import eastone.common.context.BeanContext;
 import eastone.common.context.BeanContextFactory;
 import eastone.common.factory.ProviderFactory;
 import eastone.common.i18n.I18nMsg;
-
-import junit.framework.TestCase;
 
 /**
  *  国际化消息测试类.
