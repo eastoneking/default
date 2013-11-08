@@ -45,14 +45,14 @@ import junit.framework.TestCase;
  */
 
 
+@SuppressWarnings({"rawtypes", "unchecked" })
 public class I18NMsgTestCase {
 
 	/**
 	 * 全局初始化.
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@BeforeClass
-	public static void init() {
+
+	static {
 		String config = "eastone/common/i18n/test/context.xml";
 		BeanContext ctx = BeanContextFactory.getBeanContext();
 		ctx.appendContext(new ClassPathXmlApplicationContext(config));
@@ -69,6 +69,7 @@ public class I18NMsgTestCase {
 		msg.setId("I99999999.0");
 		msg.setLocale(Locale.ENGLISH);
 		String txt = msg.getMessage();
+
 		TestCase.assertEquals(true, "test".equals(txt));
 
 		msg.setLocale(Locale.SIMPLIFIED_CHINESE);
