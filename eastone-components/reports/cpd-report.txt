@@ -1,0 +1,61 @@
+Found a 8 line (33 tokens) duplication in the following files: 
+Starting at line 21 of C:\Users\quzl\git\default\eastone-components\src\main\java\eastone\component\database\mybatis\UpdateSQL.java
+Starting at line 21 of C:\Users\quzl\git\default\eastone-components\src\main\java\eastone\component\database\mybatis\InsertSQL.java
+Starting at line 23 of C:\Users\quzl\git\default\eastone-components\src\main\java\eastone\component\database\mybatis\DeleteSQL.java
+
+public class UpdateSQL extends MyBatisSQLExecutor<Integer> {
+
+	@Override
+	protected Integer executeOperation(SqlSession session,
+			String commandText, Object parameters) {
+		int res = -1;
+		try {
+			res = session.update(commandText, parameters);
+=====================================================================
+Found a 26 line (25 tokens) duplication in the following files: 
+Starting at line 78 of C:\Users\quzl\git\default\eastone-components\src\main\java\eastone\component\http\simple\httpclient\SimpleHttpClientFormBaseImpl.java
+Starting at line 58 of C:\Users\quzl\git\default\eastone-components\src\main\java\eastone\component\http\simple\SimpleHttpClientComponentBridgeAbstractionImpl.java
+
+	}
+
+
+	/**
+	 * URL.
+	 * @return URL.
+	 */
+	public URL getUrl() {
+		return url;
+	}
+
+
+	/**
+	 * URL.
+	 * @param url URL.
+	 */
+	public void setUrl(URL url) {
+		this.url = url;
+	}
+
+
+	/**
+	 * 参数.
+	 * @return 参数.
+	 */
+	public Map<String, String> getParameters() {
+=====================================================================
+Found a 12 line (25 tokens) duplication in the following files: 
+Starting at line 144 of C:\Users\quzl\git\default\eastone-components\src\main\java\eastone\component\http\simple\httpclient\SimpleHttpClientFormBaseImpl.java
+Starting at line 157 of C:\Users\quzl\git\default\eastone-components\src\main\java\eastone\component\http\simple\httpclient\SimpleHttpClientFormBaseImpl.java
+
+			return execRequest(new HttpGet(url.toURI()));
+		} catch (URISyntaxException e) {
+			throw new HttpException(e);
+		}
+	}
+
+	/**
+	 * 执行POST请求.
+	 * @return 返回body.
+	 * @throws HttpException 封装的底层异�?
+	 */
+	private String post() throws HttpException {

@@ -6,6 +6,7 @@ package eastone.component.database.mybatis;
 
 import java.util.Collection;
 
+import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.SqlSession;
 
 /**

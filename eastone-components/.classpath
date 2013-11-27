@@ -42,6 +42,57 @@
   <classpathentry kind="var" path="M2_REPO/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar"/>
   <classpathentry kind="var" path="M2_REPO/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/poi/openxml4j/1.0-beta/openxml4j-1.0-beta.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jogl/jogl/2.1.2/jogl-2.1.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/gluegen/gluegen-rt/2.1.2/gluegen-rt-2.1.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jocl/jocl/2.1.2/jocl-2.1.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jocl/jocl-main/2.1.2/jocl-main-2.1.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jocl/jocl/2.1.2/jocl-2.1.2-natives-android-armv6.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jocl/jocl/2.1.2/jocl-2.1.2-natives-linux-amd64.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jocl/jocl/2.1.2/jocl-2.1.2-natives-linux-armv6.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jocl/jocl/2.1.2/jocl-2.1.2-natives-linux-armv6hf.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jocl/jocl/2.1.2/jocl-2.1.2-natives-linux-i586.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jocl/jocl/2.1.2/jocl-2.1.2-natives-macosx-universal.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jocl/jocl/2.1.2/jocl-2.1.2-natives-solaris-amd64.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jocl/jocl/2.1.2/jocl-2.1.2-natives-solaris-i586.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jocl/jocl/2.1.2/jocl-2.1.2-natives-windows-amd64.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jocl/jocl/2.1.2/jocl-2.1.2-natives-windows-i586.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/joal/joal/2.1.2/joal-2.1.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jogl/newt/2.1.2/newt-2.1.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jogl/jogl-all/2.1.2/jogl-all-2.1.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jogl/jogl-all-main/2.1.2/jogl-all-main-2.1.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jogl/jogl-all/2.1.2/jogl-all-2.1.2-natives-android-armv6.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jogl/jogl-all/2.1.2/jogl-all-2.1.2-natives-linux-amd64.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jogl/jogl-all/2.1.2/jogl-all-2.1.2-natives-linux-armv6.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jogl/jogl-all/2.1.2/jogl-all-2.1.2-natives-linux-armv6hf.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jogl/jogl-all/2.1.2/jogl-all-2.1.2-natives-linux-i586.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jogl/jogl-all/2.1.2/jogl-all-2.1.2-natives-macosx-universal.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jogl/jogl-all/2.1.2/jogl-all-2.1.2-natives-solaris-amd64.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jogl/jogl-all/2.1.2/jogl-all-2.1.2-natives-solaris-i586.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jogl/jogl-all/2.1.2/jogl-all-2.1.2-natives-windows-amd64.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jogl/jogl-all/2.1.2/jogl-all-2.1.2-natives-windows-i586.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/gluegen/gluegen-rt-main/2.1.2/gluegen-rt-main-2.1.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/gluegen/gluegen-rt/2.1.2/gluegen-rt-2.1.2-natives-android-armv6.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/gluegen/gluegen-rt/2.1.2/gluegen-rt-2.1.2-natives-linux-amd64.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/gluegen/gluegen-rt/2.1.2/gluegen-rt-2.1.2-natives-linux-armv6.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/gluegen/gluegen-rt/2.1.2/gluegen-rt-2.1.2-natives-linux-armv6hf.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/gluegen/gluegen-rt/2.1.2/gluegen-rt-2.1.2-natives-linux-i586.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/gluegen/gluegen-rt/2.1.2/gluegen-rt-2.1.2-natives-macosx-universal.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/gluegen/gluegen-rt/2.1.2/gluegen-rt-2.1.2-natives-solaris-amd64.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/gluegen/gluegen-rt/2.1.2/gluegen-rt-2.1.2-natives-solaris-i586.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/gluegen/gluegen-rt/2.1.2/gluegen-rt-2.1.2-natives-windows-amd64.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/gluegen/gluegen-rt/2.1.2/gluegen-rt-2.1.2-natives-windows-i586.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/jogl/nativewindow/2.1.2/nativewindow-2.1.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/joal/joal-main/2.1.2/joal-main-2.1.2.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/joal/joal/2.1.2/joal-2.1.2-natives-android-armv6.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/joal/joal/2.1.2/joal-2.1.2-natives-linux-amd64.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/joal/joal/2.1.2/joal-2.1.2-natives-linux-armv6.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/joal/joal/2.1.2/joal-2.1.2-natives-linux-armv6hf.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/joal/joal/2.1.2/joal-2.1.2-natives-linux-i586.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/joal/joal/2.1.2/joal-2.1.2-natives-macosx-universal.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/joal/joal/2.1.2/joal-2.1.2-natives-solaris-amd64.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/joal/joal/2.1.2/joal-2.1.2-natives-solaris-i586.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/joal/joal/2.1.2/joal-2.1.2-natives-windows-amd64.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/jogamp/joal/joal/2.1.2/joal-2.1.2-natives-windows-i586.jar"/>
   <classpathentry kind="var" path="M2_REPO/junit/junit/4.11/junit-4.11.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
 </classpath>
