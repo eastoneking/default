@@ -1,3 +1,254 @@
+Found a 22 line (142 tokens) duplication in the following files: 
+Starting at line 154 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\DesUtil.java
+Starting at line 182 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\AesUtil.java
+
+			res = process(data, generateCipher(Cipher.ENCRYPT_MODE, key));
+		} catch (InvalidKeyException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (NoSuchAlgorithmException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (NoSuchProviderException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (NoSuchPaddingException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (InvalidAlgorithmParameterException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		}
+		return res;
+	}
+
+	/**
+	 * 解密.
+	 * @param data 解密的数�?
+	 * @param key 密钥.
+	 * @return 解密结果.
+	 */
+	public static byte[] decrypt(byte[] data, byte[] key)  {
+=====================================================================
+Found a 14 line (130 tokens) duplication in the following files: 
+Starting at line 182 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\AesUtil.java
+Starting at line 207 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\AesUtil.java
+
+			res = process(data, generateCipher(Cipher.ENCRYPT_MODE, key, iv));
+		} catch (InvalidKeyException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (NoSuchAlgorithmException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (NoSuchProviderException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (NoSuchPaddingException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (InvalidAlgorithmParameterException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		}
+		return res;
+	}
+=====================================================================
+Found a 14 line (128 tokens) duplication in the following files: 
+Starting at line 154 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\DesUtil.java
+Starting at line 178 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\DesUtil.java
+
+			res = process(data, generateCipher(Cipher.ENCRYPT_MODE, key));
+		} catch (InvalidKeyException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (NoSuchAlgorithmException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (NoSuchProviderException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (NoSuchPaddingException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (InvalidAlgorithmParameterException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		}
+		return res;
+	}
+=====================================================================
+Found a 16 line (127 tokens) duplication in the following files: 
+Starting at line 178 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\DesUtil.java
+Starting at line 207 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\AesUtil.java
+
+			res = process(data, generateCipher(Cipher.DECRYPT_MODE, key));
+		} catch (InvalidKeyException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (NoSuchAlgorithmException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (NoSuchProviderException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (NoSuchPaddingException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (InvalidAlgorithmParameterException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		}
+		return res;
+	}
+
+}
+=====================================================================
+Found a 14 line (126 tokens) duplication in the following files: 
+Starting at line 154 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\DesUtil.java
+Starting at line 207 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\AesUtil.java
+
+			res = process(data, generateCipher(Cipher.ENCRYPT_MODE, key));
+		} catch (InvalidKeyException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (NoSuchAlgorithmException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (NoSuchProviderException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (NoSuchPaddingException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (InvalidAlgorithmParameterException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		}
+		return res;
+	}
+=====================================================================
+Found a 14 line (126 tokens) duplication in the following files: 
+Starting at line 178 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\DesUtil.java
+Starting at line 182 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\AesUtil.java
+
+			res = process(data, generateCipher(Cipher.DECRYPT_MODE, key));
+		} catch (InvalidKeyException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (NoSuchAlgorithmException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (NoSuchProviderException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (NoSuchPaddingException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (InvalidAlgorithmParameterException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		}
+		return res;
+	}
+=====================================================================
+Found a 33 line (108 tokens) duplication in the following files: 
+Starting at line 99 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\DesUtil.java
+Starting at line 110 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\AesUtil.java
+
+		res.init(mode, secret_key);
+
+		return res;
+	}
+
+	/**
+	 * 处理加密解密过程.
+	 * @param input 输入.
+	 * @param cipher cipher.
+	 * @return 结果.
+	 */
+	private static byte[] process(byte[] input, Cipher cipher) {
+		byte[] res = null;
+		ByteArrayOutputStream bOut = new ByteArrayOutputStream();
+		CipherOutputStream cOut = new CipherOutputStream(bOut, cipher);
+
+		try {
+			cOut.write(input);
+			cOut.flush();
+			cOut.close();
+			res = bOut.toByteArray();
+		} catch (IOException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		}
+		return res;
+	}
+
+	/**
+	 * 获得密钥.
+	 * @return 密钥.
+	 */
+	public static byte[] generateKey() {
+		byte[] key = null;
+=====================================================================
+Found a 10 line (54 tokens) duplication in the following files: 
+Starting at line 41 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\visitor\DefaultVisitorController.java
+Starting at line 56 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\visitor\DefaultVisitorController.java
+
+	public <E extends Visitable, V extends Visitor<E>> void registorVisitor(
+			Class<E> type, V visitor) {
+
+		List<Visitor> list = this.registedVisitorMap.get(type);
+		if (list == null) {
+			list = new LinkedList<Visitor>();
+			this.registedVisitorMap.put(type, list);
+		}
+
+		list.add(visitor);
+=====================================================================
+Found a 6 line (50 tokens) duplication in the following files: 
+Starting at line 156 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\DesUtil.java
+Starting at line 180 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\DesUtil.java
+Starting at line 153 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\AesUtil.java
+Starting at line 184 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\AesUtil.java
+Starting at line 209 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\AesUtil.java
+
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (NoSuchAlgorithmException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (NoSuchProviderException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		} catch (NoSuchPaddingException e) {
+=====================================================================
+Found a 6 line (49 tokens) duplication in the following files: 
+Starting at line 69 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\visitor\DefaultVisitorController.java
+Starting at line 86 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\visitor\DefaultVisitorController.java
+
+	public <E extends Visitable> void clear(Class<E> type) {
+		List<Visitor> list = this.registedVisitorMap.get(type);
+		if (list == null) {
+			list = new LinkedList<Visitor>();
+			this.registedVisitorMap.put(type, list);
+		}
+=====================================================================
+Found a 16 line (46 tokens) duplication in the following files: 
+Starting at line 57 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\DesUtil.java
+Starting at line 61 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\AesUtil.java
+
+	public static final String PROVIDER_NAME = "BC";
+
+	static {
+		//加载BouncyCastle的Provider.
+		try {
+			Class.forName("eastone.common.utils.BouncyCastleProviderDriver");
+		} catch (ClassNotFoundException e) {
+			GeneralParentObject.staticLogger(AesUtil.class)
+			.warn(e.getMessage(), e);
+		}
+	}
+
+	/**
+	 * 构�?函数.
+	 */
+	private DesUtil() {
+=====================================================================
+Found a 9 line (45 tokens) duplication in the following files: 
+Starting at line 42 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\visitor\DefaultVisitorController.java
+Starting at line 57 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\visitor\DefaultVisitorController.java
+Starting at line 69 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\visitor\DefaultVisitorController.java
+
+			Class<E> type, V visitor) {
+
+		List<Visitor> list = this.registedVisitorMap.get(type);
+		if (list == null) {
+			list = new LinkedList<Visitor>();
+			this.registedVisitorMap.put(type, list);
+		}
+
+		list.add(visitor);
+=====================================================================
+Found a 7 line (43 tokens) duplication in the following files: 
+Starting at line 42 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\visitor\DefaultVisitorController.java
+Starting at line 57 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\visitor\DefaultVisitorController.java
+Starting at line 87 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\visitor\DefaultVisitorController.java
+
+			Class<E> type, V visitor) {
+
+		List<Visitor> list = this.registedVisitorMap.get(type);
+		if (list == null) {
+			list = new LinkedList<Visitor>();
+			this.registedVisitorMap.put(type, list);
+		}
+=====================================================================
 Found a 7 line (38 tokens) duplication in the following files: 
 Starting at line 58 of C:\Users\quzl\git\default\eastone-common\src\test\java\eastone\common\context\provider\spring\test\SpringBeanContextTest.java
 Starting at line 71 of C:\Users\quzl\git\default\eastone-common\src\test\java\eastone\common\context\provider\spring\test\SpringBeanContextTest.java
@@ -10,6 +261,54 @@ Starting at line 71 of C:\Users\quzl\git\default\eastone-common\src\test\java\ea
         String testmsg = (String) ctx.getBean("test.msg");
         assertEquals(testmsg, "Hello World");
 =====================================================================
+Found a 4 line (35 tokens) duplication in the following files: 
+Starting at line 179 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\AesUtil.java
+Starting at line 204 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\AesUtil.java
+
+	public static byte[] encrypt(byte[] data, byte[] key, byte[] iv)  {
+		byte[] res = null;
+		try {
+			res = process(data, generateCipher(Cipher.ENCRYPT_MODE, key, iv));
+=====================================================================
+Found a 4 line (30 tokens) duplication in the following files: 
+Starting at line 151 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\DesUtil.java
+Starting at line 175 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\DesUtil.java
+
+	public static byte[] encrypt(byte[] data, byte[] key) {
+		byte[] res = null;
+		try {
+			res = process(data, generateCipher(Cipher.ENCRYPT_MODE, key));
+=====================================================================
+Found a 11 line (29 tokens) duplication in the following files: 
+Starting at line 120 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\DesUtil.java
+Starting at line 163 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\DesUtil.java
+Starting at line 132 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\AesUtil.java
+Starting at line 156 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\AesUtil.java
+Starting at line 191 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\utils\AesUtil.java
+
+		} catch (IOException e) {
+			staticLogger(AesUtil.class).error(e.getMessage(), e);
+		}
+		return res;
+	}
+
+	/**
+	 * 获得密钥.
+	 * @return 密钥.
+	 */
+	public static byte[] generateKey() {
+=====================================================================
+Found a 6 line (26 tokens) duplication in the following files: 
+Starting at line 35 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\factory\ProviderFactory.java
+Starting at line 103 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\context\BeanContextFactory.java
+
+	        while (it.hasNext()) {
+	            res = it.next();
+	            if (res != null) {
+	            	break;
+	            }
+	        }
+=====================================================================
 Found a 5 line (25 tokens) duplication in the following files: 
 Starting at line 155 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\processor\io\InputStream2BytesProcessor.java
 Starting at line 160 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\processor\io\File2BytesProcessor.java
@@ -19,3 +318,10 @@ Starting at line 160 of C:\Users\quzl\git\default\eastone-common\src\main\java\e
 				this.getLogger().warn("", e);
 			}
 		}
+=====================================================================
+Found a 2 line (25 tokens) duplication in the following files: 
+Starting at line 33 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\command\Invoker.java
+Starting at line 29 of C:\Users\quzl\git\default\eastone-common\src\main\java\eastone\common\command\DefaultCommandInvoker.java
+
+	<E extends Exception, C extends Command<E>, R extends CommandReceiver>
+	C buildCommand(R receiver, C command);

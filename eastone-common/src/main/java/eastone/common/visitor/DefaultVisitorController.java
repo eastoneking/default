@@ -14,101 +14,97 @@ import eastone.common.GeneralParentObject;
 /**
  * {@link VisitorController}的默认实现.
  * <p>
- * 	<h1>修改列表:</h1>
- *  <ol>
- *    <li>初始版本, by wangdongshi@neusoft.com, 2013-11-7 下午3:03:47</li>
- *  </ol>
+ * <h1>修改列表:</h1>
+ * <ol>
+ * <li>初始版本, by wangdongshi@neusoft.com, 2013-11-7 下午3:03:47</li>
+ * </ol>
  * </p>
- *
- *
  * @author 王东石 <wangdongshi@neusoft.com>
  * @version 0.1.1
  * @since 0.1
- *
  */
 public class DefaultVisitorController extends GeneralParentObject implements
-		VisitorController {
+    VisitorController {
 
-	/**
-	 * 访问者注册图.
-	 */
-	@SuppressWarnings("rawtypes")
-	private final Map<Class, List<Visitor>> registedVisitorMap
-		= new LinkedHashMap<Class, List<Visitor>>(0);
+  /**
+   * 访问者注册图.
+   */
+  @SuppressWarnings("rawtypes")
+  private final Map<Class, List<Visitor>> registedVisitorMap
+    = new LinkedHashMap<Class, List<Visitor>>(
+      0);
 
-	@SuppressWarnings("rawtypes")
-	@Override
-	public <E extends Visitable, V extends Visitor<E>> void registorVisitor(
-			Class<E> type, V visitor) {
+  @SuppressWarnings("rawtypes")
+  @Override
+  public final <E extends Visitable, V extends Visitor<E>> void registorVisitor(
+      final Class<E> type, final V visitor) {
 
-		List<Visitor> list = this.registedVisitorMap.get(type);
-		if (list == null) {
-			list = new LinkedList<Visitor>();
-			this.registedVisitorMap.put(type, list);
-		}
+    List<Visitor> list = this.registedVisitorMap.get(type);
+    if (list == null) {
+      list = new LinkedList<Visitor>();
+      this.registedVisitorMap.put(type, list);
+    }
 
-		list.add(visitor);
+    list.add(visitor);
 
-	}
+  }
 
-	@SuppressWarnings("rawtypes")
-	@Override
-	public <E extends Visitable, V extends Visitor<E>> void disregister(
-			Class<E> type, V visitor) {
-		List<Visitor> list = this.registedVisitorMap.get(type);
-		if (list == null) {
-			list = new LinkedList<Visitor>();
-			this.registedVisitorMap.put(type, list);
-		}
+  @SuppressWarnings("rawtypes")
+  @Override
+  public final <E extends Visitable, V extends Visitor<E>> void disregister(
+      final Class<E> type, final V visitor) {
+    List<Visitor> list = this.registedVisitorMap.get(type);
+    if (list == null) {
+      list = new LinkedList<Visitor>();
+      this.registedVisitorMap.put(type, list);
+    }
 
-		list.remove(visitor);
-	}
+    list.remove(visitor);
+  }
 
-	@SuppressWarnings("rawtypes")
-	@Override
-	public <E extends Visitable> void clear(Class<E> type) {
-		List<Visitor> list = this.registedVisitorMap.get(type);
-		if (list == null) {
-			list = new LinkedList<Visitor>();
-			this.registedVisitorMap.put(type, list);
-		}
+  @SuppressWarnings("rawtypes")
+  @Override
+  public final <E extends Visitable> void clear(final Class<E> type) {
+    List<Visitor> list = this.registedVisitorMap.get(type);
+    if (list == null) {
+      list = new LinkedList<Visitor>();
+      this.registedVisitorMap.put(type, list);
+    }
 
-		list.clear();
-	}
+    list.clear();
+  }
 
-	@Override
-	public void clear() {
-		this.registedVisitorMap.clear();
-	}
+  @Override
+  public final void clear() {
+    this.registedVisitorMap.clear();
+  }
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@Override
-	public <E extends Visitable, V extends Visitor<E>> List<V> findVisitors(
-			Class<E> type) {
-		List<Visitor> list = this.registedVisitorMap.get(type);
-		if (list == null) {
-			list = new LinkedList<Visitor>();
-			this.registedVisitorMap.put(type, list);
-		}
-		return (List<V>) list;
-	}
+  @SuppressWarnings({ "rawtypes", "unchecked" })
+  @Override
+  public final <E extends Visitable, V extends Visitor<E>> List<V> findVisitors(
+      final Class<E> type) {
+    List<Visitor> list = this.registedVisitorMap.get(type);
+    if (list == null) {
+      list = new LinkedList<Visitor>();
+      this.registedVisitorMap.put(type, list);
+    }
+    return (List<V>) list;
+  }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public <E extends Visitable> void visit(E visitable) {
-		if (visitable == null) {
-			return;
-		}
+  @SuppressWarnings("unchecked")
+  @Override
+  public final <E extends Visitable> void visit(final E visitable) {
+    if (visitable == null) {
+      return;
+    }
 
-		List<Visitor<E>> visitors
-			= (List<Visitor<E>>) this.<E, Visitor<E>> findVisitors(
-				(Class<E>) visitable.getClass()
-			);
+    List<Visitor<E>> visitors = (List<Visitor<E>>) this
+        .<E, Visitor<E>> findVisitors((Class<E>) visitable.getClass());
 
-		for (Visitor<E> visitor : visitors) {
-			visitable.accept(visitor);
-		}
+    for (Visitor<E> visitor : visitors) {
+      visitable.accept(visitor);
+    }
 
-	}
+  }
 
 }
