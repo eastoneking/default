@@ -15,61 +15,59 @@ import eastone.common.processor.Processor;
 import eastone.component.http.HttpException;
 import eastone.component.http.SimpleHttpClientComponent;
 
-
 /**
- *
+ * .
  * <p>
- *  <ol>
- *    <li>≥ı º∞Ê±æ,wangdongshi@neusoft.com,2013-10-27 œ¬ŒÁ8:01:32</li>
- *  </ol>
+ * <ol>
+ * <li>ÂàùÂßãÁâàÊú¨,wangds@gmail.com,2013-10-27 ‰∏ãÂçà8:01:32</li>
+ * </ol>
  * </p>
- * @author Õı∂´ Ø <wangdongshi@neusoft.com>
+ * @author Áéã‰∏úÁü≥ <wangds@gmail.com>
  * @version 0.1.1
  * @since 0.1
  */
-public class GetBJWeatherProcessor implements Processor<RuntimeException>{
+public class GetBJWeatherProcessor implements Processor<RuntimeException> {
 
-	/**
-	 * «Î«ÛµƒURL.
-	 * <p><a href="http://www.weather.com.cn/data/ks/101010100.html">±±æ©</a>
-	 * </p>
-	 */
-	private String url;
+  /**
+   * ËØ∑Ê±ÇÁöÑURL.
+   * <p>
+   * <a href="http://www.weather.com.cn/data/ks/101010100.html">Âåó‰∫¨</a>
+   * </p>
+   */
+  private String url;
 
-	/**
-	 * @param url the url to set
-	 */
-	public void setUrl(String url) {
-		this.url = url;
-	}
+  /**
+   * @param theUrl the url to set
+   */
+  public final void setUrl(final String theUrl) {
+    this.url = theUrl;
+  }
 
-	/**
-	 * @return the url
-	 */
-	public String getUrl() {
-		return url;
-	}
+  /**
+   * @return the url
+   */
+  public final String getUrl() {
+    return url;
+  }
 
+  @SuppressWarnings("unchecked")
+  @Override
+  public final void process() {
+    ProviderFactory fac = new ProviderFactory();
+    SimpleHttpClientComponent<Map<String, String>> client = fac
+        .getInstance(SimpleHttpClientComponent.class);
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public void process() throws RuntimeException {
-		ProviderFactory fac = new ProviderFactory();
-		SimpleHttpClientComponent<Map<String, String>> client = fac.getInstance(
-					SimpleHttpClientComponent.class
-		);
+    String strWeather = null;
+    try {
+      strWeather = client.get(new URL(this.url));
+      JSONObject jobj = JSONObject.fromObject(strWeather);
+      System.out.println(jobj.toString());
+    } catch (MalformedURLException e) {
+      throw new RuntimeException(e);
+    } catch (HttpException e) {
+      throw new RuntimeException(e);
+    }
 
-		String weather_str = null;
-		try {
-			weather_str = client.get(new URL(this.url));
-		} catch (MalformedURLException e) {
-			throw new RuntimeException(e);
-		} catch (HttpException e) {
-			throw new RuntimeException(e);
-		}
-
-		JSONObject jobj = JSONObject.fromObject(weather_str);
-		System.out.println(jobj.toString());
-	}
+  }
 
 }
