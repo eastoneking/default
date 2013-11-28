@@ -36,14 +36,12 @@ public class HttpClientSimpleComponentTestCase extends TestCase {
     SimpleHttpClientComponent<Map<String, String>> client = null;
     try {
       client = factory.getInstance(SimpleHttpClientComponent.class);
-    } catch (SecurityException e) {
-      e.printStackTrace();
-    }
-    try {
       String url = "http://www.weather.com.cn/data/ks/101010100.html";
       String resp = client.get(new URL(url));
       assertNotNull(resp);
-    } catch (MalformedURLException e) {
+    } catch (SecurityException e) {
+      e.printStackTrace();
+     } catch (MalformedURLException e) {
       e.printStackTrace();
     } catch (HttpException e) {
       e.printStackTrace();
