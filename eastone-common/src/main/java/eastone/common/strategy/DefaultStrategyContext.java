@@ -30,7 +30,7 @@ import eastone.common.GeneralParentObject;
  */
 public class DefaultStrategyContext<K> extends GeneralParentObject implements
     StrategyContext<K> {
-  
+
   /**
    * .
    */

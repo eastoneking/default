@@ -31,20 +31,41 @@ import eastone.common.GeneralParentObject;
  * @since 0.1
  */
 public class Append2BorderLayoutStrategy
-  extends GeneralParentObject 
+  extends GeneralParentObject
   implements AddGLJPanelStrategy {
-  
+
   /**
    * 在BorderLayout中添加JPanel的区域名称.
    */
   private String borderName = BorderLayout.CENTER;
-  
+
   /**
    * 默认构造函数.
    */
   public Append2BorderLayoutStrategy() {
+    this(BorderLayout.CENTER);
   }
-  
+
+  /**
+   * 构造函数.
+   * @param target 要添加的目标位置.
+   * <p>
+   *    <ul>可选值:
+   *        <li>{@link BorderLayout#CENTER}(默认值);</li>
+   *        <li>{@link BorderLayout#NORTH};</li>
+   *        <li>{@link BorderLayout#SOUTH};</li>
+   *        <li>{@link BorderLayout#EAST};</li>
+   *        <li>{@link BorderLayout#WEST}.</li>
+   *    </ul>
+   * </p>
+   */
+  public Append2BorderLayoutStrategy(String target) {
+    if (target == null) {
+      target = BorderLayout.CENTER;
+    }
+    this.setBorderName(target);
+  }
+
   /**
    * 设置borderName属性值.
    * @param theBorderName borderName属性的新值。
@@ -52,7 +73,7 @@ public class Append2BorderLayoutStrategy
   public void setBorderName(String theBorderName) {
     this.borderName = theBorderName;
   }
-  
+
   /**
    * 获得borderName属性值.
    * @return borderName属性现值。

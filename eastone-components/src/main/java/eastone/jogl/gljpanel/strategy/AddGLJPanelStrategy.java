@@ -37,5 +37,5 @@ public interface AddGLJPanelStrategy extends Strategy {
    * @param panel 被添加的GL面板.
    */
   void append(Container container, GLJPanel panel);
-  
+
 }

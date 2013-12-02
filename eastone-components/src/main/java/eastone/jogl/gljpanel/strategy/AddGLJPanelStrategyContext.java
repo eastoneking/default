@@ -1,7 +1,7 @@
 /*
  * create time: 2013年12月1日 下午11:12:33
- * path: AddGLJpanelStrategyContext.java
- * type: eastone.jogl.gljpanel.strategy.AddGLJpanelStrategyContext
+ * path: AddGLJPanelStrategyContext.java
+ * type: eastone.jogl.gljpanel.strategy.AddGLJPanelStrategyContext
  */
 package eastone.jogl.gljpanel.strategy;
 
@@ -29,15 +29,14 @@ import eastone.common.strategy.StrategyContext;
  * @version 0.1
  * @since 0.1
  */
-public class AddGLJpanelStrategyContext 
-  extends GeneralParentObject 
+public class AddGLJPanelStrategyContext
+  extends GeneralParentObject
   implements StrategyContext<String> {
 
-  
   /**
    * .
    */
-  public AddGLJpanelStrategyContext() {
+  public AddGLJPanelStrategyContext() {
   }
 
   @Override
