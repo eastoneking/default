@@ -5,20 +5,33 @@ package eastone.common.strategy;
 
 import java.util.Map;
 
+import eastone.common.processor.Processor;
+
 /**
  * 策略上下文.
  * <p>
  * <h1>修改列表:</h1>
  * <ol>
- * <li>初始版本, by wangdongshi@neusoft.com, 2013-11-7 下午1:15:04</li>
+ * <li>初始版本, by wangds@gmail.com, 2013-11-7 下午1:15:04</li>
+ * <li>
+ *  by wangds@gmail.com, 2013-12-03 09:15
+ *  <p>
+ *      <ul>
+ *          <li>继承{@link Processor}接口;</li>
+ *          <li>添加{@link #setSelectedStrategy(Object)}方法.</li>
+ *      </ul>
+ *  </p>
+ * </li>
  * </ol>
  * </p>
  * @param <K> 策略图中策略唯一识别标识的类型.
- * @author 王东石 <wangdongshi@neusoft.com>
+ * @param <E> 执行策略时可能抛出的异常.
+ * @author 王东石 <wangds@gmail.com>
  * @version 0.1.1
  * @since 0.1
  */
-public interface StrategyContext<K> {
+public interface StrategyContext<K, E extends StrategyRuntimeException>
+  extends Processor<E> {
 
   /**
    * 注册策略.
@@ -45,12 +58,21 @@ public interface StrategyContext<K> {
   /**
    * 注销所有策略.
    */
-  void clear();
+  void clearStrategyMap();
 
   /**
    * 获得策略图.
    * @return 策略图.
    */
   Map<K, Strategy> getStrategyMap();
+
+  /**
+   * 设置被选策略.
+   * <p>
+   * 被选策略在下次执行时生效.
+   * </p>
+   * @param theSelectedStrategy 被选策略.
+   */
+  void setSelectedStrategy(K theSelectedStrategy);
 
 }

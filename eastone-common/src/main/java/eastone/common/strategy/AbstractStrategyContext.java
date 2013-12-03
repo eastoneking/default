@@ -35,18 +35,25 @@ import eastone.common.GeneralParentObject;
  *   </ul>
  * </p>
  * @param <K> KEY类型.
+ * @param <E> 执行策略时可能抛出的异常.
  * @author 王东石<wangds@gmail.com>
  * @version 0.1
  * @since 0.1
  */
-public abstract class AbstractStrategyContext<K>
+public abstract class AbstractStrategyContext
+  <K, E extends StrategyRuntimeException>
   extends GeneralParentObject
-  implements StrategyContext<K> {
+  implements StrategyContext<K, E> {
 
   /**
-   * .
+   * 策略图.
    */
   private final Map<K, Strategy> contextMap;
+
+  /**
+   * 选中的策略.
+   */
+  private K selectedStrategy;
 
   /**
    * 构造函数.
@@ -56,6 +63,23 @@ public abstract class AbstractStrategyContext<K>
   protected AbstractStrategyContext(final Map<K, Strategy> theStrategyMap) {
     this.contextMap = theStrategyMap;
   }
+
+  /**
+   * 设置selectedStrategy属性值.
+   * @param theSelectedStrategy selectedStrategy属性的新值。
+   */
+  public void setSelectedStrategy(K theSelectedStrategy) {
+    this.selectedStrategy = theSelectedStrategy;
+  }
+
+  /**
+   * 获得selectedStrategy属性值.
+   * @return selectedStrategy属性现值。
+   */
+  public K getSelectedStrategy() {
+    return selectedStrategy;
+  }
+
 
   @Override
   public <S extends Strategy> void registerStrategy(K key, S strategy) {
@@ -74,7 +98,7 @@ public abstract class AbstractStrategyContext<K>
   }
 
   @Override
-  public void clear() {
+  public void clearStrategyMap() {
     this.contextMap.clear();
   }
 
@@ -82,5 +106,22 @@ public abstract class AbstractStrategyContext<K>
   public Map<K, Strategy> getStrategyMap() {
     return this.contextMap;
   }
+
+  @Override
+  public void process() throws E {
+    Strategy selectStrategy = this.findStrategy(selectedStrategy);
+    if (selectStrategy != null) {
+      proccessStrategry(selectStrategy);
+    }
+  }
+
+  /**
+   * 执行策略.
+   * @param <S> 被执行策略类型.
+   * @param strategy 被执行策略.
+   * @throws E 执行期间可能发生的异常.
+   */
+  protected abstract <S extends Strategy> void proccessStrategry(S strategy)
+      throws E;
 
 }
