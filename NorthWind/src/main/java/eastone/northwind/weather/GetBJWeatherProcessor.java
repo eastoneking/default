@@ -9,7 +9,6 @@ import java.net.URL;
 import java.util.Map;
 
 import net.sf.json.JSONObject;
-
 import eastone.common.factory.ProviderFactory;
 import eastone.common.processor.Processor;
 import eastone.component.http.HttpException;
@@ -50,9 +49,11 @@ public class GetBJWeatherProcessor implements Processor<RuntimeException> {
     return url;
   }
 
+  /**
+   * 业务处理.
+   */
   @SuppressWarnings("unchecked")
-  @Override
-  public final void process() {
+  public void process() {
     ProviderFactory fac = new ProviderFactory();
     SimpleHttpClientComponent<Map<String, String>> client = fac
         .getInstance(SimpleHttpClientComponent.class);

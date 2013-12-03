@@ -46,13 +46,19 @@ public abstract class SimpleHttpClientComponentBridgeAbstractionImpl
    */
   private HttpMethodEnum method;
 
-  @Override
-  public final T getImplementor() {
+  /**
+   * 获得实现类.
+   * @return 实现类.
+   */
+  public T getImplementor() {
     return impl;
   }
 
-  @Override
-  public final void setImplementor(final T implementor) {
+  /**
+   * 设置实现类.
+   * @param implementor 实现类.
+   */
+  public void setImplementor(final T implementor) {
     this.impl = implementor;
   }
 
@@ -104,8 +110,10 @@ public abstract class SimpleHttpClientComponentBridgeAbstractionImpl
     return method;
   }
 
-  @Override
-  public final void process() {
+  /**
+   * 业务处理.
+   */
+  public void process() {
     if (this.url == null) {
       return;
     }

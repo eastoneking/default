@@ -6,7 +6,6 @@ package eastone.component.database;
 
 import eastone.common.GeneralParentObject;
 
-
 /**
  * 数据库执行抽象接口.
  * <p>
@@ -45,53 +44,44 @@ public abstract class AbstractSQLExecutor<S, R, E extends Exception> extends
    */
   private Object parameters;
 
-  @Override
-  public final R getResult() {
+  public R getResult() {
     return result;
   }
 
-  @Override
-  public final void setResult(final R theResult) {
+  public void setResult(R theResult) {
     this.result = theResult;
   }
 
-  @Override
-  public final S getDBResource() {
+  public S getDBResource() {
     return dBResource;
   }
 
-  @Override
-  public final void setDBResource(final S resource) {
+  public void setDBResource(S resource) {
     this.dBResource = resource;
   }
 
-  @Override
-  public final void setCommandText(final String theCommandText) {
+  public void setCommandText(String theCommandText) {
     this.commandText = theCommandText;
   }
 
-  @Override
-  public final String getCommandText() {
+  public String getCommandText() {
     return this.commandText;
   }
 
-  @Override
-  public final <T> void setParameters(final T theParameters) {
+  public <T> void setParameters(T theParameters) {
     this.parameters = (Object) theParameters;
   }
 
   @SuppressWarnings("unchecked")
-  @Override
-  public final <T> T getParameters() {
+  public <T> T getParameters() {
     return (T) this.parameters;
   }
 
-  /*
-   * (non-Javadoc)
-   * @see eastone.common.processor.Processor#process()
+  /**
+   * 业务处理.
+   * @throws E 异常.
    */
-  @Override
-  public final void process() throws E {
+  public void process() throws E {
     this.setResult(executeSQL(this.dBResource, this.commandText,
         this.parameters));
   }
