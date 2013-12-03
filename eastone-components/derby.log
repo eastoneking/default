@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Tue Dec 03 21:56:54 CST 2013:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-0142-b8bf-4cb5-000003a0ee40 
+Tue Dec 03 22:15:11 CST 2013:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-0142-b8d0-0bfd-000003a0aeb8 
 on database directory C:\Users\quzl\git\default\eastone-components\testDb with class loader sun.misc.Launcher$AppClassLoader@558fe7c3 
 Loaded from file:/C:/Users/quzl/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
 java.vendor=Sun Microsystems Inc.
@@ -12,5 +12,5 @@ os.version=6.2
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
-Tue Dec 03 21:57:06 CST 2013:
-Shutting down instance a816c00e-0142-b8bf-4cb5-000003a0ee40 on database directory C:\Users\quzl\git\default\eastone-components\testDb with class loader sun.misc.Launcher$AppClassLoader@558fe7c3 
+Tue Dec 03 22:15:23 CST 2013:
+Shutting down instance a816c00e-0142-b8d0-0bfd-000003a0aeb8 on database directory C:\Users\quzl\git\default\eastone-components\testDb with class loader sun.misc.Launcher$AppClassLoader@558fe7c3 
