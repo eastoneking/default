@@ -5,14 +5,17 @@
  */
 package eastone.jogl.gljpanel.strategy;
 
+import java.awt.Container;
 import java.util.Map;
 
-import eastone.common.GeneralParentObject;
+import javax.media.opengl.awt.GLJPanel;
+
+import eastone.common.strategy.AbstractStrategyContext;
 import eastone.common.strategy.Strategy;
-import eastone.common.strategy.StrategyContext;
+import eastone.common.strategy.StrategyRuntimeException;
 
 /**
- * .
+ * 向容器中添加GLJPanel对象策略上下文.
  * <p>
  *   <ul>
  *     <li>修改列表:
@@ -30,35 +33,72 @@ import eastone.common.strategy.StrategyContext;
  * @since 0.1
  */
 public class AddGLJPanelStrategyContext
-  extends GeneralParentObject
-  implements StrategyContext<String> {
+  extends AbstractStrategyContext<String, StrategyRuntimeException> {
 
   /**
-   * .
+   * 被添加GLJPanel对象的容器.
    */
-  public AddGLJPanelStrategyContext() {
+  private Container container;
+
+  /**
+   * 被添加到容器中的{@link GLJPanel}对象.
+   */
+  private GLJPanel panel;
+
+  /**
+   * 构造函数.
+   * @param theStrategyMap 策略图.
+   */
+  public AddGLJPanelStrategyContext(
+      Map<String, Strategy> theStrategyMap
+  ) {
+    super(theStrategyMap);
+  }
+
+  /**
+   * 设置container属性值.
+   * @param theContainer container属性的新值。
+   */
+  public void setContainer(Container theContainer) {
+    this.container = theContainer;
+  }
+
+  /**
+   * 获得container属性值.
+   * @return container属性现值。
+   */
+  public Container getContainer() {
+    return container;
+  }
+
+  /**
+   * 设置panel属性值.
+   * @param thePanel panel属性的新值。
+   */
+  public void setPanel(GLJPanel thePanel) {
+    this.panel = thePanel;
+  }
+
+  /**
+   * 获得panel属性值.
+   * @return panel属性现值。
+   */
+  public GLJPanel getPanel() {
+    return panel;
   }
 
   @Override
   public void clear() {
+    super.clear();
+    this.container = null;
+    this.panel = null;
   }
 
   @Override
-  public void disregister(String arg0) {
-  }
-
-  @Override
-  public <S extends Strategy> S findStrategy(String arg0) {
-    return null;
-  }
-
-  @Override
-  public Map<String, Strategy> getStrategyMap() {
-    return null;
-  }
-
-  @Override
-  public <S extends Strategy> void registerStrategy(String arg0, S arg1) {
+  protected <S extends Strategy> void proccessStrategry(S strategy)
+      throws StrategyRuntimeException {
+    Append2BorderLayoutStrategy a2bs = (Append2BorderLayoutStrategy) strategy;
+    a2bs.append(container, panel);
   }
 
 }

@@ -30,6 +30,12 @@ import eastone.common.GeneralParentObject;
  *              </li>
  *           </ul>
  *         </li>
+ *         <li>
+ *          wangds@gmail.com, 2013-12-03 10:16
+ *          <p>
+ *              添加 {@link #clear()}方法.
+ *          </p>
+ *         </li>
  *       </ol>
  *     </li>
  *   </ul>
@@ -113,6 +119,12 @@ public abstract class AbstractStrategyContext
     if (selectStrategy != null) {
       proccessStrategry(selectStrategy);
     }
+    this.clear();
+  }
+
+  @Override
+  public void clear() {
+    this.selectedStrategy = null;
   }
 
   /**

@@ -41,6 +41,14 @@ public class Rectangle<T extends Number> implements Graphic {
    */
   public Rectangle() {
   }
+  
+  /**
+   * 构造函数.
+   */
+  public Rectangle(T theWidth, T theHeight) {
+    this.width = theWidth;
+    this.height = theHeight;
+  }
 
   /**
    * 设置height属性值.

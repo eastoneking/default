@@ -5,6 +5,7 @@ package eastone.common.strategy;
 
 import java.util.Map;
 
+import eastone.common.annotation.Callback;
 import eastone.common.processor.Processor;
 
 /**
@@ -21,6 +22,10 @@ import eastone.common.processor.Processor;
  *          <li>添加{@link #setSelectedStrategy(Object)}方法.</li>
  *      </ul>
  *  </p>
+ * </li>
+ * <li>
+ *      by wangds@gmail.com, 2013-12-03 10:10
+ *      <p>添加 {@link #clear()}方法.</p>
  * </li>
  * </ol>
  * </p>
@@ -59,6 +64,12 @@ public interface StrategyContext<K, E extends StrategyRuntimeException>
    * 注销所有策略.
    */
   void clearStrategyMap();
+
+  /**
+   * 清理资源.
+   */
+  @Callback
+  void clear();
 
   /**
    * 获得策略图.

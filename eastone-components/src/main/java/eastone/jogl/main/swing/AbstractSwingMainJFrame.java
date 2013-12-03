@@ -8,10 +8,13 @@ package eastone.jogl.main.swing;
 import java.awt.BorderLayout;
 import java.awt.GraphicsConfiguration;
 import java.awt.LayoutManager;
+import java.util.LinkedHashMap;
 
 import javax.media.opengl.awt.GLJPanel;
 import javax.swing.JFrame;
 
+import eastone.common.strategy.Strategy;
+import eastone.common.strategy.StrategyRuntimeException;
 import eastone.graphic.Rectangle;
 import eastone.jogl.gljpanel.GLJPanelFacotry;
 import eastone.jogl.gljpanel.strategy.AddGLJPanelStrategyContext;
@@ -50,7 +53,7 @@ public class AbstractSwingMainJFrame
    * 用于保存如何添加GLJPanel的策略上下文.
    */
   private static final AddGLJPanelStrategyContext ADD_GLJP_CTX
-    = new AddGLJPanelStrategyContext();
+    = new AddGLJPanelStrategyContext(new LinkedHashMap<String, Strategy>());
 
   static {
     //初始化添加GLJPanel的备选策略列表.
@@ -263,13 +266,20 @@ public class AbstractSwingMainJFrame
    * 向窗体添加GLJPanel对象.
    * @param gljp GLJPanel对象.
    */
-  protected void addGLJPanel(GLJPanel gljp) {
-    Append2BorderLayoutStrategy strategy
-      = ADD_GLJP_CTX.findStrategy(this.addGLJPanelStrategy);
+  public void addGLJPanel(GLJPanel gljp) {
     if (gljp == null) {
       gljp = new GLJPanelFacotry().getInstance();
     }
-    strategy.append(this, gljp);
+    synchronized (ADD_GLJP_CTX) {
+      ADD_GLJP_CTX.setSelectedStrategy(this.addGLJPanelStrategy);
+      ADD_GLJP_CTX.setContainer(this);
+      ADD_GLJP_CTX.setPanel(gljp);
+      try {
+        ADD_GLJP_CTX.process();
+      } catch (StrategyRuntimeException e) {
+        throw new RuntimeException(e);
+      }
+    }
   }
 
 }
