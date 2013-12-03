@@ -1,7 +1,7 @@
 /*
  * create time: 2013年12月1日 下午11:26:49
- * path: DefaultStrategyContext.java
- * type: eastone.common.strategy.DefaultStrategyContext
+ * path: AbstractStrategyContext.java
+ * type: eastone.common.strategy.AbstractStrategyContext
  */
 package eastone.common.strategy;
 
@@ -19,6 +19,17 @@ import eastone.common.GeneralParentObject;
  *           wangds@gmail.com, 2013年12月1日 下午11:26:49
  *           <p>初始版本.</p>
  *         </li>
+ *         <li>
+ *           wangds@gmail.com, 2013年12月3日 上午08:48
+ *           <ul>
+ *              <li>类名从DefaultStrategyContext变更为AbstractStrategyContext;</li>
+ *              <li>类变更为抽象类;</li>
+ *              <li>
+ *                  {@link #AbstractStrategyContext(Map)}访问修饰符改为
+ *                  “protected”.
+ *              </li>
+ *           </ul>
+ *         </li>
  *       </ol>
  *     </li>
  *   </ul>
@@ -28,8 +39,9 @@ import eastone.common.GeneralParentObject;
  * @version 0.1
  * @since 0.1
  */
-public class DefaultStrategyContext<K> extends GeneralParentObject implements
-    StrategyContext<K> {
+public abstract class AbstractStrategyContext<K>
+  extends GeneralParentObject
+  implements StrategyContext<K> {
 
   /**
    * .
@@ -41,7 +53,7 @@ public class DefaultStrategyContext<K> extends GeneralParentObject implements
    * @param theStrategyMap 用于保存策略图的Map实例.
    * <p>根据策略图的需要，选择不同该类型的{@link Map}类实例.</p>
    */
-  public DefaultStrategyContext(final Map<K, Strategy> theStrategyMap) {
+  protected AbstractStrategyContext(final Map<K, Strategy> theStrategyMap) {
     this.contextMap = theStrategyMap;
   }
 
