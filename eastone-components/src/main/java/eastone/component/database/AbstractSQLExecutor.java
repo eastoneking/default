@@ -44,34 +44,45 @@ public abstract class AbstractSQLExecutor<S, R, E extends Exception> extends
    */
   private Object parameters;
 
+  @Override
   public R getResult() {
     return result;
   }
 
+  @Override
   public void setResult(R theResult) {
     this.result = theResult;
   }
 
+  /**
+   * 获得数据库资源.
+   * @return 数据库资源.
+   */
   public S getDBResource() {
     return dBResource;
   }
 
+  @Override
   public void setDBResource(S resource) {
     this.dBResource = resource;
   }
 
+  @Override
   public void setCommandText(String theCommandText) {
     this.commandText = theCommandText;
   }
 
+  @Override
   public String getCommandText() {
     return this.commandText;
   }
 
+  @Override
   public <T> void setParameters(T theParameters) {
     this.parameters = (Object) theParameters;
   }
 
+  @Override
   @SuppressWarnings("unchecked")
   public <T> T getParameters() {
     return (T) this.parameters;

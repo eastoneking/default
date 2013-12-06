@@ -83,6 +83,7 @@ public class Append2BorderLayoutStrategy
   }
 
 
+  @Override
   public void append(final Container container, final GLJPanel panel) {
     if (container == null) {
       return;

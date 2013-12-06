@@ -41,9 +41,11 @@ public class Rectangle<T extends Number> implements Graphic {
    */
   public Rectangle() {
   }
-  
+
   /**
    * 构造函数.
+   * @param theWidth 宽.
+   * @param theHeight 高.
    */
   public Rectangle(T theWidth, T theHeight) {
     this.width = theWidth;

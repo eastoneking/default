@@ -36,6 +36,12 @@ import eastone.common.GeneralParentObject;
  *              添加 {@link #clear()}方法.
  *          </p>
  *         </li>
+ *         <li>
+ *         wangds@gmail.com, 2013-12-06 19:48
+ *         <p>
+ *         修改关于识别标识的处理.
+ *         </p>
+ *         </li>
  *       </ol>
  *     </li>
  *   </ul>
@@ -54,7 +60,7 @@ public abstract class AbstractStrategyContext
   /**
    * 策略图.
    */
-  private final Map<K, Strategy> contextMap;
+  private final Map<K, Strategy<K>> contextMap;
 
   /**
    * 选中的策略.
@@ -66,7 +72,7 @@ public abstract class AbstractStrategyContext
    * @param theStrategyMap 用于保存策略图的Map实例.
    * <p>根据策略图的需要，选择不同该类型的{@link Map}类实例.</p>
    */
-  protected AbstractStrategyContext(final Map<K, Strategy> theStrategyMap) {
+  protected AbstractStrategyContext(final Map<K, Strategy<K>> theStrategyMap) {
     this.contextMap = theStrategyMap;
   }
 
@@ -88,13 +94,13 @@ public abstract class AbstractStrategyContext
 
 
   @Override
-  public <S extends Strategy> void registerStrategy(K key, S strategy) {
-    this.contextMap.put(key, strategy);
+  public <S extends Strategy<K>> void registerStrategy(S strategy) {
+    this.contextMap.put(strategy.getKey(), strategy);
   }
 
   @SuppressWarnings("unchecked")
   @Override
-  public <S extends Strategy> S findStrategy(K key) {
+  public <S extends Strategy<K>> S findStrategy(K key) {
     return (S) this.contextMap.get(key);
   }
 
@@ -109,13 +115,13 @@ public abstract class AbstractStrategyContext
   }
 
   @Override
-  public Map<K, Strategy> getStrategyMap() {
+  public Map<K, Strategy<K>> getStrategyMap() {
     return this.contextMap;
   }
 
   @Override
   public void process() throws E {
-    Strategy selectStrategy = this.findStrategy(selectedStrategy);
+    Strategy<K> selectStrategy = this.findStrategy(selectedStrategy);
     if (selectStrategy != null) {
       proccessStrategry(selectStrategy);
     }
@@ -133,7 +139,7 @@ public abstract class AbstractStrategyContext
    * @param strategy 被执行策略.
    * @throws E 执行期间可能发生的异常.
    */
-  protected abstract <S extends Strategy> void proccessStrategry(S strategy)
+  protected abstract <S extends Strategy<K>> void proccessStrategry(S strategy)
       throws E;
 
 }

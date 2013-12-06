@@ -4,6 +4,7 @@
  */
 package eastone.northwind.weather.test;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -25,10 +26,17 @@ import eastone.common.processor.Processor;
 @SuppressWarnings("unchecked")
 public class BJWeatherTestCase {
 
-  static {
-    @SuppressWarnings("rawtypes")
+  /**
+   * 初始化.
+   */
+  @SuppressWarnings("rawtypes")
+  @BeforeClass
+  public static void init() {
     BeanContext ctx = BeanContextFactory.getBeanContext();
-    ctx.appendContext(new ClassPathXmlApplicationContext("quartz.context.xml"));
+    ClassPathXmlApplicationContext baseCtx = new ClassPathXmlApplicationContext(
+      "eastone/northwind/weather/test/weather.context.xml"
+    );
+    ctx.appendContext(baseCtx);
   }
 
 

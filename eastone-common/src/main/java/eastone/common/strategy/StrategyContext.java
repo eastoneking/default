@@ -41,10 +41,9 @@ public interface StrategyContext<K, E extends StrategyRuntimeException>
   /**
    * 注册策略.
    * @param <S> 注册策略类型.
-   * @param key 策略图中策略唯一识别标识.
    * @param strategy 策略.
    */
-  <S extends Strategy> void registerStrategy(K key, S strategy);
+  <S extends Strategy<K>> void registerStrategy(S strategy);
 
   /**
    * 从注册策略图中根据唯一标识查找策略.
@@ -52,7 +51,7 @@ public interface StrategyContext<K, E extends StrategyRuntimeException>
    * @param key 策略图中策略唯一识别标识.
    * @return 策略.
    */
-  <S extends Strategy> S findStrategy(K key);
+  <S extends Strategy<K>> S findStrategy(K key);
 
   /**
    * 注销策略.
@@ -75,7 +74,7 @@ public interface StrategyContext<K, E extends StrategyRuntimeException>
    * 获得策略图.
    * @return 策略图.
    */
-  Map<K, Strategy> getStrategyMap();
+  Map<K, Strategy<K>> getStrategyMap();
 
   /**
    * 设置被选策略.
