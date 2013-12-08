@@ -41,7 +41,7 @@ public class NotSharedFlyweightGenerateStrategy<K, F extends Flyweight>
   }
 
   @Override
-  public F generateInstance(K key) throws StrategyRuntimeException {
+  protected F generateInstanceByKey(K key) throws StrategyRuntimeException {
     return this.getFactoriesContext().getFlyweight(key);
   }
 

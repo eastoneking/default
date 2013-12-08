@@ -19,33 +19,33 @@ import eastone.common.GeneralParentObject;
  * </li>
  * </ol>
  * </p>
- * @param <E>
- *          处理过程中可能出现的异常.
+ * @param <E> 处理过程中可能出现的异常.
+ * @param <H> 责任链类型.
  * @author 王东石 <wangdongshi@neusoft.com>
  * @version 0.1.1
  * @since 0.1
  */
-public abstract class AbstractHandler<E extends Exception> extends
-    GeneralParentObject implements Handler<E> {
+public abstract class AbstractHandler
+  <E extends Exception, H extends Handler<E, H>>
+  extends GeneralParentObject implements Handler<E, H> {
 
   /**
    * 责任链中下一个处理器.
    */
-  private Handler<E> next;
+  private H next;
 
-  @SuppressWarnings("unchecked")
   @Override
-  public final <H extends Handler<E>> H getNext() {
-    return (H) this.next;
+  public H getNext() {
+    return this.next;
   }
 
   @Override
-  public final <H extends Handler<E>> void setNext(final H theNext) {
+  public void setNext(H theNext) {
     this.next = theNext;
   }
 
   @Override
-  public final void process() throws E {
+  public void process() throws E {
     if (this.handle() && this.next != null) {
       this.next.process();
     }

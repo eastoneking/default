@@ -15,7 +15,43 @@
 	(object Attribute
 	    tool       	"Java"
 	    name       	"AllExceptions"
-	    value      	"java.lang.Exception,eastone.component.http.HttpException,java.io.IOException,eastone.common.strategy.StrategyRuntimeException"))
+	    value      	"java.lang.Exception,eastone.component.http.HttpException,java.io.IOException,eastone.common.strategy.StrategyRuntimeException")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagName1"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagText1"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagApply1"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagName2"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagText2"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagApply2"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagName3"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagText3"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagApply3"
+	    value      	""))
     quid       	"529DE9EA0226"
     enforceClosureAutoLoad 	FALSE
     defaults   	(object defaults
@@ -1438,10 +1474,11 @@
 									value      	"false"))
 								quid       	"529DEBA00013"
 								type       	"Logical View::java::lang::Object"))
-							result     	"Logical View::java::util::Collection"
+							result     	"Collection"
 							concurrency 	"Sequential"
 							opExportControl 	"Protected"
-							uid        	0)
+							uid        	0
+							quidu      	"529DEB9F03E6")
 						    (object Operation "executeOperation"
 							attributes 	(list Attribute_Set
 							    (object Attribute
@@ -1822,7 +1859,11 @@
 					    (object Attribute
 						tool       	"Java"
 						name       	"GenerateCode"
-						value      	TRUE))
+						value      	TRUE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"cg_style"
+						value      	"Default_EJB"))
 					quid       	"529DEBA0036A"
 					superclasses 	(list inheritance_relationship_list
 					    (object Inheritance_Relationship
@@ -2422,7 +2463,11 @@
 					    (object Attribute
 						tool       	"Java"
 						name       	"GenerateCode"
-						value      	TRUE))
+						value      	TRUE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"cg_style"
+						value      	"Default_EJB"))
 					quid       	"529DEBA003DD"
 					superclasses 	(list inheritance_relationship_list
 					    (object Inheritance_Relationship
@@ -6453,7 +6498,11 @@
 						    (object Attribute
 							tool       	"Java"
 							name       	"GenerateCode"
-							value      	TRUE))
+							value      	TRUE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"cg_style"
+							value      	"Default_EJB"))
 						quid       	"529DEBAA0031"
 						superclasses 	(list inheritance_relationship_list
 						    (object Inheritance_Relationship
@@ -7974,7 +8023,11 @@
 				    (object Attribute
 					tool       	"Java"
 					name       	"GenerateCode"
-					value      	TRUE))
+					value      	TRUE)
+				    (object Attribute
+					tool       	"Java"
+					name       	"cg_style"
+					value      	"Default_EJB"))
 				quid       	"529DEBAE0318"
 				realized_interfaces 	(list realize_rel_list
 				    (object Realize_Relationship
@@ -8545,7 +8598,2142 @@
 			is_unit    	TRUE
 			is_loaded  	FALSE
 			file_name  	"C:\\Users\\quzl\\git\\default\\eastone-common\\model\\eastone.common.cat"
-			quid       	"529DEBF40256"))
+			quid       	"529DEBF40256")
+		    (object Class_Category "precasting"
+			quid       	"52A3DF35019B"
+			exportControl 	"Public"
+			logical_models 	(list unit_reference_list
+			    (object Class "package-info"
+				attributes 	(list Attribute_Set
+				    (object Attribute
+					tool       	"Java"
+					name       	"BodyDanglingComment"
+					value      	"")
+				    (object Attribute
+					tool       	"Java"
+					name       	"GenerateFinalizer"
+					value      	FALSE)
+				    (object Attribute
+					tool       	"Java"
+					name       	"GenerateStaticInitializer"
+					value      	FALSE)
+				    (object Attribute
+					tool       	"Java"
+					name       	"GenerateInstanceInitializer"
+					value      	FALSE)
+				    (object Attribute
+					tool       	"Java"
+					name       	"GenerateDefaultConstructor"
+					value      	FALSE)
+				    (object Attribute
+					tool       	"Java"
+					name       	"ReadOnly"
+					value      	FALSE)
+				    (object Attribute
+					tool       	"Java"
+					name       	"Final"
+					value      	FALSE)
+				    (object Attribute
+					tool       	"Java"
+					name       	"Static"
+					value      	FALSE)
+				    (object Attribute
+					tool       	"Java"
+					name       	"Strictfp"
+					value      	FALSE)
+				    (object Attribute
+					tool       	"Java"
+					name       	"GenerateFullyQualifiedExtends"
+					value      	"")
+				    (object Attribute
+					tool       	"Java"
+					name       	"Enum Code"
+					value      	"")
+				    (object Attribute
+					tool       	"Java"
+					name       	"GenerateCode"
+					value      	TRUE))
+				quid       	"52A3DF3501A6"
+				stereotype 	"Interface"
+				exportControl 	"Implementation"
+				module     	"Component View::eastone::precasting::package-info"
+				quidu      	"52A3DF350197"
+				language   	"Java")
+			    (object Class_Category "flyweight"
+				quid       	"52A3DF350280"
+				exportControl 	"Public"
+				logical_models 	(list unit_reference_list
+				    (object Class "AbstractFlyweightGenerateStrategy"
+					attributes 	(list Attribute_Set
+					    (object Attribute
+						tool       	"Java"
+						name       	"BodyDanglingComment"
+						value      	"")
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateFinalizer"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateStaticInitializer"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateInstanceInitializer"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateDefaultConstructor"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"ReadOnly"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"Final"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"Static"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"Strictfp"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateFullyQualifiedExtends"
+						value      	"eastone.common.strategy.AbstractStrategy")
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateFullyQualifiedImplements"
+						value      	"")
+					    (object Attribute
+						tool       	"Java"
+						name       	"Enum Code"
+						value      	"")
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateCode"
+						value      	TRUE))
+					quid       	"52A3DF350282"
+					superclasses 	(list inheritance_relationship_list
+					    (object Inheritance_Relationship
+						attributes 	(list Attribute_Set)
+						quid       	"52A3DF35029F"
+						supplier   	"Logical View::eastone::common::strategy::AbstractStrategy"
+						quidu      	"52A3DF330157"))
+					operations 	(list Operations
+					    (object Operation "AbstractFlyweightGenerateStrategy"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	"eastone.precasting.flyweight.DefaultFlyweightFactory arg0"))
+						quid       	"52A3DF3502D3"
+						parameters 	(list Parameters
+						    (object Parameter "arg0"
+							attributes 	(list Attribute_Set
+							    (object Attribute
+								tool       	"Java"
+								name       	"IsFinal"
+								value      	"false"))
+							quid       	"52A3DF3502DE"
+							type       	"DefaultFlyweightFactory"
+							quidu      	"52A3DF3502B1"))
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0)
+					    (object Operation "setFactoriesContext"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedReturn"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	"eastone.precasting.flyweight.DefaultFlyweightFactory arg0"))
+						quid       	"52A3DF3502DF"
+						parameters 	(list Parameters
+						    (object Parameter "arg0"
+							attributes 	(list Attribute_Set
+							    (object Attribute
+								tool       	"Java"
+								name       	"IsFinal"
+								value      	"false"))
+							quid       	"52A3DF3502E0"
+							type       	"DefaultFlyweightFactory"
+							quidu      	"52A3DF3502B1"))
+						result     	"void"
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0)
+					    (object Operation "getFactoriesContext"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedReturn"
+							value      	TRUE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	""))
+						quid       	"52A3DF3502E1"
+						result     	"DefaultFlyweightFactory"
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0
+						quidu      	"52A3DF3502B1")
+					    (object Operation "generateInstance"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedReturn"
+							value      	TRUE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"eastone.common.strategy.StrategyRuntimeException")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	TRUE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	"java.lang.Object arg0"))
+						quid       	"52A3DF3502ED"
+						parameters 	(list Parameters
+						    (object Parameter "arg0"
+							attributes 	(list Attribute_Set
+							    (object Attribute
+								tool       	"Java"
+								name       	"IsFinal"
+								value      	"false"))
+							quid       	"52A3DF35030D"
+							type       	"Logical View::java::lang::Object"))
+						result     	"Flyweight"
+						exceptions 	"Logical View::eastone::common::strategy::StrategyRuntimeException[529DEC040112]"
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0
+						quidu      	"529DEBFB0282"))
+					module     	"Component View::eastone::precasting::flyweight::AbstractFlyweightGenerateStrategy"
+					quidu      	"52A3DF350271"
+					language   	"Java"
+					abstract   	TRUE)
+				    (object Class "DefaultFlyweightFactory"
+					attributes 	(list Attribute_Set
+					    (object Attribute
+						tool       	"Java"
+						name       	"ReadOnly"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"BodyDanglingComment"
+						value      	"")
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateFinalizer"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateStaticInitializer"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateInstanceInitializer"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateDefaultConstructor"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"Final"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"Static"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"Strictfp"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateFullyQualifiedExtends"
+						value      	"eastone.common.strategy.AbstractStrategyContext")
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateFullyQualifiedImplements"
+						value      	"eastone.common.flyweight.FlyweightFactory")
+					    (object Attribute
+						tool       	"Java"
+						name       	"Enum Code"
+						value      	"")
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateCode"
+						value      	TRUE))
+					quid       	"52A3DF3502B1"
+					superclasses 	(list inheritance_relationship_list
+					    (object Inheritance_Relationship
+						attributes 	(list Attribute_Set)
+						quid       	"52A3DF36036A"
+						supplier   	"Logical View::eastone::common::strategy::AbstractStrategyContext"
+						quidu      	"529DEC04004B"))
+					realized_interfaces 	(list realize_rel_list
+					    (object Realize_Relationship
+						attributes 	(list Attribute_Set)
+						quid       	"52A3DF36038A"
+						supplier   	"Logical View::eastone::common::flyweight::FlyweightFactory"
+						quidu      	"529DEBFB029B"))
+					operations 	(list Operations
+					    (object Operation "DefaultFlyweightFactory"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	"java.util.Map arg0, java.util.Map arg1"))
+						quid       	"52A3DF36039C"
+						parameters 	(list Parameters
+						    (object Parameter "arg0"
+							attributes 	(list Attribute_Set
+							    (object Attribute
+								tool       	"Java"
+								name       	"IsFinal"
+								value      	"false"))
+							quid       	"52A3DF36039D"
+							type       	"Map"
+							quidu      	"529DEBAC014E")
+						    (object Parameter "arg1"
+							attributes 	(list Attribute_Set
+							    (object Attribute
+								tool       	"Java"
+								name       	"IsFinal"
+								value      	"false"))
+							quid       	"52A3DF36039E"
+							type       	"Map"
+							quidu      	"529DEBAC014E"))
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0)
+					    (object Operation "DefaultFlyweightFactory"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	"java.util.Map arg0"))
+						quid       	"52A3DF36039F"
+						parameters 	(list Parameters
+						    (object Parameter "arg0"
+							attributes 	(list Attribute_Set
+							    (object Attribute
+								tool       	"Java"
+								name       	"IsFinal"
+								value      	"false"))
+							quid       	"52A3DF3603A0"
+							type       	"Map"
+							quidu      	"529DEBAC014E"))
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0)
+					    (object Operation "getFlyweight"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedReturn"
+							value      	TRUE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	"java.lang.Object arg0"))
+						quid       	"52A3DF3603A9"
+						parameters 	(list Parameters
+						    (object Parameter "arg0"
+							attributes 	(list Attribute_Set
+							    (object Attribute
+								tool       	"Java"
+								name       	"IsFinal"
+								value      	"false"))
+							quid       	"52A3DF3603AA"
+							type       	"Logical View::java::lang::Object"))
+						result     	"Flyweight"
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0
+						quidu      	"529DEBFB0282")
+					    (object Operation "getFactoriesMapRef"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedReturn"
+							value      	TRUE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	""))
+						quid       	"52A3DF3603AB"
+						result     	"Map"
+						concurrency 	"Sequential"
+						opExportControl 	"Protected"
+						uid        	0
+						quidu      	"529DEBAC014E")
+					    (object Operation "registerFactory"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedReturn"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	"java.lang.Object arg0, eastone.common.factory.Factory arg1"))
+						quid       	"52A3DF3603B9"
+						parameters 	(list Parameters
+						    (object Parameter "arg0"
+							attributes 	(list Attribute_Set
+							    (object Attribute
+								tool       	"Java"
+								name       	"IsFinal"
+								value      	"false"))
+							quid       	"52A3DF3603BA"
+							type       	"Logical View::java::lang::Object")
+						    (object Parameter "arg1"
+							attributes 	(list Attribute_Set
+							    (object Attribute
+								tool       	"Java"
+								name       	"IsFinal"
+								value      	"false"))
+							quid       	"52A3DF3603BB"
+							type       	"Factory"
+							quidu      	"529DEBF9003A"))
+						result     	"void"
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0)
+					    (object Operation "findFlyweightInstance"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedReturn"
+							value      	TRUE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	"java.lang.Object arg0"))
+						quid       	"52A3DF3603BC"
+						parameters 	(list Parameters
+						    (object Parameter "arg0"
+							attributes 	(list Attribute_Set
+							    (object Attribute
+								tool       	"Java"
+								name       	"IsFinal"
+								value      	"false"))
+							quid       	"52A3DF3603C8"
+							type       	"Logical View::java::lang::Object"))
+						result     	"Flyweight"
+						concurrency 	"Sequential"
+						opExportControl 	"Protected"
+						uid        	0
+						quidu      	"529DEBFB0282")
+					    (object Operation "proccessStrategry"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedReturn"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"eastone.common.strategy.StrategyRuntimeException")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	"eastone.common.strategy.Strategy arg0"))
+						quid       	"52A3DF3603C9"
+						parameters 	(list Parameters
+						    (object Parameter "arg0"
+							attributes 	(list Attribute_Set
+							    (object Attribute
+								tool       	"Java"
+								name       	"IsFinal"
+								value      	"false"))
+							quid       	"52A3DF37000F"
+							type       	"Strategy"
+							quidu      	"529DEC0400E8"))
+						result     	"void"
+						exceptions 	"Logical View::eastone::common::strategy::StrategyRuntimeException[529DEC040112]"
+						concurrency 	"Sequential"
+						opExportControl 	"Protected"
+						uid        	0))
+					module     	"Component View::eastone::precasting::flyweight::DefaultFlyweightFactory"
+					quidu      	"52A3DF3502A0"
+					language   	"Java")
+				    (object Class "ChainFlyweightStrategy"
+					attributes 	(list Attribute_Set
+					    (object Attribute
+						tool       	"Java"
+						name       	"BodyDanglingComment"
+						value      	"")
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateFinalizer"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateStaticInitializer"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateInstanceInitializer"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateDefaultConstructor"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"ReadOnly"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"Final"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"Static"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"Strictfp"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateFullyQualifiedExtends"
+						value      	"eastone.precasting.flyweight.AbstractFlyweightGenerateStrategy")
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateFullyQualifiedImplements"
+						value      	"eastone.common.chainofresponsibility.Handler")
+					    (object Attribute
+						tool       	"Java"
+						name       	"Enum Code"
+						value      	"")
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateCode"
+						value      	TRUE))
+					quid       	"52A3DF360090"
+					superclasses 	(list inheritance_relationship_list
+					    (object Inheritance_Relationship
+						attributes 	(list Attribute_Set)
+						quid       	"52A3DF3600BB"
+						supplier   	"Logical View::eastone::precasting::flyweight::AbstractFlyweightGenerateStrategy"
+						quidu      	"52A3DF350282"))
+					realized_interfaces 	(list realize_rel_list
+					    (object Realize_Relationship
+						attributes 	(list Attribute_Set)
+						quid       	"52A3DF3600DA"
+						supplier   	"Logical View::eastone::common::chainofresponsibility::Handler"
+						quidu      	"529DEBF6011D"))
+					operations 	(list Operations
+					    (object Operation "ChainFlyweightStrategy"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	"eastone.precasting.flyweight.DefaultFlyweightFactory arg0"))
+						quid       	"52A3DF3600F1"
+						parameters 	(list Parameters
+						    (object Parameter "arg0"
+							attributes 	(list Attribute_Set
+							    (object Attribute
+								tool       	"Java"
+								name       	"IsFinal"
+								value      	"false"))
+							quid       	"52A3DF3600F2"
+							type       	"DefaultFlyweightFactory"
+							quidu      	"52A3DF3502B1"))
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0)
+					    (object Operation "process"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedReturn"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"eastone.common.strategy.StrategyRuntimeException")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	""))
+						quid       	"52A3DF3600F3"
+						result     	"void"
+						exceptions 	"Logical View::eastone::common::strategy::StrategyRuntimeException[529DEC040112]"
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0)
+					    (object Operation "setNext"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedReturn"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	"eastone.precasting.flyweight.ChainFlyweightStrategy arg0"))
+						quid       	"52A3DF360119"
+						parameters 	(list Parameters
+						    (object Parameter "arg0"
+							attributes 	(list Attribute_Set
+							    (object Attribute
+								tool       	"Java"
+								name       	"IsFinal"
+								value      	"false"))
+							quid       	"52A3DF36011A"
+							type       	"ChainFlyweightStrategy"
+							quidu      	"52A3DF360090"))
+						result     	"void"
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0)
+					    (object Operation "getNext"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedReturn"
+							value      	TRUE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	""))
+						quid       	"52A3DF360128"
+						result     	"ChainFlyweightStrategy"
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0
+						quidu      	"52A3DF360090")
+					    (object Operation "setResult"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedReturn"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	"eastone.common.flyweight.Flyweight arg0"))
+						quid       	"52A3DF360129"
+						parameters 	(list Parameters
+						    (object Parameter "arg0"
+							attributes 	(list Attribute_Set
+							    (object Attribute
+								tool       	"Java"
+								name       	"IsFinal"
+								value      	"false"))
+							quid       	"52A3DF36012A"
+							type       	"Flyweight"
+							quidu      	"529DEBFB0282"))
+						result     	"void"
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0)
+					    (object Operation "getResult"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedReturn"
+							value      	TRUE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	""))
+						quid       	"52A3DF36012B"
+						result     	"Flyweight"
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0
+						quidu      	"529DEBFB0282")
+					    (object Operation "handle"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedReturn"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"eastone.common.strategy.StrategyRuntimeException")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	""))
+						quid       	"52A3DF360138"
+						result     	"boolean"
+						exceptions 	"Logical View::eastone::common::strategy::StrategyRuntimeException[529DEC040112]"
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0)
+					    (object Operation "generateInstance"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedReturn"
+							value      	TRUE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"eastone.common.strategy.StrategyRuntimeException")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	"java.lang.Object arg0"))
+						quid       	"52A3DF360167"
+						parameters 	(list Parameters
+						    (object Parameter "arg0"
+							attributes 	(list Attribute_Set
+							    (object Attribute
+								tool       	"Java"
+								name       	"IsFinal"
+								value      	"false"))
+							quid       	"52A3DF360186"
+							type       	"Logical View::java::lang::Object"))
+						result     	"Flyweight"
+						exceptions 	"Logical View::eastone::common::strategy::StrategyRuntimeException[529DEC040112]"
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0
+						quidu      	"529DEBFB0282")
+					    (object Operation "appendStrategy"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedReturn"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	"eastone.precasting.flyweight.AbstractFlyweightGenerateStrategy arg0"))
+						quid       	"52A3DF360196"
+						parameters 	(list Parameters
+						    (object Parameter "arg0"
+							attributes 	(list Attribute_Set
+							    (object Attribute
+								tool       	"Java"
+								name       	"IsFinal"
+								value      	"false"))
+							quid       	"52A3DF360197"
+							type       	"AbstractFlyweightGenerateStrategy"
+							quidu      	"52A3DF350282"))
+						result     	"void"
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0)
+					    (object Operation "getAdaptee"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedReturn"
+							value      	TRUE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	""))
+						quid       	"52A3DF360198"
+						result     	"AbstractFlyweightGenerateStrategy"
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0
+						quidu      	"52A3DF350282")
+					    (object Operation "getNext"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedReturn"
+							value      	TRUE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	""))
+						quid       	"52A3DF360199"
+						result     	"Handler"
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0
+						quidu      	"529DEBF6011D")
+					    (object Operation "setNext"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedReturn"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	"eastone.common.chainofresponsibility.Handler arg0"))
+						quid       	"52A3DF3601A5"
+						parameters 	(list Parameters
+						    (object Parameter "arg0"
+							attributes 	(list Attribute_Set
+							    (object Attribute
+								tool       	"Java"
+								name       	"IsFinal"
+								value      	"false"))
+							quid       	"52A3DF3601A6"
+							type       	"Handler"
+							quidu      	"529DEBF6011D"))
+						result     	"void"
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0)
+					    (object Operation "getAdaptee"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedReturn"
+							value      	TRUE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	""))
+						quid       	"52A3DF3601A7"
+						result     	"Logical View::java::lang::Object"
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0))
+					module     	"Component View::eastone::precasting::flyweight::ChainFlyweightStrategy"
+					quidu      	"52A3DF36008C"
+					language   	"Java")
+				    (object Class "NotSharedFlyweightGenerateStrategy"
+					attributes 	(list Attribute_Set
+					    (object Attribute
+						tool       	"Java"
+						name       	"BodyDanglingComment"
+						value      	"")
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateFinalizer"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateStaticInitializer"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateInstanceInitializer"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateDefaultConstructor"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"ReadOnly"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"Final"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"Static"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"Strictfp"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateFullyQualifiedExtends"
+						value      	"eastone.precasting.flyweight.AbstractFlyweightGenerateStrategy")
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateFullyQualifiedImplements"
+						value      	"")
+					    (object Attribute
+						tool       	"Java"
+						name       	"Enum Code"
+						value      	"")
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateCode"
+						value      	TRUE))
+					quid       	"52A3DF37003E"
+					superclasses 	(list inheritance_relationship_list
+					    (object Inheritance_Relationship
+						attributes 	(list Attribute_Set)
+						quid       	"52A3DF37005D"
+						supplier   	"Logical View::eastone::precasting::flyweight::AbstractFlyweightGenerateStrategy"
+						quidu      	"52A3DF350282"))
+					operations 	(list Operations
+					    (object Operation "NotSharedFlyweightGenerateStrategy"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	"eastone.precasting.flyweight.DefaultFlyweightFactory arg0"))
+						quid       	"52A3DF37005E"
+						parameters 	(list Parameters
+						    (object Parameter "arg0"
+							attributes 	(list Attribute_Set
+							    (object Attribute
+								tool       	"Java"
+								name       	"IsFinal"
+								value      	"false"))
+							quid       	"52A3DF37006D"
+							type       	"DefaultFlyweightFactory"
+							quidu      	"52A3DF3502B1"))
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0)
+					    (object Operation "generateInstance"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedReturn"
+							value      	TRUE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"eastone.common.strategy.StrategyRuntimeException")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	"java.lang.Object arg0"))
+						quid       	"52A3DF37006E"
+						parameters 	(list Parameters
+						    (object Parameter "arg0"
+							attributes 	(list Attribute_Set
+							    (object Attribute
+								tool       	"Java"
+								name       	"IsFinal"
+								value      	"false"))
+							quid       	"52A3DF37008C"
+							type       	"Logical View::java::lang::Object"))
+						result     	"Flyweight"
+						exceptions 	"Logical View::eastone::common::strategy::StrategyRuntimeException[529DEC040112]"
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0
+						quidu      	"529DEBFB0282"))
+					module     	"Component View::eastone::precasting::flyweight::NotSharedFlyweightGenerateStrategy"
+					quidu      	"52A3DF37002E"
+					language   	"Java")
+				    (object Class "OnlySharedFlyweightGenerateStrategy"
+					attributes 	(list Attribute_Set
+					    (object Attribute
+						tool       	"Java"
+						name       	"BodyDanglingComment"
+						value      	"")
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateFinalizer"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateStaticInitializer"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateInstanceInitializer"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateDefaultConstructor"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"ReadOnly"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"Final"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"Static"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"Strictfp"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateFullyQualifiedExtends"
+						value      	"eastone.precasting.flyweight.AbstractFlyweightGenerateStrategy")
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateFullyQualifiedImplements"
+						value      	"")
+					    (object Attribute
+						tool       	"Java"
+						name       	"Enum Code"
+						value      	"")
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateCode"
+						value      	TRUE))
+					quid       	"52A3DF3700BF"
+					superclasses 	(list inheritance_relationship_list
+					    (object Inheritance_Relationship
+						attributes 	(list Attribute_Set)
+						quid       	"52A3DF3700EA"
+						supplier   	"Logical View::eastone::precasting::flyweight::AbstractFlyweightGenerateStrategy"
+						quidu      	"52A3DF350282"))
+					operations 	(list Operations
+					    (object Operation "OnlySharedFlyweightGenerateStrategy"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	"eastone.precasting.flyweight.DefaultFlyweightFactory arg0"))
+						quid       	"52A3DF3700EB"
+						parameters 	(list Parameters
+						    (object Parameter "arg0"
+							attributes 	(list Attribute_Set
+							    (object Attribute
+								tool       	"Java"
+								name       	"IsFinal"
+								value      	"false"))
+							quid       	"52A3DF3700EC"
+							type       	"DefaultFlyweightFactory"
+							quidu      	"52A3DF3502B1"))
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0)
+					    (object Operation "generateInstance"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedReturn"
+							value      	TRUE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedThrows"
+							value      	"eastone.common.strategy.StrategyRuntimeException")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Abstract"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Static"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Native"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Synchronized"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Strictfp"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedArgument"
+							value      	"java.lang.Object arg0"))
+						quid       	"52A3DF3700ED"
+						parameters 	(list Parameters
+						    (object Parameter "arg0"
+							attributes 	(list Attribute_Set
+							    (object Attribute
+								tool       	"Java"
+								name       	"IsFinal"
+								value      	"false"))
+							quid       	"52A3DF370119"
+							type       	"Logical View::java::lang::Object"))
+						result     	"Flyweight"
+						exceptions 	"Logical View::eastone::common::strategy::StrategyRuntimeException[529DEC040112]"
+						concurrency 	"Sequential"
+						opExportControl 	"Public"
+						uid        	0
+						quidu      	"529DEBFB0282"))
+					module     	"Component View::eastone::precasting::flyweight::OnlySharedFlyweightGenerateStrategy"
+					quidu      	"52A3DF3700BB"
+					language   	"Java")
+				    (object Class "package-info"
+					attributes 	(list Attribute_Set
+					    (object Attribute
+						tool       	"Java"
+						name       	"BodyDanglingComment"
+						value      	"")
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateFinalizer"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateStaticInitializer"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateInstanceInitializer"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateDefaultConstructor"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"ReadOnly"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"Final"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"Static"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"Strictfp"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateFullyQualifiedExtends"
+						value      	"")
+					    (object Attribute
+						tool       	"Java"
+						name       	"Enum Code"
+						value      	"")
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateCode"
+						value      	TRUE))
+					quid       	"52A3DF37011E"
+					stereotype 	"Interface"
+					exportControl 	"Implementation"
+					module     	"Component View::eastone::precasting::flyweight::package-info"
+					quidu      	"52A3DF37011A"
+					language   	"Java")
+				    (object Association "$UNNAMED$192"
+					attributes 	(list Attribute_Set)
+					quid       	"52A3DF3502CE"
+					roles      	(list role_list
+					    (object Role "factoriesContext"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"InitialValue"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Transient"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Volatile"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedTypes"
+							value      	TRUE))
+						quid       	"52A3DF3502CF"
+						label      	"factoriesContext"
+						supplier   	"Logical View::eastone::precasting::flyweight::DefaultFlyweightFactory"
+						quidu      	"52A3DF3502B1"
+						exportControl 	"Private"
+						is_navigable 	TRUE)
+					    (object Role "$UNNAMED$193"
+						quid       	"52A3DF3502D1"
+						supplier   	"Logical View::eastone::precasting::flyweight::AbstractFlyweightGenerateStrategy"
+						quidu      	"52A3DF350282")))
+				    (object Association "$UNNAMED$194"
+					attributes 	(list Attribute_Set)
+					quid       	"52A3DF3600DB"
+					roles      	(list role_list
+					    (object Role "innerStrategy"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"InitialValue"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Transient"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Volatile"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedTypes"
+							value      	TRUE))
+						quid       	"52A3DF3600DC"
+						label      	"innerStrategy"
+						supplier   	"Logical View::eastone::precasting::flyweight::AbstractFlyweightGenerateStrategy"
+						quidu      	"52A3DF350282"
+						exportControl 	"Private"
+						is_navigable 	TRUE)
+					    (object Role "$UNNAMED$195"
+						quid       	"52A3DF3600DE"
+						supplier   	"Logical View::eastone::precasting::flyweight::ChainFlyweightStrategy"
+						quidu      	"52A3DF360090")))
+				    (object Association "$UNNAMED$196"
+					attributes 	(list Attribute_Set
+					    (object Attribute
+						tool       	"Java"
+						name       	"?_Touched_?"
+						value      	"?_Touched_?"))
+					quid       	"52A3DF3600E0"
+					roles      	(list role_list
+					    (object Role "next"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"InitialValue"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Transient"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Volatile"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedTypes"
+							value      	TRUE))
+						quid       	"52A3DF3600E1"
+						label      	"next"
+						supplier   	"Logical View::eastone::precasting::flyweight::ChainFlyweightStrategy"
+						quidu      	"52A3DF360090"
+						exportControl 	"Private"
+						is_navigable 	TRUE)
+					    (object Role "$UNNAMED$197"
+						quid       	"52A3DF3600EA"
+						supplier   	"Logical View::eastone::precasting::flyweight::ChainFlyweightStrategy"
+						quidu      	"52A3DF360090")))
+				    (object Association "$UNNAMED$198"
+					attributes 	(list Attribute_Set)
+					quid       	"52A3DF3600EC"
+					roles      	(list role_list
+					    (object Role "result"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"InitialValue"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Transient"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Volatile"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedTypes"
+							value      	TRUE))
+						quid       	"52A3DF3600ED"
+						label      	"result"
+						supplier   	"Logical View::eastone::common::flyweight::Flyweight"
+						quidu      	"529DEBFB0282"
+						exportControl 	"Private"
+						is_navigable 	TRUE)
+					    (object Role "$UNNAMED$199"
+						quid       	"52A3DF3600EF"
+						supplier   	"Logical View::eastone::precasting::flyweight::ChainFlyweightStrategy"
+						quidu      	"52A3DF360090")))
+				    (object Association "$UNNAMED$200"
+					attributes 	(list Attribute_Set)
+					quid       	"52A3DF36038B"
+					roles      	(list role_list
+					    (object Role "instanceMap"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"InitialValue"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	TRUE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Transient"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Volatile"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedTypes"
+							value      	TRUE))
+						quid       	"52A3DF36038C"
+						label      	"instanceMap"
+						supplier   	"Logical View::java::util::Map"
+						quidu      	"529DEBAC014E"
+						exportControl 	"Private"
+						is_navigable 	TRUE)
+					    (object Role "$UNNAMED$201"
+						quid       	"52A3DF36038E"
+						supplier   	"Logical View::eastone::precasting::flyweight::DefaultFlyweightFactory"
+						quidu      	"52A3DF3502B1")))
+				    (object Association "$UNNAMED$202"
+					attributes 	(list Attribute_Set)
+					quid       	"52A3DF360390"
+					roles      	(list role_list
+					    (object Role "factoriesMap"
+						attributes 	(list Attribute_Set
+						    (object Attribute
+							tool       	"Java"
+							name       	"InitialValue"
+							value      	"")
+						    (object Attribute
+							tool       	"Java"
+							name       	"Final"
+							value      	TRUE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Transient"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"Volatile"
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"GenerateFullyQualifiedTypes"
+							value      	TRUE))
+						quid       	"52A3DF360391"
+						label      	"factoriesMap"
+						supplier   	"Logical View::java::util::Map"
+						quidu      	"529DEBAC014E"
+						exportControl 	"Private"
+						is_navigable 	TRUE)
+					    (object Role "$UNNAMED$203"
+						quid       	"52A3DF36039A"
+						supplier   	"Logical View::eastone::precasting::flyweight::DefaultFlyweightFactory"
+						quidu      	"52A3DF3502B1"))))
+				logical_presentations 	(list unit_reference_list))
+			    (object Class_Category "strategy"
+				quid       	"52A3DF370167"
+				exportControl 	"Public"
+				logical_models 	(list unit_reference_list
+				    (object Class "package-info"
+					attributes 	(list Attribute_Set
+					    (object Attribute
+						tool       	"Java"
+						name       	"BodyDanglingComment"
+						value      	"")
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateFinalizer"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateStaticInitializer"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateInstanceInitializer"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateDefaultConstructor"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"ReadOnly"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"Final"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"Static"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"Strictfp"
+						value      	FALSE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateFullyQualifiedExtends"
+						value      	"")
+					    (object Attribute
+						tool       	"Java"
+						name       	"Enum Code"
+						value      	"")
+					    (object Attribute
+						tool       	"Java"
+						name       	"GenerateCode"
+						value      	TRUE))
+					quid       	"52A3DF370169"
+					stereotype 	"Interface"
+					exportControl 	"Implementation"
+					module     	"Component View::eastone::precasting::strategy::package-info"
+					quidu      	"52A3DF370158"
+					language   	"Java"))
+				logical_presentations 	(list unit_reference_list)))
+			logical_presentations 	(list unit_reference_list)))
 		logical_presentations 	(list unit_reference_list))
 	    (object Class_Category "org"
 		quid       	"529DEB9F01A4"
@@ -8608,7 +10796,11 @@
 						    (object Attribute
 							tool       	"Java"
 							name       	"ReadOnly"
-							value      	FALSE))
+							value      	FALSE)
+						    (object Attribute
+							tool       	"Java"
+							name       	"cg_style"
+							value      	"Default_EJB"))
 						quid       	"529DEBF903DF"
 						module     	"Component View::org::springframework::context::support::AbstractApplicationContext"
 						quidu      	"529DEBF903D5"
@@ -8620,6 +10812,16 @@
 						language   	"Java"))
 					logical_presentations 	(list unit_reference_list)))
 				logical_presentations 	(list unit_reference_list)))
+			logical_presentations 	(list unit_reference_list))
+		    (object Class_Category "slf4j"
+			quid       	"52A3DF2800B1"
+			exportControl 	"Public"
+			logical_models 	(list unit_reference_list
+			    (object Class "Logger"
+				quid       	"52A3DF2800B3"
+				module     	"Component View::org::slf4j::Logger"
+				quidu      	"52A3DF2800AD"
+				language   	"Java"))
 			logical_presentations 	(list unit_reference_list)))
 		logical_presentations 	(list unit_reference_list))
 	    (object Class_Category "java"
@@ -8660,7 +10862,11 @@
 				    (object Attribute
 					tool       	"Java"
 					name       	"ReadOnly"
-					value      	FALSE))
+					value      	FALSE)
+				    (object Attribute
+					tool       	"Java"
+					name       	"cg_style"
+					value      	"Default_EJB"))
 				quid       	"529DEBAE0354"
 				module     	"Component View::java::lang::Number"
 				quidu      	"529DEBAE0350"
@@ -8697,6 +10903,11 @@
 				quidu      	"529DEB9F03E0"
 				language   	"Java")
 			    (object Class "Map"
+				attributes 	(list Attribute_Set
+				    (object Attribute
+					tool       	"Java"
+					name       	"cg_style"
+					value      	"Default_EJB"))
 				quid       	"529DEBAC014E"
 				module     	"Component View::java::util::Map"
 				quidu      	"529DEBAC014A"
@@ -8706,7 +10917,11 @@
 				    (object Attribute
 					tool       	"Java"
 					name       	"ReadOnly"
-					value      	FALSE))
+					value      	FALSE)
+				    (object Attribute
+					tool       	"Java"
+					name       	"cg_style"
+					value      	"Default_EJB"))
 				quid       	"529DEBF800C0"
 				module     	"Component View::java::util::List"
 				quidu      	"529DEBF800BC"
@@ -8742,7 +10957,11 @@
 				    (object Attribute
 					tool       	"Java"
 					name       	"ReadOnly"
-					value      	FALSE))
+					value      	FALSE)
+				    (object Attribute
+					tool       	"Java"
+					name       	"cg_style"
+					value      	"Default_EJB"))
 				quid       	"529DEBFF03A9"
 				module     	"Component View::java::io::File"
 				quidu      	"529DEBFF03A5"
@@ -8762,7 +10981,11 @@
 				    (object Attribute
 					tool       	"Java"
 					name       	"ReadOnly"
-					value      	FALSE))
+					value      	FALSE)
+				    (object Attribute
+					tool       	"Java"
+					name       	"cg_style"
+					value      	"Default_EJB"))
 				quid       	"529DEC00030B"
 				module     	"Component View::java::io::OutputStream"
 				quidu      	"529DEC000307"
@@ -8772,7 +10995,11 @@
 				    (object Attribute
 					tool       	"Java"
 					name       	"ReadOnly"
-					value      	FALSE))
+					value      	FALSE)
+				    (object Attribute
+					tool       	"Java"
+					name       	"cg_style"
+					value      	"Default_EJB"))
 				quid       	"529DEC02031A"
 				module     	"Component View::java::io::InputStream"
 				quidu      	"529DEC020316"
@@ -9359,6 +11586,23 @@
 				class      	"Logical View::eastone::common::package-info"
 				quidu      	"529DEBF402E7")
 			    (object module "GeneralParentObject" "NotAModuleType" "NotAModulePart"
+				attributes 	(list Attribute_Set
+				    (object Attribute
+					tool       	"Java"
+					name       	"FileName"
+					value      	"C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes\\eastone\\common\\GeneralParentObject.class")
+				    (object Attribute
+					tool       	"Java"
+					name       	"RootPath"
+					value      	"C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes")
+				    (object Attribute
+					tool       	"Java"
+					name       	"CmIdentification"
+					value      	(value Text ""))
+				    (object Attribute
+					tool       	"Java"
+					name       	"CopyrightNotice"
+					value      	(value Text "")))
 				quid       	"529DEBF600E3"
 				stereotype 	""
 				language   	"Java"
@@ -9534,7 +11778,7 @@
 					stereotype 	""
 					visible_modules 	(list dependency_list
 					    (object Module_Visibility_Relationship
-						quid       	"529DEC2D027F"
+						quid       	"52A3DF2802BE"
 						supplier   	"Component View::java::lang::annotation::java::lang::annotation::Annotation"
 						quidu      	"529DEBF501AB"
 						supplier_is_spec 	TRUE))
@@ -9586,7 +11830,7 @@
 					stereotype 	""
 					visible_modules 	(list dependency_list
 					    (object Module_Visibility_Relationship
-						quid       	"529DEC2D03B2"
+						quid       	"52A3DF29001E"
 						supplier   	"Component View::java::lang::annotation::java::lang::annotation::Annotation"
 						quidu      	"529DEBF501AB"
 						supplier_is_spec 	TRUE))
@@ -9619,7 +11863,7 @@
 					stereotype 	""
 					visible_modules 	(list dependency_list
 					    (object Module_Visibility_Relationship
-						quid       	"529DEC2E010A"
+						quid       	"52A3DF2901B4"
 						supplier   	"Component View::eastone::common::chainofresponsibility::Handler"
 						quidu      	"529DEBF60119"
 						supplier_is_spec 	TRUE))
@@ -9878,12 +12122,12 @@
 						stereotype 	""
 						visible_modules 	(list dependency_list
 						    (object Module_Visibility_Relationship
-							quid       	"529DEC34000C"
+							quid       	"52A3DF30030C"
 							supplier   	"Component View::java::io::File"
 							quidu      	"529DEBFF03A5"
 							supplier_is_spec 	TRUE)
 						    (object Module_Visibility_Relationship
-							quid       	"529DEC34000D"
+							quid       	"52A3DF30030D"
 							supplier   	"Component View::eastone::common::processor::io::FileOverwriteEnum"
 							quidu      	"529DEBFF03C9"
 							supplier_is_spec 	TRUE))
@@ -9912,7 +12156,7 @@
 						stereotype 	""
 						visible_modules 	(list dependency_list
 						    (object Module_Visibility_Relationship
-							quid       	"529DEC3502C7"
+							quid       	"52A3DF320118"
 							supplier   	"Component View::java::lang::java::lang::Enum"
 							quidu      	"529DEBA702F4"
 							supplier_is_spec 	TRUE))
@@ -9941,7 +12185,7 @@
 						stereotype 	""
 						visible_modules 	(list dependency_list
 						    (object Module_Visibility_Relationship
-							quid       	"529DEC34021A"
+							quid       	"52A3DF3100EB"
 							supplier   	"Component View::java::io::OutputStream"
 							quidu      	"529DEC000307"
 							supplier_is_spec 	TRUE))
@@ -9970,12 +12214,12 @@
 						stereotype 	""
 						visible_modules 	(list dependency_list
 						    (object Module_Visibility_Relationship
-							quid       	"529DEC3500E2"
+							quid       	"52A3DF31031C"
 							supplier   	"Component View::java::io::File"
 							quidu      	"529DEBFF03A5"
 							supplier_is_spec 	TRUE)
 						    (object Module_Visibility_Relationship
-							quid       	"529DEC3500E3"
+							quid       	"52A3DF31031D"
 							supplier   	"Component View::eastone::common::convertor::Convertor"
 							quidu      	"529DEBFA009F"
 							supplier_is_spec 	TRUE))
@@ -10004,7 +12248,7 @@
 						stereotype 	""
 						visible_modules 	(list dependency_list
 						    (object Module_Visibility_Relationship
-							quid       	"529DEC3600D0"
+							quid       	"52A3DF32031D"
 							supplier   	"Component View::java::io::InputStream"
 							quidu      	"529DEC020316"
 							supplier_is_spec 	TRUE))
@@ -10061,7 +12305,7 @@
 					stereotype 	""
 					visible_modules 	(list dependency_list
 					    (object Module_Visibility_Relationship
-						quid       	"529DEC2E026B"
+						quid       	"52A3DF290389"
 						supplier   	"Component View::eastone::common::command::CommandReceiver"
 						quidu      	"529DEBF603AB"
 						supplier_is_spec 	TRUE))
@@ -10238,7 +12482,7 @@
 					stereotype 	""
 					visible_modules 	(list dependency_list
 					    (object Module_Visibility_Relationship
-						quid       	"529DEC2F020F"
+						quid       	"52A3DF2A035D"
 						supplier   	"Component View::java::util::List"
 						quidu      	"529DEBF800BC"
 						supplier_is_spec 	TRUE))
@@ -10363,7 +12607,7 @@
 					stereotype 	""
 					visible_modules 	(list dependency_list
 					    (object Module_Visibility_Relationship
-						quid       	"529DEC300034"
+						quid       	"52A3DF2B01D4"
 						supplier   	"Component View::eastone::common::context::BeanContext"
 						quidu      	"529DEBF80249"
 						supplier_is_spec 	TRUE))
@@ -10473,7 +12717,7 @@
 							stereotype 	""
 							visible_modules 	(list dependency_list
 							    (object Module_Visibility_Relationship
-								quid       	"529DEC300213"
+								quid       	"52A3DF2C007D"
 								supplier   	"Component View::org::springframework::context::support::AbstractApplicationContext"
 								quidu      	"529DEBF903D5"
 								supplier_is_spec 	TRUE))
@@ -10637,7 +12881,7 @@
 					stereotype 	""
 					visible_modules 	(list dependency_list
 					    (object Module_Visibility_Relationship
-						quid       	"529DEC30033F"
+						quid       	"52A3DF2C0222"
 						supplier   	"Component View::eastone::common::Component"
 						quidu      	"529DEBF40252"
 						supplier_is_spec 	TRUE))
@@ -10722,7 +12966,7 @@
 					stereotype 	""
 					visible_modules 	(list dependency_list
 					    (object Module_Visibility_Relationship
-						quid       	"529DEC31009E"
+						quid       	"52A3DF2C03B8"
 						supplier   	"Component View::java::lang::java::lang::Exception"
 						quidu      	"529DEBA10073"
 						supplier_is_spec 	TRUE))
@@ -10812,12 +13056,12 @@
 					stereotype 	""
 					visible_modules 	(list dependency_list
 					    (object Module_Visibility_Relationship
-						quid       	"529DEC3200A9"
+						quid       	"52A3DF2E02AE"
 						supplier   	"Component View::java::io::java::io::Serializable"
 						quidu      	"529DEBFC0391"
 						supplier_is_spec 	TRUE)
 					    (object Module_Visibility_Relationship
-						quid       	"529DEC3200AA"
+						quid       	"52A3DF2E02AF"
 						supplier   	"Component View::java::lang::java::lang::Cloneable"
 						quidu      	"529DEBFC0395"
 						supplier_is_spec 	TRUE))
@@ -10946,6 +13190,12 @@
 				physical_presentations 	(list unit_reference_list))
 			    (object SubSystem "flyweight"
 				quid       	"529DEBFB027B"
+				visible_modules 	(list dependency_list
+				    (object Module_Visibility_Relationship
+					quid       	"52A3DF2D02B2"
+					supplier   	"Component View::java::util"
+					quidu      	"529DEB9F03DF"
+					supplier_is_subsystem 	TRUE))
 				physical_models 	(list unit_reference_list
 				    (object module "Flyweight" "NotAModuleType" "NotAModulePart"
 					attributes 	(list Attribute_Set
@@ -11061,7 +13311,36 @@
 					stereotype 	""
 					language   	"Java"
 					class      	"Logical View::eastone::common::flyweight::UnsharedFlyweight"
-					quidu      	"529DEBFB0336"))
+					quidu      	"529DEBFB0336")
+				    (object module "AbstractFlyweightFactory" "NotAModuleType" "NotAModulePart"
+					attributes 	(list Attribute_Set
+					    (object Attribute
+						tool       	"Java"
+						name       	"FileName"
+						value      	"C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes\\eastone\\common\\flyweight\\AbstractFlyweightFactory.class")
+					    (object Attribute
+						tool       	"Java"
+						name       	"RootPath"
+						value      	"C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes")
+					    (object Attribute
+						tool       	"Java"
+						name       	"CmIdentification"
+						value      	(value Text ""))
+					    (object Attribute
+						tool       	"Java"
+						name       	"CopyrightNotice"
+						value      	(value Text "")))
+					quid       	"52A3DF2D0251"
+					stereotype 	""
+					visible_modules 	(list dependency_list
+					    (object Module_Visibility_Relationship
+						quid       	"52A3DF2D02B3"
+						supplier   	"Component View::java::util::Map"
+						quidu      	"529DEBAC014A"
+						supplier_is_spec 	TRUE))
+					language   	"Java"
+					class      	"Logical View::eastone::common::flyweight::AbstractFlyweightFactory"
+					quidu      	"52A3DF2D0255"))
 				physical_presentations 	(list unit_reference_list))
 			    (object SubSystem "interpreter"
 				quid       	"529DEBFD006D"
@@ -11629,7 +13908,7 @@
 					stereotype 	""
 					visible_modules 	(list dependency_list
 					    (object Module_Visibility_Relationship
-						quid       	"529DEC370026"
+						quid       	"52A3DF3303D8"
 						supplier   	"Component View::java::util::Map"
 						quidu      	"529DEBAC014A"
 						supplier_is_spec 	TRUE))
@@ -11704,7 +13983,7 @@
 					stereotype 	""
 					visible_modules 	(list dependency_list
 					    (object Module_Visibility_Relationship
-						quid       	"529DEC3701C9"
+						quid       	"52A3DF340196"
 						supplier   	"Component View::java::lang::java::lang::Exception"
 						quidu      	"529DEBA10073"
 						supplier_is_spec 	TRUE))
@@ -11733,7 +14012,30 @@
 					stereotype 	""
 					language   	"Java"
 					class      	"Logical View::eastone::common::strategy::package-info"
-					quidu      	"529DEC040198"))
+					quidu      	"529DEC040198")
+				    (object module "AbstractStrategy" "NotAModuleType" "NotAModulePart"
+					attributes 	(list Attribute_Set
+					    (object Attribute
+						tool       	"Java"
+						name       	"FileName"
+						value      	"C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes\\eastone\\common\\strategy\\AbstractStrategy.class")
+					    (object Attribute
+						tool       	"Java"
+						name       	"RootPath"
+						value      	"C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes")
+					    (object Attribute
+						tool       	"Java"
+						name       	"CmIdentification"
+						value      	(value Text ""))
+					    (object Attribute
+						tool       	"Java"
+						name       	"CopyrightNotice"
+						value      	(value Text "")))
+					quid       	"52A3DF330147"
+					stereotype 	""
+					language   	"Java"
+					class      	"Logical View::eastone::common::strategy::AbstractStrategy"
+					quidu      	"52A3DF330157"))
 				physical_presentations 	(list unit_reference_list))
 			    (object SubSystem "utils"
 				quid       	"529DEC0500BD"
@@ -11816,7 +14118,7 @@
 					stereotype 	""
 					visible_modules 	(list dependency_list
 					    (object Module_Visibility_Relationship
-						quid       	"529DEC380120"
+						quid       	"52A3DF3500F9"
 						supplier   	"Component View::java::util::Map"
 						quidu      	"529DEBAC014A"
 						supplier_is_spec 	TRUE))
@@ -12090,6 +14392,236 @@
 						quidu      	"529DEBB2037F"))
 					physical_presentations 	(list unit_reference_list)))
 				physical_presentations 	(list unit_reference_list)))
+			physical_presentations 	(list unit_reference_list))
+		    (object SubSystem "precasting"
+			quid       	"52A3DF350196"
+			physical_models 	(list unit_reference_list
+			    (object module "package-info" "NotAModuleType" "NotAModulePart"
+				attributes 	(list Attribute_Set
+				    (object Attribute
+					tool       	"Java"
+					name       	"FileName"
+					value      	"C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes\\eastone\\precasting\\package-info.class")
+				    (object Attribute
+					tool       	"Java"
+					name       	"RootPath"
+					value      	"C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes")
+				    (object Attribute
+					tool       	"Java"
+					name       	"CmIdentification"
+					value      	(value Text ""))
+				    (object Attribute
+					tool       	"Java"
+					name       	"CopyrightNotice"
+					value      	(value Text "")))
+				quid       	"52A3DF350197"
+				stereotype 	""
+				language   	"Java"
+				class      	"Logical View::eastone::precasting::package-info"
+				quidu      	"52A3DF3501A6")
+			    (object SubSystem "flyweight"
+				quid       	"52A3DF350270"
+				visible_modules 	(list dependency_list
+				    (object Module_Visibility_Relationship
+					quid       	"52A3DF3601B5"
+					supplier   	"Component View::eastone::common::flyweight"
+					quidu      	"529DEBFB027B"
+					supplier_is_subsystem 	TRUE)
+				    (object Module_Visibility_Relationship
+					quid       	"52A3DF370010"
+					supplier   	"Component View::java::util"
+					quidu      	"529DEB9F03DF"
+					supplier_is_subsystem 	TRUE))
+				physical_models 	(list unit_reference_list
+				    (object module "AbstractFlyweightGenerateStrategy" "NotAModuleType" "NotAModulePart"
+					attributes 	(list Attribute_Set
+					    (object Attribute
+						tool       	"Java"
+						name       	"FileName"
+						value      	"C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes\\eastone\\precasting\\flyweight\\AbstractFlyweightGenerateStrategy.class")
+					    (object Attribute
+						tool       	"Java"
+						name       	"RootPath"
+						value      	"C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes")
+					    (object Attribute
+						tool       	"Java"
+						name       	"CmIdentification"
+						value      	(value Text ""))
+					    (object Attribute
+						tool       	"Java"
+						name       	"CopyrightNotice"
+						value      	(value Text "")))
+					quid       	"52A3DF350271"
+					stereotype 	""
+					visible_modules 	(list dependency_list
+					    (object Module_Visibility_Relationship
+						quid       	"52A3DF35030E"
+						supplier   	"Component View::eastone::precasting::flyweight::DefaultFlyweightFactory"
+						quidu      	"52A3DF3502A0"
+						supplier_is_spec 	TRUE))
+					language   	"Java"
+					class      	"Logical View::eastone::precasting::flyweight::AbstractFlyweightGenerateStrategy"
+					quidu      	"52A3DF350282")
+				    (object module "DefaultFlyweightFactory" "NotAModuleType" "NotAModulePart"
+					attributes 	(list Attribute_Set
+					    (object Attribute
+						tool       	"Java"
+						name       	"FileName"
+						value      	"C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes\\eastone\\precasting\\flyweight\\DefaultFlyweightFactory.class")
+					    (object Attribute
+						tool       	"Java"
+						name       	"RootPath"
+						value      	"C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes")
+					    (object Attribute
+						tool       	"Java"
+						name       	"CmIdentification"
+						value      	(value Text ""))
+					    (object Attribute
+						tool       	"Java"
+						name       	"CopyrightNotice"
+						value      	(value Text "")))
+					quid       	"52A3DF3502A0"
+					stereotype 	""
+					visible_modules 	(list dependency_list
+					    (object Module_Visibility_Relationship
+						quid       	"52A3DF370011"
+						supplier   	"Component View::java::util::Map"
+						quidu      	"529DEBAC014A"
+						supplier_is_spec 	TRUE))
+					language   	"Java"
+					class      	"Logical View::eastone::precasting::flyweight::DefaultFlyweightFactory"
+					quidu      	"52A3DF3502B1")
+				    (object module "ChainFlyweightStrategy" "NotAModuleType" "NotAModulePart"
+					attributes 	(list Attribute_Set
+					    (object Attribute
+						tool       	"Java"
+						name       	"FileName"
+						value      	"C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes\\eastone\\precasting\\flyweight\\ChainFlyweightStrategy.class")
+					    (object Attribute
+						tool       	"Java"
+						name       	"RootPath"
+						value      	"C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes")
+					    (object Attribute
+						tool       	"Java"
+						name       	"CmIdentification"
+						value      	(value Text ""))
+					    (object Attribute
+						tool       	"Java"
+						name       	"CopyrightNotice"
+						value      	(value Text "")))
+					quid       	"52A3DF36008C"
+					stereotype 	""
+					visible_modules 	(list dependency_list
+					    (object Module_Visibility_Relationship
+						quid       	"52A3DF3601A8"
+						supplier   	"Component View::eastone::precasting::flyweight::AbstractFlyweightGenerateStrategy"
+						quidu      	"52A3DF350271"
+						supplier_is_spec 	TRUE)
+					    (object Module_Visibility_Relationship
+						quid       	"52A3DF3601B6"
+						supplier   	"Component View::eastone::common::flyweight::Flyweight"
+						quidu      	"529DEBFB027C"
+						supplier_is_spec 	TRUE))
+					language   	"Java"
+					class      	"Logical View::eastone::precasting::flyweight::ChainFlyweightStrategy"
+					quidu      	"52A3DF360090")
+				    (object module "NotSharedFlyweightGenerateStrategy" "NotAModuleType" "NotAModulePart"
+					attributes 	(list Attribute_Set
+					    (object Attribute
+						tool       	"Java"
+						name       	"FileName"
+						value      	"C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes\\eastone\\precasting\\flyweight\\NotSharedFlyweightGenerateStrategy.class")
+					    (object Attribute
+						tool       	"Java"
+						name       	"RootPath"
+						value      	"C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes")
+					    (object Attribute
+						tool       	"Java"
+						name       	"CmIdentification"
+						value      	(value Text ""))
+					    (object Attribute
+						tool       	"Java"
+						name       	"CopyrightNotice"
+						value      	(value Text "")))
+					quid       	"52A3DF37002E"
+					stereotype 	""
+					language   	"Java"
+					class      	"Logical View::eastone::precasting::flyweight::NotSharedFlyweightGenerateStrategy"
+					quidu      	"52A3DF37003E")
+				    (object module "OnlySharedFlyweightGenerateStrategy" "NotAModuleType" "NotAModulePart"
+					attributes 	(list Attribute_Set
+					    (object Attribute
+						tool       	"Java"
+						name       	"FileName"
+						value      	"C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes\\eastone\\precasting\\flyweight\\OnlySharedFlyweightGenerateStrategy.class")
+					    (object Attribute
+						tool       	"Java"
+						name       	"RootPath"
+						value      	"C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes")
+					    (object Attribute
+						tool       	"Java"
+						name       	"CmIdentification"
+						value      	(value Text ""))
+					    (object Attribute
+						tool       	"Java"
+						name       	"CopyrightNotice"
+						value      	(value Text "")))
+					quid       	"52A3DF3700BB"
+					stereotype 	""
+					language   	"Java"
+					class      	"Logical View::eastone::precasting::flyweight::OnlySharedFlyweightGenerateStrategy"
+					quidu      	"52A3DF3700BF")
+				    (object module "package-info" "NotAModuleType" "NotAModulePart"
+					attributes 	(list Attribute_Set
+					    (object Attribute
+						tool       	"Java"
+						name       	"FileName"
+						value      	"C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes\\eastone\\precasting\\flyweight\\package-info.class")
+					    (object Attribute
+						tool       	"Java"
+						name       	"RootPath"
+						value      	"C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes")
+					    (object Attribute
+						tool       	"Java"
+						name       	"CmIdentification"
+						value      	(value Text ""))
+					    (object Attribute
+						tool       	"Java"
+						name       	"CopyrightNotice"
+						value      	(value Text "")))
+					quid       	"52A3DF37011A"
+					stereotype 	""
+					language   	"Java"
+					class      	"Logical View::eastone::precasting::flyweight::package-info"
+					quidu      	"52A3DF37011E"))
+				physical_presentations 	(list unit_reference_list))
+			    (object SubSystem "strategy"
+				quid       	"52A3DF370157"
+				physical_models 	(list unit_reference_list
+				    (object module "package-info" "NotAModuleType" "NotAModulePart"
+					attributes 	(list Attribute_Set
+					    (object Attribute
+						tool       	"Java"
+						name       	"FileName"
+						value      	"C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes\\eastone\\precasting\\strategy\\package-info.class")
+					    (object Attribute
+						tool       	"Java"
+						name       	"RootPath"
+						value      	"C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes")
+					    (object Attribute
+						tool       	"Java"
+						name       	"CmIdentification"
+						value      	(value Text ""))
+					    (object Attribute
+						tool       	"Java"
+						name       	"CopyrightNotice"
+						value      	(value Text "")))
+					quid       	"52A3DF370158"
+					stereotype 	""
+					language   	"Java"
+					class      	"Logical View::eastone::precasting::strategy::package-info"
+					quidu      	"52A3DF370169"))
+				physical_presentations 	(list unit_reference_list)))
 			physical_presentations 	(list unit_reference_list)))
 		physical_presentations 	(list unit_reference_list))
 	    (object SubSystem "org"
@@ -12156,6 +14688,16 @@
 						quidu      	"529DEBFA0045"))
 					physical_presentations 	(list unit_reference_list)))
 				physical_presentations 	(list unit_reference_list)))
+			physical_presentations 	(list unit_reference_list))
+		    (object SubSystem "slf4j"
+			quid       	"52A3DF2800AC"
+			physical_models 	(list unit_reference_list
+			    (object module "Logger" "NotAModuleType" "NotAModulePart"
+				quid       	"52A3DF2800AD"
+				stereotype 	""
+				language   	"Java"
+				class      	"Logical View::org::slf4j::Logger"
+				quidu      	"52A3DF2800B3"))
 			physical_presentations 	(list unit_reference_list)))
 		physical_presentations 	(list unit_reference_list))
 	    (object SubSystem "java"
@@ -13965,7 +16507,7 @@
 		    (object Attribute
 			tool       	"Java"
 			name       	"ClassPath"
-			value      	"C:\\;C:\\workspace\\EnvProCommon\\lib\\com.springsource.org.apache.log4j-1.2.15.jar;C:\\workspace\\EnvProCommon\\lib\\aopalliance-1.0.jar;C:\\workspace\\EnvProCommon\\lib\\bcprov-jdk15-145.jar;C:\\workspace\\EnvProCommon\\lib\\com.springsource.net.sf.cglib-2.2.0.jar;C:\\workspace\\EnvProCommon\\lib\\com.springsource.org.apache.commons.logging-1.1.1.jar;C:\\workspace\\EnvProCommon\\lib\\commons-codec-1.3.jar;C:\\workspace\\EnvProCommon\\lib\\com.springsource.org.aspectj.tools-1.6.6.RELEASE.jar;C:\\workspace\\EnvProCommon\\lib\\com.springsource.org.quartz-1.6.2.jar;C:\\workspace\\EnvProCommon\\lib\\commons-beanutils-1.8.3.jar;C:\\workspace\\EnvProCommon\\lib\\commons-beanutils-core-1.8.3.jar;C:\\workspace\\EnvProCommon\\lib\\commons-lang-2.5.jar;C:\\workspace\\EnvProCommon\\lib\\commons-collections-3.2.1.jar;C:\\workspace\\EnvProCommon\\lib\\commons-dbcp-1.2.2.jar;C:\\workspace\\EnvProCommon\\lib\\commons-fileupload-1.2.2.jar;C:\\workspace\\EnvProCommon\\lib\\commons-io-2.1.jar;C:\\workspace\\EnvProCommon\\lib\\ezmorph-1.0.6.jar;C:\\workspace\\EnvProCommon\\lib\\commons-logging-1.1.1.jar;C:\\workspace\\EnvProCommon\\lib\\commons-net-1.4.1.jar;C:\\workspace\\EnvProCommon\\lib\\commons-pool-1.4.jar;C:\\workspace\\EnvProCommon\\lib\\dom4j-1.6.1.jar;C:\\workspace\\EnvProCommon\\lib\\jaxen-1.1-beta-6.jar;C:\\workspace\\EnvProCommon\\lib\\httpclient-4.1.2.jar;C:\\workspace\\EnvProCommon\\lib\\httpclient-cache-4.1.2.jar;C:\\workspace\\EnvProCommon\\lib\\httpcore-4.1.2.jar;C:\\workspace\\EnvProCommon\\lib\\httpmime-4.1.2.jar;C:\\workspace\\EnvProCommon\\lib\\org.springframework.aop-3.0.2.RELEASE.jar;C:\\workspace\\EnvProCommon\\lib\\jms-1.1.jar;C:\\workspace\\EnvProCommon\\lib\\jode-1.1.2-pre1.jar;C:\\workspace\\EnvProCommon\\lib\\json-lib-2.3-jdk15.jar;C:\\workspace\\EnvProCommon\\lib\\ojdbc14.jar;C:\\workspace\\EnvProCommon\\lib\\org.springframework.expression-3.0.2.RELEASE.jar;C:\\workspace\\EnvProCommon\\lib\\org.springframework.asm-3.0.2.RELEASE.jar;C:\\workspace\\EnvProCommon\\lib\\org.springframework.beans-3.0.2.RELEASE.jar;C:\\workspace\\EnvProCommon\\lib\\org.springframework.context-3.0.2.RELEASE.jar;C:\\workspace\\EnvProCommon\\lib\\org.springframework.core-3.0.2.RELEASE.jar;C:\\workspace\\EnvProCommon\\lib\\pinyin4j-2.5.0.jar;C:\\workspace\\EnvProCommon\\WebRoot\\WEB-INF\\classes;C:\\apache-tomcat-6.0.35\\lib\\servlet-api.jar;C:\\apache-tomcat-6.0.35\\lib\\jsp-api.jar;C:\\Program Files\\Java\\jdk1.7.0_21\\lib\\tools.jar;C:\\Program Files\\Java\\jdk1.7.0_21\\lib\\ant-javafx.jar;C:\\Program Files\\Java\\jdk1.7.0_21\\lib\\dt.jar;C:\\Program Files\\Java\\jdk1.7.0_21\\lib\\javafx-doclet.jar;C:\\Program Files\\Java\\jdk1.7.0_21\\lib\\javafx-mx.jar;C:\\Program Files\\Java\\jdk1.7.0_21\\lib\\jconsole.jar;C:\\Program Files\\Java\\jdk1.7.0_21\\src.zip;C:\\TDDOWNLOAD\\mybatis-3.2.2\\mybatis-3.2.2\\mybatis-3.2.2.jar;C:\\TDDOWNLOAD\\mybatis-spring-1.2.0-bundle\\mybatis-spring-1.2.0\\mybatis-spring-1.2.0.jar;C:\\Users\\quzl\\git\\default\\eastone-components\\target\\classes;C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes")
+			value      	"C:\\;C:\\workspace\\EnvProCommon\\lib\\com.springsource.org.apache.log4j-1.2.15.jar;C:\\workspace\\EnvProCommon\\lib\\aopalliance-1.0.jar;C:\\workspace\\EnvProCommon\\lib\\bcprov-jdk15-145.jar;C:\\workspace\\EnvProCommon\\lib\\com.springsource.net.sf.cglib-2.2.0.jar;C:\\workspace\\EnvProCommon\\lib\\com.springsource.org.apache.commons.logging-1.1.1.jar;C:\\workspace\\EnvProCommon\\lib\\commons-codec-1.3.jar;C:\\workspace\\EnvProCommon\\lib\\com.springsource.org.aspectj.tools-1.6.6.RELEASE.jar;C:\\workspace\\EnvProCommon\\lib\\com.springsource.org.quartz-1.6.2.jar;C:\\workspace\\EnvProCommon\\lib\\commons-beanutils-1.8.3.jar;C:\\workspace\\EnvProCommon\\lib\\commons-beanutils-core-1.8.3.jar;C:\\workspace\\EnvProCommon\\lib\\commons-lang-2.5.jar;C:\\workspace\\EnvProCommon\\lib\\commons-collections-3.2.1.jar;C:\\workspace\\EnvProCommon\\lib\\commons-dbcp-1.2.2.jar;C:\\workspace\\EnvProCommon\\lib\\commons-fileupload-1.2.2.jar;C:\\workspace\\EnvProCommon\\lib\\commons-io-2.1.jar;C:\\workspace\\EnvProCommon\\lib\\ezmorph-1.0.6.jar;C:\\workspace\\EnvProCommon\\lib\\commons-logging-1.1.1.jar;C:\\workspace\\EnvProCommon\\lib\\commons-net-1.4.1.jar;C:\\workspace\\EnvProCommon\\lib\\commons-pool-1.4.jar;C:\\workspace\\EnvProCommon\\lib\\dom4j-1.6.1.jar;C:\\workspace\\EnvProCommon\\lib\\jaxen-1.1-beta-6.jar;C:\\workspace\\EnvProCommon\\lib\\httpclient-4.1.2.jar;C:\\workspace\\EnvProCommon\\lib\\httpclient-cache-4.1.2.jar;C:\\workspace\\EnvProCommon\\lib\\httpcore-4.1.2.jar;C:\\workspace\\EnvProCommon\\lib\\httpmime-4.1.2.jar;C:\\workspace\\EnvProCommon\\lib\\org.springframework.aop-3.0.2.RELEASE.jar;C:\\workspace\\EnvProCommon\\lib\\jms-1.1.jar;C:\\workspace\\EnvProCommon\\lib\\jode-1.1.2-pre1.jar;C:\\workspace\\EnvProCommon\\lib\\json-lib-2.3-jdk15.jar;C:\\workspace\\EnvProCommon\\lib\\ojdbc14.jar;C:\\workspace\\EnvProCommon\\lib\\org.springframework.expression-3.0.2.RELEASE.jar;C:\\workspace\\EnvProCommon\\lib\\org.springframework.asm-3.0.2.RELEASE.jar;C:\\workspace\\EnvProCommon\\lib\\org.springframework.beans-3.0.2.RELEASE.jar;C:\\workspace\\EnvProCommon\\lib\\org.springframework.context-3.0.2.RELEASE.jar;C:\\workspace\\EnvProCommon\\lib\\org.springframework.core-3.0.2.RELEASE.jar;C:\\workspace\\EnvProCommon\\lib\\pinyin4j-2.5.0.jar;C:\\workspace\\EnvProCommon\\WebRoot\\WEB-INF\\classes;C:\\apache-tomcat-6.0.35\\lib\\servlet-api.jar;C:\\apache-tomcat-6.0.35\\lib\\jsp-api.jar;C:\\Program Files\\Java\\jdk1.7.0_21\\lib\\tools.jar;C:\\Program Files\\Java\\jdk1.7.0_21\\lib\\ant-javafx.jar;C:\\Program Files\\Java\\jdk1.7.0_21\\lib\\dt.jar;C:\\Program Files\\Java\\jdk1.7.0_21\\lib\\javafx-doclet.jar;C:\\Program Files\\Java\\jdk1.7.0_21\\lib\\javafx-mx.jar;C:\\Program Files\\Java\\jdk1.7.0_21\\lib\\jconsole.jar;C:\\Program Files\\Java\\jdk1.7.0_21\\src.zip;C:\\TDDOWNLOAD\\mybatis-3.2.2\\mybatis-3.2.2\\mybatis-3.2.2.jar;C:\\TDDOWNLOAD\\mybatis-spring-1.2.0-bundle\\mybatis-spring-1.2.0\\mybatis-spring-1.2.0.jar;C:\\Users\\quzl\\git\\default\\eastone-components\\target\\classes;C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes;C:\\Users\\quzl\\.m2\\repository\\org\\jogamp\\jogl\\jogl-all\\2.1.2\\jogl-all-2.1.2.jar;C:\\Users\\quzl\\git\\default\\eastone-components\\target\\test-classes;C:\\workspace\\EnvProCommon2(Snoopervise)\\target\\classes;C:\\workspace\\apache-maven-3.1.0\\repo\\org\\slf4j\\slf4j-api\\1.7.5\\slf4j-api-1.7.5.jar")
 		    (object Attribute
 			tool       	"Java"
 			name       	"ReferenceClasspath"

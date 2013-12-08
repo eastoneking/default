@@ -19,12 +19,16 @@ import eastone.common.GeneralParentObject;
  * <li>初始版本, by wangdongshi@neusoft.com, 2013-11-7 下午3:03:47</li>
  * </ol>
  * </p>
+ * @param <E> 被访问者类型.
+ * @param <V> 访问者类型.
  * @author 王东石 <wangdongshi@neusoft.com>
  * @version 0.1.1
  * @since 0.1
  */
-public class DefaultVisitorController extends GeneralParentObject implements
-    VisitorController {
+public class DefaultVisitorController
+  <V extends Visitor, E extends Visitable<V>>
+  extends GeneralParentObject
+  implements VisitorController<V, E> {
 
   /**
    * 访问者注册图.
@@ -34,10 +38,8 @@ public class DefaultVisitorController extends GeneralParentObject implements
     = new LinkedHashMap<Class, List<Visitor>>(
       0);
 
-  @SuppressWarnings("rawtypes")
   @Override
-  public final <E extends Visitable, V extends Visitor<E>> void registorVisitor(
-      final Class<E> type, final V visitor) {
+  public void registorVisitor(final Class<E> type, final V visitor) {
 
     List<Visitor> list = this.registedVisitorMap.get(type);
     if (list == null) {
@@ -49,10 +51,8 @@ public class DefaultVisitorController extends GeneralParentObject implements
 
   }
 
-  @SuppressWarnings("rawtypes")
   @Override
-  public final <E extends Visitable, V extends Visitor<E>> void disregister(
-      final Class<E> type, final V visitor) {
+  public void disregister(Class<E> type, V visitor) {
     List<Visitor> list = this.registedVisitorMap.get(type);
     if (list == null) {
       list = new LinkedList<Visitor>();
@@ -62,9 +62,8 @@ public class DefaultVisitorController extends GeneralParentObject implements
     list.remove(visitor);
   }
 
-  @SuppressWarnings("rawtypes")
   @Override
-  public final <E extends Visitable> void clear(final Class<E> type) {
+  public void clear(Class<E> type) {
     List<Visitor> list = this.registedVisitorMap.get(type);
     if (list == null) {
       list = new LinkedList<Visitor>();
@@ -79,10 +78,9 @@ public class DefaultVisitorController extends GeneralParentObject implements
     this.registedVisitorMap.clear();
   }
 
-  @SuppressWarnings({ "rawtypes", "unchecked" })
+  @SuppressWarnings({"unchecked" })
   @Override
-  public final <E extends Visitable, V extends Visitor<E>> List<V> findVisitors(
-      final Class<E> type) {
+  public List<V> findVisitors(Class<E> type) {
     List<Visitor> list = this.registedVisitorMap.get(type);
     if (list == null) {
       list = new LinkedList<Visitor>();
@@ -93,15 +91,13 @@ public class DefaultVisitorController extends GeneralParentObject implements
 
   @SuppressWarnings("unchecked")
   @Override
-  public final <E extends Visitable> void visit(final E visitable) {
+  public void invokeVisitors(E visitable) {
     if (visitable == null) {
       return;
     }
 
-    List<Visitor<E>> visitors = (List<Visitor<E>>) this
-        .<E, Visitor<E>> findVisitors((Class<E>) visitable.getClass());
-
-    for (Visitor<E> visitor : visitors) {
+    List<V> visitors =  this.findVisitors((Class<E>) visitable.getClass());
+    for (V visitor : visitors) {
       visitable.accept(visitor);
     }
 

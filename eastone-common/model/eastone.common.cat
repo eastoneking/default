@@ -130,8 +130,196 @@
 		(object Attribute
 		    tool       	"Java"
 		    name       	"ReadOnly"
-		    value      	FALSE))
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"BodyDanglingComment"
+		    value      	"")
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	TRUE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"Final"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"Static"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"Strictfp"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFullyQualifiedExtends"
+		    value      	"")
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFullyQualifiedImplements"
+		    value      	"")
+		(object Attribute
+		    tool       	"Java"
+		    name       	"Enum Code"
+		    value      	"")
+		(object Attribute
+		    tool       	"Java"
+		    name       	"ConstructorIs"
+		    value      	("Ctor_Set" 62))
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateCode"
+		    value      	TRUE))
 	    quid       	"529DEBF600E7"
+	    operations 	(list Operations
+		(object Operation "GeneralParentObject"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateFullyQualifiedThrows"
+			    value      	"")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Native"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Synchronized"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Strictfp"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateFullyQualifiedArgument"
+			    value      	""))
+		    quid       	"52A3DF28009B"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getLogger"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateFullyQualifiedReturn"
+			    value      	TRUE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateFullyQualifiedThrows"
+			    value      	"")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	TRUE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Native"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Synchronized"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Strictfp"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateFullyQualifiedArgument"
+			    value      	""))
+		    quid       	"52A3DF2800AB"
+		    result     	"Logical View::org::slf4j::Logger"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "staticLogger"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateFullyQualifiedReturn"
+			    value      	TRUE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateFullyQualifiedThrows"
+			    value      	"")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	TRUE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Native"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Synchronized"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Strictfp"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateFullyQualifiedArgument"
+			    value      	"java.lang.Class arg0"))
+		    quid       	"52A3DF2800BA"
+		    parameters 	(list Parameters
+			(object Parameter "arg0"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"Java"
+				    name       	"IsFinal"
+				    value      	"false"))
+			    quid       	"52A3DF2800BB"
+			    type       	"Class"
+			    quidu      	"529DEBFB0233"))
+		    result     	"Logger"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0
+		    quidu      	"52A3DF2800B3"))
 	    module     	"Component View::eastone::common::GeneralParentObject"
 	    quidu      	"529DEBF600E3"
 	    language   	"Java")
@@ -230,7 +418,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC2D0145"
+			    quid       	"52A3DF280108"
 			    result     	"Logical View::java::lang::Object"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -573,7 +761,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC2D03CD"
+			    quid       	"52A3DF29005C"
 			    result     	"BridgeImplementor"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -617,7 +805,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.bridge.BridgeImplementor arg0"))
-			    quid       	"529DEC2D03D5"
+			    quid       	"52A3DF29005D"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -625,7 +813,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2D03DA"
+				    quid       	"52A3DF29005E"
 				    type       	"BridgeImplementor"
 				    quidu      	"529DEBF50362"))
 			    result     	"void"
@@ -886,7 +1074,7 @@
 				(object Attribute
 				    tool       	"Java"
 				    name       	"Final"
-				    value      	TRUE)
+				    value      	FALSE)
 				(object Attribute
 				    tool       	"Java"
 				    name       	"Native"
@@ -930,7 +1118,7 @@
 				(object Attribute
 				    tool       	"Java"
 				    name       	"Final"
-				    value      	TRUE)
+				    value      	FALSE)
 				(object Attribute
 				    tool       	"Java"
 				    name       	"Native"
@@ -947,7 +1135,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC2E00DD"
+			    quid       	"52A3DF290195"
 			    result     	"Handler"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -974,7 +1162,7 @@
 				(object Attribute
 				    tool       	"Java"
 				    name       	"Final"
-				    value      	TRUE)
+				    value      	FALSE)
 				(object Attribute
 				    tool       	"Java"
 				    name       	"Native"
@@ -991,7 +1179,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.chainofresponsibility.Handler arg0"))
-			    quid       	"529DEC2E00E2"
+			    quid       	"52A3DF290196"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -999,7 +1187,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2E00E6"
+				    quid       	"52A3DF2901A5"
 				    type       	"Handler"
 				    quidu      	"529DEBF6011D"))
 			    result     	"void"
@@ -1155,7 +1343,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC2E0154"
+			    quid       	"52A3DF290231"
 			    result     	"Handler"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -1199,7 +1387,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.chainofresponsibility.Handler arg0"))
-			    quid       	"529DEC2E015C"
+			    quid       	"52A3DF290232"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -1207,7 +1395,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2E0160"
+				    quid       	"52A3DF290233"
 				    type       	"Handler"
 				    quidu      	"529DEBF6011D"))
 			    result     	"void"
@@ -1649,7 +1837,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0"))
-			    quid       	"529DEC330084"
+			    quid       	"52A3DF2F033B"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -1657,7 +1845,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC33008A"
+				    quid       	"52A3DF2F033C"
 				    type       	"Logical View::java::lang::Object"))
 			    result     	"void"
 			    concurrency 	"Sequential"
@@ -1701,7 +1889,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC33008C"
+			    quid       	"52A3DF2F033D"
 			    result     	"Logical View::java::lang::Object"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -1744,7 +1932,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC3300AD"
+			    quid       	"52A3DF2F035A"
 			    result     	"Logical View::java::lang::Object"
 			    exceptions 	"Logical View::java::lang::Exception[529DEB9F02E6]"
 			    concurrency 	"Sequential"
@@ -2181,7 +2369,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC330183"
+			    quid       	"52A3DF30004D"
 			    result     	"Logical View::java::lang::Object"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -2224,7 +2412,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0"))
-			    quid       	"529DEC330188"
+			    quid       	"52A3DF30004E"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -2232,7 +2420,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC33018C"
+				    quid       	"52A3DF30005D"
 				    type       	"Logical View::java::lang::Object"))
 			    result     	"void"
 			    concurrency 	"Sequential"
@@ -2405,7 +2593,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC330379"
+					    quid       	"52A3DF3002AF"
 					    type       	"byte[]"))
 				    result     	"void"
 				    concurrency 	"Sequential"
@@ -2500,7 +2688,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC330398"
+					    quid       	"52A3DF3002BF"
 					    type       	"boolean"))
 				    result     	"void"
 				    concurrency 	"Sequential"
@@ -2674,7 +2862,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	"eastone.common.processor.io.FileOverwriteEnum arg0"))
-				    quid       	"529DEC330353"
+				    quid       	"52A3DF30029F"
 				    parameters 	(list Parameters
 					(object Parameter "arg0"
 					    attributes 	(list Attribute_Set
@@ -2682,7 +2870,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC33035A"
+					    quid       	"52A3DF3002A0"
 					    type       	"FileOverwriteEnum"
 					    quidu      	"529DEBFF03CD"))
 				    result     	"void"
@@ -2727,7 +2915,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	""))
-				    quid       	"529DEC33036E"
+				    quid       	"52A3DF3002A1"
 				    result     	"FileOverwriteEnum"
 				    concurrency 	"Sequential"
 				    opExportControl 	"Public"
@@ -2771,7 +2959,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	"java.io.File arg0"))
-				    quid       	"529DEC33037D"
+				    quid       	"52A3DF3002B0"
 				    parameters 	(list Parameters
 					(object Parameter "arg0"
 					    attributes 	(list Attribute_Set
@@ -2779,7 +2967,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC330381"
+					    quid       	"52A3DF3002B1"
 					    type       	"File"
 					    quidu      	"529DEBFF03A9"))
 				    result     	"void"
@@ -2824,7 +3012,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	""))
-				    quid       	"529DEC330389"
+				    quid       	"52A3DF3002BE"
 				    result     	"File"
 				    concurrency 	"Sequential"
 				    opExportControl 	"Public"
@@ -2868,7 +3056,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	"java.io.File arg1"))
-				    quid       	"529DEC3303B8"
+				    quid       	"52A3DF3002DD"
 				    parameters 	(list Parameters
 					(object Parameter "arg0"
 					    attributes 	(list Attribute_Set
@@ -2876,7 +3064,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC3303D7"
+					    quid       	"52A3DF3002FD"
 					    type       	"byte[]")
 					(object Parameter "arg1"
 					    attributes 	(list Attribute_Set
@@ -2884,7 +3072,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC3303D8"
+					    quid       	"52A3DF3002FE"
 					    type       	"File"
 					    quidu      	"529DEBFF03A9"))
 				    result     	"void"
@@ -2930,7 +3118,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	"java.io.File arg0"))
-				    quid       	"529DEC3303DC"
+				    quid       	"52A3DF3002FF"
 				    parameters 	(list Parameters
 					(object Parameter "arg0"
 					    attributes 	(list Attribute_Set
@@ -2938,7 +3126,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC3303E1"
+					    quid       	"52A3DF300300"
 					    type       	"File"
 					    quidu      	"529DEBFF03A9"))
 				    result     	"boolean"
@@ -3111,7 +3299,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	"java.lang.String arg0"))
-				    quid       	"529DEC3502AB"
+				    quid       	"52A3DF3200F9"
 				    parameters 	(list Parameters
 					(object Parameter "arg0"
 					    attributes 	(list Attribute_Set
@@ -3119,7 +3307,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC3502AF"
+					    quid       	"52A3DF3200FA"
 					    type       	"Logical View::java::lang::String")
 					(object Parameter "arg1"
 					    attributes 	(list Attribute_Set
@@ -3127,7 +3315,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC3502B1"
+					    quid       	"52A3DF3200FB"
 					    type       	"int"))
 				    concurrency 	"Sequential"
 				    opExportControl 	"Private"
@@ -3170,7 +3358,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	""))
-				    quid       	"529DEC3502B4"
+				    quid       	"52A3DF320109"
 				    result     	"FileOverwriteEnum[]"
 				    concurrency 	"Sequential"
 				    opExportControl 	"Public"
@@ -3214,7 +3402,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	"java.lang.String arg0"))
-				    quid       	"529DEC3502BA"
+				    quid       	"52A3DF32010A"
 				    parameters 	(list Parameters
 					(object Parameter "arg0"
 					    attributes 	(list Attribute_Set
@@ -3222,7 +3410,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC3502BF"
+					    quid       	"52A3DF32010B"
 					    type       	"Logical View::java::lang::String"))
 				    result     	"FileOverwriteEnum"
 				    concurrency 	"Sequential"
@@ -3392,7 +3580,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC3401C5"
+					    quid       	"52A3DF3100AD"
 					    type       	"byte[]"))
 				    result     	"void"
 				    concurrency 	"Sequential"
@@ -3487,7 +3675,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC3401D2"
+					    quid       	"52A3DF3100BB"
 					    type       	"int"))
 				    result     	"void"
 				    concurrency 	"Sequential"
@@ -3539,7 +3727,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC3401DA"
+					    quid       	"52A3DF3100BC"
 					    type       	"int"))
 				    result     	"void"
 				    concurrency 	"Sequential"
@@ -3678,7 +3866,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC340207"
+					    quid       	"52A3DF3100DA"
 					    type       	"int")
 					(object Parameter "arg1"
 					    attributes 	(list Attribute_Set
@@ -3686,7 +3874,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC340208"
+					    quid       	"52A3DF3100DB"
 					    type       	"int"))
 				    result     	"int"
 				    concurrency 	"Sequential"
@@ -3738,7 +3926,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC34020E"
+					    quid       	"52A3DF3100EA"
 					    type       	"int"))
 				    result     	"int"
 				    concurrency 	"Sequential"
@@ -3825,7 +4013,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	"java.io.OutputStream arg0"))
-				    quid       	"529DEC3401AF"
+				    quid       	"52A3DF31009B"
 				    parameters 	(list Parameters
 					(object Parameter "arg0"
 					    attributes 	(list Attribute_Set
@@ -3833,7 +4021,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC3401B5"
+					    quid       	"52A3DF3100AB"
 					    type       	"OutputStream"
 					    quidu      	"529DEC00030B"))
 				    result     	"void"
@@ -3878,7 +4066,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	""))
-				    quid       	"529DEC3401B8"
+				    quid       	"52A3DF3100AC"
 				    result     	"OutputStream"
 				    concurrency 	"Sequential"
 				    opExportControl 	"Public"
@@ -4144,7 +4332,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	"java.io.File arg0"))
-				    quid       	"529DEC350008"
+				    quid       	"52A3DF31028F"
 				    parameters 	(list Parameters
 					(object Parameter "arg0"
 					    attributes 	(list Attribute_Set
@@ -4152,7 +4340,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC35000C"
+					    quid       	"52A3DF310290"
 					    type       	"File"
 					    quidu      	"529DEBFF03A9"))
 				    result     	"void"
@@ -4197,7 +4385,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	""))
-				    quid       	"529DEC35000F"
+				    quid       	"52A3DF31029F"
 				    result     	"File"
 				    concurrency 	"Sequential"
 				    opExportControl 	"Public"
@@ -4241,7 +4429,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	""))
-				    quid       	"529DEC350016"
+				    quid       	"52A3DF3102A0"
 				    result     	"Convertor"
 				    concurrency 	"Sequential"
 				    opExportControl 	"Public"
@@ -4285,7 +4473,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	"eastone.common.convertor.Convertor arg0"))
-				    quid       	"529DEC35001E"
+				    quid       	"52A3DF3102A1"
 				    parameters 	(list Parameters
 					(object Parameter "arg0"
 					    attributes 	(list Attribute_Set
@@ -4293,7 +4481,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC350028"
+					    quid       	"52A3DF3102A2"
 					    type       	"Convertor"
 					    quidu      	"529DEBFA00A5"))
 				    result     	"void"
@@ -4338,7 +4526,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	"java.io.File arg0"))
-				    quid       	"529DEC35002E"
+				    quid       	"52A3DF3102AF"
 				    parameters 	(list Parameters
 					(object Parameter "arg0"
 					    attributes 	(list Attribute_Set
@@ -4346,7 +4534,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC350053"
+					    quid       	"52A3DF3102BE"
 					    type       	"File"
 					    quidu      	"529DEBFF03A9"))
 				    result     	"byte[]"
@@ -4392,7 +4580,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	""))
-				    quid       	"529DEC35007B"
+				    quid       	"52A3DF3102DE"
 				    result     	"Logical View::java::lang::Object"
 				    exceptions 	"Logical View::java::lang::Exception[529DEB9F02E6]"
 				    concurrency 	"Sequential"
@@ -4436,7 +4624,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	""))
-				    quid       	"529DEC35009D"
+				    quid       	"52A3DF3102ED"
 				    result     	"Logical View::java::lang::Object"
 				    concurrency 	"Sequential"
 				    opExportControl 	"Public"
@@ -4479,7 +4667,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	"java.lang.Object arg0"))
-				    quid       	"529DEC3500A8"
+				    quid       	"52A3DF3102EE"
 				    parameters 	(list Parameters
 					(object Parameter "arg0"
 					    attributes 	(list Attribute_Set
@@ -4487,7 +4675,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC3500CE"
+					    quid       	"52A3DF31030C"
 					    type       	"Logical View::java::lang::Object"))
 				    result     	"Logical View::java::lang::Object"
 				    exceptions 	"Logical View::java::lang::Exception[529DEB9F02E6]"
@@ -4657,7 +4845,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC360041"
+					    quid       	"52A3DF32029F"
 					    type       	"int"))
 				    result     	"void"
 				    concurrency 	"Sequential"
@@ -4788,7 +4976,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	"java.io.InputStream arg0"))
-				    quid       	"529DEC360046"
+				    quid       	"52A3DF3202AF"
 				    parameters 	(list Parameters
 					(object Parameter "arg0"
 					    attributes 	(list Attribute_Set
@@ -4796,7 +4984,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC36004C"
+					    quid       	"52A3DF3202B0"
 					    type       	"InputStream"
 					    quidu      	"529DEC02031A"))
 				    result     	"void"
@@ -4841,7 +5029,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	""))
-				    quid       	"529DEC36004F"
+				    quid       	"52A3DF3202B1"
 				    result     	"InputStream"
 				    concurrency 	"Sequential"
 				    opExportControl 	"Public"
@@ -4885,7 +5073,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	"java.io.InputStream arg0"))
-				    quid       	"529DEC36006D"
+				    quid       	"52A3DF3202CE"
 				    parameters 	(list Parameters
 					(object Parameter "arg0"
 					    attributes 	(list Attribute_Set
@@ -4893,7 +5081,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC36008D"
+					    quid       	"52A3DF3202DE"
 					    type       	"InputStream"
 					    quidu      	"529DEC02031A"))
 				    result     	"byte[]"
@@ -4939,7 +5127,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	""))
-				    quid       	"529DEC36008F"
+				    quid       	"52A3DF3202ED"
 				    result     	"Logical View::java::lang::Object"
 				    exceptions 	"Logical View::java::lang::Exception[529DEB9F02E6]"
 				    concurrency 	"Sequential"
@@ -4983,7 +5171,7 @@
 					    tool       	"Java"
 					    name       	"GenerateFullyQualifiedArgument"
 					    value      	"java.lang.Object arg0"))
-				    quid       	"529DEC3600AC"
+				    quid       	"52A3DF3202FD"
 				    parameters 	(list Parameters
 					(object Parameter "arg0"
 					    attributes 	(list Attribute_Set
@@ -4991,7 +5179,7 @@
 						    tool       	"Java"
 						    name       	"IsFinal"
 						    value      	"false"))
-					    quid       	"529DEC3600C8"
+					    quid       	"52A3DF32031C"
 					    type       	"Logical View::java::lang::Object"))
 				    result     	"Logical View::java::lang::Object"
 				    exceptions 	"Logical View::java::lang::Exception[529DEB9F02E6]"
@@ -5595,7 +5783,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.command.CommandReceiver arg0"))
-			    quid       	"529DEC2E025B"
+			    quid       	"52A3DF29036A"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -5603,7 +5791,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2E025F"
+				    quid       	"52A3DF29036B"
 				    type       	"CommandReceiver"
 				    quidu      	"529DEBF603AF"))
 			    result     	"void"
@@ -5648,7 +5836,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC2E0262"
+			    quid       	"52A3DF29036C"
 			    result     	"CommandReceiver"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -5755,7 +5943,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.command.CommandReceiver arg0"))
-			    quid       	"529DEC2E0322"
+			    quid       	"52A3DF2A006C"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -5763,7 +5951,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2E0326"
+				    quid       	"52A3DF2A006D"
 				    type       	"CommandReceiver"
 				    quidu      	"529DEBF603AF"))
 			    result     	"void"
@@ -5808,7 +5996,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC2E0329"
+			    quid       	"52A3DF2A006E"
 			    result     	"CommandReceiver"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -6018,7 +6206,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC2E02CC"
+			    quid       	"52A3DF2A001E"
 			    result     	"Logical View::java::lang::String"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -6061,7 +6249,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.String arg0"))
-			    quid       	"529DEC2E02D1"
+			    quid       	"52A3DF2A001F"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -6069,7 +6257,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2E02D5"
+				    quid       	"52A3DF2A002E"
 				    type       	"Logical View::java::lang::String"))
 			    result     	"void"
 			    concurrency 	"Sequential"
@@ -6248,7 +6436,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.command.CommandReceiver arg0, eastone.common.command.Command arg1"))
-			    quid       	"529DEC2E03C5"
+			    quid       	"52A3DF2A00F9"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -6256,7 +6444,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2E03CA"
+				    quid       	"52A3DF2A0108"
 				    type       	"CommandReceiver"
 				    quidu      	"529DEBF603AF")
 				(object Parameter "arg1"
@@ -6265,7 +6453,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2E03CC"
+				    quid       	"52A3DF2A0109"
 				    type       	"Command"
 				    quidu      	"529DEBF6037E"))
 			    result     	"Command"
@@ -6311,7 +6499,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.command.Command arg0"))
-			    quid       	"529DEC2E03CF"
+			    quid       	"52A3DF2A010A"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -6319,7 +6507,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2F0003"
+				    quid       	"52A3DF2A0118"
 				    type       	"Command"
 				    quidu      	"529DEBF6037E"))
 			    result     	"void"
@@ -6421,7 +6609,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.command.CommandReceiver arg0, eastone.common.command.Command arg1"))
-			    quid       	"529DEC2F0017"
+			    quid       	"52A3DF2A0128"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -6429,7 +6617,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2F001C"
+				    quid       	"52A3DF2A0129"
 				    type       	"CommandReceiver"
 				    quidu      	"529DEBF603AF")
 				(object Parameter "arg1"
@@ -6438,7 +6626,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2F001E"
+				    quid       	"52A3DF2A0137"
 				    type       	"Command"
 				    quidu      	"529DEBF6037E"))
 			    result     	"Command"
@@ -6484,7 +6672,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.command.Command arg0"))
-			    quid       	"529DEC2F0020"
+			    quid       	"52A3DF2A0138"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -6492,7 +6680,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2F003F"
+				    quid       	"52A3DF2A0147"
 				    type       	"Command"
 				    quidu      	"529DEBF6037E"))
 			    result     	"void"
@@ -6795,7 +6983,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.Component arg0"))
-			    quid       	"529DEC2F01C5"
+			    quid       	"52A3DF2A032B"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -6803,7 +6991,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2F01CB"
+				    quid       	"52A3DF2A032C"
 				    type       	"Component"
 				    quidu      	"529DEBF40258"))
 			    result     	"void"
@@ -6848,7 +7036,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.Component arg0"))
-			    quid       	"529DEC2F01CE"
+			    quid       	"52A3DF2A032D"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -6856,7 +7044,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2F01D3"
+				    quid       	"52A3DF2A033B"
 				    type       	"Component"
 				    quidu      	"529DEBF40258"))
 			    result     	"void"
@@ -6901,7 +7089,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Integer arg0"))
-			    quid       	"529DEC2F01D5"
+			    quid       	"52A3DF2A033C"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -6909,7 +7097,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2F01D9"
+				    quid       	"52A3DF2A033D"
 				    type       	"Logical View::java::lang::Integer"))
 			    result     	"void"
 			    concurrency 	"Sequential"
@@ -6953,7 +7141,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Integer arg0"))
-			    quid       	"529DEC2F01E3"
+			    quid       	"52A3DF2A033E"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -6961,7 +7149,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2F01E7"
+				    quid       	"52A3DF2A034B"
 				    type       	"Logical View::java::lang::Integer"))
 			    result     	"Component"
 			    concurrency 	"Sequential"
@@ -7006,7 +7194,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC2F01EB"
+			    quid       	"52A3DF2A034C"
 			    result     	"List"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -7050,7 +7238,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0"))
-			    quid       	"529DEC2F01F4"
+			    quid       	"52A3DF2A034D"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -7058,7 +7246,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2F01F9"
+				    quid       	"52A3DF2A035A"
 				    type       	"Logical View::java::lang::Object"))
 			    result     	"Component"
 			    concurrency 	"Sequential"
@@ -7103,7 +7291,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0"))
-			    quid       	"529DEC2F01FC"
+			    quid       	"52A3DF2A035B"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -7111,7 +7299,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2F0202"
+				    quid       	"52A3DF2A035C"
 				    type       	"Logical View::java::lang::Object"))
 			    result     	"void"
 			    concurrency 	"Sequential"
@@ -7255,7 +7443,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.Component arg0"))
-			    quid       	"529DEC2F0219"
+			    quid       	"52A3DF2A0389"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -7263,7 +7451,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2F0220"
+				    quid       	"52A3DF2A0399"
 				    type       	"Component"
 				    quidu      	"529DEBF40258"))
 			    result     	"void"
@@ -7308,7 +7496,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.Component arg0"))
-			    quid       	"529DEC2F0223"
+			    quid       	"52A3DF2A039A"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -7316,7 +7504,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2F0228"
+				    quid       	"52A3DF2A039B"
 				    type       	"Component"
 				    quidu      	"529DEBF40258"))
 			    result     	"void"
@@ -7361,7 +7549,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0"))
-			    quid       	"529DEC2F022A"
+			    quid       	"52A3DF2A039C"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -7369,7 +7557,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2F022F"
+				    quid       	"52A3DF2A039D"
 				    type       	"Logical View::java::lang::Object"))
 			    result     	"void"
 			    concurrency 	"Sequential"
@@ -7413,7 +7601,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0"))
-			    quid       	"529DEC2F0236"
+			    quid       	"52A3DF2A03A8"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -7421,7 +7609,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2F023B"
+				    quid       	"52A3DF2A03A9"
 				    type       	"Logical View::java::lang::Object"))
 			    result     	"Component"
 			    concurrency 	"Sequential"
@@ -7466,7 +7654,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC2F023F"
+			    quid       	"52A3DF2A03AA"
 			    result     	"List"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -7673,7 +7861,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.String arg0, java.lang.Object[] arg1"))
-			    quid       	"529DEC2F02B8"
+			    quid       	"52A3DF2B004D"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -7681,7 +7869,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2F02BD"
+				    quid       	"52A3DF2B005D"
 				    type       	"Logical View::java::lang::String")
 				(object Parameter "arg1"
 				    attributes 	(list Attribute_Set
@@ -7689,7 +7877,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2F02BF"
+				    quid       	"52A3DF2B005E"
 				    type       	"Logical View::java::lang::Object[]"))
 			    result     	"Logical View::java::lang::Object"
 			    concurrency 	"Sequential"
@@ -7733,7 +7921,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0"))
-			    quid       	"529DEC2F02C1"
+			    quid       	"52A3DF2B005F"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -7741,7 +7929,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2F02CB"
+				    quid       	"52A3DF2B0060"
 				    type       	"Logical View::java::lang::Object"))
 			    result     	"BeanContext"
 			    concurrency 	"Sequential"
@@ -7786,7 +7974,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.String arg0, java.util.Locale arg1, java.lang.Object[] arg2"))
-			    quid       	"529DEC2F02CD"
+			    quid       	"52A3DF2B0061"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -7794,7 +7982,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2F02D2"
+				    quid       	"52A3DF2B0062"
 				    type       	"Logical View::java::lang::String")
 				(object Parameter "arg1"
 				    attributes 	(list Attribute_Set
@@ -7802,7 +7990,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2F02D4"
+				    quid       	"52A3DF2B0063"
 				    type       	"Logical View::java::util::Locale")
 				(object Parameter "arg2"
 				    attributes 	(list Attribute_Set
@@ -7810,7 +7998,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC2F02D7"
+				    quid       	"52A3DF2B006C"
 				    type       	"Logical View::java::lang::Object[]"))
 			    result     	"Logical View::java::lang::String"
 			    concurrency 	"Sequential"
@@ -7910,7 +8098,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object[] arg0"))
-			    quid       	"529DEC30003D"
+			    quid       	"52A3DF2B01D5"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -7918,7 +8106,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC300041"
+				    quid       	"52A3DF2B01D6"
 				    type       	"Logical View::java::lang::Object[]"))
 			    result     	"Logical View::java::lang::Object"
 			    concurrency 	"Sequential"
@@ -8073,7 +8261,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC2F03E2"
+			    quid       	"52A3DF2B01A5"
 			    result     	"BeanContext"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -8117,7 +8305,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC300002"
+			    quid       	"52A3DF2B01A6"
 			    result     	"BeanContext"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -8161,7 +8349,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC300008"
+			    quid       	"52A3DF2B01A7"
 			    result     	"BeanContext"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Private"
@@ -8205,7 +8393,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC30000E"
+			    quid       	"52A3DF2B01B4"
 			    result     	"Logical View::java::lang::Object"
 			    exceptions 	"Logical View::java::lang::Exception[529DEB9F02E6]"
 			    concurrency 	"Sequential"
@@ -8656,7 +8844,7 @@
 						    tool       	"Java"
 						    name       	"GenerateFullyQualifiedArgument"
 						    value      	"java.lang.Object[] arg0"))
-					    quid       	"529DEC3001E5"
+					    quid       	"52A3DF2C005D"
 					    parameters 	(list Parameters
 						(object Parameter "arg0"
 						    attributes 	(list Attribute_Set
@@ -8664,7 +8852,7 @@
 							    tool       	"Java"
 							    name       	"IsFinal"
 							    value      	"false"))
-						    quid       	"529DEC3001E9"
+						    quid       	"52A3DF2C005E"
 						    type       	"Logical View::java::lang::Object[]"))
 					    result     	"Logical View::java::lang::Object"
 					    concurrency 	"Sequential"
@@ -8708,7 +8896,7 @@
 						    tool       	"Java"
 						    name       	"GenerateFullyQualifiedArgument"
 						    value      	"java.lang.String arg0, java.lang.Object[] arg1"))
-					    quid       	"529DEC3001EB"
+					    quid       	"52A3DF2C005F"
 					    parameters 	(list Parameters
 						(object Parameter "arg0"
 						    attributes 	(list Attribute_Set
@@ -8716,7 +8904,7 @@
 							    tool       	"Java"
 							    name       	"IsFinal"
 							    value      	"false"))
-						    quid       	"529DEC3001F0"
+						    quid       	"52A3DF2C0060"
 						    type       	"Logical View::java::lang::String")
 						(object Parameter "arg1"
 						    attributes 	(list Attribute_Set
@@ -8724,7 +8912,7 @@
 							    tool       	"Java"
 							    name       	"IsFinal"
 							    value      	"false"))
-						    quid       	"529DEC3001F2"
+						    quid       	"52A3DF2C0061"
 						    type       	"Logical View::java::lang::Object[]"))
 					    result     	"Logical View::java::lang::Object"
 					    concurrency 	"Sequential"
@@ -8768,7 +8956,7 @@
 						    tool       	"Java"
 						    name       	"GenerateFullyQualifiedArgument"
 						    value      	"org.springframework.context.support.AbstractRefreshableApplicationContext arg0"))
-					    quid       	"529DEC3001F6"
+					    quid       	"52A3DF2C0062"
 					    parameters 	(list Parameters
 						(object Parameter "arg0"
 						    attributes 	(list Attribute_Set
@@ -8776,7 +8964,7 @@
 							    tool       	"Java"
 							    name       	"IsFinal"
 							    value      	"false"))
-						    quid       	"529DEC3001FB"
+						    quid       	"52A3DF2C006C"
 						    type       	"AbstractRefreshableApplicationContext"
 						    quidu      	"529DEBFA0045"))
 					    result     	"BeanContext"
@@ -8822,7 +9010,7 @@
 						    tool       	"Java"
 						    name       	"GenerateFullyQualifiedArgument"
 						    value      	"java.lang.String arg0, java.util.Locale arg1, java.lang.Object[] arg2"))
-					    quid       	"529DEC3001FE"
+					    quid       	"52A3DF2C006D"
 					    parameters 	(list Parameters
 						(object Parameter "arg0"
 						    attributes 	(list Attribute_Set
@@ -8830,7 +9018,7 @@
 							    tool       	"Java"
 							    name       	"IsFinal"
 							    value      	"false"))
-						    quid       	"529DEC300201"
+						    quid       	"52A3DF2C006E"
 						    type       	"Logical View::java::lang::String")
 						(object Parameter "arg1"
 						    attributes 	(list Attribute_Set
@@ -8838,7 +9026,7 @@
 							    tool       	"Java"
 							    name       	"IsFinal"
 							    value      	"false"))
-						    quid       	"529DEC300203"
+						    quid       	"52A3DF2C006F"
 						    type       	"Logical View::java::util::Locale")
 						(object Parameter "arg2"
 						    attributes 	(list Attribute_Set
@@ -8846,7 +9034,7 @@
 							    tool       	"Java"
 							    name       	"IsFinal"
 							    value      	"false"))
-						    quid       	"529DEC300204"
+						    quid       	"52A3DF2C0070"
 						    type       	"Logical View::java::lang::Object[]"))
 					    result     	"Logical View::java::lang::String"
 					    concurrency 	"Sequential"
@@ -8890,7 +9078,7 @@
 						    tool       	"Java"
 						    name       	"GenerateFullyQualifiedArgument"
 						    value      	"java.lang.Object arg0"))
-					    quid       	"529DEC300206"
+					    quid       	"52A3DF2C0071"
 					    parameters 	(list Parameters
 						(object Parameter "arg0"
 						    attributes 	(list Attribute_Set
@@ -8898,7 +9086,7 @@
 							    tool       	"Java"
 							    name       	"IsFinal"
 							    value      	"false"))
-						    quid       	"529DEC30020B"
+						    quid       	"52A3DF2C007C"
 						    type       	"Logical View::java::lang::Object"))
 					    result     	"BeanContext"
 					    concurrency 	"Sequential"
@@ -9065,7 +9253,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC3100E7"
+			    quid       	"52A3DF2D006C"
 			    result     	"Logical View::java::lang::Object"
 			    exceptions 	"Logical View::java::lang::Exception[529DEB9F02E6]"
 			    concurrency 	"Sequential"
@@ -9266,7 +9454,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Class arg0"))
-			    quid       	"529DEC310118"
+			    quid       	"52A3DF2D00E9"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -9274,7 +9462,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC31011D"
+				    quid       	"52A3DF2D00EA"
 				    type       	"Class"
 				    quidu      	"529DEBFB0233"))
 			    result     	"Logical View::java::lang::Object"
@@ -9384,7 +9572,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0"))
-			    quid       	"529DEC300229"
+			    quid       	"52A3DF2C00BA"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -9392,7 +9580,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC300245"
+				    quid       	"52A3DF2C00DA"
 				    type       	"Logical View::java::lang::Object"))
 			    result     	"Logical View::java::lang::Object"
 			    exceptions 	"Logical View::java::lang::Exception[529DEB9F02E6]"
@@ -9615,7 +9803,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC30032C"
+			    quid       	"52A3DF2C0212"
 			    result     	"Component"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -9659,7 +9847,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.Component arg0"))
-			    quid       	"529DEC300332"
+			    quid       	"52A3DF2C0213"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -9667,7 +9855,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC300336"
+				    quid       	"52A3DF2C0214"
 				    type       	"Component"
 				    quidu      	"529DEBF40258"))
 			    result     	"void"
@@ -9769,7 +9957,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC300349"
+			    quid       	"52A3DF2C0223"
 			    result     	"Component"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -9813,7 +10001,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.Component arg0"))
-			    quid       	"529DEC30034E"
+			    quid       	"52A3DF2C0224"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -9821,7 +10009,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC300352"
+				    quid       	"52A3DF2C0231"
 				    type       	"Component"
 				    quidu      	"529DEBF40258"))
 			    result     	"void"
@@ -10066,7 +10254,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.i18n.I18nMsg arg0, java.lang.Throwable arg1"))
-			    quid       	"529DEC310070"
+			    quid       	"52A3DF2C0389"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -10074,7 +10262,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC310075"
+				    quid       	"52A3DF2C0399"
 				    type       	"I18nMsg"
 				    quidu      	"529DEBFB0044")
 				(object Parameter "arg1"
@@ -10083,7 +10271,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC310078"
+				    quid       	"52A3DF2C039A"
 				    type       	"Throwable"
 				    quidu      	"529DEBA1002F"))
 			    concurrency 	"Sequential"
@@ -10123,7 +10311,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.i18n.I18nMsg arg0"))
-			    quid       	"529DEC31007A"
+			    quid       	"52A3DF2C039B"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -10131,7 +10319,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC31007D"
+				    quid       	"52A3DF2C039C"
 				    type       	"I18nMsg"
 				    quidu      	"529DEBFB0044"))
 			    concurrency 	"Sequential"
@@ -10171,7 +10359,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Throwable arg0"))
-			    quid       	"529DEC310080"
+			    quid       	"52A3DF2C039D"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -10179,7 +10367,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC310084"
+				    quid       	"52A3DF2C039E"
 				    type       	"Throwable"
 				    quidu      	"529DEBA1002F"))
 			    concurrency 	"Sequential"
@@ -10219,7 +10407,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.String arg0"))
-			    quid       	"529DEC310088"
+			    quid       	"52A3DF2C03A8"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -10227,7 +10415,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC31008B"
+				    quid       	"52A3DF2C03A9"
 				    type       	"Logical View::java::lang::String"))
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -10266,7 +10454,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.String arg0, java.lang.Throwable arg1"))
-			    quid       	"529DEC31008E"
+			    quid       	"52A3DF2C03AA"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -10274,7 +10462,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC310091"
+				    quid       	"52A3DF2C03AB"
 				    type       	"Logical View::java::lang::String")
 				(object Parameter "arg1"
 				    attributes 	(list Attribute_Set
@@ -10282,7 +10470,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC310093"
+				    quid       	"52A3DF2C03AC"
 				    type       	"Throwable"
 				    quidu      	"529DEBA1002F"))
 			    concurrency 	"Sequential"
@@ -10466,7 +10654,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.String arg0"))
-			    quid       	"529DEC3200B1"
+			    quid       	"52A3DF2E02BE"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -10474,7 +10662,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC3200B5"
+				    quid       	"52A3DF2E02BF"
 				    type       	"Logical View::java::lang::String"))
 			    result     	"void"
 			    concurrency 	"Sequential"
@@ -10518,7 +10706,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.util.Locale arg0"))
-			    quid       	"529DEC3200B6"
+			    quid       	"52A3DF2E02C0"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -10526,7 +10714,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC3200BA"
+				    quid       	"52A3DF2E02C1"
 				    type       	"Logical View::java::util::Locale"))
 			    result     	"void"
 			    concurrency 	"Sequential"
@@ -10570,7 +10758,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.String[] arg0"))
-			    quid       	"529DEC3200BC"
+			    quid       	"52A3DF2E02C2"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -10578,7 +10766,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC3200C0"
+				    quid       	"52A3DF2E02CE"
 				    type       	"Logical View::java::lang::String[]"))
 			    result     	"void"
 			    concurrency 	"Sequential"
@@ -10622,7 +10810,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC3200C3"
+			    quid       	"52A3DF2E02CF"
 			    result     	"Logical View::java::lang::String"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -10774,7 +10962,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.String arg0, java.util.Locale arg1, java.lang.String[] arg2"))
-			    quid       	"529DEC320061"
+			    quid       	"52A3DF2E0270"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -10782,7 +10970,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC320064"
+				    quid       	"52A3DF2E0280"
 				    type       	"Logical View::java::lang::String")
 				(object Parameter "arg1"
 				    attributes 	(list Attribute_Set
@@ -10790,7 +10978,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC320065"
+				    quid       	"52A3DF2E0281"
 				    type       	"Logical View::java::util::Locale")
 				(object Parameter "arg2"
 				    attributes 	(list Attribute_Set
@@ -10798,7 +10986,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC320067"
+				    quid       	"52A3DF2E0282"
 				    type       	"Logical View::java::lang::String[]"))
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -10841,7 +11029,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC32006C"
+			    quid       	"52A3DF2E0283"
 			    result     	"Logical View::java::lang::String"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -10884,7 +11072,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.String arg0"))
-			    quid       	"529DEC320073"
+			    quid       	"52A3DF2E0284"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -10892,7 +11080,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC320078"
+				    quid       	"52A3DF2E028F"
 				    type       	"Logical View::java::lang::String"))
 			    result     	"void"
 			    concurrency 	"Sequential"
@@ -10936,7 +11124,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC32007B"
+			    quid       	"52A3DF2E0290"
 			    result     	"Logical View::java::util::Locale"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -10979,7 +11167,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.util.Locale arg0"))
-			    quid       	"529DEC320081"
+			    quid       	"52A3DF2E0291"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -10987,7 +11175,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC320087"
+				    quid       	"52A3DF2E0292"
 				    type       	"Logical View::java::util::Locale"))
 			    result     	"void"
 			    concurrency 	"Sequential"
@@ -11031,7 +11219,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC32008A"
+			    quid       	"52A3DF2E029F"
 			    result     	"Logical View::java::lang::String[]"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -11074,7 +11262,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.String[] arg0"))
-			    quid       	"529DEC32008F"
+			    quid       	"52A3DF2E02A0"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -11082,7 +11270,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC320094"
+				    quid       	"52A3DF2E02A1"
 				    type       	"Logical View::java::lang::String[]"))
 			    result     	"void"
 			    concurrency 	"Sequential"
@@ -11126,7 +11314,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC320096"
+			    quid       	"52A3DF2E02A2"
 			    result     	"I18nMsg"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -11361,7 +11549,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC32011F"
+			    quid       	"52A3DF2E032C"
 			    result     	"Logical View::java::lang::String"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -11544,7 +11732,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0"))
-			    quid       	"529DEC3100B8"
+			    quid       	"52A3DF2D000F"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -11552,7 +11740,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC3100BD"
+				    quid       	"52A3DF2D0010"
 				    type       	"Logical View::java::lang::Object"))
 			    result     	"SubSystem"
 			    concurrency 	"Sequential"
@@ -11824,7 +12012,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0"))
-			    quid       	"529DEC31013E"
+			    quid       	"52A3DF2D02BE"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -11832,7 +12020,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC310143"
+				    quid       	"52A3DF2D02CE"
 				    type       	"Logical View::java::lang::Object"))
 			    result     	"Flyweight"
 			    concurrency 	"Sequential"
@@ -12019,8 +12207,442 @@
 			    quidu      	"529DEBFB0282"))
 		    module     	"Component View::eastone::common::flyweight::UnsharedFlyweight"
 		    quidu      	"529DEBFB0332"
-		    language   	"Java"))
-	    logical_presentations 	(list unit_reference_list))
+		    language   	"Java")
+		(object Class "AbstractFlyweightFactory"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"BodyDanglingComment"
+			    value      	"")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateFinalizer"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateStaticInitializer"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateInstanceInitializer"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateDefaultConstructor"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"ReadOnly"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Strictfp"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateFullyQualifiedExtends"
+			    value      	"eastone.common.GeneralParentObject")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateFullyQualifiedImplements"
+			    value      	"eastone.common.flyweight.FlyweightFactory")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Enum Code"
+			    value      	"")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateCode"
+			    value      	TRUE))
+		    quid       	"52A3DF2D0255"
+		    superclasses 	(list inheritance_relationship_list
+			(object Inheritance_Relationship
+			    attributes 	(list Attribute_Set)
+			    quid       	"52A3DF2D0280"
+			    supplier   	"Logical View::eastone::common::GeneralParentObject"
+			    quidu      	"529DEBF600E7"))
+		    realized_interfaces 	(list realize_rel_list
+			(object Realize_Relationship
+			    attributes 	(list Attribute_Set)
+			    quid       	"52A3DF2D029F"
+			    supplier   	"Logical View::eastone::common::flyweight::FlyweightFactory"
+			    quidu      	"529DEBFB029B"))
+		    operations 	(list Operations
+			(object Operation "AbstractFlyweightFactory"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"Java"
+				    name       	"GenerateFullyQualifiedThrows"
+				    value      	"")
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Abstract"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Static"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Final"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Native"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Synchronized"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Strictfp"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"GenerateFullyQualifiedArgument"
+				    value      	"java.util.Map arg0"))
+			    quid       	"52A3DF2D02AE"
+			    parameters 	(list Parameters
+				(object Parameter "arg0"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"Java"
+					    name       	"IsFinal"
+					    value      	"false"))
+				    quid       	"52A3DF2D02AF"
+				    type       	"Map"
+				    quidu      	"529DEBAC014E"))
+			    concurrency 	"Sequential"
+			    opExportControl 	"Protected"
+			    uid        	0)
+			(object Operation "getFlyweight"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"Java"
+				    name       	"GenerateFullyQualifiedReturn"
+				    value      	TRUE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"GenerateFullyQualifiedThrows"
+				    value      	"")
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Abstract"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Static"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Final"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Native"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Synchronized"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Strictfp"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"GenerateFullyQualifiedArgument"
+				    value      	"java.lang.Object arg0"))
+			    quid       	"52A3DF2D02B0"
+			    parameters 	(list Parameters
+				(object Parameter "arg0"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"Java"
+					    name       	"IsFinal"
+					    value      	"false"))
+				    quid       	"52A3DF2D02B1"
+				    type       	"Logical View::java::lang::Object"))
+			    result     	"Flyweight"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0
+			    quidu      	"529DEBFB0282"))
+		    module     	"Component View::eastone::common::flyweight::AbstractFlyweightFactory"
+		    quidu      	"52A3DF2D0251"
+		    language   	"Java"
+		    abstract   	TRUE)
+		(object Association "$UNNAMED$32"
+		    attributes 	(list Attribute_Set)
+		    quid       	"52A3DF2D02A0"
+		    roles      	(list role_list
+			(object Role "instanceMap"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"Java"
+				    name       	"InitialValue"
+				    value      	"")
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Final"
+				    value      	TRUE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Transient"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Volatile"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"GenerateFullyQualifiedTypes"
+				    value      	TRUE))
+			    quid       	"52A3DF2D02A1"
+			    label      	"instanceMap"
+			    supplier   	"Logical View::java::util::Map"
+			    quidu      	"529DEBAC014E"
+			    exportControl 	"Private"
+			    is_navigable 	TRUE)
+			(object Role "$UNNAMED$33"
+			    quid       	"52A3DF2D02A3"
+			    supplier   	"Logical View::eastone::common::flyweight::AbstractFlyweightFactory"
+			    quidu      	"52A3DF2D0255"))))
+	    logical_presentations 	(list unit_reference_list
+		(object ClassDiagram "main"
+		    quid       	"52A3DF4C0113"
+		    title      	"main"
+		    zoom       	100
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	0
+		    items      	(list diagram_item_list
+			(object ClassView "Class" "Logical View::eastone::common::flyweight::AbstractFlyweightFactory" @1
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(416, 624)
+			    font       	(object Font
+				size       	10
+				face       	"宋体"
+				charSet    	134
+				bold       	FALSE
+				italics    	TRUE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@1
+				location   	(107, 537)
+				nlines     	1
+				max_width  	618
+				justify    	0
+				label      	"AbstractFlyweightFactory")
+			    icon_style 	"Icon"
+			    fill_color 	16777215
+			    quidu      	"52A3DF2D0255"
+			    compartment 	(object Compartment
+				Parent_View 	@1
+				location   	(107, 589)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				anchor     	2
+				nlines     	3
+				max_width  	616
+				justify    	1)
+			    width      	636
+			    height     	194
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "Class" "Logical View::eastone::common::flyweight::Flyweight" @2
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(1280, 176)
+			    font       	(object Font
+				size       	10
+				face       	"宋体"
+				charSet    	134
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@2
+				location   	(1279, 284)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	226
+				justify    	0
+				label      	"Flyweight")
+			    icon       	"Interface"
+			    icon_style 	"Icon"
+			    fill_color 	16777215
+			    quidu      	"529DEBFB0282"
+			    width      	58
+			    height     	58
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "Class" "Logical View::eastone::common::flyweight::FlyweightFactory" @3
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(418, 144)
+			    font       	(object Font
+				size       	10
+				face       	"宋体"
+				charSet    	134
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@3
+				location   	(417, 252)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	228
+				justify    	0
+				label      	"FlyweightFactory")
+			    icon       	"Interface"
+			    icon_style 	"Icon"
+			    fill_color 	16777215
+			    quidu      	"529DEBFB029B"
+			    compartment 	(object Compartment
+				Parent_View 	@3
+				location   	(236, 309)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				anchor     	2
+				nlines     	2
+				max_width  	353
+				justify    	0)
+			    width      	58
+			    height     	58
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object RealizeView "" @4
+			    stereotype 	TRUE
+			    quidu      	"52A3DF2D029F"
+			    client     	@1
+			    supplier   	@3
+			    vertices   	(list Points
+				(416, 526)
+				(415, 293))
+			    line_style 	0)
+			(object ClassView "Class" "Logical View::eastone::common::flyweight::SharedFlyweight" @5
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(976, 560)
+			    font       	(object Font
+				size       	10
+				face       	"宋体"
+				charSet    	134
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@5
+				location   	(975, 668)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	359
+				justify    	0
+				label      	"SharedFlyweight")
+			    icon       	"Interface"
+			    icon_style 	"Icon"
+			    fill_color 	16777215
+			    quidu      	"529DEBFB02E1"
+			    width      	58
+			    height     	58
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object InheritView "" @6
+			    stereotype 	TRUE
+			    quidu      	"529DEBFB0314"
+			    client     	@5
+			    supplier   	@2
+			    vertices   	(list Points
+				(993, 532)
+				(1178, 303))
+			    line_style 	0)
+			(object ClassView "Class" "Logical View::eastone::common::flyweight::UnsharedFlyweight" @7
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(1584, 544)
+			    font       	(object Font
+				size       	10
+				face       	"宋体"
+				charSet    	134
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@7
+				location   	(1583, 652)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	362
+				justify    	0
+				label      	"UnsharedFlyweight")
+			    icon       	"Interface"
+			    icon_style 	"Icon"
+			    fill_color 	16777215
+			    quidu      	"529DEBFB0336"
+			    width      	58
+			    height     	58
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object InheritView "" @8
+			    stereotype 	TRUE
+			    quidu      	"529DEBFB0367"
+			    client     	@7
+			    supplier   	@2
+			    vertices   	(list Points
+				(1561, 516)
+				(1382, 299))
+			    line_style 	0)))))
 	(object Class_Category "interpreter"
 	    quid       	"529DEBFD0072"
 	    exportControl 	"Public"
@@ -12116,7 +12738,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.context.Context arg0"))
-			    quid       	"529DEC320142"
+			    quid       	"52A3DF2E036A"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -12124,7 +12746,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC320148"
+				    quid       	"52A3DF2E037A"
 				    type       	"Context"
 				    quidu      	"529DEBF8025A"))
 			    result     	"void"
@@ -12573,7 +13195,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0, eastone.common.mediator.Colleague arg1"))
-			    quid       	"529DEC3202A5"
+			    quid       	"52A3DF2F00E9"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -12581,7 +13203,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC3202A9"
+				    quid       	"52A3DF2F00EA"
 				    type       	"Logical View::java::lang::Object")
 				(object Parameter "arg1"
 				    attributes 	(list Attribute_Set
@@ -12589,7 +13211,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC3202AA"
+				    quid       	"52A3DF2F00F9"
 				    type       	"Colleague"
 				    quidu      	"529DEBFD01B4"))
 			    result     	"void"
@@ -12634,7 +13256,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0"))
-			    quid       	"529DEC3202AC"
+			    quid       	"52A3DF2F00FA"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -12642,7 +13264,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC3202B1"
+				    quid       	"52A3DF2F00FB"
 				    type       	"Logical View::java::lang::Object"))
 			    result     	"Colleague"
 			    concurrency 	"Sequential"
@@ -12687,7 +13309,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0"))
-			    quid       	"529DEC3202B3"
+			    quid       	"52A3DF2F00FC"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -12695,7 +13317,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC3202B7"
+				    quid       	"52A3DF2F00FD"
 				    type       	"Logical View::java::lang::Object"))
 			    result     	"void"
 			    concurrency 	"Sequential"
@@ -12739,7 +13361,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC3202BC"
+			    quid       	"52A3DF2F0109"
 			    result     	"Map"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -12839,7 +13461,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.mediator.Mediator arg0"))
-			    quid       	"529DEC3202D1"
+			    quid       	"52A3DF2F0118"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -12847,7 +13469,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC3202D5"
+				    quid       	"52A3DF2F0119"
 				    type       	"Mediator"
 				    quidu      	"529DEBFD0278"))
 			    result     	"void"
@@ -12892,7 +13514,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC3202D7"
+			    quid       	"52A3DF2F011A"
 			    result     	"Mediator"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -13096,7 +13718,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0, eastone.common.memento.Memento arg1"))
-			    quid       	"529DEC3202FE"
+			    quid       	"52A3DF2F0166"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -13104,7 +13726,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC320301"
+				    quid       	"52A3DF2F0176"
 				    type       	"Logical View::java::lang::Object")
 				(object Parameter "arg1"
 				    attributes 	(list Attribute_Set
@@ -13112,7 +13734,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC320303"
+				    quid       	"52A3DF2F0177"
 				    type       	"Memento"
 				    quidu      	"529DEBFD035A"))
 			    result     	"void"
@@ -13157,7 +13779,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0"))
-			    quid       	"529DEC320305"
+			    quid       	"52A3DF2F0178"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -13165,7 +13787,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC32030D"
+				    quid       	"52A3DF2F0179"
 				    type       	"Logical View::java::lang::Object"))
 			    result     	"Memento"
 			    concurrency 	"Sequential"
@@ -13210,7 +13832,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0"))
-			    quid       	"529DEC32030F"
+			    quid       	"52A3DF2F017A"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -13218,7 +13840,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC320313"
+				    quid       	"52A3DF2F017B"
 				    type       	"Logical View::java::lang::Object"))
 			    result     	"void"
 			    concurrency 	"Sequential"
@@ -13262,7 +13884,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC320319"
+			    quid       	"52A3DF2F0186"
 			    result     	"Map"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -13362,7 +13984,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC32032B"
+			    quid       	"52A3DF2F0195"
 			    result     	"Logical View::java::lang::Object"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -13405,7 +14027,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0"))
-			    quid       	"529DEC320330"
+			    quid       	"52A3DF2F0196"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -13413,7 +14035,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC320333"
+				    quid       	"52A3DF2F0197"
 				    type       	"Logical View::java::lang::Object"))
 			    result     	"void"
 			    concurrency 	"Sequential"
@@ -13513,7 +14135,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC320342"
+			    quid       	"52A3DF2F01A5"
 			    result     	"Memento"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -13557,7 +14179,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.memento.Memento arg0"))
-			    quid       	"529DEC320349"
+			    quid       	"52A3DF2F01A6"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -13565,7 +14187,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC32034D"
+				    quid       	"52A3DF2F01A7"
 				    type       	"Memento"
 				    quidu      	"529DEBFD035A"))
 			    result     	"void"
@@ -13770,7 +14392,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC320371"
+			    quid       	"52A3DF2F01F3"
 			    result     	"Subject"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -13814,7 +14436,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.observer.Subject arg0"))
-			    quid       	"529DEC32037A"
+			    quid       	"52A3DF2F01F4"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -13822,7 +14444,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC32037E"
+				    quid       	"52A3DF2F01F5"
 				    type       	"Subject"
 				    quidu      	"529DEBFE006C"))
 			    result     	"void"
@@ -13966,7 +14588,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.observer.Observer arg0"))
-			    quid       	"529DEC320398"
+			    quid       	"52A3DF2F0212"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -13974,7 +14596,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC32039D"
+				    quid       	"52A3DF2F0213"
 				    type       	"Observer"
 				    quidu      	"529DEBFE0063"))
 			    result     	"void"
@@ -14019,7 +14641,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.observer.Observer arg0"))
-			    quid       	"529DEC32039E"
+			    quid       	"52A3DF2F0214"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -14027,7 +14649,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC3203A3"
+				    quid       	"52A3DF2F0215"
 				    type       	"Observer"
 				    quidu      	"529DEBFE0063"))
 			    result     	"void"
@@ -14246,7 +14868,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC36018B"
+			    quid       	"52A3DF33003E"
 			    result     	"Logical View::java::lang::Object"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -14289,7 +14911,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0"))
-			    quid       	"529DEC36018F"
+			    quid       	"52A3DF33004D"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -14297,7 +14919,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC360193"
+				    quid       	"52A3DF33004E"
 				    type       	"Logical View::java::lang::Object"))
 			    result     	"void"
 			    concurrency 	"Sequential"
@@ -14418,7 +15040,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC3601AA"
+			    quid       	"52A3DF33005D"
 			    result     	"Logical View::java::lang::Object"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -14461,7 +15083,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0"))
-			    quid       	"529DEC3601AE"
+			    quid       	"52A3DF33005E"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -14469,7 +15091,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC3601B2"
+				    quid       	"52A3DF33005F"
 				    type       	"Logical View::java::lang::Object"))
 			    result     	"void"
 			    concurrency 	"Sequential"
@@ -14741,7 +15363,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC3601D8"
+			    quid       	"52A3DF3300AB"
 			    result     	"State"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -14785,7 +15407,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.state.State arg0"))
-			    quid       	"529DEC3601DD"
+			    quid       	"52A3DF3300BB"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -14793,7 +15415,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC3601E2"
+				    quid       	"52A3DF3300BC"
 				    type       	"State"
 				    quidu      	"529DEC0301E8"))
 			    result     	"void"
@@ -14875,10 +15497,12 @@
 			    quidu      	"529DEBF600E7"))
 		    used_nodes 	(list uses_relationship_list
 			(object Uses_Relationship
+			    attributes 	(list Attribute_Set)
 			    quid       	"529DF7E0004B"
 			    supplier   	"Logical View::eastone::common::strategy::Strategy"
 			    quidu      	"529DEC0400E8")
 			(object Uses_Relationship
+			    attributes 	(list Attribute_Set)
 			    quid       	"529DF82C0147"
 			    supplier   	"Logical View::eastone::common::strategy::StrategyRuntimeException"
 			    quidu      	"529DEC040112"))
@@ -15053,7 +15677,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.util.Map arg0"))
-			    quid       	"529DEC360357"
+			    quid       	"52A3DF3302FD"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -15061,7 +15685,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC36035C"
+				    quid       	"52A3DF3302FE"
 				    type       	"Map"
 				    quidu      	"529DEBAC014E"))
 			    concurrency 	"Sequential"
@@ -15105,7 +15729,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0"))
-			    quid       	"529DEC36035E"
+			    quid       	"52A3DF3302FF"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -15113,7 +15737,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC360362"
+				    quid       	"52A3DF33030D"
 				    type       	"Logical View::java::lang::Object"))
 			    result     	"void"
 			    concurrency 	"Sequential"
@@ -15157,7 +15781,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC360364"
+			    quid       	"52A3DF33030E"
 			    result     	"Logical View::java::lang::Object"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -15199,8 +15823,8 @@
 				(object Attribute
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
-				    value      	"java.lang.Object arg0, eastone.common.strategy.Strategy arg1"))
-			    quid       	"529DEC36036C"
+				    value      	"eastone.common.strategy.Strategy arg0"))
+			    quid       	"52A3DF33030F"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -15208,15 +15832,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC360374"
-				    type       	"Logical View::java::lang::Object")
-				(object Parameter "arg1"
-				    attributes 	(list Attribute_Set
-					(object Attribute
-					    tool       	"Java"
-					    name       	"IsFinal"
-					    value      	"false"))
-				    quid       	"529DEC360375"
+				    quid       	"52A3DF33031C"
 				    type       	"Strategy"
 				    quidu      	"529DEC0400E8"))
 			    result     	"void"
@@ -15261,7 +15877,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0"))
-			    quid       	"529DEC360378"
+			    quid       	"52A3DF33031D"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -15269,7 +15885,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC36037C"
+				    quid       	"52A3DF33031E"
 				    type       	"Logical View::java::lang::Object"))
 			    result     	"Strategy"
 			    concurrency 	"Sequential"
@@ -15314,7 +15930,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0"))
-			    quid       	"529DEC36037F"
+			    quid       	"52A3DF33032C"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -15322,7 +15938,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC360383"
+				    quid       	"52A3DF33032D"
 				    type       	"Logical View::java::lang::Object"))
 			    result     	"void"
 			    concurrency 	"Sequential"
@@ -15366,7 +15982,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC36038A"
+			    quid       	"52A3DF33033B"
 			    result     	"Map"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -15410,7 +16026,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.strategy.Strategy arg0"))
-			    quid       	"529DEC3603CD"
+			    quid       	"52A3DF33036A"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -15418,7 +16034,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC370018"
+				    quid       	"52A3DF330399"
 				    type       	"Strategy"
 				    quidu      	"529DEC0400E8"))
 			    result     	"void"
@@ -15633,8 +16249,8 @@
 				(object Attribute
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
-				    value      	"java.lang.Object arg0, eastone.common.strategy.Strategy arg1"))
-			    quid       	"529DEC37008A"
+				    value      	"eastone.common.strategy.Strategy arg0"))
+			    quid       	"52A3DF34005D"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -15642,15 +16258,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC37008D"
-				    type       	"Logical View::java::lang::Object")
-				(object Parameter "arg1"
-				    attributes 	(list Attribute_Set
-					(object Attribute
-					    tool       	"Java"
-					    name       	"IsFinal"
-					    value      	"false"))
-				    quid       	"529DEC37008F"
+				    quid       	"52A3DF34006D"
 				    type       	"Strategy"
 				    quidu      	"529DEC0400E8"))
 			    result     	"void"
@@ -15695,7 +16303,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0"))
-			    quid       	"529DEC370091"
+			    quid       	"52A3DF34006E"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -15703,7 +16311,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC37009A"
+				    quid       	"52A3DF34006F"
 				    type       	"Logical View::java::lang::Object"))
 			    result     	"Strategy"
 			    concurrency 	"Sequential"
@@ -15748,7 +16356,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0"))
-			    quid       	"529DEC37009C"
+			    quid       	"52A3DF340070"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -15756,7 +16364,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC3700A2"
+				    quid       	"52A3DF34007C"
 				    type       	"Logical View::java::lang::Object"))
 			    result     	"void"
 			    concurrency 	"Sequential"
@@ -15800,7 +16408,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	""))
-			    quid       	"529DEC3700AF"
+			    quid       	"52A3DF34007D"
 			    result     	"Map"
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -15844,7 +16452,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Object arg0"))
-			    quid       	"529DEC3700B5"
+			    quid       	"52A3DF34008C"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -15852,7 +16460,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC3700B8"
+				    quid       	"52A3DF34008D"
 				    type       	"Logical View::java::lang::Object"))
 			    result     	"void"
 			    concurrency 	"Sequential"
@@ -15913,6 +16521,102 @@
 			    value      	TRUE))
 		    quid       	"529DEC0400E8"
 		    stereotype 	"Interface"
+		    operations 	(list Operations
+			(object Operation "setKey"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"Java"
+				    name       	"GenerateFullyQualifiedReturn"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"GenerateFullyQualifiedThrows"
+				    value      	"")
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Abstract"
+				    value      	TRUE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Static"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Final"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Native"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Synchronized"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Strictfp"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"GenerateFullyQualifiedArgument"
+				    value      	"java.lang.Object arg0"))
+			    quid       	"52A3DF34000F"
+			    parameters 	(list Parameters
+				(object Parameter "arg0"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"Java"
+					    name       	"IsFinal"
+					    value      	"false"))
+				    quid       	"52A3DF340010"
+				    type       	"Logical View::java::lang::Object"))
+			    result     	"void"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "getKey"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"Java"
+				    name       	"GenerateFullyQualifiedReturn"
+				    value      	TRUE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"GenerateFullyQualifiedThrows"
+				    value      	"")
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Abstract"
+				    value      	TRUE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Static"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Final"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Native"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Synchronized"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Strictfp"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"GenerateFullyQualifiedArgument"
+				    value      	""))
+			    quid       	"52A3DF34001F"
+			    result     	"Logical View::java::lang::Object"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0))
 		    module     	"Component View::eastone::common::strategy::Strategy"
 		    quidu      	"529DEC0400E4"
 		    language   	"Java")
@@ -16054,7 +16758,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.String arg0, java.lang.Throwable arg1"))
-			    quid       	"529DEC3701B0"
+			    quid       	"52A3DF340176"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -16062,7 +16766,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC3701B3"
+				    quid       	"52A3DF340177"
 				    type       	"Logical View::java::lang::String")
 				(object Parameter "arg1"
 				    attributes 	(list Attribute_Set
@@ -16070,7 +16774,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC3701B5"
+				    quid       	"52A3DF340178"
 				    type       	"Throwable"
 				    quidu      	"529DEBA1002F"))
 			    concurrency 	"Sequential"
@@ -16110,7 +16814,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Throwable arg0"))
-			    quid       	"529DEC3701B7"
+			    quid       	"52A3DF340179"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -16118,7 +16822,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC3701BA"
+				    quid       	"52A3DF340186"
 				    type       	"Throwable"
 				    quidu      	"529DEBA1002F"))
 			    concurrency 	"Sequential"
@@ -16158,7 +16862,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.String arg0"))
-			    quid       	"529DEC3701BC"
+			    quid       	"52A3DF340187"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -16166,7 +16870,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC3701C0"
+				    quid       	"52A3DF340188"
 				    type       	"Logical View::java::lang::String"))
 			    concurrency 	"Sequential"
 			    opExportControl 	"Public"
@@ -16253,7 +16957,236 @@
 		    module     	"Component View::eastone::common::strategy::package-info"
 		    quidu      	"529DEC040194"
 		    language   	"Java")
-		(object Association "$UNNAMED$32"
+		(object Class "AbstractStrategy"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"BodyDanglingComment"
+			    value      	"")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateFinalizer"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateStaticInitializer"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateInstanceInitializer"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateDefaultConstructor"
+			    value      	TRUE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"ReadOnly"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Strictfp"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateFullyQualifiedExtends"
+			    value      	"eastone.common.GeneralParentObject")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateFullyQualifiedImplements"
+			    value      	"eastone.common.strategy.Strategy")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Enum Code"
+			    value      	"")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"ConstructorIs"
+			    value      	("Ctor_Set" 62))
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateCode"
+			    value      	TRUE))
+		    quid       	"52A3DF330157"
+		    superclasses 	(list inheritance_relationship_list
+			(object Inheritance_Relationship
+			    attributes 	(list Attribute_Set)
+			    quid       	"52A3DF330186"
+			    supplier   	"Logical View::eastone::common::GeneralParentObject"
+			    quidu      	"529DEBF600E7"))
+		    realized_interfaces 	(list realize_rel_list
+			(object Realize_Relationship
+			    attributes 	(list Attribute_Set)
+			    quid       	"52A3DF3301B5"
+			    supplier   	"Logical View::eastone::common::strategy::Strategy"
+			    quidu      	"529DEC0400E8"))
+		    operations 	(list Operations
+			(object Operation "AbstractStrategy"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"Java"
+				    name       	"GenerateFullyQualifiedThrows"
+				    value      	"")
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Abstract"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Static"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Final"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Native"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Synchronized"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Strictfp"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"GenerateFullyQualifiedArgument"
+				    value      	""))
+			    quid       	"52A3DF3301B7"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "setKey"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"Java"
+				    name       	"GenerateFullyQualifiedReturn"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"GenerateFullyQualifiedThrows"
+				    value      	"")
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Abstract"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Static"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Final"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Native"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Synchronized"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Strictfp"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"GenerateFullyQualifiedArgument"
+				    value      	"java.lang.Object arg0"))
+			    quid       	"52A3DF3301C4"
+			    parameters 	(list Parameters
+				(object Parameter "arg0"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"Java"
+					    name       	"IsFinal"
+					    value      	"false"))
+				    quid       	"52A3DF3301C5"
+				    type       	"Logical View::java::lang::Object"))
+			    result     	"void"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)
+			(object Operation "getKey"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"Java"
+				    name       	"GenerateFullyQualifiedReturn"
+				    value      	TRUE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"GenerateFullyQualifiedThrows"
+				    value      	"")
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Abstract"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Static"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Final"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Native"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Synchronized"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Strictfp"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"GenerateFullyQualifiedArgument"
+				    value      	""))
+			    quid       	"52A3DF3301C6"
+			    result     	"Logical View::java::lang::Object"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0))
+		    class_attributes 	(list class_attribute_list
+			(object ClassAttribute "key"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Final"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Transient"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"Volatile"
+				    value      	FALSE)
+				(object Attribute
+				    tool       	"Java"
+				    name       	"GenerateFullyQualifiedTypes"
+				    value      	TRUE))
+			    quid       	"52A3DF3301B6"
+			    type       	"Logical View::java::lang::Object"))
+		    module     	"Component View::eastone::common::strategy::AbstractStrategy"
+		    quidu      	"52A3DF330147"
+		    language   	"Java")
+		(object Association "$UNNAMED$34"
 		    attributes 	(list Attribute_Set)
 		    quid       	"529DEC0400B9"
 		    roles      	(list role_list
@@ -16285,7 +17218,7 @@
 			    quidu      	"529DEBAC014E"
 			    exportControl 	"Private"
 			    is_navigable 	TRUE)
-			(object Role "$UNNAMED$33"
+			(object Role "$UNNAMED$35"
 			    quid       	"529DEC0400BC"
 			    supplier   	"Logical View::eastone::common::strategy::AbstractStrategyContext"
 			    quidu      	"529DEC04004B"))))
@@ -16299,7 +17232,7 @@
 		    origin_x   	0
 		    origin_y   	0
 		    items      	(list diagram_item_list
-			(object ClassView "Class" "Logical View::eastone::common::strategy::StrategyRuntimeException" @1
+			(object ClassView "Class" "Logical View::eastone::common::strategy::StrategyRuntimeException" @9
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -16315,7 +17248,7 @@
 				color      	0
 				default_color 	TRUE)
 			    label      	(object ItemLabel
-				Parent_View 	@1
+				Parent_View 	@9
 				location   	(1171, 171)
 				nlines     	1
 				max_width  	794
@@ -16325,7 +17258,7 @@
 			    fill_color 	16777215
 			    quidu      	"529DEC040112"
 			    compartment 	(object Compartment
-				Parent_View 	@1
+				Parent_View 	@9
 				location   	(1171, 223)
 				font       	(object Font
 				    size       	10
@@ -16346,7 +17279,7 @@
 			    height     	318
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::eastone::common::strategy::StrategyContext" @2
+			(object ClassView "Class" "Logical View::eastone::common::strategy::StrategyContext" @10
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -16362,7 +17295,7 @@
 				color      	0
 				default_color 	TRUE)
 			    label      	(object ItemLabel
-				Parent_View 	@2
+				Parent_View 	@10
 				location   	(687, 380)
 				anchor_loc 	1
 				nlines     	2
@@ -16374,8 +17307,8 @@
 			    fill_color 	16777215
 			    quidu      	"529DEC040089"
 			    compartment 	(object Compartment
-				Parent_View 	@2
-				location   	(430, 416)
+				Parent_View 	@10
+				location   	(432, 416)
 				font       	(object Font
 				    size       	10
 				    face       	"宋体"
@@ -16395,7 +17328,7 @@
 			    height     	58
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::eastone::common::strategy::Strategy" @3
+			(object ClassView "Class" "Logical View::eastone::common::strategy::Strategy" @11
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -16411,7 +17344,7 @@
 				color      	0
 				default_color 	TRUE)
 			    label      	(object ItemLabel
-				Parent_View 	@3
+				Parent_View 	@11
 				location   	(1855, 860)
 				anchor_loc 	1
 				nlines     	2
@@ -16422,11 +17355,29 @@
 			    icon_style 	"Icon"
 			    fill_color 	16777215
 			    quidu      	"529DEC0400E8"
+			    compartment 	(object Compartment
+				Parent_View 	@11
+				location   	(1854, 896)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				anchor     	2
+				nlines     	3
+				max_width  	0
+				justify    	0)
 			    width      	58
 			    height     	58
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::eastone::common::strategy::AbstractStrategyContext" @4
+			(object ClassView "Class" "Logical View::eastone::common::strategy::AbstractStrategyContext" @12
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -16442,7 +17393,7 @@
 				color      	0
 				default_color 	TRUE)
 			    label      	(object ItemLabel
-				Parent_View 	@4
+				Parent_View 	@12
 				location   	(104, 844)
 				nlines     	1
 				max_width  	1168
@@ -16452,7 +17403,7 @@
 			    fill_color 	16777215
 			    quidu      	"529DEC04004B"
 			    compartment 	(object Compartment
-				Parent_View 	@4
+				Parent_View 	@12
 				location   	(104, 896)
 				font       	(object Font
 				    size       	10
@@ -16473,34 +17424,34 @@
 			    height     	604
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object RealizeView "" @5
+			(object RealizeView "" @13
 			    stereotype 	TRUE
 			    quidu      	"529DEC0400B8"
-			    client     	@4
-			    supplier   	@2
+			    client     	@12
+			    supplier   	@10
 			    vertices   	(list Points
 				(688, 833)
-				(688, 743))
+				(688, 399))
 			    line_style 	0)
-			(object UsesView "" @6
+			(object UsesView "" @14
 			    stereotype 	TRUE
 			    quidu      	"529DF7E0004B"
-			    client     	@4
-			    supplier   	@3
+			    client     	@12
+			    supplier   	@11
 			    vertices   	(list Points
 				(1281, 941)
-				(1762, 781))
+				(1768, 779))
 			    line_style 	0)
-			(object UsesView "" @7
+			(object UsesView "" @15
 			    stereotype 	TRUE
 			    quidu      	"529DF82C0147"
-			    client     	@4
-			    supplier   	@1
+			    client     	@12
+			    supplier   	@9
 			    vertices   	(list Points
 				(1013, 833)
 				(1396, 479))
 			    line_style 	0)
-			(object ClassView "Class" "Logical View::java::util::Map" @8
+			(object ClassView "Class" "Logical View::java::util::Map" @16
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -16516,7 +17467,7 @@
 				color      	0
 				default_color 	TRUE)
 			    label      	(object ItemLabel
-				Parent_View 	@8
+				Parent_View 	@16
 				location   	(1751, 1076)
 				nlines     	1
 				max_width  	178
@@ -16529,13 +17480,13 @@
 			    height     	140
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object AssociationViewNew "$UNNAMED$32" @9
+			(object AssociationViewNew "$UNNAMED$34" @17
 			    location   	(1511, 1136)
 			    stereotype 	TRUE
 			    quidu      	"529DEC0400B9"
 			    roleview_list 	(list RoleViews
-				(object RoleView "$UNNAMED$33" @10
-				    Parent_View 	@9
+				(object RoleView "$UNNAMED$35" @18
+				    Parent_View 	@17
 				    location   	(-57, 512)
 				    font       	(object Font
 					size       	10
@@ -16547,8 +17498,8 @@
 					strike     	FALSE
 					color      	0
 					default_color 	TRUE)
-				    label      	(object SegLabel @11
-					Parent_View 	@10
+				    label      	(object SegLabel @19
+					Parent_View 	@18
 					location   	(1327, 1095)
 					font       	(object Font
 					    size       	10
@@ -16572,14 +17523,14 @@
 					orientation 	1)
 				    stereotype 	TRUE
 				    quidu      	"529DEC0400BC"
-				    client     	@9
-				    supplier   	@4
+				    client     	@17
+				    supplier   	@12
 				    vertices   	(list Points
 					(1511, 1136)
 					(1281, 1136))
 				    line_style 	0)
-				(object RoleView "contextMap" @12
-				    Parent_View 	@9
+				(object RoleView "contextMap" @20
+				    Parent_View 	@17
 				    location   	(-57, 512)
 				    font       	(object Font
 					size       	10
@@ -16591,8 +17542,8 @@
 					strike     	FALSE
 					color      	0
 					default_color 	TRUE)
-				    label      	(object SegLabel @13
-					Parent_View 	@12
+				    label      	(object SegLabel @21
+					Parent_View 	@20
 					location   	(1610, 1095)
 					font       	(object Font
 					    size       	10
@@ -16615,8 +17566,8 @@
 					orientation 	0)
 				    stereotype 	TRUE
 				    quidu      	"529DEC0400BA"
-				    client     	@9
-				    supplier   	@8
+				    client     	@17
+				    supplier   	@16
 				    vertices   	(list Points
 					(1511, 1136)
 					(1741, 1136))
@@ -16982,7 +17933,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Class arg0, eastone.common.visitor.Visitor arg1"))
-			    quid       	"529DEC3800E9"
+			    quid       	"52A3DF3500BB"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -16990,7 +17941,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC3800ED"
+				    quid       	"52A3DF3500BC"
 				    type       	"Class"
 				    quidu      	"529DEBFB0233")
 				(object Parameter "arg1"
@@ -16999,7 +17950,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC3800EE"
+				    quid       	"52A3DF3500BD"
 				    type       	"Visitor"
 				    quidu      	"529DEC060025"))
 			    result     	"void"
@@ -17044,7 +17995,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Class arg0, eastone.common.visitor.Visitor arg1"))
-			    quid       	"529DEC3800F1"
+			    quid       	"52A3DF3500CA"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -17052,7 +18003,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC3800F6"
+				    quid       	"52A3DF3500CB"
 				    type       	"Class"
 				    quidu      	"529DEBFB0233")
 				(object Parameter "arg1"
@@ -17061,7 +18012,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC3800F8"
+				    quid       	"52A3DF3500CC"
 				    type       	"Visitor"
 				    quidu      	"529DEC060025"))
 			    result     	"void"
@@ -17106,7 +18057,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Class arg0"))
-			    quid       	"529DEC3800FC"
+			    quid       	"52A3DF3500CD"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -17114,7 +18065,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC380100"
+				    quid       	"52A3DF3500CE"
 				    type       	"Class"
 				    quidu      	"529DEBFB0233"))
 			    result     	"void"
@@ -17159,7 +18110,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Class arg0"))
-			    quid       	"529DEC380108"
+			    quid       	"52A3DF3500EA"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -17167,7 +18118,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC38010D"
+				    quid       	"52A3DF3500EB"
 				    type       	"Class"
 				    quidu      	"529DEBFB0233"))
 			    result     	"List"
@@ -17213,7 +18164,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.visitor.Visitable arg0"))
-			    quid       	"529DEC380111"
+			    quid       	"52A3DF3500EC"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -17221,7 +18172,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC380117"
+				    quid       	"52A3DF3500ED"
 				    type       	"Visitable"
 				    quidu      	"529DEC06004E"))
 			    result     	"void"
@@ -17365,7 +18316,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Class arg0, eastone.common.visitor.Visitor arg1"))
-			    quid       	"529DEC380156"
+			    quid       	"52A3DF350147"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -17373,7 +18324,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC38015A"
+				    quid       	"52A3DF350148"
 				    type       	"Class"
 				    quidu      	"529DEBFB0233")
 				(object Parameter "arg1"
@@ -17382,7 +18333,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC38015C"
+				    quid       	"52A3DF350149"
 				    type       	"Visitor"
 				    quidu      	"529DEC060025"))
 			    result     	"void"
@@ -17427,7 +18378,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Class arg0, eastone.common.visitor.Visitor arg1"))
-			    quid       	"529DEC38015F"
+			    quid       	"52A3DF350157"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -17435,7 +18386,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC380163"
+				    quid       	"52A3DF350158"
 				    type       	"Class"
 				    quidu      	"529DEBFB0233")
 				(object Parameter "arg1"
@@ -17444,7 +18395,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC380165"
+				    quid       	"52A3DF350159"
 				    type       	"Visitor"
 				    quidu      	"529DEC060025"))
 			    result     	"void"
@@ -17489,7 +18440,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Class arg0"))
-			    quid       	"529DEC380167"
+			    quid       	"52A3DF35015A"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -17497,7 +18448,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC38016B"
+				    quid       	"52A3DF35015B"
 				    type       	"Class"
 				    quidu      	"529DEBFB0233"))
 			    result     	"void"
@@ -17542,7 +18493,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"java.lang.Class arg0"))
-			    quid       	"529DEC380173"
+			    quid       	"52A3DF350167"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -17550,7 +18501,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC380178"
+				    quid       	"52A3DF350168"
 				    type       	"Class"
 				    quidu      	"529DEBFB0233"))
 			    result     	"List"
@@ -17596,7 +18547,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.visitor.Visitable arg0"))
-			    quid       	"529DEC38017D"
+			    quid       	"52A3DF350169"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -17604,7 +18555,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC380183"
+				    quid       	"52A3DF350176"
 				    type       	"Visitable"
 				    quidu      	"529DEC06004E"))
 			    result     	"void"
@@ -17705,7 +18656,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.visitor.Visitable arg0"))
-			    quid       	"529DEC380142"
+			    quid       	"52A3DF350119"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -17713,7 +18664,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC380147"
+				    quid       	"52A3DF35011A"
 				    type       	"Visitable"
 				    quidu      	"529DEC06004E"))
 			    result     	"void"
@@ -17814,7 +18765,7 @@
 				    tool       	"Java"
 				    name       	"GenerateFullyQualifiedArgument"
 				    value      	"eastone.common.visitor.Visitor arg0"))
-			    quid       	"529DEC380134"
+			    quid       	"52A3DF350109"
 			    parameters 	(list Parameters
 				(object Parameter "arg0"
 				    attributes 	(list Attribute_Set
@@ -17822,7 +18773,7 @@
 					    tool       	"Java"
 					    name       	"IsFinal"
 					    value      	"false"))
-				    quid       	"529DEC380138"
+				    quid       	"52A3DF35010A"
 				    type       	"Visitor"
 				    quidu      	"529DEC060025"))
 			    result     	"void"
@@ -17888,7 +18839,7 @@
 		    module     	"Component View::eastone::common::visitor::package-info"
 		    quidu      	"529DEC060063"
 		    language   	"Java")
-		(object Association "$UNNAMED$34"
+		(object Association "$UNNAMED$36"
 		    attributes 	(list Attribute_Set)
 		    quid       	"529DEC060013"
 		    roles      	(list role_list
@@ -17920,9 +18871,221 @@
 			    quidu      	"529DEBAC014E"
 			    exportControl 	"Private"
 			    is_navigable 	TRUE)
-			(object Role "$UNNAMED$35"
+			(object Role "$UNNAMED$37"
 			    quid       	"529DEC060016"
 			    supplier   	"Logical View::eastone::common::visitor::DefaultVisitorController"
 			    quidu      	"529DEC050394"))))
-	    logical_presentations 	(list unit_reference_list)))
+	    logical_presentations 	(list unit_reference_list
+		(object ClassDiagram "main"
+		    quid       	"52A3F29402D4"
+		    title      	"main"
+		    zoom       	100
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	0
+		    items      	(list diagram_item_list
+			(object ClassView "Class" "Logical View::eastone::common::visitor::DefaultVisitorController" @22
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(1376, 688)
+			    font       	(object Font
+				size       	10
+				face       	"宋体"
+				charSet    	134
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@22
+				location   	(1067, 498)
+				nlines     	1
+				max_width  	618
+				justify    	0
+				label      	"DefaultVisitorController")
+			    icon_style 	"Icon"
+			    fill_color 	16777215
+			    quidu      	"529DEC050394"
+			    compartment 	(object Compartment
+				Parent_View 	@22
+				location   	(1067, 550)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				anchor     	2
+				nlines     	8
+				max_width  	616
+				justify    	1)
+			    width      	636
+			    height     	400
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "Class" "Logical View::eastone::common::visitor::Visitable" @23
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(240, 464)
+			    font       	(object Font
+				size       	10
+				face       	"宋体"
+				charSet    	134
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@23
+				location   	(239, 572)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	516
+				justify    	0
+				label      	"Visitable")
+			    icon       	"Interface"
+			    icon_style 	"Icon"
+			    fill_color 	16777215
+			    quidu      	"529DEC06004E"
+			    compartment 	(object Compartment
+				Parent_View 	@23
+				location   	(128, 608)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				anchor     	2
+				nlines     	2
+				max_width  	219
+				justify    	0)
+			    width      	58
+			    height     	58
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "Class" "Logical View::eastone::common::visitor::Visitor" @24
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(736, 208)
+			    font       	(object Font
+				size       	10
+				face       	"宋体"
+				charSet    	134
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@24
+				location   	(735, 316)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	519
+				justify    	0
+				label      	"Visitor")
+			    icon       	"Interface"
+			    icon_style 	"Icon"
+			    fill_color 	16777215
+			    quidu      	"529DEC060025"
+			    compartment 	(object Compartment
+				Parent_View 	@24
+				location   	(635, 352)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				anchor     	2
+				nlines     	2
+				max_width  	197
+				justify    	0)
+			    width      	58
+			    height     	58
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "Class" "Logical View::eastone::common::visitor::VisitorController" @25
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(784, 688)
+			    font       	(object Font
+				size       	10
+				face       	"宋体"
+				charSet    	134
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@25
+				location   	(783, 796)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	522
+				justify    	0
+				label      	"VisitorController")
+			    icon       	"Interface"
+			    icon_style 	"Icon"
+			    fill_color 	16777215
+			    quidu      	"529DEC0503CD"
+			    compartment 	(object Compartment
+				Parent_View 	@25
+				location   	(572, 832)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				anchor     	2
+				nlines     	7
+				max_width  	419
+				justify    	0)
+			    width      	58
+			    height     	58
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object RealizeView "" @26
+			    stereotype 	TRUE
+			    quidu      	"529DEC060012"
+			    client     	@22
+			    supplier   	@25
+			    vertices   	(list Points
+				(1057, 688)
+				(810, 688))
+			    line_style 	0))))))
     logical_presentations 	(list unit_reference_list))

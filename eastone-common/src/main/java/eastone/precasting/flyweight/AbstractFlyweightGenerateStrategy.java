@@ -5,9 +5,13 @@
  */
 package eastone.precasting.flyweight;
 
+import java.util.List;
+
 import eastone.common.flyweight.Flyweight;
 import eastone.common.strategy.AbstractStrategy;
 import eastone.common.strategy.StrategyRuntimeException;
+import eastone.common.visitor.DefaultVisitorController;
+import eastone.common.visitor.VisitorController;
 
 /**
  * .
@@ -30,7 +34,23 @@ import eastone.common.strategy.StrategyRuntimeException;
  * @since 0.1
  */
 public abstract class AbstractFlyweightGenerateStrategy<K, F extends Flyweight>
-  extends AbstractStrategy<K> {
+  extends AbstractStrategy<K>
+  implements
+    VisitorController<
+      FlyweightGenerateStrategyVisitor<K, F>,
+      DefaultFlyweightFactory<K, F>
+    > {
+  /**
+   * 内部访问者控制器.
+   */
+  private DefaultVisitorController <
+    FlyweightGenerateStrategyVisitor<K, F>,
+    DefaultFlyweightFactory<K, F>
+    > visitorController
+    = new DefaultVisitorController<
+      FlyweightGenerateStrategyVisitor<K, F>,
+      DefaultFlyweightFactory<K, F>
+    >();
 
   /**
    * 原始工厂类.
@@ -65,12 +85,60 @@ public abstract class AbstractFlyweightGenerateStrategy<K, F extends Flyweight>
     return factoriesContext;
   }
 
+  @Override
+  public void clear() {
+    this.visitorController.clear();
+  }
+
+  @Override
+  public void disregister(Class<DefaultFlyweightFactory<K, F>> type,
+      FlyweightGenerateStrategyVisitor<K, F> visitor) {
+    this.visitorController.disregister(type, visitor);
+  }
+
+  @Override
+  public void invokeVisitors(DefaultFlyweightFactory<K, F> visitable) {
+    this.visitorController.invokeVisitors(visitable);
+  }
+
+  @Override
+  public void registorVisitor(Class<DefaultFlyweightFactory<K, F>> type,
+      FlyweightGenerateStrategyVisitor<K, F> visitor) {
+    this.visitorController.registorVisitor(type, visitor);
+  }
+
+  @Override
+  public void clear(Class<DefaultFlyweightFactory<K, F>> type) {
+    this.clear(type);
+  }
+
+  @Override
+  public List<FlyweightGenerateStrategyVisitor<K, F>> findVisitors(
+      Class<DefaultFlyweightFactory<K, F>> type) {
+    return this.findVisitors(type);
+  }
+
+  /**
+   * 生成享元实例方法.
+   * <p>在实例生成之后，调用了访问者.</p>
+   * @param key 关键字.
+   * @return 实例对象.
+   * @throws StrategyRuntimeException 异常.
+   */
+  public F generateInstance(K key) throws StrategyRuntimeException {
+    F res = null;
+    res = this.generateInstanceByKey(key);
+    this.invokeVisitors(this.factoriesContext);
+    return res;
+  }
+
   /**
    * 生成享元实例方法.
    * @param key 关键字.
    * @return 实例对象.
    * @throws StrategyRuntimeException 异常.
    */
-  public abstract F generateInstance(K key) throws StrategyRuntimeException;
+  protected abstract F generateInstanceByKey(K key)
+      throws StrategyRuntimeException;
 
 }

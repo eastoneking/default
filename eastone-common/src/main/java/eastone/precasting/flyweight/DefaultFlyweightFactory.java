@@ -12,6 +12,10 @@ import java.util.Map;
 import eastone.common.factory.Factory;
 import eastone.common.flyweight.Flyweight;
 import eastone.common.flyweight.FlyweightFactory;
+import eastone.common.strategy.AbstractStrategyContext;
+import eastone.common.strategy.Strategy;
+import eastone.common.strategy.StrategyRuntimeException;
+import eastone.common.visitor.Visitable;
 
 /**
  * .
@@ -34,42 +38,61 @@ import eastone.common.flyweight.FlyweightFactory;
  * @since 0.1
  */
 public class DefaultFlyweightFactory<K, F extends Flyweight>
-  implements FlyweightFactory<K, F> {
+  extends AbstractStrategyContext<K, StrategyRuntimeException>
+  implements
+    FlyweightFactory<K, F>,
+    Visitable<FlyweightGenerateStrategyVisitor<K, F>> {
 
+  /**
+   * 示例图.
+   */
+  private final Map<K, F> instanceMap = new Hashtable<K, F>();
   /**
    * 工厂图.
    */
   private final Map<K, Factory<F, Exception>> factoriesMap;
   /**
-   * 示例图.
-   */
-  private final Map<K, F> instanceMap = new Hashtable<K, F>();
-
-  /**
    * 构造函数.
    * <p>
    * 默认使用{@link LinkedHashMap}存储关键字-工厂图.
    * </p>
+   * @param strategyMap 策略图.
    */
-  public DefaultFlyweightFactory() {
-    this(new LinkedHashMap<K, Factory<F, Exception>>());
+  public DefaultFlyweightFactory(Map<K, Strategy<K>> strategyMap) {
+    this(new LinkedHashMap<K, Factory<F, Exception>>(), strategyMap);
   }
   /**
    * 构造函数.
    * @param map 关键字-工厂图.
+   * @param strategyMap 策略图.
    */
-  public DefaultFlyweightFactory(Map<K, Factory<F, Exception>> map) {
+  public DefaultFlyweightFactory(
+      Map<K, Factory<F, Exception>> map,
+      Map<K, Strategy<K>> strategyMap
+  ) {
+    super(strategyMap);
     this.factoriesMap = map;
   }
+  /**
+   * 本次调用{@link #getFlyweight(Object)}时的享元唯一识别标识.
+   */
+  private K currentKey = null;
+
+  /**
+   * 本次调用{@link #getFlyweight(Object)}的结果.
+   */
+  private F currentInstance = null;
 
   @Override
   public F getFlyweight(K key) {
     F res = null;
+    this.currentKey = key;
     try {
       res = this.factoriesMap.get(key).getInstance();
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
+    this.currentInstance = res;
     return res;
   }
 
@@ -95,6 +118,23 @@ public class DefaultFlyweightFactory<K, F extends Flyweight>
    * @return 实例.
    */
   protected F findFlyweightInstance(K theKey) {
-    return this.instanceMap.get(theKey);
+    F res = null;
+    res = this.instanceMap.get(theKey);
+    return res;
   }
+
+  @Override
+  protected <S extends Strategy<K>> void proccessStrategry(S strategy)
+      throws StrategyRuntimeException {
+  }
+
+  @Override
+  public void accept(FlyweightGenerateStrategyVisitor<K, F> visitor) {
+    visitor.setFactoryInstanceMap(this.instanceMap);
+    visitor.setKey(this.currentKey);
+    visitor.setInstance(this.currentInstance);
+    visitor.visit();
+    visitor.clear();
+  }
+
 }
