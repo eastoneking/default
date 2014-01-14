@@ -82,7 +82,34 @@
 	quid       	"529DE9EA0228"
 	exportControl 	"Public"
 	global     	TRUE
-	logical_models 	(list unit_reference_list)
+	logical_models 	(list unit_reference_list
+	    (object Class "码农"
+		quid       	"52D105AF010B"
+		stereotype 	"Business Actor")
+	    (object UseCase "编码不累"
+		quid       	"52D105C10357"
+		stereotype 	"Business Use Case")
+	    (object UseCase "至少要拥有自己的可复用基础代码包."
+		quid       	"52D105DF03BF"
+		stereotype 	"Business Use Case Realization"
+		visible_modules 	(list dependency_list
+		    (object Dependency_Relationship
+			quid       	"52D105E5032E"
+			stereotype 	"derive"
+			supplier   	"Use Case View::编码不累"
+			quidu      	"52D105C10357")))
+	    (object Association "$UNNAMED$0"
+		quid       	"52D105C4019D"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$1"
+			quid       	"52D105C50072"
+			supplier   	"Use Case View::编码不累"
+			quidu      	"52D105C10357"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$2"
+			quid       	"52D105C50074"
+			supplier   	"Use Case View::码农"
+			quidu      	"52D105AF010B"))))
 	logical_presentations 	(list unit_reference_list
 	    (object UseCaseDiagram "Main"
 		quid       	"529DE9FA033A"
@@ -92,7 +119,167 @@
 		max_width  	21600
 		origin_x   	0
 		origin_y   	0
-		items      	(list diagram_item_list))))
+		items      	(list diagram_item_list
+		    (object ClassView "Class" "Use Case View::码农" @1
+			ShowCompartmentStereotypes 	TRUE
+			SuppressAttribute 	TRUE
+			SuppressOperation 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(336, 640)
+			font       	(object Font
+			    size       	10
+			    face       	"宋体"
+			    charSet    	134
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@1
+			    location   	(335, 848)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	568
+			    justify    	0
+			    label      	"码农")
+			icon       	"Business Actor"
+			icon_style 	"Icon"
+			fill_color 	16777215
+			quidu      	"52D105AF010B"
+			width      	202
+			annotation 	8
+			autoResize 	TRUE)
+		    (object UseCaseView "Use Case View::编码不累" @2
+			location   	(816, 640)
+			font       	(object Font
+			    size       	10
+			    face       	"宋体"
+			    charSet    	134
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@2
+			    location   	(815, 815)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	879
+			    justify    	0
+			    label      	"编码不累")
+			icon       	"Business Use Case"
+			icon_style 	"Icon"
+			fill_color 	16777215
+			quidu      	"52D105C10357"
+			width      	306)
+		    (object AssociationViewNew "$UNNAMED$0" @3
+			location   	(549, 640)
+			font       	(object Font
+			    size       	10
+			    face       	"宋体"
+			    charSet    	134
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			quidu      	"52D105C4019D"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$1" @4
+				Parent_View 	@3
+				location   	(165, 288)
+				stereotype 	TRUE
+				quidu      	"52D105C50072"
+				client     	@3
+				supplier   	@2
+				vertices   	(list Points
+				    (549, 640)
+				    (664, 640))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$2" @5
+				Parent_View 	@3
+				location   	(165, 288)
+				stereotype 	TRUE
+				quidu      	"52D105C50074"
+				client     	@3
+				supplier   	@1
+				vertices   	(list Points
+				    (549, 640)
+				    (434, 640))
+				line_style 	0)))
+		    (object UseCaseView "Use Case View::至少要拥有自己的可复用基础代码包." @6
+			location   	(1456, 144)
+			font       	(object Font
+			    size       	10
+			    face       	"宋体"
+			    charSet    	134
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@6
+			    location   	(1455, 320)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	879
+			    justify    	0
+			    label      	"至少要拥有自己的可复用基础代码包.")
+			icon       	"Business Use Case Realization"
+			icon_style 	"Icon"
+			fill_color 	16777215
+			quidu      	"52D105DF03BF"
+			width      	306
+			height     	194)
+		    (object DependencyView "" @7
+			font       	(object Font
+			    size       	10
+			    face       	"宋体"
+			    charSet    	134
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	(object SegLabel @8
+			    Parent_View 	@7
+			    location   	(1142, 537)
+			    font       	(object Font
+				size       	10
+				face       	"宋体"
+				charSet    	134
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor     	10
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	450
+			    justify    	0
+			    label      	"<<derive>>"
+			    pctDist    	0.500000
+			    height     	120
+			    orientation 	0)
+			quidu      	"52D105E5032E"
+			client     	@6
+			supplier   	@2
+			vertices   	(list Points
+			    (1202, 340)
+			    (934, 545))
+			line_style 	0)))))
     root_category 	(object Class_Category "Logical View"
 	quid       	"529DE9EA0227"
 	exportControl 	"Public"
@@ -2926,7 +3113,7 @@
 					module     	"Component View::eastone::component::http::SimpleHttpClientComponent"
 					quidu      	"529DEBAA028D"
 					language   	"Java")
-				    (object Association "$UNNAMED$0"
+				    (object Association "$UNNAMED$3"
 					attributes 	(list Attribute_Set)
 					quid       	"529DEBA10021"
 					roles      	(list role_list
@@ -2958,11 +3145,11 @@
 						quidu      	"529DEBA003DD"
 						exportControl 	"Private"
 						is_navigable 	TRUE)
-					    (object Role "$UNNAMED$1"
+					    (object Role "$UNNAMED$4"
 						quid       	"529DEBA10024"
 						supplier   	"Logical View::eastone::component::http::HttpException"
 						quidu      	"529DEBA0036A")))
-				    (object Association "$UNNAMED$2"
+				    (object Association "$UNNAMED$5"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -2998,11 +3185,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$3"
+					    (object Role "$UNNAMED$6"
 						quid       	"529DEBA50310"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$4"
+				    (object Association "$UNNAMED$7"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3038,11 +3225,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$5"
+					    (object Role "$UNNAMED$8"
 						quid       	"529DEBA50317"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$6"
+				    (object Association "$UNNAMED$9"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3078,11 +3265,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$7"
+					    (object Role "$UNNAMED$10"
 						quid       	"529DEBA5031E"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$8"
+				    (object Association "$UNNAMED$11"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3118,11 +3305,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$9"
+					    (object Role "$UNNAMED$12"
 						quid       	"529DEBA50326"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$10"
+				    (object Association "$UNNAMED$13"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3158,11 +3345,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$11"
+					    (object Role "$UNNAMED$14"
 						quid       	"529DEBA5032C"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$12"
+				    (object Association "$UNNAMED$15"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3198,11 +3385,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$13"
+					    (object Role "$UNNAMED$16"
 						quid       	"529DEBA50333"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$14"
+				    (object Association "$UNNAMED$17"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3238,11 +3425,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$15"
+					    (object Role "$UNNAMED$18"
 						quid       	"529DEBA5033A"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$16"
+				    (object Association "$UNNAMED$19"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3278,11 +3465,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$17"
+					    (object Role "$UNNAMED$20"
 						quid       	"529DEBA50344"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$18"
+				    (object Association "$UNNAMED$21"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3318,11 +3505,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$19"
+					    (object Role "$UNNAMED$22"
 						quid       	"529DEBA5034C"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$20"
+				    (object Association "$UNNAMED$23"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3358,11 +3545,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$21"
+					    (object Role "$UNNAMED$24"
 						quid       	"529DEBA50355"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$22"
+				    (object Association "$UNNAMED$25"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3398,11 +3585,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$23"
+					    (object Role "$UNNAMED$26"
 						quid       	"529DEBA50361"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$24"
+				    (object Association "$UNNAMED$27"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3438,11 +3625,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$25"
+					    (object Role "$UNNAMED$28"
 						quid       	"529DEBA50369"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$26"
+				    (object Association "$UNNAMED$29"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3478,11 +3665,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$27"
+					    (object Role "$UNNAMED$30"
 						quid       	"529DEBA50377"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$28"
+				    (object Association "$UNNAMED$31"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3518,11 +3705,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$29"
+					    (object Role "$UNNAMED$32"
 						quid       	"529DEBA5037F"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$30"
+				    (object Association "$UNNAMED$33"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3558,11 +3745,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$31"
+					    (object Role "$UNNAMED$34"
 						quid       	"529DEBA50388"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$32"
+				    (object Association "$UNNAMED$35"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3598,11 +3785,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$33"
+					    (object Role "$UNNAMED$36"
 						quid       	"529DEBA50394"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$34"
+				    (object Association "$UNNAMED$37"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3638,11 +3825,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$35"
+					    (object Role "$UNNAMED$38"
 						quid       	"529DEBA503A0"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$36"
+				    (object Association "$UNNAMED$39"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3678,11 +3865,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$37"
+					    (object Role "$UNNAMED$40"
 						quid       	"529DEBA503AA"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$38"
+				    (object Association "$UNNAMED$41"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3718,11 +3905,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$39"
+					    (object Role "$UNNAMED$42"
 						quid       	"529DEBA503B4"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$40"
+				    (object Association "$UNNAMED$43"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3758,11 +3945,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$41"
+					    (object Role "$UNNAMED$44"
 						quid       	"529DEBA503BD"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$42"
+				    (object Association "$UNNAMED$45"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3798,11 +3985,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$43"
+					    (object Role "$UNNAMED$46"
 						quid       	"529DEBA503CA"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$44"
+				    (object Association "$UNNAMED$47"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3838,11 +4025,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$45"
+					    (object Role "$UNNAMED$48"
 						quid       	"529DEBA503D6"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$46"
+				    (object Association "$UNNAMED$49"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3878,11 +4065,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$47"
+					    (object Role "$UNNAMED$50"
 						quid       	"529DEBA60001"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$48"
+				    (object Association "$UNNAMED$51"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3918,11 +4105,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$49"
+					    (object Role "$UNNAMED$52"
 						quid       	"529DEBA60010"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$50"
+				    (object Association "$UNNAMED$53"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3958,11 +4145,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$51"
+					    (object Role "$UNNAMED$54"
 						quid       	"529DEBA6001B"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$52"
+				    (object Association "$UNNAMED$55"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -3998,11 +4185,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$53"
+					    (object Role "$UNNAMED$56"
 						quid       	"529DEBA60026"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$54"
+				    (object Association "$UNNAMED$57"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4038,11 +4225,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$55"
+					    (object Role "$UNNAMED$58"
 						quid       	"529DEBA60036"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$56"
+				    (object Association "$UNNAMED$59"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4078,11 +4265,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$57"
+					    (object Role "$UNNAMED$60"
 						quid       	"529DEBA60042"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$58"
+				    (object Association "$UNNAMED$61"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4118,11 +4305,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$59"
+					    (object Role "$UNNAMED$62"
 						quid       	"529DEBA6004F"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$60"
+				    (object Association "$UNNAMED$63"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4158,11 +4345,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$61"
+					    (object Role "$UNNAMED$64"
 						quid       	"529DEBA6005E"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$62"
+				    (object Association "$UNNAMED$65"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4198,11 +4385,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$63"
+					    (object Role "$UNNAMED$66"
 						quid       	"529DEBA6006B"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$64"
+				    (object Association "$UNNAMED$67"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4238,11 +4425,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$65"
+					    (object Role "$UNNAMED$68"
 						quid       	"529DEBA60079"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$66"
+				    (object Association "$UNNAMED$69"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4278,11 +4465,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$67"
+					    (object Role "$UNNAMED$70"
 						quid       	"529DEBA6008A"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$68"
+				    (object Association "$UNNAMED$71"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4318,11 +4505,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$69"
+					    (object Role "$UNNAMED$72"
 						quid       	"529DEBA60098"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$70"
+				    (object Association "$UNNAMED$73"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4358,11 +4545,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$71"
+					    (object Role "$UNNAMED$74"
 						quid       	"529DEBA600A8"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$72"
+				    (object Association "$UNNAMED$75"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4398,11 +4585,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$73"
+					    (object Role "$UNNAMED$76"
 						quid       	"529DEBA600B8"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$74"
+				    (object Association "$UNNAMED$77"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4438,11 +4625,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$75"
+					    (object Role "$UNNAMED$78"
 						quid       	"529DEBA600C6"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$76"
+				    (object Association "$UNNAMED$79"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4478,11 +4665,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$77"
+					    (object Role "$UNNAMED$80"
 						quid       	"529DEBA600D6"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$78"
+				    (object Association "$UNNAMED$81"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4518,11 +4705,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$79"
+					    (object Role "$UNNAMED$82"
 						quid       	"529DEBA600E7"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$80"
+				    (object Association "$UNNAMED$83"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4558,11 +4745,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$81"
+					    (object Role "$UNNAMED$84"
 						quid       	"529DEBA600F8"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$82"
+				    (object Association "$UNNAMED$85"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4598,11 +4785,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$83"
+					    (object Role "$UNNAMED$86"
 						quid       	"529DEBA6010B"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$84"
+				    (object Association "$UNNAMED$87"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4638,11 +4825,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$85"
+					    (object Role "$UNNAMED$88"
 						quid       	"529DEBA6011A"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$86"
+				    (object Association "$UNNAMED$89"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4678,11 +4865,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$87"
+					    (object Role "$UNNAMED$90"
 						quid       	"529DEBA6012B"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$88"
+				    (object Association "$UNNAMED$91"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4718,11 +4905,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$89"
+					    (object Role "$UNNAMED$92"
 						quid       	"529DEBA6013D"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$90"
+				    (object Association "$UNNAMED$93"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4758,11 +4945,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$91"
+					    (object Role "$UNNAMED$94"
 						quid       	"529DEBA60151"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$92"
+				    (object Association "$UNNAMED$95"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4798,11 +4985,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$93"
+					    (object Role "$UNNAMED$96"
 						quid       	"529DEBA60163"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$94"
+				    (object Association "$UNNAMED$97"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4838,11 +5025,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$95"
+					    (object Role "$UNNAMED$98"
 						quid       	"529DEBA60176"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$96"
+				    (object Association "$UNNAMED$99"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4878,11 +5065,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$97"
+					    (object Role "$UNNAMED$100"
 						quid       	"529DEBA6018A"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$98"
+				    (object Association "$UNNAMED$101"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4918,11 +5105,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$99"
+					    (object Role "$UNNAMED$102"
 						quid       	"529DEBA6019C"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$100"
+				    (object Association "$UNNAMED$103"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4958,11 +5145,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$101"
+					    (object Role "$UNNAMED$104"
 						quid       	"529DEBA601B2"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$102"
+				    (object Association "$UNNAMED$105"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -4998,11 +5185,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$103"
+					    (object Role "$UNNAMED$106"
 						quid       	"529DEBA601C6"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$104"
+				    (object Association "$UNNAMED$107"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5038,11 +5225,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$105"
+					    (object Role "$UNNAMED$108"
 						quid       	"529DEBA601DB"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$106"
+				    (object Association "$UNNAMED$109"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5078,11 +5265,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$107"
+					    (object Role "$UNNAMED$110"
 						quid       	"529DEBA601ED"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$108"
+				    (object Association "$UNNAMED$111"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5118,11 +5305,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$109"
+					    (object Role "$UNNAMED$112"
 						quid       	"529DEBA60203"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$110"
+				    (object Association "$UNNAMED$113"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5158,11 +5345,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$111"
+					    (object Role "$UNNAMED$114"
 						quid       	"529DEBA60217"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$112"
+				    (object Association "$UNNAMED$115"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5198,11 +5385,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$113"
+					    (object Role "$UNNAMED$116"
 						quid       	"529DEBA60230"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$114"
+				    (object Association "$UNNAMED$117"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5238,11 +5425,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$115"
+					    (object Role "$UNNAMED$118"
 						quid       	"529DEBA60246"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$116"
+				    (object Association "$UNNAMED$119"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5278,11 +5465,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$117"
+					    (object Role "$UNNAMED$120"
 						quid       	"529DEBA6025B"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$118"
+				    (object Association "$UNNAMED$121"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5318,11 +5505,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$119"
+					    (object Role "$UNNAMED$122"
 						quid       	"529DEBA60274"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$120"
+				    (object Association "$UNNAMED$123"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5358,11 +5545,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$121"
+					    (object Role "$UNNAMED$124"
 						quid       	"529DEBA6028D"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$122"
+				    (object Association "$UNNAMED$125"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5398,11 +5585,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$123"
+					    (object Role "$UNNAMED$126"
 						quid       	"529DEBA602A6"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$124"
+				    (object Association "$UNNAMED$127"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5438,11 +5625,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$125"
+					    (object Role "$UNNAMED$128"
 						quid       	"529DEBA602BD"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$126"
+				    (object Association "$UNNAMED$129"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5478,11 +5665,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$127"
+					    (object Role "$UNNAMED$130"
 						quid       	"529DEBA602D8"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$128"
+				    (object Association "$UNNAMED$131"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5518,11 +5705,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$129"
+					    (object Role "$UNNAMED$132"
 						quid       	"529DEBA602EF"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$130"
+				    (object Association "$UNNAMED$133"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5558,11 +5745,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$131"
+					    (object Role "$UNNAMED$134"
 						quid       	"529DEBA60307"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$132"
+				    (object Association "$UNNAMED$135"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5598,11 +5785,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$133"
+					    (object Role "$UNNAMED$136"
 						quid       	"529DEBA60325"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$134"
+				    (object Association "$UNNAMED$137"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5638,11 +5825,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$135"
+					    (object Role "$UNNAMED$138"
 						quid       	"529DEBA6033B"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$136"
+				    (object Association "$UNNAMED$139"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5678,11 +5865,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$137"
+					    (object Role "$UNNAMED$140"
 						quid       	"529DEBA60354"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$138"
+				    (object Association "$UNNAMED$141"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5718,11 +5905,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$139"
+					    (object Role "$UNNAMED$142"
 						quid       	"529DEBA6036E"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$140"
+				    (object Association "$UNNAMED$143"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5758,11 +5945,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$141"
+					    (object Role "$UNNAMED$144"
 						quid       	"529DEBA60387"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$142"
+				    (object Association "$UNNAMED$145"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5798,11 +5985,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$143"
+					    (object Role "$UNNAMED$146"
 						quid       	"529DEBA603A1"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$144"
+				    (object Association "$UNNAMED$147"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5838,11 +6025,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$145"
+					    (object Role "$UNNAMED$148"
 						quid       	"529DEBA603C3"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$146"
+				    (object Association "$UNNAMED$149"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5878,11 +6065,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$147"
+					    (object Role "$UNNAMED$150"
 						quid       	"529DEBA603E1"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$148"
+				    (object Association "$UNNAMED$151"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5918,11 +6105,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$149"
+					    (object Role "$UNNAMED$152"
 						quid       	"529DEBA70015"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$150"
+				    (object Association "$UNNAMED$153"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5958,11 +6145,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$151"
+					    (object Role "$UNNAMED$154"
 						quid       	"529DEBA7002E"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$152"
+				    (object Association "$UNNAMED$155"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -5998,11 +6185,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$153"
+					    (object Role "$UNNAMED$156"
 						quid       	"529DEBA70048"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$154"
+				    (object Association "$UNNAMED$157"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -6038,11 +6225,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$155"
+					    (object Role "$UNNAMED$158"
 						quid       	"529DEBA70064"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$156"
+				    (object Association "$UNNAMED$159"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -6078,11 +6265,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$157"
+					    (object Role "$UNNAMED$160"
 						quid       	"529DEBA7007E"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$158"
+				    (object Association "$UNNAMED$161"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -6118,11 +6305,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$159"
+					    (object Role "$UNNAMED$162"
 						quid       	"529DEBA70099"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$160"
+				    (object Association "$UNNAMED$163"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -6158,11 +6345,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$161"
+					    (object Role "$UNNAMED$164"
 						quid       	"529DEBA700B6"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$162"
+				    (object Association "$UNNAMED$165"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -6198,11 +6385,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$163"
+					    (object Role "$UNNAMED$166"
 						quid       	"529DEBA700CF"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$164"
+				    (object Association "$UNNAMED$167"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -6238,11 +6425,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$165"
+					    (object Role "$UNNAMED$168"
 						quid       	"529DEBA700EB"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$166"
+				    (object Association "$UNNAMED$169"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -6278,11 +6465,11 @@
 						quidu      	"529DEBA003DD"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$167"
+					    (object Role "$UNNAMED$170"
 						quid       	"529DEBA70109"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
-				    (object Association "$UNNAMED$168"
+				    (object Association "$UNNAMED$171"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -6319,7 +6506,7 @@
 						exportControl 	"Private"
 						is_navigable 	TRUE
 						static     	TRUE)
-					    (object Role "$UNNAMED$169"
+					    (object Role "$UNNAMED$172"
 						quid       	"529DEBA701CF"
 						supplier   	"Logical View::eastone::component::http::HttpStatusEnum"
 						quidu      	"529DEBA003DD")))
@@ -6793,7 +6980,7 @@
 						module     	"Component View::eastone::component::http::simple::SimpleHttpClientComponentBridgeAbstractionImpl"
 						quidu      	"529DEBAC0079"
 						language   	"Java")
-					    (object Association "$UNNAMED$170"
+					    (object Association "$UNNAMED$173"
 						attributes 	(list Attribute_Set
 						    (object Attribute
 							tool       	"Java"
@@ -6829,11 +7016,11 @@
 							quidu      	"529DEBAA0031"
 							is_navigable 	TRUE
 							static     	TRUE)
-						    (object Role "$UNNAMED$171"
+						    (object Role "$UNNAMED$174"
 							quid       	"529DEBAA0056"
 							supplier   	"Logical View::eastone::component::http::simple::HttpMethodEnum"
 							quidu      	"529DEBAA0031")))
-					    (object Association "$UNNAMED$172"
+					    (object Association "$UNNAMED$175"
 						attributes 	(list Attribute_Set
 						    (object Attribute
 							tool       	"Java"
@@ -6869,11 +7056,11 @@
 							quidu      	"529DEBAA0031"
 							is_navigable 	TRUE
 							static     	TRUE)
-						    (object Role "$UNNAMED$173"
+						    (object Role "$UNNAMED$176"
 							quid       	"529DEBAA005C"
 							supplier   	"Logical View::eastone::component::http::simple::HttpMethodEnum"
 							quidu      	"529DEBAA0031")))
-					    (object Association "$UNNAMED$174"
+					    (object Association "$UNNAMED$177"
 						attributes 	(list Attribute_Set
 						    (object Attribute
 							tool       	"Java"
@@ -6909,11 +7096,11 @@
 							quidu      	"529DEBAA0031"
 							is_navigable 	TRUE
 							static     	TRUE)
-						    (object Role "$UNNAMED$175"
+						    (object Role "$UNNAMED$178"
 							quid       	"529DEBAA0061"
 							supplier   	"Logical View::eastone::component::http::simple::HttpMethodEnum"
 							quidu      	"529DEBAA0031")))
-					    (object Association "$UNNAMED$176"
+					    (object Association "$UNNAMED$179"
 						attributes 	(list Attribute_Set
 						    (object Attribute
 							tool       	"Java"
@@ -6949,11 +7136,11 @@
 							quidu      	"529DEBAA0031"
 							is_navigable 	TRUE
 							static     	TRUE)
-						    (object Role "$UNNAMED$177"
+						    (object Role "$UNNAMED$180"
 							quid       	"529DEBAA0067"
 							supplier   	"Logical View::eastone::component::http::simple::HttpMethodEnum"
 							quidu      	"529DEBAA0031")))
-					    (object Association "$UNNAMED$178"
+					    (object Association "$UNNAMED$181"
 						attributes 	(list Attribute_Set
 						    (object Attribute
 							tool       	"Java"
@@ -6989,11 +7176,11 @@
 							quidu      	"529DEBAA0031"
 							is_navigable 	TRUE
 							static     	TRUE)
-						    (object Role "$UNNAMED$179"
+						    (object Role "$UNNAMED$182"
 							quid       	"529DEBAA006E"
 							supplier   	"Logical View::eastone::component::http::simple::HttpMethodEnum"
 							quidu      	"529DEBAA0031")))
-					    (object Association "$UNNAMED$180"
+					    (object Association "$UNNAMED$183"
 						attributes 	(list Attribute_Set
 						    (object Attribute
 							tool       	"Java"
@@ -7029,11 +7216,11 @@
 							quidu      	"529DEBAA0031"
 							is_navigable 	TRUE
 							static     	TRUE)
-						    (object Role "$UNNAMED$181"
+						    (object Role "$UNNAMED$184"
 							quid       	"529DEBAA0075"
 							supplier   	"Logical View::eastone::component::http::simple::HttpMethodEnum"
 							quidu      	"529DEBAA0031")))
-					    (object Association "$UNNAMED$182"
+					    (object Association "$UNNAMED$185"
 						attributes 	(list Attribute_Set
 						    (object Attribute
 							tool       	"Java"
@@ -7069,11 +7256,11 @@
 							quidu      	"529DEBAA0031"
 							is_navigable 	TRUE
 							static     	TRUE)
-						    (object Role "$UNNAMED$183"
+						    (object Role "$UNNAMED$186"
 							quid       	"529DEBAA007B"
 							supplier   	"Logical View::eastone::component::http::simple::HttpMethodEnum"
 							quidu      	"529DEBAA0031")))
-					    (object Association "$UNNAMED$184"
+					    (object Association "$UNNAMED$187"
 						attributes 	(list Attribute_Set
 						    (object Attribute
 							tool       	"Java"
@@ -7109,11 +7296,11 @@
 							quidu      	"529DEBAA0031"
 							is_navigable 	TRUE
 							static     	TRUE)
-						    (object Role "$UNNAMED$185"
+						    (object Role "$UNNAMED$188"
 							quid       	"529DEBAA0084"
 							supplier   	"Logical View::eastone::component::http::simple::HttpMethodEnum"
 							quidu      	"529DEBAA0031")))
-					    (object Association "$UNNAMED$186"
+					    (object Association "$UNNAMED$189"
 						attributes 	(list Attribute_Set
 						    (object Attribute
 							tool       	"Java"
@@ -7150,7 +7337,7 @@
 							exportControl 	"Private"
 							is_navigable 	TRUE
 							static     	TRUE)
-						    (object Role "$UNNAMED$187"
+						    (object Role "$UNNAMED$190"
 							quid       	"529DEBAA008E"
 							supplier   	"Logical View::eastone::component::http::simple::HttpMethodEnum"
 							quidu      	"529DEBAA0031")))
@@ -8328,7 +8515,7 @@
 				module     	"Component View::eastone::graphic::Rectangle"
 				quidu      	"529DEBAE0314"
 				language   	"Java")
-			    (object Association "$UNNAMED$188"
+			    (object Association "$UNNAMED$191"
 				attributes 	(list Attribute_Set)
 				quid       	"529DEBAE036C"
 				roles      	(list role_list
@@ -8360,11 +8547,11 @@
 					quidu      	"529DEBAE0354"
 					exportControl 	"Private"
 					is_navigable 	TRUE)
-				    (object Role "$UNNAMED$189"
+				    (object Role "$UNNAMED$192"
 					quid       	"529DEBAE0370"
 					supplier   	"Logical View::eastone::graphic::Rectangle"
 					quidu      	"529DEBAE0318")))
-			    (object Association "$UNNAMED$190"
+			    (object Association "$UNNAMED$193"
 				attributes 	(list Attribute_Set)
 				quid       	"529DEBAE0377"
 				roles      	(list role_list
@@ -8396,7 +8583,7 @@
 					quidu      	"529DEBAE0354"
 					exportControl 	"Private"
 					is_navigable 	TRUE)
-				    (object Role "$UNNAMED$191"
+				    (object Role "$UNNAMED$194"
 					quid       	"529DEBAE037A"
 					supplier   	"Logical View::eastone::graphic::Rectangle"
 					quidu      	"529DEBAE0318"))))
@@ -8597,7 +8784,7 @@
 		    (object Class_Category "common"
 			is_unit    	TRUE
 			is_loaded  	FALSE
-			file_name  	"C:\\Users\\quzl\\git\\default\\eastone-common\\model\\eastone.common.cat"
+			file_name  	"C:\\Users\\WANGDS\\git\\default\\eastone-common\\model\\eastone.common.cat"
 			quid       	"529DEBF40256")
 		    (object Class_Category "precasting"
 			quid       	"52A3DF35019B"
@@ -8716,7 +8903,11 @@
 					    (object Attribute
 						tool       	"Java"
 						name       	"GenerateCode"
-						value      	TRUE))
+						value      	TRUE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"cg_style"
+						value      	"Default_EJB"))
 					quid       	"52A3DF350282"
 					superclasses 	(list inheritance_relationship_list
 					    (object Inheritance_Relationship
@@ -8981,7 +9172,11 @@
 					    (object Attribute
 						tool       	"Java"
 						name       	"GenerateCode"
-						value      	TRUE))
+						value      	TRUE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"cg_style"
+						value      	"Default_EJB"))
 					quid       	"52A3DF3502B1"
 					superclasses 	(list inheritance_relationship_list
 					    (object Inheritance_Relationship
@@ -9422,7 +9617,11 @@
 					    (object Attribute
 						tool       	"Java"
 						name       	"GenerateCode"
-						value      	TRUE))
+						value      	TRUE)
+					    (object Attribute
+						tool       	"Java"
+						name       	"cg_style"
+						value      	"Default_EJB"))
 					quid       	"52A3DF360090"
 					superclasses 	(list inheritance_relationship_list
 					    (object Inheritance_Relationship
@@ -10451,7 +10650,7 @@
 					module     	"Component View::eastone::precasting::flyweight::package-info"
 					quidu      	"52A3DF37011A"
 					language   	"Java")
-				    (object Association "$UNNAMED$192"
+				    (object Association "$UNNAMED$195"
 					attributes 	(list Attribute_Set)
 					quid       	"52A3DF3502CE"
 					roles      	(list role_list
@@ -10483,11 +10682,11 @@
 						quidu      	"52A3DF3502B1"
 						exportControl 	"Private"
 						is_navigable 	TRUE)
-					    (object Role "$UNNAMED$193"
+					    (object Role "$UNNAMED$196"
 						quid       	"52A3DF3502D1"
 						supplier   	"Logical View::eastone::precasting::flyweight::AbstractFlyweightGenerateStrategy"
 						quidu      	"52A3DF350282")))
-				    (object Association "$UNNAMED$194"
+				    (object Association "$UNNAMED$197"
 					attributes 	(list Attribute_Set)
 					quid       	"52A3DF3600DB"
 					roles      	(list role_list
@@ -10519,11 +10718,11 @@
 						quidu      	"52A3DF350282"
 						exportControl 	"Private"
 						is_navigable 	TRUE)
-					    (object Role "$UNNAMED$195"
+					    (object Role "$UNNAMED$198"
 						quid       	"52A3DF3600DE"
 						supplier   	"Logical View::eastone::precasting::flyweight::ChainFlyweightStrategy"
 						quidu      	"52A3DF360090")))
-				    (object Association "$UNNAMED$196"
+				    (object Association "$UNNAMED$199"
 					attributes 	(list Attribute_Set
 					    (object Attribute
 						tool       	"Java"
@@ -10559,11 +10758,11 @@
 						quidu      	"52A3DF360090"
 						exportControl 	"Private"
 						is_navigable 	TRUE)
-					    (object Role "$UNNAMED$197"
+					    (object Role "$UNNAMED$200"
 						quid       	"52A3DF3600EA"
 						supplier   	"Logical View::eastone::precasting::flyweight::ChainFlyweightStrategy"
 						quidu      	"52A3DF360090")))
-				    (object Association "$UNNAMED$198"
+				    (object Association "$UNNAMED$201"
 					attributes 	(list Attribute_Set)
 					quid       	"52A3DF3600EC"
 					roles      	(list role_list
@@ -10595,11 +10794,11 @@
 						quidu      	"529DEBFB0282"
 						exportControl 	"Private"
 						is_navigable 	TRUE)
-					    (object Role "$UNNAMED$199"
+					    (object Role "$UNNAMED$202"
 						quid       	"52A3DF3600EF"
 						supplier   	"Logical View::eastone::precasting::flyweight::ChainFlyweightStrategy"
 						quidu      	"52A3DF360090")))
-				    (object Association "$UNNAMED$200"
+				    (object Association "$UNNAMED$203"
 					attributes 	(list Attribute_Set)
 					quid       	"52A3DF36038B"
 					roles      	(list role_list
@@ -10631,11 +10830,11 @@
 						quidu      	"529DEBAC014E"
 						exportControl 	"Private"
 						is_navigable 	TRUE)
-					    (object Role "$UNNAMED$201"
+					    (object Role "$UNNAMED$204"
 						quid       	"52A3DF36038E"
 						supplier   	"Logical View::eastone::precasting::flyweight::DefaultFlyweightFactory"
 						quidu      	"52A3DF3502B1")))
-				    (object Association "$UNNAMED$202"
+				    (object Association "$UNNAMED$205"
 					attributes 	(list Attribute_Set)
 					quid       	"52A3DF360390"
 					roles      	(list role_list
@@ -10667,7 +10866,7 @@
 						quidu      	"529DEBAC014E"
 						exportControl 	"Private"
 						is_navigable 	TRUE)
-					    (object Role "$UNNAMED$203"
+					    (object Role "$UNNAMED$206"
 						quid       	"52A3DF36039A"
 						supplier   	"Logical View::eastone::precasting::flyweight::DefaultFlyweightFactory"
 						quidu      	"52A3DF3502B1"))))
@@ -10681,7 +10880,7 @@
 					origin_x   	1097
 					origin_y   	1534
 					items      	(list diagram_item_list
-					    (object ClassView "Class" "Logical View::eastone::common::flyweight::AbstractFlyweightFactory" @1
+					    (object ClassView "Class" "Logical View::eastone::common::flyweight::AbstractFlyweightFactory" @9
 						ShowCompartmentStereotypes 	TRUE
 						IncludeAttribute 	TRUE
 						IncludeOperation 	TRUE
@@ -10697,7 +10896,7 @@
 						    color      	0
 						    default_color 	TRUE)
 						label      	(object ItemLabel
-						    Parent_View 	@1
+						    Parent_View 	@9
 						    location   	(3611, 2439)
 						    nlines     	1
 						    max_width  	618
@@ -10706,29 +10905,11 @@
 						icon_style 	"Icon"
 						fill_color 	16777215
 						quidu      	"52A3DF2D0255"
-						compartment 	(object Compartment
-						    Parent_View 	@1
-						    location   	(3611, 2525)
-						    font       	(object Font
-							size       	10
-							face       	"宋体"
-							charSet    	134
-							bold       	FALSE
-							italics    	FALSE
-							underline  	FALSE
-							strike     	FALSE
-							color      	0
-							default_color 	TRUE)
-						    icon_style 	"Icon"
-						    anchor     	2
-						    nlines     	3
-						    max_width  	616
-						    justify    	1)
 						width      	636
 						height     	230
 						annotation 	8
 						autoResize 	TRUE)
-					    (object ClassView "Class" "Logical View::eastone::common::flyweight::FlyweightFactory" @2
+					    (object ClassView "Class" "Logical View::eastone::common::flyweight::FlyweightFactory" @10
 						ShowCompartmentStereotypes 	TRUE
 						IncludeAttribute 	TRUE
 						IncludeOperation 	TRUE
@@ -10744,7 +10925,7 @@
 						    color      	0
 						    default_color 	TRUE)
 						label      	(object ItemLabel
-						    Parent_View 	@2
+						    Parent_View 	@10
 						    location   	(3391, 2268)
 						    anchor_loc 	1
 						    nlines     	2
@@ -10755,29 +10936,11 @@
 						icon_style 	"Icon"
 						fill_color 	16777215
 						quidu      	"529DEBFB029B"
-						compartment 	(object Compartment
-						    Parent_View 	@2
-						    location   	(3213, 2338)
-						    font       	(object Font
-							size       	10
-							face       	"宋体"
-							charSet    	134
-							bold       	FALSE
-							italics    	FALSE
-							underline  	FALSE
-							strike     	FALSE
-							color      	0
-							default_color 	TRUE)
-						    icon_style 	"Icon"
-						    anchor     	2
-						    nlines     	2
-						    max_width  	353
-						    justify    	0)
 						width      	58
 						height     	58
 						annotation 	8
 						autoResize 	TRUE)
-					    (object ClassView "Class" "Logical View::eastone::common::flyweight::SharedFlyweight" @3
+					    (object ClassView "Class" "Logical View::eastone::common::flyweight::SharedFlyweight" @11
 						ShowCompartmentStereotypes 	TRUE
 						IncludeAttribute 	TRUE
 						IncludeOperation 	TRUE
@@ -10793,7 +10956,7 @@
 						    color      	0
 						    default_color 	TRUE)
 						label      	(object ItemLabel
-						    Parent_View 	@3
+						    Parent_View 	@11
 						    location   	(3183, 3356)
 						    anchor_loc 	1
 						    nlines     	2
@@ -10808,7 +10971,7 @@
 						height     	58
 						annotation 	8
 						autoResize 	TRUE)
-					    (object ClassView "Class" "Logical View::eastone::common::flyweight::UnsharedFlyweight" @4
+					    (object ClassView "Class" "Logical View::eastone::common::flyweight::UnsharedFlyweight" @12
 						ShowCompartmentStereotypes 	TRUE
 						IncludeAttribute 	TRUE
 						IncludeOperation 	TRUE
@@ -10824,7 +10987,7 @@
 						    color      	0
 						    default_color 	TRUE)
 						label      	(object ItemLabel
-						    Parent_View 	@4
+						    Parent_View 	@12
 						    location   	(3791, 3340)
 						    anchor_loc 	1
 						    nlines     	2
@@ -10839,7 +11002,7 @@
 						height     	58
 						annotation 	8
 						autoResize 	TRUE)
-					    (object ClassView "Class" "Logical View::eastone::common::flyweight::Flyweight" @5
+					    (object ClassView "Class" "Logical View::eastone::common::flyweight::Flyweight" @13
 						ShowCompartmentStereotypes 	TRUE
 						IncludeAttribute 	TRUE
 						IncludeOperation 	TRUE
@@ -10855,7 +11018,7 @@
 						    color      	0
 						    default_color 	TRUE)
 						label      	(object ItemLabel
-						    Parent_View 	@5
+						    Parent_View 	@13
 						    location   	(3183, 2732)
 						    anchor_loc 	1
 						    nlines     	2
@@ -10870,25 +11033,25 @@
 						height     	58
 						annotation 	8
 						autoResize 	TRUE)
-					    (object InheritView "" @6
+					    (object InheritView "" @14
 						stereotype 	TRUE
 						quidu      	"529DEBFB0314"
-						client     	@3
-						supplier   	@5
+						client     	@11
+						supplier   	@13
 						vertices   	(list Points
 						    (3184, 3218)
-						    (3184, 2786))
+						    (3184, 2751))
 						line_style 	0)
-					    (object InheritView "" @7
+					    (object InheritView "" @15
 						stereotype 	TRUE
 						quidu      	"529DEBFB0367"
-						client     	@4
-						supplier   	@5
+						client     	@12
+						supplier   	@13
 						vertices   	(list Points
 						    (3763, 3203)
-						    (3286, 2726))
+						    (3269, 2709))
 						line_style 	0)
-					    (object ClassView "Class" "Logical View::eastone::precasting::flyweight::ChainFlyweightStrategy" @8
+					    (object ClassView "Class" "Logical View::eastone::precasting::flyweight::ChainFlyweightStrategy" @16
 						ShowCompartmentStereotypes 	TRUE
 						IncludeAttribute 	TRUE
 						IncludeOperation 	TRUE
@@ -10904,7 +11067,7 @@
 						    color      	0
 						    default_color 	TRUE)
 						label      	(object ItemLabel
-						    Parent_View 	@8
+						    Parent_View 	@16
 						    location   	(2145, 2999)
 						    nlines     	1
 						    max_width  	574
@@ -10913,35 +11076,17 @@
 						icon_style 	"Icon"
 						fill_color 	16777215
 						quidu      	"52A3DF360090"
-						compartment 	(object Compartment
-						    Parent_View 	@8
-						    location   	(2145, 3051)
-						    font       	(object Font
-							size       	10
-							face       	"宋体"
-							charSet    	134
-							bold       	FALSE
-							italics    	FALSE
-							underline  	FALSE
-							strike     	FALSE
-							color      	0
-							default_color 	TRUE)
-						    icon_style 	"Icon"
-						    anchor     	2
-						    nlines     	14
-						    max_width  	572
-						    justify    	1)
 						width      	592
 						height     	646
 						annotation 	8
 						autoResize 	TRUE)
-					    (object AssociationViewNew "$UNNAMED$196" @9
+					    (object AssociationViewNew "$UNNAMED$199" @17
 						location   	(2757, 3602)
 						stereotype 	TRUE
 						quidu      	"52A3DF3600E0"
 						roleview_list 	(list RoleViews
-						    (object RoleView "next" @10
-							Parent_View 	@9
+						    (object RoleView "next" @18
+							Parent_View 	@17
 							location   	(1557, 2482)
 							font       	(object Font
 							    size       	10
@@ -10953,8 +11098,8 @@
 							    strike     	FALSE
 							    color      	0
 							    default_color 	TRUE)
-							label      	(object SegLabel @11
-							    Parent_View 	@10
+							label      	(object SegLabel @19
+							    Parent_View 	@18
 							    location   	(2487, 3621)
 							    font       	(object Font
 								size       	10
@@ -10974,19 +11119,17 @@
 							    label      	"-next"
 							    pctDist    	0.800000
 							    height     	42
-							    orientation 	1)
+							    orientation 	0)
 							stereotype 	TRUE
 							quidu      	"52A3DF3600E1"
-							client     	@9
-							supplier   	@8
+							client     	@17
+							supplier   	@16
 							vertices   	(list Points
 							    (2757, 3602)
-							    (2757, 3662)
-							    (2432, 3662)
-							    (2432, 3635))
+							    (2432, 3312))
 							line_style 	0)
-						    (object RoleView "$UNNAMED$197" @12
-							Parent_View 	@9
+						    (object RoleView "$UNNAMED$200" @20
+							Parent_View 	@17
 							location   	(1557, 2482)
 							font       	(object Font
 							    size       	10
@@ -10998,8 +11141,8 @@
 							    strike     	FALSE
 							    color      	0
 							    default_color 	TRUE)
-							label      	(object SegLabel @13
-							    Parent_View 	@12
+							label      	(object SegLabel @21
+							    Parent_View 	@20
 							    location   	(2799, 3347)
 							    font       	(object Font
 								size       	10
@@ -11023,20 +11166,19 @@
 							    orientation 	1)
 							stereotype 	TRUE
 							quidu      	"52A3DF3600EA"
-							client     	@9
-							supplier   	@8
+							client     	@17
+							supplier   	@16
 							vertices   	(list Points
 							    (2757, 3602)
-							    (2757, 3312)
-							    (2728, 3312))
+							    (2432, 3312))
 							line_style 	0)))
-					    (object AssociationViewNew "$UNNAMED$198" @14
+					    (object AssociationViewNew "$UNNAMED$201" @22
 						location   	(2903, 2879)
 						stereotype 	TRUE
 						quidu      	"52A3DF3600EC"
 						roleview_list 	(list RoleViews
-						    (object RoleView "$UNNAMED$199" @15
-							Parent_View 	@14
+						    (object RoleView "$UNNAMED$202" @23
+							Parent_View 	@22
 							location   	(1623, 2703)
 							font       	(object Font
 							    size       	10
@@ -11048,8 +11190,8 @@
 							    strike     	FALSE
 							    color      	0
 							    default_color 	TRUE)
-							label      	(object SegLabel @16
-							    Parent_View 	@15
+							label      	(object SegLabel @24
+							    Parent_View 	@23
 							    location   	(2736, 2978)
 							    font       	(object Font
 								size       	10
@@ -11073,14 +11215,14 @@
 							    orientation 	1)
 							stereotype 	TRUE
 							quidu      	"52A3DF3600EF"
-							client     	@14
-							supplier   	@8
+							client     	@22
+							supplier   	@16
 							vertices   	(list Points
 							    (2903, 2879)
-							    (2728, 3040))
+							    (2728, 3038))
 							line_style 	0)
-						    (object RoleView "result" @17
-							Parent_View 	@14
+						    (object RoleView "result" @25
+							Parent_View 	@22
 							location   	(1623, 2703)
 							font       	(object Font
 							    size       	10
@@ -11092,8 +11234,8 @@
 							    strike     	FALSE
 							    color      	0
 							    default_color 	TRUE)
-							label      	(object SegLabel @18
-							    Parent_View 	@17
+							label      	(object SegLabel @26
+							    Parent_View 	@25
 							    location   	(3017, 2721)
 							    font       	(object Font
 								size       	10
@@ -11116,60 +11258,13 @@
 							    orientation 	0)
 							stereotype 	TRUE
 							quidu      	"52A3DF3600ED"
-							client     	@14
-							supplier   	@5
+							client     	@22
+							supplier   	@13
 							vertices   	(list Points
 							    (2903, 2879)
-							    (3079, 2719))
+							    (3096, 2704))
 							line_style 	0)))
-					    (object ClassView "Class" "Logical View::eastone::precasting::flyweight::DefaultFlyweightFactory" @19
-						ShowCompartmentStereotypes 	TRUE
-						IncludeAttribute 	TRUE
-						IncludeOperation 	TRUE
-						location   	(2688, 2160)
-						font       	(object Font
-						    size       	10
-						    face       	"宋体"
-						    charSet    	134
-						    bold       	FALSE
-						    italics    	FALSE
-						    underline  	FALSE
-						    strike     	FALSE
-						    color      	0
-						    default_color 	TRUE)
-						label      	(object ItemLabel
-						    Parent_View 	@19
-						    location   	(2390, 1970)
-						    nlines     	1
-						    max_width  	596
-						    justify    	0
-						    label      	"DefaultFlyweightFactory")
-						icon_style 	"Icon"
-						fill_color 	16777215
-						quidu      	"52A3DF3502B1"
-						compartment 	(object Compartment
-						    Parent_View 	@19
-						    location   	(2390, 2022)
-						    font       	(object Font
-							size       	10
-							face       	"宋体"
-							charSet    	134
-							bold       	FALSE
-							italics    	FALSE
-							underline  	FALSE
-							strike     	FALSE
-							color      	0
-							default_color 	TRUE)
-						    icon_style 	"Icon"
-						    anchor     	2
-						    nlines     	8
-						    max_width  	594
-						    justify    	1)
-						width      	614
-						height     	400
-						annotation 	8
-						autoResize 	TRUE)
-					    (object ClassView "Class" "Logical View::eastone::precasting::flyweight::AbstractFlyweightGenerateStrategy" @20
+					    (object ClassView "Class" "Logical View::eastone::precasting::flyweight::AbstractFlyweightGenerateStrategy" @27
 						ShowCompartmentStereotypes 	TRUE
 						IncludeAttribute 	TRUE
 						IncludeOperation 	TRUE
@@ -11185,7 +11280,7 @@
 						    color      	0
 						    default_color 	TRUE)
 						label      	(object ItemLabel
-						    Parent_View 	@20
+						    Parent_View 	@27
 						    location   	(1288, 2560)
 						    nlines     	1
 						    max_width  	816
@@ -11194,35 +11289,17 @@
 						icon_style 	"Icon"
 						fill_color 	16777215
 						quidu      	"52A3DF350282"
-						compartment 	(object Compartment
-						    Parent_View 	@20
-						    location   	(1288, 2612)
-						    font       	(object Font
-							size       	10
-							face       	"宋体"
-							charSet    	134
-							bold       	FALSE
-							italics    	FALSE
-							underline  	FALSE
-							strike     	FALSE
-							color      	0
-							default_color 	TRUE)
-						    icon_style 	"Icon"
-						    anchor     	2
-						    nlines     	5
-						    max_width  	816
-						    justify    	1)
 						width      	834
 						height     	276
 						annotation 	8
 						autoResize 	TRUE)
-					    (object AssociationViewNew "$UNNAMED$194" @21
+					    (object AssociationViewNew "$UNNAMED$197" @28
 						location   	(1997, 2943)
 						stereotype 	TRUE
 						quidu      	"52A3DF3600DB"
 						roleview_list 	(list RoleViews
-						    (object RoleView "$UNNAMED$195" @22
-							Parent_View 	@21
+						    (object RoleView "$UNNAMED$198" @29
+							Parent_View 	@28
 							location   	(1581, 1903)
 							font       	(object Font
 							    size       	10
@@ -11234,8 +11311,8 @@
 							    strike     	FALSE
 							    color      	0
 							    default_color 	TRUE)
-							label      	(object SegLabel @23
-							    Parent_View 	@22
+							label      	(object SegLabel @30
+							    Parent_View 	@29
 							    location   	(2134, 3005)
 							    font       	(object Font
 								size       	10
@@ -11259,14 +11336,14 @@
 							    orientation 	0)
 							stereotype 	TRUE
 							quidu      	"52A3DF3600DE"
-							client     	@21
-							supplier   	@8
+							client     	@28
+							supplier   	@16
 							vertices   	(list Points
 							    (1997, 2943)
 							    (2135, 3060))
 							line_style 	0)
-						    (object RoleView "innerStrategy" @24
-							Parent_View 	@21
+						    (object RoleView "innerStrategy" @31
+							Parent_View 	@28
 							location   	(1581, 1903)
 							font       	(object Font
 							    size       	10
@@ -11278,8 +11355,8 @@
 							    strike     	FALSE
 							    color      	0
 							    default_color 	TRUE)
-							label      	(object SegLabel @25
-							    Parent_View 	@24
+							label      	(object SegLabel @32
+							    Parent_View 	@31
 							    location   	(1914, 2819)
 							    font       	(object Font
 								size       	10
@@ -11302,28 +11379,57 @@
 							    orientation 	1)
 							stereotype 	TRUE
 							quidu      	"52A3DF3600DC"
-							client     	@21
-							supplier   	@20
+							client     	@28
+							supplier   	@27
 							vertices   	(list Points
 							    (1997, 2943)
-							    (1859, 2826))
+							    (1858, 2826))
 							line_style 	0)))
-					    (object InheritView "" @26
+					    (object InheritView "" @33
 						stereotype 	TRUE
 						quidu      	"52A3DF3600BB"
-						client     	@8
-						supplier   	@20
+						client     	@16
+						supplier   	@27
 						vertices   	(list Points
 						    (2135, 3060)
 						    (1859, 2826))
 						line_style 	0)
-					    (object AssociationViewNew "$UNNAMED$192" @27
+					    (object ClassView "Class" "Logical View::eastone::precasting::flyweight::DefaultFlyweightFactory" @34
+						ShowCompartmentStereotypes 	TRUE
+						IncludeAttribute 	TRUE
+						IncludeOperation 	TRUE
+						location   	(2688, 2160)
+						font       	(object Font
+						    size       	10
+						    face       	"宋体"
+						    charSet    	134
+						    bold       	FALSE
+						    italics    	FALSE
+						    underline  	FALSE
+						    strike     	FALSE
+						    color      	0
+						    default_color 	TRUE)
+						label      	(object ItemLabel
+						    Parent_View 	@34
+						    location   	(2390, 1970)
+						    nlines     	1
+						    max_width  	596
+						    justify    	0
+						    label      	"DefaultFlyweightFactory")
+						icon_style 	"Icon"
+						fill_color 	16777215
+						quidu      	"52A3DF3502B1"
+						width      	614
+						height     	400
+						annotation 	8
+						autoResize 	TRUE)
+					    (object AssociationViewNew "$UNNAMED$195" @35
 						location   	(2167, 2435)
 						stereotype 	TRUE
 						quidu      	"52A3DF3502CE"
 						roleview_list 	(list RoleViews
-						    (object RoleView "$UNNAMED$193" @28
-							Parent_View 	@27
+						    (object RoleView "$UNNAMED$196" @36
+							Parent_View 	@35
 							location   	(455, 1475)
 							font       	(object Font
 							    size       	10
@@ -11335,8 +11441,8 @@
 							    strike     	FALSE
 							    color      	0
 							    default_color 	TRUE)
-							label      	(object SegLabel @29
-							    Parent_View 	@28
+							label      	(object SegLabel @37
+							    Parent_View 	@36
 							    location   	(1977, 2491)
 							    font       	(object Font
 								size       	10
@@ -11360,14 +11466,14 @@
 							    orientation 	1)
 							stereotype 	TRUE
 							quidu      	"52A3DF3502D1"
-							client     	@27
-							supplier   	@20
+							client     	@35
+							supplier   	@27
 							vertices   	(list Points
 							    (2167, 2435)
-							    (1954, 2549))
+							    (1951, 2549))
 							line_style 	0)
-						    (object RoleView "factoriesContext" @30
-							Parent_View 	@27
+						    (object RoleView "factoriesContext" @38
+							Parent_View 	@35
 							location   	(455, 1475)
 							font       	(object Font
 							    size       	10
@@ -11379,8 +11485,8 @@
 							    strike     	FALSE
 							    color      	0
 							    default_color 	TRUE)
-							label      	(object SegLabel @31
-							    Parent_View 	@30
+							label      	(object SegLabel @39
+							    Parent_View 	@38
 							    location   	(2492, 2387)
 							    font       	(object Font
 								size       	10
@@ -11403,22 +11509,22 @@
 							    orientation 	1)
 							stereotype 	TRUE
 							quidu      	"52A3DF3502CF"
-							client     	@27
-							supplier   	@19
+							client     	@35
+							supplier   	@34
 							vertices   	(list Points
 							    (2167, 2435)
-							    (2380, 2322))
+							    (2380, 2321))
 							line_style 	0)))
-					    (object RealizeView "" @32
+					    (object RealizeView "" @40
 						stereotype 	TRUE
 						quidu      	"52A3DF36038A"
-						client     	@19
-						supplier   	@2
+						client     	@34
+						supplier   	@10
 						vertices   	(list Points
 						    (2995, 2160)
 						    (3364, 2160))
 						line_style 	0)
-					    (object ClassView "Class" "Logical View::eastone::precasting::flyweight::NotSharedFlyweightGenerateStrategy" @33
+					    (object ClassView "Class" "Logical View::eastone::precasting::flyweight::NotSharedFlyweightGenerateStrategy" @41
 						ShowCompartmentStereotypes 	TRUE
 						IncludeAttribute 	TRUE
 						IncludeOperation 	TRUE
@@ -11434,7 +11540,7 @@
 						    color      	0
 						    default_color 	TRUE)
 						label      	(object ItemLabel
-						    Parent_View 	@33
+						    Parent_View 	@41
 						    location   	(76, 3225)
 						    nlines     	1
 						    max_width  	840
@@ -11443,38 +11549,20 @@
 						icon_style 	"Icon"
 						fill_color 	16777215
 						quidu      	"52A3DF37003E"
-						compartment 	(object Compartment
-						    Parent_View 	@33
-						    location   	(76, 3277)
-						    font       	(object Font
-							size       	10
-							face       	"宋体"
-							charSet    	134
-							bold       	FALSE
-							italics    	FALSE
-							underline  	FALSE
-							strike     	FALSE
-							color      	0
-							default_color 	TRUE)
-						    icon_style 	"Icon"
-						    anchor     	2
-						    nlines     	3
-						    max_width  	838
-						    justify    	1)
 						width      	858
 						height     	194
 						annotation 	8
 						autoResize 	TRUE)
-					    (object InheritView "" @34
+					    (object InheritView "" @42
 						stereotype 	TRUE
 						quidu      	"52A3DF37005D"
-						client     	@33
-						supplier   	@20
+						client     	@41
+						supplier   	@27
 						vertices   	(list Points
 						    (681, 3214)
 						    (1428, 2826))
 						line_style 	0)
-					    (object ClassView "Class" "Logical View::eastone::precasting::flyweight::OnlySharedFlyweightGenerateStrategy" @35
+					    (object ClassView "Class" "Logical View::eastone::precasting::flyweight::OnlySharedFlyweightGenerateStrategy" @43
 						ShowCompartmentStereotypes 	TRUE
 						IncludeAttribute 	TRUE
 						IncludeOperation 	TRUE
@@ -11490,7 +11578,7 @@
 						    color      	0
 						    default_color 	TRUE)
 						label      	(object ItemLabel
-						    Parent_View 	@35
+						    Parent_View 	@43
 						    location   	(1105, 3225)
 						    nlines     	1
 						    max_width  	862
@@ -11499,38 +11587,20 @@
 						icon_style 	"Icon"
 						fill_color 	16777215
 						quidu      	"52A3DF3700BF"
-						compartment 	(object Compartment
-						    Parent_View 	@35
-						    location   	(1105, 3277)
-						    font       	(object Font
-							size       	10
-							face       	"宋体"
-							charSet    	134
-							bold       	FALSE
-							italics    	FALSE
-							underline  	FALSE
-							strike     	FALSE
-							color      	0
-							default_color 	TRUE)
-						    icon_style 	"Icon"
-						    anchor     	2
-						    nlines     	3
-						    max_width  	860
-						    justify    	1)
 						width      	880
 						height     	194
 						annotation 	8
 						autoResize 	TRUE)
-					    (object InheritView "" @36
+					    (object InheritView "" @44
 						stereotype 	TRUE
 						quidu      	"52A3DF3700EA"
-						client     	@35
-						supplier   	@20
+						client     	@43
+						supplier   	@27
 						vertices   	(list Points
 						    (1561, 3214)
 						    (1660, 2826))
 						line_style 	0)
-					    (object ClassView "Class" "Logical View::eastone::common::strategy::AbstractStrategy" @37
+					    (object ClassView "Class" "Logical View::eastone::common::strategy::AbstractStrategy" @45
 						ShowCompartmentStereotypes 	TRUE
 						IncludeAttribute 	TRUE
 						IncludeOperation 	TRUE
@@ -11546,7 +11616,7 @@
 						    color      	0
 						    default_color 	TRUE)
 						label      	(object ItemLabel
-						    Parent_View 	@37
+						    Parent_View 	@45
 						    location   	(1256, 2014)
 						    nlines     	1
 						    max_width  	880
@@ -11555,38 +11625,20 @@
 						icon_style 	"Icon"
 						fill_color 	16777215
 						quidu      	"52A3DF330157"
-						compartment 	(object Compartment
-						    Parent_View 	@37
-						    location   	(1256, 2100)
-						    font       	(object Font
-							size       	10
-							face       	"宋体"
-							charSet    	134
-							bold       	FALSE
-							italics    	FALSE
-							underline  	FALSE
-							strike     	FALSE
-							color      	0
-							default_color 	TRUE)
-						    icon_style 	"Icon"
-						    anchor     	2
-						    nlines     	5
-						    max_width  	881
-						    justify    	1)
 						width      	898
 						height     	312
 						annotation 	8
 						autoResize 	TRUE)
-					    (object InheritView "" @38
+					    (object InheritView "" @46
 						stereotype 	TRUE
 						quidu      	"52A3DF35029F"
-						client     	@20
-						supplier   	@37
+						client     	@27
+						supplier   	@45
 						vertices   	(list Points
 						    (1696, 2549)
 						    (1696, 2316))
 						line_style 	0)
-					    (object ClassView "Class" "Logical View::eastone::common::strategy::AbstractStrategyContext" @39
+					    (object ClassView "Class" "Logical View::eastone::common::strategy::AbstractStrategyContext" @47
 						ShowCompartmentStereotypes 	TRUE
 						IncludeAttribute 	TRUE
 						IncludeOperation 	TRUE
@@ -11602,7 +11654,7 @@
 						    color      	0
 						    default_color 	TRUE)
 						label      	(object ItemLabel
-						    Parent_View 	@39
+						    Parent_View 	@47
 						    location   	(2104, 1162)
 						    nlines     	1
 						    max_width  	1168
@@ -11611,38 +11663,20 @@
 						icon_style 	"Icon"
 						fill_color 	16777215
 						quidu      	"529DEC04004B"
-						compartment 	(object Compartment
-						    Parent_View 	@39
-						    location   	(2104, 1248)
-						    font       	(object Font
-							size       	10
-							face       	"宋体"
-							charSet    	134
-							bold       	FALSE
-							italics    	FALSE
-							underline  	FALSE
-							strike     	FALSE
-							color      	0
-							default_color 	TRUE)
-						    icon_style 	"Icon"
-						    anchor     	2
-						    nlines     	13
-						    max_width  	1166
-						    justify    	1)
 						width      	1186
 						height     	640
 						annotation 	8
 						autoResize 	TRUE)
-					    (object InheritView "" @40
+					    (object InheritView "" @48
 						stereotype 	TRUE
 						quidu      	"52A3DF36036A"
-						client     	@19
-						supplier   	@39
+						client     	@34
+						supplier   	@47
 						vertices   	(list Points
 						    (2688, 1959)
 						    (2688, 1792))
 						line_style 	0)
-					    (object ClassView "Class" "Logical View::eastone::common::strategy::Strategy" @41
+					    (object ClassView "Class" "Logical View::eastone::common::strategy::Strategy" @49
 						ShowCompartmentStereotypes 	TRUE
 						IncludeAttribute 	TRUE
 						IncludeOperation 	TRUE
@@ -11658,7 +11692,7 @@
 						    color      	0
 						    default_color 	TRUE)
 						label      	(object ItemLabel
-						    Parent_View 	@41
+						    Parent_View 	@49
 						    location   	(879, 2268)
 						    anchor_loc 	1
 						    nlines     	2
@@ -11669,38 +11703,20 @@
 						icon_style 	"Icon"
 						fill_color 	16777215
 						quidu      	"529DEC0400E8"
-						compartment 	(object Compartment
-						    Parent_View 	@41
-						    location   	(768, 2338)
-						    font       	(object Font
-							size       	10
-							face       	"宋体"
-							charSet    	134
-							bold       	FALSE
-							italics    	FALSE
-							underline  	FALSE
-							strike     	FALSE
-							color      	0
-							default_color 	TRUE)
-						    icon_style 	"Icon"
-						    anchor     	2
-						    nlines     	3
-						    max_width  	219
-						    justify    	0)
 						width      	58
 						height     	58
 						annotation 	8
 						autoResize 	TRUE)
-					    (object RealizeView "" @42
+					    (object RealizeView "" @50
 						stereotype 	TRUE
 						quidu      	"52A3DF3301B5"
-						client     	@37
-						supplier   	@41
+						client     	@45
+						supplier   	@49
 						vertices   	(list Points
 						    (1246, 2160)
 						    (906, 2160))
 						line_style 	0)
-					    (object ClassView "Class" "Logical View::eastone::common::strategy::StrategyContext" @43
+					    (object ClassView "Class" "Logical View::eastone::common::strategy::StrategyContext" @51
 						ShowCompartmentStereotypes 	TRUE
 						IncludeAttribute 	TRUE
 						IncludeOperation 	TRUE
@@ -11716,7 +11732,7 @@
 						    color      	0
 						    default_color 	TRUE)
 						label      	(object ItemLabel
-						    Parent_View 	@43
+						    Parent_View 	@51
 						    location   	(3647, 1580)
 						    anchor_loc 	1
 						    nlines     	2
@@ -11727,38 +11743,20 @@
 						icon_style 	"Icon"
 						fill_color 	16777215
 						quidu      	"529DEC040089"
-						compartment 	(object Compartment
-						    Parent_View 	@43
-						    location   	(3393, 1650)
-						    font       	(object Font
-							size       	10
-							face       	"宋体"
-							charSet    	134
-							bold       	FALSE
-							italics    	FALSE
-							underline  	FALSE
-							strike     	FALSE
-							color      	0
-							default_color 	TRUE)
-						    icon_style 	"Icon"
-						    anchor     	2
-						    nlines     	8
-						    max_width  	506
-						    justify    	0)
 						width      	58
 						height     	58
 						annotation 	8
 						autoResize 	TRUE)
-					    (object RealizeView "" @44
+					    (object RealizeView "" @52
 						stereotype 	TRUE
 						quidu      	"529DEC0400B8"
-						client     	@39
-						supplier   	@43
+						client     	@47
+						supplier   	@51
 						vertices   	(list Points
 						    (3281, 1472)
 						    (3620, 1472))
 						line_style 	0)
-					    (object ClassView "Class" "Logical View::eastone::common::chainofresponsibility::Handler" @45
+					    (object ClassView "Class" "Logical View::eastone::common::chainofresponsibility::Handler" @53
 						ShowCompartmentStereotypes 	TRUE
 						IncludeAttribute 	TRUE
 						IncludeOperation 	TRUE
@@ -11774,7 +11772,7 @@
 						    color      	0
 						    default_color 	TRUE)
 						label      	(object ItemLabel
-						    Parent_View 	@45
+						    Parent_View 	@53
 						    location   	(2431, 2652)
 						    anchor_loc 	1
 						    nlines     	2
@@ -11785,45 +11783,27 @@
 						icon_style 	"Icon"
 						fill_color 	16777215
 						quidu      	"529DEBF6011D"
-						compartment 	(object Compartment
-						    Parent_View 	@45
-						    location   	(2309, 2722)
-						    font       	(object Font
-							size       	10
-							face       	"宋体"
-							charSet    	134
-							bold       	FALSE
-							italics    	FALSE
-							underline  	FALSE
-							strike     	FALSE
-							color      	0
-							default_color 	TRUE)
-						    icon_style 	"Icon"
-						    anchor     	2
-						    nlines     	4
-						    max_width  	241
-						    justify    	0)
 						width      	58
 						height     	58
 						annotation 	8
 						autoResize 	TRUE)
-					    (object RealizeView "" @46
+					    (object RealizeView "" @54
 						stereotype 	TRUE
 						quidu      	"52A3DF3600DA"
-						client     	@8
-						supplier   	@45
+						client     	@16
+						supplier   	@53
 						vertices   	(list Points
 						    (2432, 2988)
-						    (2432, 2885))
+						    (2432, 2671))
 						line_style 	0)
-					    (object RealizeView "" @47
+					    (object RealizeView "" @55
 						stereotype 	TRUE
 						quidu      	"52A3DF2D029F"
-						client     	@1
-						supplier   	@2
+						client     	@9
+						supplier   	@10
 						vertices   	(list Points
 						    (3761, 2428)
-						    (3570, 2287))
+						    (3477, 2220))
 						line_style 	0)))))
 			    (object Class_Category "strategy"
 				quid       	"52A3DF370167"
@@ -12052,6 +12032,15 @@
 			logical_models 	(list unit_reference_list
 			    (object Class "Collection"
 				quid       	"529DEB9F03E6"
+				used_nodes 	(list uses_relationship_list
+				    (object Uses_Relationship
+					quid       	"52D114550327"
+					supplier   	"Logical View::示例::业务实现一"
+					quidu      	"52D11431012D")
+				    (object Uses_Relationship
+					quid       	"52D114630297"
+					supplier   	"Logical View::示例::业务实现二"
+					quidu      	"52D114220297"))
 				module     	"Component View::java::util::Collection"
 				quidu      	"529DEB9F03E0"
 				language   	"Java")
@@ -12158,7 +12147,124 @@
 				quidu      	"529DEC020316"
 				language   	"Java"))
 			logical_presentations 	(list unit_reference_list)))
-		logical_presentations 	(list unit_reference_list)))
+		logical_presentations 	(list unit_reference_list))
+	    (object Class_Category "示例"
+		quid       	"52D1137E02D4"
+		exportControl 	"Public"
+		logical_models 	(list unit_reference_list
+		    (object Class "业务接口"
+			quid       	"52D113BF02A5"
+			stereotype 	"Interface"
+			operations 	(list Operations
+			    (object Operation "doSomeThing"
+				quid       	"52D1150402A8"
+				result     	"void"
+				concurrency 	"Sequential"
+				opExportControl 	"Public"
+				uid        	0)))
+		    (object Class "业务委托类"
+			quid       	"52D113D5006D"
+			superclasses 	(list inheritance_relationship_list
+			    (object Inheritance_Relationship
+				quid       	"52D113F603CF"
+				supplier   	"Logical View::eastone::common::delegate::AbstractDelegate"
+				quidu      	"52D10EE70010"))
+			realized_interfaces 	(list realize_rel_list
+			    (object Realize_Relationship
+				quid       	"52D113F00255"
+				supplier   	"Logical View::示例::业务接口"
+				quidu      	"52D113BF02A5")))
+		    (object Class "业务实现一"
+			quid       	"52D11431012D"
+			realized_interfaces 	(list realize_rel_list
+			    (object Realize_Relationship
+				quid       	"52D1144D0210"
+				supplier   	"Logical View::示例::业务接口"
+				quidu      	"52D113BF02A5")))
+		    (object Class "业务实现二"
+			quid       	"52D114220297"
+			realized_interfaces 	(list realize_rel_list
+			    (object Realize_Relationship
+				quid       	"52D1144A028B"
+				supplier   	"Logical View::示例::业务接口"
+				quidu      	"52D113BF02A5")))
+		    (object Class "调用者"
+			quid       	"52D114D200A6"
+			used_nodes 	(list uses_relationship_list
+			    (object Uses_Relationship
+				quid       	"52D114E900D8"
+				supplier   	"Logical View::示例::业务委托类"
+				quidu      	"52D113D5006D"))))
+		logical_presentations 	(list unit_reference_list
+		    (object ClassDiagram "Main"
+			quid       	"52D113A000D9"
+			title      	"Main"
+			zoom       	100
+			max_height 	28350
+			max_width  	21600
+			origin_x   	0
+			origin_y   	0
+			items      	(list diagram_item_list
+			    (object ClassView "Class" "Logical View::示例::业务接口" @56
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(768, 768)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@56
+				    location   	(767, 876)
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	429
+				    justify    	0
+				    label      	"业务接口")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				fill_color 	16777215
+				quidu      	"52D113BF02A5"
+				width      	58
+				height     	58
+				annotation 	8
+				autoResize 	TRUE)
+			    (object ClassView "Class" "Logical View::示例::调用者" @57
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(416, 480)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@57
+				    location   	(332, 438)
+				    nlines     	1
+				    max_width  	168
+				    justify    	0
+				    label      	"调用者")
+				icon_style 	"Icon"
+				fill_color 	16777215
+				quidu      	"52D114D200A6"
+				width      	186
+				height     	104
+				annotation 	8
+				autoResize 	TRUE))))))
 	logical_presentations 	(list unit_reference_list
 	    (object ClassDiagram "Main"
 		quid       	"529DE9FA0351"
@@ -12168,7 +12274,31 @@
 		max_width  	21600
 		origin_x   	0
 		origin_y   	0
-		items      	(list diagram_item_list))))
+		items      	(list diagram_item_list
+		    (object CategoryView "Logical View::示例" @58
+			location   	(480, 1040)
+			font       	(object Font
+			    size       	10
+			    face       	"宋体"
+			    charSet    	134
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@58
+			    location   	(336, 956)
+			    nlines     	2
+			    max_width  	288
+			    justify    	0
+			    label      	"示例")
+			icon_style 	"Icon"
+			fill_color 	16777215
+			quidu      	"52D1137E02D4"
+			width      	300
+			height     	180)))))
     root_subsystem 	(object SubSystem "Component View"
 	quid       	"529DE9EA0229"
 	physical_models 	(list unit_reference_list
@@ -15370,6 +15500,30 @@
 					language   	"Java"
 					class      	"Logical View::eastone::common::visitor::package-info"
 					quidu      	"529DEC060067"))
+				physical_presentations 	(list unit_reference_list))
+			    (object SubSystem "delegate"
+				quid       	"52D267DB02AF"
+				physical_models 	(list unit_reference_list
+				    (object module "Delegant" "NotAModuleType" "NotAModulePart"
+					attributes 	(list Attribute_Set
+					    (object Attribute
+						tool       	"Java"
+						name       	"FileName"
+						value      	"D:\\eastone\\common\\delegate\\Delegant.java")
+					    (object Attribute
+						tool       	"Java"
+						name       	"RootPath"
+						value      	"D:"))
+					quid       	"52D267EA031F"
+					stereotype 	""
+					realized_interfaces 	(list realize_rel_list
+					    (object Realize_Relationship
+						quid       	"52D267F10154"
+						supplier   	"Logical View::eastone::common::delegate::Delegant"
+						quidu      	"52D1062500A2"))
+					language   	"Java"
+					class      	"Logical View::eastone::common::delegate::Delegant"
+					quidu      	"52D1062500A2"))
 				physical_presentations 	(list unit_reference_list)))
 			physical_presentations 	(list unit_reference_list))
 		    (object SubSystem "graphic"
@@ -17660,7 +17814,7 @@
 		    (object Attribute
 			tool       	"Java"
 			name       	"ClassPath"
-			value      	"C:\\;C:\\workspace\\EnvProCommon\\lib\\com.springsource.org.apache.log4j-1.2.15.jar;C:\\workspace\\EnvProCommon\\lib\\aopalliance-1.0.jar;C:\\workspace\\EnvProCommon\\lib\\bcprov-jdk15-145.jar;C:\\workspace\\EnvProCommon\\lib\\com.springsource.net.sf.cglib-2.2.0.jar;C:\\workspace\\EnvProCommon\\lib\\com.springsource.org.apache.commons.logging-1.1.1.jar;C:\\workspace\\EnvProCommon\\lib\\commons-codec-1.3.jar;C:\\workspace\\EnvProCommon\\lib\\com.springsource.org.aspectj.tools-1.6.6.RELEASE.jar;C:\\workspace\\EnvProCommon\\lib\\com.springsource.org.quartz-1.6.2.jar;C:\\workspace\\EnvProCommon\\lib\\commons-beanutils-1.8.3.jar;C:\\workspace\\EnvProCommon\\lib\\commons-beanutils-core-1.8.3.jar;C:\\workspace\\EnvProCommon\\lib\\commons-lang-2.5.jar;C:\\workspace\\EnvProCommon\\lib\\commons-collections-3.2.1.jar;C:\\workspace\\EnvProCommon\\lib\\commons-dbcp-1.2.2.jar;C:\\workspace\\EnvProCommon\\lib\\commons-fileupload-1.2.2.jar;C:\\workspace\\EnvProCommon\\lib\\commons-io-2.1.jar;C:\\workspace\\EnvProCommon\\lib\\ezmorph-1.0.6.jar;C:\\workspace\\EnvProCommon\\lib\\commons-logging-1.1.1.jar;C:\\workspace\\EnvProCommon\\lib\\commons-net-1.4.1.jar;C:\\workspace\\EnvProCommon\\lib\\commons-pool-1.4.jar;C:\\workspace\\EnvProCommon\\lib\\dom4j-1.6.1.jar;C:\\workspace\\EnvProCommon\\lib\\jaxen-1.1-beta-6.jar;C:\\workspace\\EnvProCommon\\lib\\httpclient-4.1.2.jar;C:\\workspace\\EnvProCommon\\lib\\httpclient-cache-4.1.2.jar;C:\\workspace\\EnvProCommon\\lib\\httpcore-4.1.2.jar;C:\\workspace\\EnvProCommon\\lib\\httpmime-4.1.2.jar;C:\\workspace\\EnvProCommon\\lib\\org.springframework.aop-3.0.2.RELEASE.jar;C:\\workspace\\EnvProCommon\\lib\\jms-1.1.jar;C:\\workspace\\EnvProCommon\\lib\\jode-1.1.2-pre1.jar;C:\\workspace\\EnvProCommon\\lib\\json-lib-2.3-jdk15.jar;C:\\workspace\\EnvProCommon\\lib\\ojdbc14.jar;C:\\workspace\\EnvProCommon\\lib\\org.springframework.expression-3.0.2.RELEASE.jar;C:\\workspace\\EnvProCommon\\lib\\org.springframework.asm-3.0.2.RELEASE.jar;C:\\workspace\\EnvProCommon\\lib\\org.springframework.beans-3.0.2.RELEASE.jar;C:\\workspace\\EnvProCommon\\lib\\org.springframework.context-3.0.2.RELEASE.jar;C:\\workspace\\EnvProCommon\\lib\\org.springframework.core-3.0.2.RELEASE.jar;C:\\workspace\\EnvProCommon\\lib\\pinyin4j-2.5.0.jar;C:\\workspace\\EnvProCommon\\WebRoot\\WEB-INF\\classes;C:\\apache-tomcat-6.0.35\\lib\\servlet-api.jar;C:\\apache-tomcat-6.0.35\\lib\\jsp-api.jar;C:\\Program Files\\Java\\jdk1.7.0_21\\lib\\tools.jar;C:\\Program Files\\Java\\jdk1.7.0_21\\lib\\ant-javafx.jar;C:\\Program Files\\Java\\jdk1.7.0_21\\lib\\dt.jar;C:\\Program Files\\Java\\jdk1.7.0_21\\lib\\javafx-doclet.jar;C:\\Program Files\\Java\\jdk1.7.0_21\\lib\\javafx-mx.jar;C:\\Program Files\\Java\\jdk1.7.0_21\\lib\\jconsole.jar;C:\\Program Files\\Java\\jdk1.7.0_21\\src.zip;C:\\TDDOWNLOAD\\mybatis-3.2.2\\mybatis-3.2.2\\mybatis-3.2.2.jar;C:\\TDDOWNLOAD\\mybatis-spring-1.2.0-bundle\\mybatis-spring-1.2.0\\mybatis-spring-1.2.0.jar;C:\\Users\\quzl\\git\\default\\eastone-components\\target\\classes;C:\\Users\\quzl\\git\\default\\eastone-common\\target\\classes;C:\\Users\\quzl\\.m2\\repository\\org\\jogamp\\jogl\\jogl-all\\2.1.2\\jogl-all-2.1.2.jar;C:\\Users\\quzl\\git\\default\\eastone-components\\target\\test-classes;C:\\workspace\\EnvProCommon2(Snoopervise)\\target\\classes;C:\\workspace\\apache-maven-3.1.0\\repo\\org\\slf4j\\slf4j-api\\1.7.5\\slf4j-api-1.7.5.jar")
+			value      	"D:\\;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\charsets.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\jce.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\jsse.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\rt.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\ext\\dnsns.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\ext\\localedata.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\ext\\sunjce_provider.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\security\\local_policy.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\security\\US_export_policy.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\lib\\dt.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\lib\\htmlconverter.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\lib\\tools.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\deploy.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\javaws.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\plugin.jar;C:\\Program Files (x86)\\Java\\jdk1.6.0_18\\jre\\lib\\rt.jar;C:\\Program Files (x86)\\Java\\jdk1.6.0_18\\lib\\dt.jar;C:\\Program Files (x86)\\Java\\jdk1.6.0_18\\lib\\tools.jar;C:\\Users\\WANGDS\\.m2\\repository\\jaxen\\jaxen\\1.1.4\\jaxen-1.1.4.jar;C:\\Users\\WANGDS\\.m2\\repository\\aopalliance\\aopalliance\\1.0\\aopalliance-1.0.jar;C:\\Users\\WANGDS\\.m2\\repository\\c3p0\\c3p0\\0.9.1.1\\c3p0-0.9.1.1.jar;C:\\Users\\WANGDS\\.m2\\repository\\com\\neusoft\\envpro\\EnvProCommon\\2.1\\EnvProCommon-2.1.jar;C:\\Users\\WANGDS\\.m2\\repository\\com\\oracle\\ojdbc14\\10.2.0.4.0\\ojdbc14-10.2.0.4.0.jar;C:\\Users\\WANGDS\\.m2\\repository\\org\\springframework\\spring-context\\3.1.4.RELEASE\\spring-context-3.1.4.RELEASE.jar;D:\\workspace\\DailyRoundCheck\\target\\classes;C:\\Users\\WANGDS\\.m2\\repository\\org\\apache\\httpcomponents\\httpclient\\4.3.1\\httpclient-4.3.1.jar;C:\\Users\\WANGDS\\.m2\\repository\\org\\apache\\httpcomponents\\httpcore\\4.3\\httpcore-4.3.jar;C:\\Users\\WANGDS\\.m2\\repository\\org\\mybatis\\mybatis\\3.2.1\\mybatis-3.2.1.jar;C:\\Users\\WANGDS\\.m2\\repository\\commons-httpclient\\commons-httpclient\\3.1\\commons-httpclient-3.1.jar;D:\\workspace\\EnvProCommon\\target\\classes;C:\\Users\\WANGDS\\.m2\\repository\\javax\\servlet\\javax.servlet-api\\3.1.0\\javax.servlet-api-3.1.0.jar;C:\\Users\\WANGDS\\.m2\\repository\\dom4j\\dom4j\\1.6.1\\dom4j-1.6.1.jar;C:\\Users\\WANGDS\\.m2\\repository\\commons-logging\\commons-logging\\1.1.1\\commons-logging-1.1.1.jar;C:\\Users\\WANGDS\\.m2\\repository\\org\\slf4j\\slf4j-api\\1.6.6\\slf4j-api-1.6.6.jar;C:\\Users\\WANGDS\\.m2\\repository\\log4j\\log4j\\1.2.17\\log4j-1.2.17.jar;C:\\Users\\WANGDS\\.m2\\repository\\net\\sf\\json-lib\\json-lib\\2.4\\json-lib-2.4-jdk15-sources.jar;C:\\Users\\WANGDS\\.m2\\repository\\commons-fileupload\\commons-fileupload\\1.3\\commons-fileupload-1.3.jar")
 		    (object Attribute
 			tool       	"Java"
 			name       	"ReferenceClasspath"

@@ -7,8 +7,6 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import eastone.common.context.BeanContext;
 import eastone.common.context.provider.spring.SpringBeanContextProvider;
 
@@ -54,12 +52,11 @@ public class SpringBeanContextTest extends TestCase {
     /**
      * 测试方法.
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     public final void testGetBean() {
         SpringBeanContextProvider ctx = new SpringBeanContextProvider();
-        ctx.appendContext(new ClassPathXmlApplicationContext(
-        "eastone/common/context/provider/spring/test/test.context.xml"
-        ));
+        ctx.appendContext(
+          "eastone/common/context/provider/spring/test/test.context.xml"
+        );
         String testmsg = (String) ctx.getBean("test.msg");
         assertEquals(testmsg, "Hello World");
     }
@@ -67,16 +64,16 @@ public class SpringBeanContextTest extends TestCase {
     /**
      * 测试获得bean对象.
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     public final void testGetBean2() {
         SpringBeanContextProvider ctx = new SpringBeanContextProvider();
-        ctx.appendContext(new ClassPathXmlApplicationContext(
-            "eastone/common/context/provider/spring/test/test.context.xml")
+        ctx.appendContext(
+          "eastone/common/context/provider/spring/test/test.context.xml"
         );
         String testmsg = (String) ctx.getBean("test.msg");
         assertEquals(testmsg, "Hello World");
-        ctx.appendContext(new ClassPathXmlApplicationContext(
-            "eastone/common/context/provider/spring/test/test1.context.xml"));
+        ctx.appendContext(
+          "eastone/common/context/provider/spring/test/test1.context.xml"
+        );
         String testmsgr = (String) ctx.getBean("test.msg");
         String testmsg1 = (String) ctx.getBean("test.msg1");
         assertEquals(testmsg, testmsgr);
