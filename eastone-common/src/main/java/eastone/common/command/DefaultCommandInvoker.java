@@ -22,7 +22,7 @@ public class DefaultCommandInvoker extends GeneralParentObject implements
     Invoker {
 
   @Override
-  public final
+  public
     <E extends Exception, C extends Command<E>, R extends CommandReceiver>
     C buildCommand(
       final R receiver, final C command) {
@@ -33,7 +33,7 @@ public class DefaultCommandInvoker extends GeneralParentObject implements
   }
 
   @Override
-  public final <E extends Exception, C extends Command<E>>
+  public <E extends Exception, C extends Command<E>>
   void invoke(final C command)
       throws E {
     if (command != null) {

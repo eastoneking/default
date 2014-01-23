@@ -28,12 +28,12 @@ public class AbstractProxy<Subject> extends GeneralParentObject implements
   private Subject subject;
 
   @Override
-  public final Subject getSubject() {
+  public Subject getSubject() {
     return this.subject;
   }
 
   @Override
-  public final void setSubject(final Subject theSubject) {
+  public void setSubject(final Subject theSubject) {
     this.subject = theSubject;
   }
 

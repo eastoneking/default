@@ -101,14 +101,14 @@ public class HttpException extends Exception {
   /**
    * @param theStatus the status to set
    */
-  public final void setStatus(final HttpStatusEnum theStatus) {
+  public void setStatus(final HttpStatusEnum theStatus) {
     this.status = theStatus;
   }
 
   /**
    * @return the status
    */
-  public final HttpStatusEnum getStatus() {
+  public HttpStatusEnum getStatus() {
     return status;
   }
 }

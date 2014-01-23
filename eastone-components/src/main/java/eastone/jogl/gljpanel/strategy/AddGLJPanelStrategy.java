@@ -25,11 +25,12 @@ import eastone.common.strategy.Strategy;
  *     </li>
  *   </ul>
  * </p>
+ * @param <K> .
  * @author 王东石<wangds@gmail.com>
  * @version 0.1
  * @since 0.1
  */
-public interface AddGLJPanelStrategy extends Strategy {
+public interface AddGLJPanelStrategy<K> extends Strategy<K> {
 
   /**
    * 向容器中添加GL面板.

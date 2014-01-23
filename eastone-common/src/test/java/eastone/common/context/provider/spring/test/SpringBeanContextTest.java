@@ -36,7 +36,7 @@ public class SpringBeanContextTest extends TestCase {
      * 测试provider是否正常.
      */
     @SuppressWarnings("rawtypes")
-    public final void testProviderLoad() {
+    public void testProviderLoad() {
         ServiceLoader<BeanContext> loader
             = ServiceLoader.load(BeanContext.class);
         Iterator<BeanContext> it = loader.iterator();
@@ -52,7 +52,7 @@ public class SpringBeanContextTest extends TestCase {
     /**
      * 测试方法.
      */
-    public final void testGetBean() {
+    public void testGetBean() {
         SpringBeanContextProvider ctx = new SpringBeanContextProvider();
         ctx.appendContext(
           "eastone/common/context/provider/spring/test/test.context.xml"
@@ -64,7 +64,7 @@ public class SpringBeanContextTest extends TestCase {
     /**
      * 测试获得bean对象.
      */
-    public final void testGetBean2() {
+    public void testGetBean2() {
         SpringBeanContextProvider ctx = new SpringBeanContextProvider();
         ctx.appendContext(
           "eastone/common/context/provider/spring/test/test.context.xml"

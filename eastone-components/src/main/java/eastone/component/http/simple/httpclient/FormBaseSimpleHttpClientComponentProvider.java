@@ -46,23 +46,23 @@ public class FormBaseSimpleHttpClientComponentProvider
   }
 
   @Override
-  public final String post(final URL url) throws HttpException {
+  public String post(final URL url) throws HttpException {
     return fillImple(HttpMethodEnum.POST, url, null).request();
   }
 
   @Override
-  public final String get(final URL url) throws HttpException {
+  public String get(final URL url) throws HttpException {
     return fillImple(HttpMethodEnum.GET, url, null).request();
   }
 
   @Override
-  public final String post(final URL url, final Map<String, String> form)
+  public String post(final URL url, final Map<String, String> form)
       throws HttpException {
     return fillImple(HttpMethodEnum.POST, url, form).request();
   }
 
   @Override
-  public final String get(final URL url, final Map<String, String> form)
+  public String get(final URL url, final Map<String, String> form)
       throws HttpException {
     return fillImple(HttpMethodEnum.GET, url, form).request();
   }

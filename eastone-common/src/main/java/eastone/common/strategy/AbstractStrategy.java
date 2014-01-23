@@ -36,7 +36,7 @@ public class AbstractStrategy<K>
   private K key;
 
   @Override
-  public void setKey(K newkey) {
+  public void setKey(final K newkey) {
     this.key = newkey;
   }
 

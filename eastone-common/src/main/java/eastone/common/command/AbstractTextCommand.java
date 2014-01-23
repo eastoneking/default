@@ -34,7 +34,7 @@ public abstract class AbstractTextCommand<E extends Exception> extends
    * 获得命令文本.
    * @return 命令文本.
    */
-  public final String getCommandText() {
+  public String getCommandText() {
     return commandText;
   }
 
@@ -43,7 +43,7 @@ public abstract class AbstractTextCommand<E extends Exception> extends
    * @param theCommandText
    *          命令文本.
    */
-  public final void setCommandText(final String theCommandText) {
+  public void setCommandText(final String theCommandText) {
     this.commandText = theCommandText;
   }
 

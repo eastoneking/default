@@ -53,24 +53,26 @@ public class AbstractSwingMainJFrame
    * 用于保存如何添加GLJPanel的策略上下文.
    */
   private static final AddGLJPanelStrategyContext ADD_GLJP_CTX
-    = new AddGLJPanelStrategyContext(new LinkedHashMap<String, Strategy>());
+    = new AddGLJPanelStrategyContext(
+        new LinkedHashMap<String, Strategy<String>>()
+      );
 
   static {
     //初始化添加GLJPanel的备选策略列表.
     ADD_GLJP_CTX.registerStrategy(
-        BorderLayout.CENTER, new Append2BorderLayoutStrategy()
+        new Append2BorderLayoutStrategy(BorderLayout.CENTER)
     );
     ADD_GLJP_CTX.registerStrategy(
-        BorderLayout.NORTH, new Append2BorderLayoutStrategy(BorderLayout.NORTH)
+        new Append2BorderLayoutStrategy(BorderLayout.NORTH)
     );
     ADD_GLJP_CTX.registerStrategy(
-        BorderLayout.SOUTH, new Append2BorderLayoutStrategy(BorderLayout.SOUTH)
+        new Append2BorderLayoutStrategy(BorderLayout.SOUTH)
     );
     ADD_GLJP_CTX.registerStrategy(
-        BorderLayout.EAST, new Append2BorderLayoutStrategy(BorderLayout.EAST)
+        new Append2BorderLayoutStrategy(BorderLayout.EAST)
     );
     ADD_GLJP_CTX.registerStrategy(
-        BorderLayout.WEST, new Append2BorderLayoutStrategy(BorderLayout.WEST)
+        new Append2BorderLayoutStrategy(BorderLayout.WEST)
     );
   }
 
@@ -114,8 +116,8 @@ public class AbstractSwingMainJFrame
    * @param windowSize 窗口大小.
    */
   public AbstractSwingMainJFrame(
-      String title,
-      Rectangle<Integer> windowSize
+      final String title,
+      final Rectangle<Integer> windowSize
   ) {
     super(title);
     initLayout();
@@ -129,9 +131,9 @@ public class AbstractSwingMainJFrame
    * @param windowSize 窗口大小.
    */
   public AbstractSwingMainJFrame(
-      String title,
-      GraphicsConfiguration gc,
-      Rectangle<Integer> windowSize
+      final String title,
+      final GraphicsConfiguration gc,
+      final Rectangle<Integer> windowSize
   ) {
     super(title, gc);
     initLayout();
@@ -209,7 +211,7 @@ public class AbstractSwingMainJFrame
    * 设置defaultLayout属性值.
    * @param theDefaultLayout defaultLayout属性的新值。
    */
-  public void setDefaultLayout(LayoutManager theDefaultLayout) {
+  public void setDefaultLayout(final LayoutManager theDefaultLayout) {
     this.defaultLayout = theDefaultLayout;
   }
 
@@ -225,25 +227,26 @@ public class AbstractSwingMainJFrame
    * 设置窗口大小.
    * @param windowSize 窗口大小.
    */
-  public void setSize(Rectangle<Integer> windowSize) {
+  public void setSize(final Rectangle<Integer> windowSize) {
     if (windowSize != null) {
       this.setSize(windowSize.getWidth(), windowSize.getHeight());
     }
   }
 
   @Override
-  public void setLayout(LayoutManager manager) {
+  public void setLayout(final LayoutManager manager) {
     if (manager == null) {
-      manager = this.getDefaultLayout();
+      super.setLayout(this.getDefaultLayout());
+    } else {
+      super.setLayout(manager);
     }
-    super.setLayout(manager);
   }
 
   /**
    * 设置addGLJPanelStrategy属性值.
    * @param theAddGLJPanelStrategy addGLJPanelStrategy属性的新值。
    */
-  public void setAddGLJPanelStrategy(String theAddGLJPanelStrategy) {
+  public void setAddGLJPanelStrategy(final String theAddGLJPanelStrategy) {
     this.addGLJPanelStrategy = theAddGLJPanelStrategy;
   }
 
@@ -266,14 +269,17 @@ public class AbstractSwingMainJFrame
    * 向窗体添加GLJPanel对象.
    * @param gljp GLJPanel对象.
    */
-  public void addGLJPanel(GLJPanel gljp) {
+  public void addGLJPanel(
+      final GLJPanel gljp
+  ) {
+    GLJPanel thegljp = gljp;
     if (gljp == null) {
-      gljp = new GLJPanelFacotry().getInstance();
+      thegljp = new GLJPanelFacotry().getInstance();
     }
     synchronized (ADD_GLJP_CTX) {
       ADD_GLJP_CTX.setSelectedStrategy(this.addGLJPanelStrategy);
       ADD_GLJP_CTX.setContainer(this);
-      ADD_GLJP_CTX.setPanel(gljp);
+      ADD_GLJP_CTX.setPanel(thegljp);
       try {
         ADD_GLJP_CTX.process();
       } catch (StrategyRuntimeException e) {

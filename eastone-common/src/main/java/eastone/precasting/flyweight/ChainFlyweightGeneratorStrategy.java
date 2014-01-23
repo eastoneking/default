@@ -60,12 +60,12 @@ public class ChainFlyweightGeneratorStrategy<K, F extends Flyweight>
    * @param initFactoriesContext 生成时的上下文,调用时生效.
    */
   public ChainFlyweightGeneratorStrategy(
-      DefaultFlyweightFactory<K, F> initFactoriesContext) {
+      final DefaultFlyweightFactory<K, F> initFactoriesContext) {
     super(initFactoriesContext);
   }
 
   @Override
-  public void setNext(ChainFlyweightGeneratorStrategy<K, F> newNext) {
+  public void setNext(final ChainFlyweightGeneratorStrategy<K, F> newNext) {
     this.next = newNext;
   }
 
@@ -78,7 +78,7 @@ public class ChainFlyweightGeneratorStrategy<K, F extends Flyweight>
    * 设置result属性值.
    * @param theResult result属性的新值。
    */
-  public void setResult(F theResult) {
+  public void setResult(final F theResult) {
     this.result = theResult;
   }
 
@@ -109,7 +109,8 @@ public class ChainFlyweightGeneratorStrategy<K, F extends Flyweight>
   }
 
   @Override
-  protected F generateInstanceByKey(K key) throws StrategyRuntimeException {
+  protected F generateInstanceByKey(final K key)
+      throws StrategyRuntimeException {
     this.process();
     return this.result;
   }
@@ -118,7 +119,9 @@ public class ChainFlyweightGeneratorStrategy<K, F extends Flyweight>
    * 向责任链尾部添加一个策略.
    * @param inner 内部策略.
    */
-  public void appendStrategy(AbstractFlyweightGenerateStrategy<K, F> inner) {
+  public void appendStrategy(
+      final AbstractFlyweightGenerateStrategy<K, F> inner
+  ) {
     //递归添加后续节点
     if (this.innerStrategy == null) {
       this.innerStrategy = inner;

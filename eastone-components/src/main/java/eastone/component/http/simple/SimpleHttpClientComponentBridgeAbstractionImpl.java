@@ -66,7 +66,7 @@ public abstract class SimpleHttpClientComponentBridgeAbstractionImpl
    * 获取URL.
    * @return URL.
    */
-  public final URL getUrl() {
+  public URL getUrl() {
     return url;
   }
 
@@ -74,7 +74,7 @@ public abstract class SimpleHttpClientComponentBridgeAbstractionImpl
    * 设置URL.
    * @param theUrl URL.
    */
-  public final void setUrl(final URL theUrl) {
+  public void setUrl(final URL theUrl) {
     this.url = theUrl;
   }
 
@@ -82,7 +82,7 @@ public abstract class SimpleHttpClientComponentBridgeAbstractionImpl
    * 获取参数.
    * @return 参数.
    */
-  public final P getParametets() {
+  public P getParametets() {
     return parametets;
   }
 
@@ -90,7 +90,7 @@ public abstract class SimpleHttpClientComponentBridgeAbstractionImpl
    * 设置参数.
    * @param theParametets 参数.
    */
-  public final void setParametets(final P theParametets) {
+  public void setParametets(final P theParametets) {
     this.parametets = theParametets;
   }
 
@@ -98,7 +98,7 @@ public abstract class SimpleHttpClientComponentBridgeAbstractionImpl
    * 设置请求方法.
    * @param theMethod the method to set
    */
-  public final void setMethod(final HttpMethodEnum theMethod) {
+  public void setMethod(final HttpMethodEnum theMethod) {
     this.method = theMethod;
   }
 
@@ -106,7 +106,7 @@ public abstract class SimpleHttpClientComponentBridgeAbstractionImpl
    * 获得请求方法.
    * @return the method
    */
-  public final HttpMethodEnum getMethod() {
+  public HttpMethodEnum getMethod() {
     return method;
   }
 

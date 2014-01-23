@@ -40,7 +40,7 @@ public class StrategyRuntimeException extends Exception {
    * 构造函数.
    * @param message 消息.
    */
-  public StrategyRuntimeException(String message) {
+  public StrategyRuntimeException(final String message) {
     super(message);
   }
 
@@ -48,7 +48,7 @@ public class StrategyRuntimeException extends Exception {
    * 构造函数.
    * @param cause 起源异常.
    */
-  public StrategyRuntimeException(Throwable cause) {
+  public StrategyRuntimeException(final Throwable cause) {
     super(cause);
   }
 
@@ -57,7 +57,7 @@ public class StrategyRuntimeException extends Exception {
    * @param message 消息.
    * @param cause 起源异常.
    */
-  public StrategyRuntimeException(String message, Throwable cause) {
+  public StrategyRuntimeException(final String message, final Throwable cause) {
     super(message, cause);
   }
 

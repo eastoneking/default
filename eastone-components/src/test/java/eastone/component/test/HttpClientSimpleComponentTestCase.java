@@ -30,7 +30,7 @@ public class HttpClientSimpleComponentTestCase {
    * 测试天气.
    */
   @SuppressWarnings("unchecked")
-  public final void testWeather() {
+  public void testWeather() {
     ProviderFactory factory = new ProviderFactory();
 
     SimpleHttpClientComponent<Map<String, String>> client = null;

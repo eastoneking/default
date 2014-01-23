@@ -80,7 +80,7 @@ public abstract class AbstractStrategyContext
    * 设置selectedStrategy属性值.
    * @param theSelectedStrategy selectedStrategy属性的新值。
    */
-  public void setSelectedStrategy(K theSelectedStrategy) {
+  public void setSelectedStrategy(final K theSelectedStrategy) {
     this.selectedStrategy = theSelectedStrategy;
   }
 
@@ -94,18 +94,18 @@ public abstract class AbstractStrategyContext
 
 
   @Override
-  public <S extends Strategy<K>> void registerStrategy(S strategy) {
+  public <S extends Strategy<K>> void registerStrategy(final S strategy) {
     this.contextMap.put(strategy.getKey(), strategy);
   }
 
   @SuppressWarnings("unchecked")
   @Override
-  public <S extends Strategy<K>> S findStrategy(K key) {
+  public <S extends Strategy<K>> S findStrategy(final K key) {
     return (S) this.contextMap.get(key);
   }
 
   @Override
-  public void disregister(K key) {
+  public void disregister(final K key) {
     this.contextMap.remove(key);
   }
 

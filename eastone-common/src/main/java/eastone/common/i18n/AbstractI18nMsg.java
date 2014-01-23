@@ -48,13 +48,13 @@ public abstract class AbstractI18nMsg extends GeneralParentObject implements
    * 获得消息编号.
    * @return 消息编号.
    */
-  public final String getId() {
+  public String getId() {
     return id;
   }
 
 
   @Override
-  public final void setId(final String theid) {
+  public void setId(final String theid) {
     this.id = theid;
   }
 
@@ -62,12 +62,12 @@ public abstract class AbstractI18nMsg extends GeneralParentObject implements
    * 获得消息适用国家/地区和语言.
    * @return 消息适用国家/地区和语言.
    */
-  public final Locale getLocale() {
+  public Locale getLocale() {
     return locale;
   }
 
   @Override
-  public final void setLocale(final Locale thelocale) {
+  public void setLocale(final Locale thelocale) {
     this.locale = thelocale;
   }
 
@@ -75,12 +75,12 @@ public abstract class AbstractI18nMsg extends GeneralParentObject implements
    * 获得用于预定位置替换的参数列表.
    * @return 参数列表.
    */
-  public final String[] getArguments() {
+  public String[] getArguments() {
     return arguments;
   }
 
   @Override
-  public final void setArguments(final String[] theArguments) {
+  public void setArguments(final String[] theArguments) {
     this.arguments = theArguments;
   }
 
@@ -116,7 +116,7 @@ public abstract class AbstractI18nMsg extends GeneralParentObject implements
    */
   @SuppressWarnings("unchecked")
   @TemplateMethod
-  public final <M extends I18nMsg> M cloneMe() {
+  public <M extends I18nMsg> M cloneMe() {
     M res = null;
     try {
       res = (M) super.clone();

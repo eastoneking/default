@@ -55,7 +55,7 @@ public class InputStream2BytesProcessor extends
    * 设置每次读取的数据长度.
    * @param theBufferSize 每次读取的数据长度
    */
-  public final void setBufferSize(final int theBufferSize) {
+  public void setBufferSize(final int theBufferSize) {
     this.bufferSize = theBufferSize;
   }
 
@@ -63,7 +63,7 @@ public class InputStream2BytesProcessor extends
    * 获取每次读取的数据长度.
    * @return 每次读取的数据长度.
    */
-  public final int getBufferSize() {
+  public int getBufferSize() {
     return bufferSize;
   }
 
@@ -71,7 +71,7 @@ public class InputStream2BytesProcessor extends
    * 设置要读取的输入流.
    * @param theInputStream 要读取的输入流.
    */
-  public final void setInputStream(final InputStream theInputStream) {
+  public void setInputStream(final InputStream theInputStream) {
     this.inputStream = theInputStream;
   }
 
@@ -79,12 +79,12 @@ public class InputStream2BytesProcessor extends
    * 获取要读取的输入流.
    * @return 要读取的输入流.
    */
-  public final InputStream getInputStream() {
+  public InputStream getInputStream() {
     return inputStream;
   }
 
   @Override
-  protected final byte[] execute() throws IOException {
+  protected byte[] execute() throws IOException {
     return convert(inputStream);
   }
 
@@ -136,7 +136,7 @@ public class InputStream2BytesProcessor extends
    * @throws IOException 异常.
    */
   @Override
-  public final byte[] convert(final InputStream src) throws IOException {
+  public byte[] convert(final InputStream src) throws IOException {
     byte[] res = null;
 
     if (src == null) {

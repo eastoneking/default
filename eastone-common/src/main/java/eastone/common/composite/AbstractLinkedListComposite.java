@@ -33,35 +33,35 @@ public abstract class AbstractLinkedListComposite<C extends Component> extends
   private final List<C> components = new LinkedList<C>();
 
   @Override
-  public final <T extends C> void add(final T component) {
+  public <T extends C> void add(final T component) {
     this.components.add(component);
   }
 
   @Override
-  public final <T extends C> void remove(final T component) {
+  public <T extends C> void remove(final T component) {
     this.components.remove(component);
   }
 
   @Override
-  public final void remove(final Integer identity) {
+  public void remove(final Integer identity) {
     this.components.remove(identity.intValue());
   }
 
   @Override
-  public final void clear() {
+  public void clear() {
     this.components.clear();
   }
 
   @SuppressWarnings("unchecked")
   @Override
-  public final <T extends C> T getComponent(final Integer identity) {
+  public <T extends C> T getComponent(final Integer identity) {
     T res = null;
     res = (T) this.components.get(identity.intValue());
     return res;
   }
 
   @Override
-  public final List<C> listAllComponent() {
+  public List<C> listAllComponent() {
     return this.components;
   }
 

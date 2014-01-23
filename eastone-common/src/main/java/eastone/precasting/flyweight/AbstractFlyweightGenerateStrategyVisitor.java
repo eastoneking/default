@@ -57,7 +57,7 @@ public abstract class AbstractFlyweightGenerateStrategyVisitor
   }
 
   @Override
-  public void setFactoryInstanceMap(Map<K, F> map) {
+  public void setFactoryInstanceMap(final Map<K, F> map) {
     this.instanceMap = map;
   }
 
@@ -70,7 +70,7 @@ public abstract class AbstractFlyweightGenerateStrategyVisitor
   }
 
   @Override
-  public void setKey(K theKey) {
+  public void setKey(final K theKey) {
     this.key = theKey;
   }
 
@@ -83,7 +83,7 @@ public abstract class AbstractFlyweightGenerateStrategyVisitor
   }
 
   @Override
-  public void setInstance(F theInstance) {
+  public void setInstance(final F theInstance) {
     this.instance = theInstance;
   }
 

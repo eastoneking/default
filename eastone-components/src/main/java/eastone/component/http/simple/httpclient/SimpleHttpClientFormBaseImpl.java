@@ -63,7 +63,7 @@ public class SimpleHttpClientFormBaseImpl extends
    * 获得Http方法.
    * @return Http方法.
    */
-  public final HttpMethodEnum getMethod() {
+  public HttpMethodEnum getMethod() {
     return method;
   }
 
@@ -71,7 +71,7 @@ public class SimpleHttpClientFormBaseImpl extends
    * 设置Http方法.
    * @param theMethod Http方法.
    */
-  public final void setMethod(final HttpMethodEnum theMethod) {
+  public void setMethod(final HttpMethodEnum theMethod) {
     this.method = theMethod;
   }
 
@@ -79,7 +79,7 @@ public class SimpleHttpClientFormBaseImpl extends
    * URL.
    * @return URL.
    */
-  public final URL getUrl() {
+  public URL getUrl() {
     return url;
   }
 
@@ -87,7 +87,7 @@ public class SimpleHttpClientFormBaseImpl extends
    * URL.
    * @param theUrl URL.
    */
-  public final void setUrl(final URL theUrl) {
+  public void setUrl(final URL theUrl) {
     this.url = theUrl;
   }
 
@@ -95,7 +95,7 @@ public class SimpleHttpClientFormBaseImpl extends
    * 参数.
    * @return 参数.
    */
-  public final Map<String, String> getParameters() {
+  public Map<String, String> getParameters() {
     return parameters;
   }
 
@@ -103,12 +103,12 @@ public class SimpleHttpClientFormBaseImpl extends
    * 参数.
    * @param theParameters 参数.
    */
-  public final void setParameters(final Map<String, String> theParameters) {
+  public void setParameters(final Map<String, String> theParameters) {
     this.parameters = theParameters;
   }
 
   @Override
-  protected final String execute() throws HttpException {
+  protected String execute() throws HttpException {
     String res = null;
 
     assert this.method != null;
@@ -195,7 +195,7 @@ public class SimpleHttpClientFormBaseImpl extends
    * @return 应答body.
    * @throws HttpException 可能的异常.
    */
-  public final String request() throws HttpException {
+  public String request() throws HttpException {
     this.process();
     return this.getResult();
   }

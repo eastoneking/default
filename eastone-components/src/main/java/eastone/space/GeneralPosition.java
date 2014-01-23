@@ -51,12 +51,12 @@ public class GeneralPosition<T, D>
    * 构造函数.
    * @param theDimensions 维度.
    */
-  public GeneralPosition(Set<D> theDimensions) {
+  public GeneralPosition(final Set<D> theDimensions) {
     this.setDimensions(theDimensions);
   }
 
   @Override
-  public void setPos(T thePos) {
+  public void setPos(final T thePos) {
     this.pos = thePos;
   }
 
@@ -71,7 +71,7 @@ public class GeneralPosition<T, D>
   }
 
   @Override
-  public D findDimension(int index) {
+  public D findDimension(final int index) {
     D res = null;
     int size = this.size();
     if (index < size) {
@@ -84,7 +84,7 @@ public class GeneralPosition<T, D>
   }
 
   @Override
-  public void setDimensions(Set<D> theDimensions) {
+  public void setDimensions(final Set<D> theDimensions) {
     this.dimensions = theDimensions;
   }
 

@@ -52,7 +52,7 @@ public class DefaultVisitorController
   }
 
   @Override
-  public void disregister(Class<E> type, V visitor) {
+  public void disregister(final Class<E> type, final V visitor) {
     List<Visitor> list = this.registedVisitorMap.get(type);
     if (list == null) {
       list = new LinkedList<Visitor>();
@@ -63,7 +63,7 @@ public class DefaultVisitorController
   }
 
   @Override
-  public void clear(Class<E> type) {
+  public void clear(final Class<E> type) {
     List<Visitor> list = this.registedVisitorMap.get(type);
     if (list == null) {
       list = new LinkedList<Visitor>();
@@ -74,13 +74,13 @@ public class DefaultVisitorController
   }
 
   @Override
-  public final void clear() {
+  public void clear() {
     this.registedVisitorMap.clear();
   }
 
   @SuppressWarnings({"unchecked" })
   @Override
-  public List<V> findVisitors(Class<E> type) {
+  public List<V> findVisitors(final Class<E> type) {
     List<Visitor> list = this.registedVisitorMap.get(type);
     if (list == null) {
       list = new LinkedList<Visitor>();
@@ -91,7 +91,7 @@ public class DefaultVisitorController
 
   @SuppressWarnings("unchecked")
   @Override
-  public void invokeVisitors(E visitable) {
+  public void invokeVisitors(final E visitable) {
     if (visitable == null) {
       return;
     }

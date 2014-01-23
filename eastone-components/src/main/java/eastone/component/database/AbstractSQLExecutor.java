@@ -50,7 +50,7 @@ public abstract class AbstractSQLExecutor<S, R, E extends Exception> extends
   }
 
   @Override
-  public void setResult(R theResult) {
+  public void setResult(final R theResult) {
     this.result = theResult;
   }
 
@@ -63,12 +63,12 @@ public abstract class AbstractSQLExecutor<S, R, E extends Exception> extends
   }
 
   @Override
-  public void setDBResource(S resource) {
+  public void setDBResource(final S resource) {
     this.dBResource = resource;
   }
 
   @Override
-  public void setCommandText(String theCommandText) {
+  public void setCommandText(final String theCommandText) {
     this.commandText = theCommandText;
   }
 
@@ -78,7 +78,7 @@ public abstract class AbstractSQLExecutor<S, R, E extends Exception> extends
   }
 
   @Override
-  public <T> void setParameters(T theParameters) {
+  public <T> void setParameters(final T theParameters) {
     this.parameters = (Object) theParameters;
   }
 

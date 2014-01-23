@@ -35,17 +35,17 @@ public abstract class AbstractProcessorWithResult<T, E extends Exception>
   private T result = null;
 
   @Override
-  public final void setResult(final T theResult) {
+  public void setResult(final T theResult) {
     this.result = theResult;
   }
 
   @Override
-  public final T getResult() {
+  public T getResult() {
     return this.result;
   }
 
   @Override
-  public final void process() throws E {
+  public void process() throws E {
     if (this.result != null) {
       return;
     }
@@ -63,7 +63,7 @@ public abstract class AbstractProcessorWithResult<T, E extends Exception>
   /**
    * 清理状态.
    */
-  public final void clear() {
+  public void clear() {
     this.result = null;
   }
 

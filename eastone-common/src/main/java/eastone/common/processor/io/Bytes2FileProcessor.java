@@ -57,7 +57,7 @@ public class Bytes2FileProcessor extends eastone.common.GeneralParentObject
    *          写入模式.
    * @see eastone.common.processor.io.FileOverwriteEnum
    */
-  public final void setOverwrite(final FileOverwriteEnum overWrite) {
+  public void setOverwrite(final FileOverwriteEnum overWrite) {
     this.overwrite = overWrite;
   }
 
@@ -66,7 +66,7 @@ public class Bytes2FileProcessor extends eastone.common.GeneralParentObject
    * @return 写入模式.
    * @see eastone.common.processor.io.FileOverwriteEnum
    */
-  public final FileOverwriteEnum getOverwrite() {
+  public FileOverwriteEnum getOverwrite() {
     return overwrite;
   }
 
@@ -75,7 +75,7 @@ public class Bytes2FileProcessor extends eastone.common.GeneralParentObject
    * @param theData
    *          要写入的数据.
    */
-  public final void setData(final byte[] theData) {
+  public void setData(final byte[] theData) {
     this.data = theData;
   }
 
@@ -87,7 +87,7 @@ public class Bytes2FileProcessor extends eastone.common.GeneralParentObject
    *          文件可以不存在.
    *          </p>
    */
-  public final void setFile(final File theFile) {
+  public void setFile(final File theFile) {
     this.file = theFile;
   }
 
@@ -95,7 +95,7 @@ public class Bytes2FileProcessor extends eastone.common.GeneralParentObject
    * 获得要写入的数据.
    * @return 要写入的数据.
    */
-  public final byte[] getData() {
+  public byte[] getData() {
     return data;
   }
 
@@ -103,7 +103,7 @@ public class Bytes2FileProcessor extends eastone.common.GeneralParentObject
    * 获得要操作的文件.
    * @return 要操作的文件.
    */
-  public final File getFile() {
+  public File getFile() {
     return file;
   }
 
@@ -131,7 +131,7 @@ public class Bytes2FileProcessor extends eastone.common.GeneralParentObject
    *          </table>
    *          </p>
    */
-  public final void setMakeParentDirectory(
+  public void setMakeParentDirectory(
       final boolean theMakeParentDirectory
   ) {
     this.makeParentDirectory = theMakeParentDirectory;
@@ -141,7 +141,7 @@ public class Bytes2FileProcessor extends eastone.common.GeneralParentObject
    * 获得是否创建缺失的目录.
    * @return 是否创建缺失的目录.
    */
-  public final boolean isMakeParentDirectory() {
+  public boolean isMakeParentDirectory() {
     return makeParentDirectory;
   }
 
@@ -186,7 +186,7 @@ public class Bytes2FileProcessor extends eastone.common.GeneralParentObject
    *           异常
    */
   @Override
-  public final void process() throws IOException {
+  public void process() throws IOException {
     assert file != null;
     if (this.data != null && this.file != null) {
       if (!validateParentPath(file)) {
@@ -281,7 +281,7 @@ public class Bytes2FileProcessor extends eastone.common.GeneralParentObject
    * 设置为"true";写入模式为追加.
    * </p>
    */
-  public final void clear() {
+  public void clear() {
     this.data = null;
     this.file = null;
     this.makeParentDirectory = true;

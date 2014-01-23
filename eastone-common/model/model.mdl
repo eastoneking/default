@@ -120,7 +120,32 @@
 		origin_x   	0
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object ClassView "Class" "Use Case View::码农" @1
+		    (object UseCaseView "Use Case View::编码不累" @1
+			location   	(816, 640)
+			font       	(object Font
+			    size       	10
+			    face       	"宋体"
+			    charSet    	134
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@1
+			    location   	(815, 815)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	879
+			    justify    	0
+			    label      	"编码不累")
+			icon       	"Business Use Case"
+			icon_style 	"Icon"
+			fill_color 	16777215
+			quidu      	"52D105C10357"
+			width      	306)
+		    (object ClassView "Class" "Use Case View::码农" @2
 			ShowCompartmentStereotypes 	TRUE
 			SuppressAttribute 	TRUE
 			SuppressOperation 	TRUE
@@ -138,7 +163,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@1
+			    Parent_View 	@2
 			    location   	(335, 848)
 			    anchor_loc 	1
 			    nlines     	2
@@ -152,31 +177,6 @@
 			width      	202
 			annotation 	8
 			autoResize 	TRUE)
-		    (object UseCaseView "Use Case View::编码不累" @2
-			location   	(816, 640)
-			font       	(object Font
-			    size       	10
-			    face       	"宋体"
-			    charSet    	134
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@2
-			    location   	(815, 815)
-			    anchor_loc 	1
-			    nlines     	2
-			    max_width  	879
-			    justify    	0
-			    label      	"编码不累")
-			icon       	"Business Use Case"
-			icon_style 	"Icon"
-			fill_color 	16777215
-			quidu      	"52D105C10357"
-			width      	306)
 		    (object AssociationViewNew "$UNNAMED$0" @3
 			location   	(549, 640)
 			font       	(object Font
@@ -198,10 +198,10 @@
 				stereotype 	TRUE
 				quidu      	"52D105C50072"
 				client     	@3
-				supplier   	@2
+				supplier   	@1
 				vertices   	(list Points
 				    (549, 640)
-				    (664, 640))
+				    (663, 640))
 				line_style 	0)
 			    (object RoleView "$UNNAMED$2" @5
 				Parent_View 	@3
@@ -209,7 +209,7 @@
 				stereotype 	TRUE
 				quidu      	"52D105C50074"
 				client     	@3
-				supplier   	@1
+				supplier   	@2
 				vertices   	(list Points
 				    (549, 640)
 				    (434, 640))
@@ -275,7 +275,7 @@
 			    orientation 	0)
 			quidu      	"52D105E5032E"
 			client     	@6
-			supplier   	@2
+			supplier   	@1
 			vertices   	(list Points
 			    (1202, 340)
 			    (934, 545))
@@ -12264,7 +12264,1311 @@
 				width      	186
 				height     	104
 				annotation 	8
-				autoResize 	TRUE))))))
+				autoResize 	TRUE)))))
+	    (object Class_Category "初始化"
+		quid       	"52D53B1400E7"
+		exportControl 	"Public"
+		logical_models 	(list unit_reference_list
+		    (object Class "Initializer"
+			attributes 	(list Attribute_Set
+			    (object Attribute
+				tool       	"Java"
+				name       	"DisableAutoSync"
+				value      	FALSE)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Final"
+				value      	FALSE)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Static"
+				value      	FALSE)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Strictfp"
+				value      	FALSE)
+			    (object Attribute
+				tool       	"Java"
+				name       	"GenerateDefaultConstructor"
+				value      	TRUE)
+			    (object Attribute
+				tool       	"Java"
+				name       	"GenerateFinalizer"
+				value      	FALSE)
+			    (object Attribute
+				tool       	"Java"
+				name       	"GenerateStaticInitializer"
+				value      	FALSE)
+			    (object Attribute
+				tool       	"Java"
+				name       	"GenerateInstanceInitializer"
+				value      	FALSE)
+			    (object Attribute
+				tool       	"Java"
+				name       	"GenerateCode"
+				value      	TRUE)
+			    (object Attribute
+				tool       	"Java"
+				name       	"ReadOnly"
+				value      	FALSE)
+			    (object Attribute
+				tool       	"Java"
+				name       	"GenerateFullyQualifiedExtends"
+				value      	"")
+			    (object Attribute
+				tool       	"Java"
+				name       	"GenerateFullyQualifiedImplements"
+				value      	"")
+			    (object Attribute
+				tool       	"Java"
+				name       	"ConstructorIs"
+				value      	("Ctor_Set" 62)))
+			quid       	"52D53E1E0286"
+			documentation 	
+|初始化器.
+|<p>
+|完成一个初始化过程.
+|</p>
+|
+			
+			stereotype 	"Interface"
+			operations 	(list Operations
+			    (object Operation "initialize"
+				attributes 	(list Attribute_Set
+				    (object Attribute
+					tool       	"Java"
+					name       	"GenerateFullyQualifiedThrows"
+					value      	""))
+				quid       	"52D53E3303E4"
+				documentation 	"初始化过程调用函数."
+				result     	"void"
+				concurrency 	"Sequential"
+				opExportControl 	"Public"
+				uid        	0))
+			module     	"Component View::eastone::precasting::initialize::Initializer"
+			quidu      	"52E0C9D50101"
+			language   	"Java")
+		    (object Class "InitializerChain"
+			attributes 	(list Attribute_Set)
+			quid       	"52D53F680199"
+			superclasses 	(list inheritance_relationship_list
+			    (object Inheritance_Relationship
+				quid       	"52D53F9B026B"
+				supplier   	"Logical View::eastone::common::proxy::AbstractProxy"
+				quidu      	"529DEC0300D2"))
+			used_nodes 	(list uses_relationship_list
+			    (object Uses_Relationship
+				quid       	"52E0DB1B0250"
+				stereotype 	"generic"
+				supplier   	"Logical View::eastone::common::chainofresponsibility::Handler"
+				quidu      	"529DEBF6011D"))
+			realized_interfaces 	(list realize_rel_list
+			    (object Realize_Relationship
+				quid       	"52D53F8C027A"
+				supplier   	"Logical View::初始化::Initializer"
+				quidu      	"52D53E1E0286"))
+			operations 	(list Operations
+			    (object Operation "InitializerChain"
+				attributes 	(list Attribute_Set
+				    (object Attribute
+					tool       	"Java"
+					name       	"GenerateFullyQualifiedThrows"
+					value      	""))
+				quid       	"52E0CE6100F7"
+				concurrency 	"Sequential"
+				opExportControl 	"Public"
+				uid        	0)
+			    (object Operation "initialize"
+				attributes 	(list Attribute_Set
+				    (object Attribute
+					tool       	"Java"
+					name       	"Synchronized"
+					value      	FALSE)
+				    (object Attribute
+					tool       	"Java"
+					name       	"GenerateFullyQualifiedThrows"
+					value      	""))
+				quid       	"52E0CE610107"
+				result     	"void"
+				concurrency 	"Sequential"
+				opExportControl 	"Public"
+				uid        	0))
+			module     	"Component View::eastone::precasting::initialize::InitializerChain"
+			quidu      	"52E0CA010118"
+			language   	"Java"))
+		logical_presentations 	(list unit_reference_list
+		    (object ClassDiagram "Main"
+			quid       	"52D53B2D00A2"
+			title      	"Main"
+			documentation 	"初始化过程."
+			zoom       	100
+			max_height 	28350
+			max_width  	21600
+			origin_x   	0
+			origin_y   	0
+			items      	(list diagram_item_list
+			    (object ClassView "Class" "Logical View::初始化::Initializer" @58
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(528, 1312)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@58
+				    location   	(527, 1420)
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	243
+				    justify    	0
+				    label      	"Initializer")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				fill_color 	16777215
+				quidu      	"52D53E1E0286"
+				compartment 	(object Compartment
+				    Parent_View 	@58
+				    location   	(373, 1456)
+				    font       	(object Font
+					size       	10
+					face       	"宋体"
+					charSet    	134
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    icon_style 	"Icon"
+				    anchor     	2
+				    nlines     	2
+				    max_width  	306
+				    justify    	0)
+				width      	58
+				height     	58
+				annotation 	8
+				autoResize 	TRUE)
+			    (object ClassView "Class" "Logical View::eastone::common::proxy::Proxy" @59
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(1417, 288)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@59
+				    location   	(1416, 396)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	312
+				    justify    	0
+				    label      	"Proxy")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				fill_color 	16777215
+				quidu      	"529DEC03010F"
+				compartment 	(object Compartment
+				    Parent_View 	@59
+				    location   	(1262, 466)
+				    font       	(object Font
+					size       	10
+					face       	"宋体"
+					charSet    	134
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    icon_style 	"Icon"
+				    anchor     	2
+				    nlines     	3
+				    max_width  	306
+				    justify    	0)
+				width      	58
+				height     	58
+				annotation 	8
+				autoResize 	TRUE)
+			    (object ClassView "Class" "Logical View::eastone::common::proxy::AbstractProxy" @60
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(1408, 832)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@60
+				    location   	(925, 686)
+				    nlines     	1
+				    max_width  	966
+				    justify    	0
+				    label      	"AbstractProxy")
+				icon_style 	"Icon"
+				fill_color 	16777215
+				quidu      	"529DEC0300D2"
+				compartment 	(object Compartment
+				    Parent_View 	@60
+				    location   	(925, 772)
+				    font       	(object Font
+					size       	10
+					face       	"宋体"
+					charSet    	134
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    icon_style 	"Icon"
+				    anchor     	2
+				    nlines     	5
+				    max_width  	963
+				    justify    	1)
+				width      	984
+				height     	312
+				annotation 	8
+				autoResize 	TRUE)
+			    (object RealizeView "" @61
+				stereotype 	TRUE
+				quidu      	"529DEC03013F"
+				client     	@60
+				supplier   	@59
+				vertices   	(list Points
+				    (1410, 675)
+				    (1410, 588))
+				line_style 	0)
+			    (object ClassView "Class" "Logical View::初始化::InitializerChain" @62
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(1408, 1312)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@62
+				    location   	(1188, 1224)
+				    nlines     	1
+				    max_width  	440
+				    justify    	0
+				    label      	"InitializerChain")
+				icon_style 	"Icon"
+				fill_color 	16777215
+				quidu      	"52D53F680199"
+				compartment 	(object Compartment
+				    Parent_View 	@62
+				    location   	(1188, 1276)
+				    font       	(object Font
+					size       	10
+					face       	"宋体"
+					charSet    	134
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    icon_style 	"Icon"
+				    anchor     	2
+				    nlines     	3
+				    max_width  	446
+				    justify    	1)
+				width      	458
+				height     	196
+				annotation 	8
+				autoResize 	TRUE)
+			    (object RealizeView "" @63
+				stereotype 	TRUE
+				quidu      	"52D53F8C027A"
+				client     	@62
+				supplier   	@58
+				vertices   	(list Points
+				    (1178, 1312)
+				    (554, 1312))
+				line_style 	0)
+			    (object InheritView "" @64
+				stereotype 	TRUE
+				quidu      	"52D53F9B026B"
+				client     	@62
+				supplier   	@60
+				vertices   	(list Points
+				    (1408, 1213)
+				    (1408, 988))
+				line_style 	0)
+			    (object ClassView "Class" "Logical View::eastone::common::chainofresponsibility::Handler" @65
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(2400, 1312)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@65
+				    location   	(2399, 1420)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	314
+				    justify    	0
+				    label      	"Handler")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				fill_color 	16777215
+				quidu      	"529DEBF6011D"
+				compartment 	(object Compartment
+				    Parent_View 	@65
+				    location   	(2277, 1490)
+				    font       	(object Font
+					size       	10
+					face       	"宋体"
+					charSet    	134
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    icon_style 	"Icon"
+				    anchor     	2
+				    nlines     	4
+				    max_width  	241
+				    justify    	0)
+				width      	58
+				height     	58
+				annotation 	8
+				autoResize 	TRUE)
+			    (object UsesView "" @66
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				stereotype 	(object SegLabel @67
+				    Parent_View 	@66
+				    location   	(2004, 1193)
+				    font       	(object Font
+					size       	10
+					face       	"宋体"
+					charSet    	134
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    anchor     	10
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	450
+				    justify    	0
+				    label      	"<<generic>>"
+				    pctDist    	0.500000
+				    height     	120
+				    orientation 	0)
+				quidu      	"52E0DB1B0250"
+				client     	@62
+				supplier   	@65
+				vertices   	(list Points
+				    (1637, 1312)
+				    (2371, 1312))
+				line_style 	0)))))
+	    (object Class_Category "条件判断"
+		quid       	"52D53FF10276"
+		exportControl 	"Public"
+		logical_models 	(list unit_reference_list
+		    (object Class "Decision"
+			attributes 	(list Attribute_Set
+			    (object Attribute
+				tool       	"Java"
+				name       	"DisableAutoSync"
+				value      	FALSE)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Final"
+				value      	FALSE)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Static"
+				value      	FALSE)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Strictfp"
+				value      	FALSE)
+			    (object Attribute
+				tool       	"Java"
+				name       	"GenerateDefaultConstructor"
+				value      	TRUE)
+			    (object Attribute
+				tool       	"Java"
+				name       	"GenerateFinalizer"
+				value      	FALSE)
+			    (object Attribute
+				tool       	"Java"
+				name       	"GenerateStaticInitializer"
+				value      	FALSE)
+			    (object Attribute
+				tool       	"Java"
+				name       	"GenerateInstanceInitializer"
+				value      	FALSE)
+			    (object Attribute
+				tool       	"Java"
+				name       	"GenerateCode"
+				value      	TRUE)
+			    (object Attribute
+				tool       	"Java"
+				name       	"ReadOnly"
+				value      	FALSE)
+			    (object Attribute
+				tool       	"Java"
+				name       	"GenerateFullyQualifiedExtends"
+				value      	"")
+			    (object Attribute
+				tool       	"Java"
+				name       	"GenerateFullyQualifiedImplements"
+				value      	"")
+			    (object Attribute
+				tool       	"Java"
+				name       	"ConstructorIs"
+				value      	("Ctor_Set" 62)))
+			quid       	"52D5400E0118"
+			documentation 	
+|@param <C> 条件类型.
+|@param <D> 结果类型.
+|
+			
+			stereotype 	"Interface"
+			operations 	(list Operations
+			    (object Operation "decision"
+				attributes 	(list Attribute_Set
+				    (object Attribute
+					tool       	"Java"
+					name       	"GenerateFullyQualifiedThrows"
+					value      	""))
+				quid       	"52D540690304"
+				documentation 	"@return 判断结果."
+				parameters 	(list Parameters
+				    (object Parameter "condition"
+					quid       	"52D5408100EC"
+					documentation 	"@param condition 条件."
+					type       	"Object"))
+				result     	"Object"
+				concurrency 	"Sequential"
+				opExportControl 	"Public"
+				uid        	0))
+			module     	"Component View::eastone::common::decision::Decision"
+			quidu      	"52D5413303B6"
+			language   	"Java")
+		    (object Class "BooleanDecision"
+			quid       	"52D541AA0288"
+			documentation 	"布尔类型判断."
+			stereotype 	"Interface"
+			superclasses 	(list inheritance_relationship_list
+			    (object Inheritance_Relationship
+				quid       	"52D541BF0223"
+				supplier   	"Logical View::条件判断::Decision"
+				quidu      	"52D5400E0118"))
+			module     	"Component View::eastone::common::decision::BooleanDecision"
+			quidu      	"52D541E80122")
+		    (object Class "NotDecision"
+			quid       	"52D5420D0190"
+			superclasses 	(list inheritance_relationship_list
+			    (object Inheritance_Relationship
+				quid       	"52D542850089"
+				supplier   	"Logical View::条件判断::AbstractAdapter"
+				quidu      	"52D5427303BE"))
+			realized_interfaces 	(list realize_rel_list
+			    (object Realize_Relationship
+				quid       	"52D5428802F7"
+				supplier   	"Logical View::条件判断::BooleanDecision"
+				quidu      	"52D541AA0288"))
+			module     	"Component View::eastone::precasting::decision::NotDecision"
+			quidu      	"52D556DF00EE"
+			language   	"Java")
+		    (object Class "AbstractAdapter"
+			quid       	"52D5427303BE"
+			superclasses 	(list inheritance_relationship_list
+			    (object Inheritance_Relationship
+				quid       	"52D5429A00AD"
+				supplier   	"Logical View::eastone::common::GeneralParentObject"
+				quidu      	"529DEBF600E7"))
+			realized_interfaces 	(list realize_rel_list
+			    (object Realize_Relationship
+				quid       	"52D542800105"
+				supplier   	"Logical View::eastone::common::adapter::Adapter"
+				quidu      	"529DEBF40338")))
+		    (object Class "PathExistDecision"
+			quid       	"52D542EB00FB"
+			superclasses 	(list inheritance_relationship_list
+			    (object Inheritance_Relationship
+				quid       	"52D544AF010C"
+				supplier   	"Logical View::条件判断::AbstractDecisionDecorator"
+				quidu      	"52D54466000F"))
+			realized_interfaces 	(list realize_rel_list
+			    (object Realize_Relationship
+				quid       	"52D543C70264"
+				supplier   	"Logical View::条件判断::BooleanDecision"
+				quidu      	"52D541AA0288"))
+			module     	"Component View::eastone::precasting::decision::PathExistDecision"
+			quidu      	"52D5577E0205"
+			language   	"Java")
+		    (object Class "PathIsAFileDecision"
+			quid       	"52D543A40268"
+			superclasses 	(list inheritance_relationship_list
+			    (object Inheritance_Relationship
+				quid       	"52D544AA01AE"
+				supplier   	"Logical View::条件判断::AbstractDecisionDecorator"
+				quidu      	"52D54466000F"))
+			realized_interfaces 	(list realize_rel_list
+			    (object Realize_Relationship
+				quid       	"52D543BA01B5"
+				supplier   	"Logical View::条件判断::BooleanDecision"
+				quidu      	"52D541AA0288"))
+			module     	"Component View::eastone::precasting::decision::PathIsAFileDecision"
+			quidu      	"52D5576903BD"
+			language   	"Java")
+		    (object Class "PathIsADirectoryDecision"
+			quid       	"52D543CA0100"
+			superclasses 	(list inheritance_relationship_list
+			    (object Inheritance_Relationship
+				quid       	"52D544A60376"
+				supplier   	"Logical View::条件判断::AbstractDecisionDecorator"
+				quidu      	"52D54466000F"))
+			realized_interfaces 	(list realize_rel_list
+			    (object Realize_Relationship
+				quid       	"52D543EC020C"
+				supplier   	"Logical View::条件判断::BooleanDecision"
+				quidu      	"52D541AA0288"))
+			module     	"Component View::eastone::precasting::decision::PathIsADirectoryDecision"
+			quidu      	"52D5575A03A5"
+			language   	"Java")
+		    (object Class "AbstractDecisionDecorator"
+			quid       	"52D54466000F"
+			superclasses 	(list inheritance_relationship_list
+			    (object Inheritance_Relationship
+				quid       	"52D544750261"
+				supplier   	"Logical View::eastone::common::decorator::AbstractDecorator"
+				quidu      	"529DEBFA01EE"))
+			realized_interfaces 	(list realize_rel_list
+			    (object Realize_Relationship
+				quid       	"52D5447D0016"
+				supplier   	"Logical View::条件判断::BooleanDecision"
+				quidu      	"52D541AA0288"))
+			module     	"Component View::eastone::precasting::decision::AbstractDecisionDecorator"
+			quidu      	"52D557450051"
+			language   	"Java"))
+		logical_presentations 	(list unit_reference_list
+		    (object ClassDiagram "Main"
+			quid       	"52D5400900DA"
+			title      	"Main"
+			zoom       	100
+			max_height 	28350
+			max_width  	21600
+			origin_x   	331
+			origin_y   	0
+			items      	(list diagram_item_list
+			    (object ClassView "Class" "Logical View::条件判断::Decision" @68
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(824, 1000)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@68
+				    location   	(823, 1108)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	441
+				    justify    	0
+				    label      	"Decision")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				fill_color 	16777215
+				quidu      	"52D5400E0118"
+				width      	58
+				height     	58
+				annotation 	8
+				autoResize 	TRUE)
+			    (object ClassView "Class" "Logical View::eastone::common::adapter::Adapter" @69
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(1290, 624)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@69
+				    location   	(1289, 732)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	449
+				    justify    	0
+				    label      	"Adapter")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				fill_color 	16777215
+				quidu      	"529DEBF40338"
+				width      	58
+				height     	58
+				annotation 	8
+				autoResize 	TRUE)
+			    (object ClassView "Class" "Logical View::条件判断::AbstractAdapter" @70
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(1808, 624)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@70
+				    location   	(1625, 582)
+				    nlines     	1
+				    max_width  	366
+				    justify    	0
+				    label      	"AbstractAdapter")
+				icon_style 	"Icon"
+				fill_color 	16777215
+				quidu      	"52D5427303BE"
+				width      	384
+				height     	104
+				annotation 	8
+				autoResize 	TRUE)
+			    (object RealizeView "" @71
+				stereotype 	TRUE
+				quidu      	"52D542800105"
+				client     	@70
+				supplier   	@69
+				vertices   	(list Points
+				    (1615, 624)
+				    (1316, 624))
+				line_style 	0)
+			    (object ClassView "Class" "Logical View::eastone::common::GeneralParentObject" @72
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(1808, 272)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@72
+				    location   	(1555, 146)
+				    nlines     	1
+				    max_width  	506
+				    justify    	0
+				    label      	"GeneralParentObject")
+				icon_style 	"Icon"
+				fill_color 	16777215
+				quidu      	"529DEBF600E7"
+				width      	524
+				height     	272
+				annotation 	8
+				autoResize 	TRUE)
+			    (object InheritView "" @73
+				stereotype 	TRUE
+				quidu      	"52D5429A00AD"
+				client     	@70
+				supplier   	@72
+				vertices   	(list Points
+				    (1808, 571)
+				    (1808, 408))
+				line_style 	0)
+			    (object ClassView "Class" "Logical View::条件判断::NotDecision" @74
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(1808, 992)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@74
+				    location   	(1666, 950)
+				    nlines     	1
+				    max_width  	284
+				    justify    	0
+				    label      	"NotDecision")
+				icon_style 	"Icon"
+				fill_color 	16777215
+				quidu      	"52D5420D0190"
+				width      	302
+				height     	104
+				annotation 	8
+				autoResize 	TRUE)
+			    (object InheritView "" @75
+				stereotype 	TRUE
+				quidu      	"52D542850089"
+				client     	@74
+				supplier   	@70
+				vertices   	(list Points
+				    (1808, 939)
+				    (1808, 676))
+				line_style 	0)
+			    (object ClassView "Class" "Logical View::条件判断::BooleanDecision" @76
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(1304, 1000)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@76
+				    location   	(1303, 1108)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	445
+				    justify    	0
+				    label      	"BooleanDecision")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				fill_color 	16777215
+				quidu      	"52D541AA0288"
+				width      	58
+				height     	58
+				annotation 	8
+				autoResize 	TRUE)
+			    (object InheritView "" @77
+				stereotype 	TRUE
+				quidu      	"52D541BF0223"
+				client     	@76
+				supplier   	@68
+				vertices   	(list Points
+				    (1276, 1000)
+				    (850, 1000))
+				line_style 	0)
+			    (object RealizeView "" @78
+				stereotype 	TRUE
+				quidu      	"52D5428802F7"
+				client     	@74
+				supplier   	@76
+				vertices   	(list Points
+				    (1656, 994)
+				    (1330, 995))
+				line_style 	0)
+			    (object ClassView "Class" "Logical View::条件判断::PathExistDecision" @79
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(224, 1792)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@79
+				    location   	(15, 1750)
+				    nlines     	1
+				    max_width  	418
+				    justify    	0
+				    label      	"PathExistDecision")
+				icon_style 	"Icon"
+				fill_color 	16777215
+				quidu      	"52D542EB00FB"
+				width      	436
+				height     	104
+				annotation 	8
+				autoResize 	TRUE)
+			    (object ClassView "Class" "Logical View::条件判断::PathIsAFileDecision" @80
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(816, 1632)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@80
+				    location   	(591, 1590)
+				    nlines     	1
+				    max_width  	450
+				    justify    	0
+				    label      	"PathIsAFileDecision")
+				icon_style 	"Icon"
+				fill_color 	16777215
+				quidu      	"52D543A40268"
+				width      	468
+				height     	104
+				annotation 	8
+				autoResize 	TRUE)
+			    (object RealizeView "" @81
+				stereotype 	TRUE
+				quidu      	"52D543BA01B5"
+				client     	@80
+				supplier   	@76
+				vertices   	(list Points
+				    (855, 1579)
+				    (1216, 1114))
+				line_style 	0)
+			    (object RealizeView "" @82
+				stereotype 	TRUE
+				quidu      	"52D543C70264"
+				client     	@79
+				supplier   	@76
+				vertices   	(list Points
+				    (294, 1739)
+				    (1216, 1061))
+				line_style 	0)
+			    (object ClassView "Class" "Logical View::条件判断::PathIsADirectoryDecision" @83
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(1360, 1488)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@83
+				    location   	(1083, 1446)
+				    nlines     	1
+				    max_width  	554
+				    justify    	0
+				    label      	"PathIsADirectoryDecision")
+				icon_style 	"Icon"
+				fill_color 	16777215
+				quidu      	"52D543CA0100"
+				width      	572
+				height     	104
+				annotation 	8
+				autoResize 	TRUE)
+			    (object RealizeView "" @84
+				stereotype 	TRUE
+				quidu      	"52D543EC020C"
+				client     	@83
+				supplier   	@76
+				vertices   	(list Points
+				    (1353, 1435)
+				    (1316, 1127))
+				line_style 	0)
+			    (object ClassView "Class" "Logical View::eastone::common::decorator::Decorator" @85
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(3472, 1792)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@85
+				    location   	(3471, 1900)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	453
+				    justify    	0
+				    label      	"Decorator")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				fill_color 	16777215
+				quidu      	"529DEBFA0224"
+				width      	58
+				height     	58
+				annotation 	8
+				autoResize 	TRUE)
+			    (object ClassView "Class" "Logical View::eastone::common::decorator::AbstractDecorator" @86
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(2960, 1792)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@86
+				    location   	(2729, 1666)
+				    nlines     	1
+				    max_width  	462
+				    justify    	0
+				    label      	"AbstractDecorator")
+				icon_style 	"Icon"
+				fill_color 	16777215
+				quidu      	"529DEBFA01EE"
+				width      	480
+				height     	272
+				annotation 	8
+				autoResize 	TRUE)
+			    (object RealizeView "" @87
+				stereotype 	TRUE
+				quidu      	"529DEBFA0259"
+				client     	@86
+				supplier   	@85
+				vertices   	(list Points
+				    (3200, 1792)
+				    (3444, 1792))
+				line_style 	0)
+			    (object InheritView "" @88
+				stereotype 	TRUE
+				quidu      	"529DEBFA021D"
+				client     	@86
+				supplier   	@72
+				vertices   	(list Points
+				    (2856, 1655)
+				    (1911, 408))
+				line_style 	0)
+			    (object ClassView "Class" "Logical View::条件判断::AbstractDecisionDecorator" @89
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(2080, 1792)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@89
+				    location   	(1788, 1750)
+				    nlines     	1
+				    max_width  	584
+				    justify    	0
+				    label      	"AbstractDecisionDecorator")
+				icon_style 	"Icon"
+				fill_color 	16777215
+				quidu      	"52D54466000F"
+				width      	602
+				height     	104
+				annotation 	8
+				autoResize 	TRUE)
+			    (object InheritView "" @90
+				stereotype 	TRUE
+				quidu      	"52D544750261"
+				client     	@89
+				supplier   	@86
+				vertices   	(list Points
+				    (2381, 1792)
+				    (2719, 1792))
+				line_style 	0)
+			    (object RealizeView "" @91
+				stereotype 	TRUE
+				quidu      	"52D5447D0016"
+				client     	@89
+				supplier   	@76
+				vertices   	(list Points
+				    (2028, 1739)
+				    (1389, 1086))
+				line_style 	0)
+			    (object InheritView "" @92
+				stereotype 	TRUE
+				quidu      	"52D544A60376"
+				client     	@83
+				supplier   	@89
+				vertices   	(list Points
+				    (1483, 1540)
+				    (1957, 1739))
+				line_style 	0)
+			    (object InheritView "" @93
+				stereotype 	TRUE
+				quidu      	"52D544AA01AE"
+				client     	@80
+				supplier   	@89
+				vertices   	(list Points
+				    (1050, 1661)
+				    (1778, 1753))
+				line_style 	0)
+			    (object InheritView "" @94
+				stereotype 	TRUE
+				quidu      	"52D544AF010C"
+				client     	@79
+				supplier   	@89
+				vertices   	(list Points
+				    (442, 1792)
+				    (1778, 1792))
+				line_style 	0)))))
+	    (object Class_Category "lingo"
+		quid       	"52D55BF402A3"
+		exportControl 	"Public"
+		logical_models 	(list unit_reference_list
+		    (object Class_Category "结构"
+			quid       	"52D55BFD038E"
+			exportControl 	"Public"
+			logical_models 	(list unit_reference_list
+			    (object Class "NameTree"
+				quid       	"52D55C0800DD"
+				stereotype 	"Interface"
+				superclasses 	(list inheritance_relationship_list
+				    (object Inheritance_Relationship
+					quid       	"52D55D0A0105"
+					supplier   	"Logical View::eastone::common::composite::Composite"
+					quidu      	"529DEBF80087"))))
+			logical_presentations 	(list unit_reference_list
+			    (object ClassDiagram "Main"
+				quid       	"52D55C06011F"
+				title      	"Main"
+				zoom       	100
+				max_height 	28350
+				max_width  	21600
+				origin_x   	0
+				origin_y   	0
+				items      	(list diagram_item_list
+				    (object ClassView "Class" "Logical View::lingo::结构::NameTree" @95
+					ShowCompartmentStereotypes 	TRUE
+					IncludeAttribute 	TRUE
+					IncludeOperation 	TRUE
+					location   	(704, 1344)
+					font       	(object Font
+					    size       	10
+					    face       	"宋体"
+					    charSet    	134
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					label      	(object ItemLabel
+					    Parent_View 	@95
+					    location   	(703, 1452)
+					    anchor_loc 	1
+					    nlines     	2
+					    max_width  	228
+					    justify    	0
+					    label      	"NameTree")
+					icon       	"Interface"
+					icon_style 	"Icon"
+					fill_color 	16777215
+					quidu      	"52D55C0800DD"
+					width      	58
+					height     	58
+					annotation 	8
+					autoResize 	TRUE)
+				    (object ClassView "Class" "Logical View::eastone::common::composite::Composite" @96
+					ShowCompartmentStereotypes 	TRUE
+					IncludeAttribute 	TRUE
+					IncludeOperation 	TRUE
+					location   	(736, 592)
+					font       	(object Font
+					    size       	10
+					    face       	"宋体"
+					    charSet    	134
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					label      	(object ItemLabel
+					    Parent_View 	@96
+					    location   	(735, 700)
+					    anchor_loc 	1
+					    nlines     	2
+					    max_width  	226
+					    justify    	0
+					    label      	"Composite")
+					icon       	"Interface"
+					icon_style 	"Icon"
+					fill_color 	16777215
+					quidu      	"529DEBF80087"
+					width      	58
+					height     	58
+					annotation 	8
+					autoResize 	TRUE)
+				    (object ClassView "Class" "Logical View::eastone::common::composite::AbstractLinkedListComposite" @97
+					ShowCompartmentStereotypes 	TRUE
+					IncludeAttribute 	TRUE
+					IncludeOperation 	TRUE
+					location   	(1840, 672)
+					font       	(object Font
+					    size       	10
+					    face       	"宋体"
+					    charSet    	134
+					    bold       	FALSE
+					    italics    	TRUE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					label      	(object ItemLabel
+					    Parent_View 	@97
+					    location   	(1500, 423)
+					    nlines     	1
+					    max_width  	680
+					    justify    	0
+					    label      	"AbstractLinkedListComposite")
+					icon_style 	"Icon"
+					fill_color 	16777215
+					quidu      	"529DEBF8004C"
+					width      	698
+					height     	518
+					annotation 	8
+					autoResize 	TRUE)
+				    (object RealizeView "" @98
+					stereotype 	TRUE
+					quidu      	"529DEBF800BB"
+					client     	@97
+					supplier   	@96
+					vertices   	(list Points
+					    (1490, 646)
+					    (762, 591))
+					line_style 	0)
+				    (object InheritView "" @99
+					stereotype 	TRUE
+					quidu      	"52D55D0A0105"
+					client     	@95
+					supplier   	@96
+					vertices   	(list Points
+					    (703, 1315)
+					    (728, 719))
+					line_style 	0))))))
+		logical_presentations 	(list unit_reference_list
+		    (object ClassDiagram "Main"
+			quid       	"52D55BFC011F"
+			title      	"Main"
+			zoom       	100
+			max_height 	28350
+			max_width  	21600
+			origin_x   	0
+			origin_y   	0
+			items      	(list diagram_item_list
+			    (object CategoryView "Logical View::lingo::结构" @100
+				location   	(240, 368)
+				font       	(object Font
+				    size       	10
+				    face       	"宋体"
+				    charSet    	134
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@100
+				    location   	(96, 284)
+				    nlines     	2
+				    max_width  	288
+				    justify    	0
+				    label      	"结构")
+				icon_style 	"Icon"
+				fill_color 	16777215
+				quidu      	"52D55BFD038E"
+				width      	300
+				height     	180))))))
 	logical_presentations 	(list unit_reference_list
 	    (object ClassDiagram "Main"
 		quid       	"529DE9FA0351"
@@ -12275,8 +13579,8 @@
 		origin_x   	0
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object CategoryView "Logical View::示例" @58
-			location   	(480, 1040)
+		    (object CategoryView "Logical View::示例" @101
+			location   	(464, 992)
 			font       	(object Font
 			    size       	10
 			    face       	"宋体"
@@ -12288,8 +13592,8 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@58
-			    location   	(336, 956)
+			    Parent_View 	@101
+			    location   	(320, 908)
 			    nlines     	2
 			    max_width  	288
 			    justify    	0
@@ -12297,6 +13601,78 @@
 			icon_style 	"Icon"
 			fill_color 	16777215
 			quidu      	"52D1137E02D4"
+			width      	300
+			height     	180)
+		    (object CategoryView "Logical View::初始化" @102
+			location   	(496, 368)
+			font       	(object Font
+			    size       	10
+			    face       	"宋体"
+			    charSet    	134
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@102
+			    location   	(352, 284)
+			    nlines     	2
+			    max_width  	288
+			    justify    	0
+			    label      	"初始化")
+			icon_style 	"Icon"
+			fill_color 	16777215
+			quidu      	"52D53B1400E7"
+			width      	300
+			height     	180)
+		    (object CategoryView "Logical View::条件判断" @103
+			location   	(1088, 368)
+			font       	(object Font
+			    size       	10
+			    face       	"宋体"
+			    charSet    	134
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@103
+			    location   	(944, 284)
+			    nlines     	2
+			    max_width  	288
+			    justify    	0
+			    label      	"条件判断")
+			icon_style 	"Icon"
+			fill_color 	16777215
+			quidu      	"52D53FF10276"
+			width      	300
+			height     	180)
+		    (object CategoryView "Logical View::lingo" @104
+			location   	(1136, 992)
+			font       	(object Font
+			    size       	10
+			    face       	"宋体"
+			    charSet    	134
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@104
+			    location   	(992, 908)
+			    nlines     	2
+			    max_width  	288
+			    justify    	0
+			    label      	"lingo")
+			icon_style 	"Icon"
+			fill_color 	16777215
+			quidu      	"52D55BF402A3"
 			width      	300
 			height     	180)))))
     root_subsystem 	(object SubSystem "Component View"
@@ -12816,6 +14192,14 @@
 							class      	"Logical View::eastone::component::http::simple::httpclient::package-info"
 							quidu      	"529DEBAC0218"))
 						physical_presentations 	(list unit_reference_list)))
+					physical_presentations 	(list unit_reference_list)))
+				physical_presentations 	(list unit_reference_list))
+			    (object SubSystem "lingo"
+				quid       	"52D558140132"
+				physical_models 	(list unit_reference_list
+				    (object SubSystem "construction"
+					quid       	"52D5593E0179"
+					physical_models 	(list unit_reference_list)
 					physical_presentations 	(list unit_reference_list)))
 				physical_presentations 	(list unit_reference_list)))
 			physical_presentations 	(list unit_reference_list))
@@ -15524,6 +16908,41 @@
 					language   	"Java"
 					class      	"Logical View::eastone::common::delegate::Delegant"
 					quidu      	"52D1062500A2"))
+				physical_presentations 	(list unit_reference_list))
+			    (object SubSystem "decision"
+				quid       	"52D5412A01CB"
+				physical_models 	(list unit_reference_list
+				    (object module "Decision" "NotAModuleType" "NotAModulePart"
+					attributes 	(list Attribute_Set
+					    (object Attribute
+						tool       	"Java"
+						name       	"FileName"
+						value      	"D:\\eastone\\common\\decision\\Decision.java")
+					    (object Attribute
+						tool       	"Java"
+						name       	"RootPath"
+						value      	"D:"))
+					quid       	"52D5413303B6"
+					stereotype 	""
+					realized_interfaces 	(list realize_rel_list
+					    (object Realize_Relationship
+						quid       	"52D5413A0109"
+						supplier   	"Logical View::条件判断::Decision"
+						quidu      	"52D5400E0118"))
+					language   	"Java"
+					class      	"Logical View::条件判断::Decision"
+					quidu      	"52D5400E0118")
+				    (object module "BooleanDecision" "NotAModuleType" "NotAModulePart"
+					quid       	"52D541E80122"
+					stereotype 	""
+					realized_interfaces 	(list realize_rel_list
+					    (object Realize_Relationship
+						quid       	"52D541F0028A"
+						supplier   	"Logical View::条件判断::BooleanDecision"
+						quidu      	"52D541AA0288"))
+					language   	""
+					class      	"Logical View::条件判断::BooleanDecision"
+					quidu      	"52D541AA0288"))
 				physical_presentations 	(list unit_reference_list)))
 			physical_presentations 	(list unit_reference_list))
 		    (object SubSystem "graphic"
@@ -15928,6 +17347,79 @@
 					language   	"Java"
 					class      	"Logical View::eastone::precasting::strategy::package-info"
 					quidu      	"52A3DF370169"))
+				physical_presentations 	(list unit_reference_list))
+			    (object SubSystem "decision"
+				quid       	"52D556D301CB"
+				physical_models 	(list unit_reference_list
+				    (object module "NotDecision" "NotAModuleType" "NotAModulePart"
+					quid       	"52D556DF00EE"
+					stereotype 	""
+					language   	"Java"
+					class      	"Logical View::条件判断::NotDecision"
+					quidu      	"52D5420D0190")
+				    (object module "AbstractDecisionDecorator" "NotAModuleType" "NotAModulePart"
+					quid       	"52D557450051"
+					stereotype 	""
+					language   	"Java"
+					class      	"Logical View::条件判断::AbstractDecisionDecorator"
+					quidu      	"52D54466000F")
+				    (object module "PathIsADirectoryDecision" "NotAModuleType" "NotAModulePart"
+					quid       	"52D5575A03A5"
+					stereotype 	""
+					language   	"Java"
+					class      	"Logical View::条件判断::PathIsADirectoryDecision"
+					quidu      	"52D543CA0100")
+				    (object module "PathIsAFileDecision" "NotAModuleType" "NotAModulePart"
+					quid       	"52D5576903BD"
+					stereotype 	""
+					language   	"Java"
+					class      	"Logical View::条件判断::PathIsAFileDecision"
+					quidu      	"52D543A40268")
+				    (object module "PathExistDecision" "NotAModuleType" "NotAModulePart"
+					quid       	"52D5577E0205"
+					stereotype 	""
+					language   	"Java"
+					class      	"Logical View::条件判断::PathExistDecision"
+					quidu      	"52D542EB00FB"))
+				physical_presentations 	(list unit_reference_list))
+			    (object SubSystem "initialize"
+				quid       	"52E0C9B5027D"
+				physical_models 	(list unit_reference_list
+				    (object module "Initializer" "NotAModuleType" "NotAModulePart"
+					attributes 	(list Attribute_Set
+					    (object Attribute
+						tool       	"Java"
+						name       	"FileName"
+						value      	"D:\\eastone\\precasting\\initialize\\Initializer.java")
+					    (object Attribute
+						tool       	"Java"
+						name       	"RootPath"
+						value      	"D:"))
+					quid       	"52E0C9D50101"
+					stereotype 	""
+					realized_interfaces 	(list realize_rel_list
+					    (object Realize_Relationship
+						quid       	"52E0C9D900D3"
+						supplier   	"Logical View::初始化::Initializer"
+						quidu      	"52D53E1E0286"))
+					language   	"Java"
+					class      	"Logical View::初始化::Initializer"
+					quidu      	"52D53E1E0286")
+				    (object module "InitializerChain" "NotAModuleType" "NotAModulePart"
+					attributes 	(list Attribute_Set
+					    (object Attribute
+						tool       	"Java"
+						name       	"FileName"
+						value      	"D:\\eastone\\precasting\\initialize\\InitializerChain.java")
+					    (object Attribute
+						tool       	"Java"
+						name       	"RootPath"
+						value      	"D:"))
+					quid       	"52E0CA010118"
+					stereotype 	""
+					language   	"Java"
+					class      	"Logical View::初始化::InitializerChain"
+					quidu      	"52D53F680199"))
 				physical_presentations 	(list unit_reference_list)))
 			physical_presentations 	(list unit_reference_list)))
 		physical_presentations 	(list unit_reference_list))
@@ -17814,7 +19306,7 @@
 		    (object Attribute
 			tool       	"Java"
 			name       	"ClassPath"
-			value      	"D:\\;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\charsets.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\jce.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\jsse.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\rt.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\ext\\dnsns.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\ext\\localedata.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\ext\\sunjce_provider.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\security\\local_policy.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\security\\US_export_policy.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\lib\\dt.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\lib\\htmlconverter.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\lib\\tools.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\deploy.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\javaws.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\plugin.jar;C:\\Program Files (x86)\\Java\\jdk1.6.0_18\\jre\\lib\\rt.jar;C:\\Program Files (x86)\\Java\\jdk1.6.0_18\\lib\\dt.jar;C:\\Program Files (x86)\\Java\\jdk1.6.0_18\\lib\\tools.jar;C:\\Users\\WANGDS\\.m2\\repository\\jaxen\\jaxen\\1.1.4\\jaxen-1.1.4.jar;C:\\Users\\WANGDS\\.m2\\repository\\aopalliance\\aopalliance\\1.0\\aopalliance-1.0.jar;C:\\Users\\WANGDS\\.m2\\repository\\c3p0\\c3p0\\0.9.1.1\\c3p0-0.9.1.1.jar;C:\\Users\\WANGDS\\.m2\\repository\\com\\neusoft\\envpro\\EnvProCommon\\2.1\\EnvProCommon-2.1.jar;C:\\Users\\WANGDS\\.m2\\repository\\com\\oracle\\ojdbc14\\10.2.0.4.0\\ojdbc14-10.2.0.4.0.jar;C:\\Users\\WANGDS\\.m2\\repository\\org\\springframework\\spring-context\\3.1.4.RELEASE\\spring-context-3.1.4.RELEASE.jar;D:\\workspace\\DailyRoundCheck\\target\\classes;C:\\Users\\WANGDS\\.m2\\repository\\org\\apache\\httpcomponents\\httpclient\\4.3.1\\httpclient-4.3.1.jar;C:\\Users\\WANGDS\\.m2\\repository\\org\\apache\\httpcomponents\\httpcore\\4.3\\httpcore-4.3.jar;C:\\Users\\WANGDS\\.m2\\repository\\org\\mybatis\\mybatis\\3.2.1\\mybatis-3.2.1.jar;C:\\Users\\WANGDS\\.m2\\repository\\commons-httpclient\\commons-httpclient\\3.1\\commons-httpclient-3.1.jar;D:\\workspace\\EnvProCommon\\target\\classes;C:\\Users\\WANGDS\\.m2\\repository\\javax\\servlet\\javax.servlet-api\\3.1.0\\javax.servlet-api-3.1.0.jar;C:\\Users\\WANGDS\\.m2\\repository\\dom4j\\dom4j\\1.6.1\\dom4j-1.6.1.jar;C:\\Users\\WANGDS\\.m2\\repository\\commons-logging\\commons-logging\\1.1.1\\commons-logging-1.1.1.jar;C:\\Users\\WANGDS\\.m2\\repository\\org\\slf4j\\slf4j-api\\1.6.6\\slf4j-api-1.6.6.jar;C:\\Users\\WANGDS\\.m2\\repository\\log4j\\log4j\\1.2.17\\log4j-1.2.17.jar;C:\\Users\\WANGDS\\.m2\\repository\\net\\sf\\json-lib\\json-lib\\2.4\\json-lib-2.4-jdk15-sources.jar;C:\\Users\\WANGDS\\.m2\\repository\\commons-fileupload\\commons-fileupload\\1.3\\commons-fileupload-1.3.jar")
+			value      	"D:\\;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\charsets.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\jce.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\jsse.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\rt.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\ext\\dnsns.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\ext\\localedata.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\ext\\sunjce_provider.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\security\\local_policy.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\security\\US_export_policy.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\lib\\dt.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\lib\\htmlconverter.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\lib\\tools.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\deploy.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\javaws.jar;C:\\Program Files (x86)\\Java\\jdk1.5.0_17\\jre\\lib\\plugin.jar;C:\\Program Files (x86)\\Java\\jdk1.6.0_18\\jre\\lib\\rt.jar;C:\\Program Files (x86)\\Java\\jdk1.6.0_18\\lib\\dt.jar;C:\\Program Files (x86)\\Java\\jdk1.6.0_18\\lib\\tools.jar;C:\\Users\\WANGDS\\.m2\\repository\\jaxen\\jaxen\\1.1.4\\jaxen-1.1.4.jar;C:\\Users\\WANGDS\\.m2\\repository\\aopalliance\\aopalliance\\1.0\\aopalliance-1.0.jar;C:\\Users\\WANGDS\\.m2\\repository\\c3p0\\c3p0\\0.9.1.1\\c3p0-0.9.1.1.jar;C:\\Users\\WANGDS\\.m2\\repository\\com\\oracle\\ojdbc14\\10.2.0.4.0\\ojdbc14-10.2.0.4.0.jar;C:\\Users\\WANGDS\\.m2\\repository\\org\\springframework\\spring-context\\3.1.4.RELEASE\\spring-context-3.1.4.RELEASE.jar;D:\\workspace\\DailyRoundCheck\\target\\classes;C:\\Users\\WANGDS\\.m2\\repository\\org\\apache\\httpcomponents\\httpclient\\4.3.1\\httpclient-4.3.1.jar;C:\\Users\\WANGDS\\.m2\\repository\\org\\apache\\httpcomponents\\httpcore\\4.3\\httpcore-4.3.jar;C:\\Users\\WANGDS\\.m2\\repository\\org\\mybatis\\mybatis\\3.2.1\\mybatis-3.2.1.jar;C:\\Users\\WANGDS\\.m2\\repository\\commons-httpclient\\commons-httpclient\\3.1\\commons-httpclient-3.1.jar;D:\\workspace\\EnvProCommon\\target\\classes;C:\\Users\\WANGDS\\.m2\\repository\\javax\\servlet\\javax.servlet-api\\3.1.0\\javax.servlet-api-3.1.0.jar;C:\\Users\\WANGDS\\.m2\\repository\\dom4j\\dom4j\\1.6.1\\dom4j-1.6.1.jar;C:\\Users\\WANGDS\\.m2\\repository\\commons-logging\\commons-logging\\1.1.1\\commons-logging-1.1.1.jar;C:\\Users\\WANGDS\\.m2\\repository\\org\\slf4j\\slf4j-api\\1.6.6\\slf4j-api-1.6.6.jar;C:\\Users\\WANGDS\\.m2\\repository\\log4j\\log4j\\1.2.17\\log4j-1.2.17.jar;C:\\Users\\WANGDS\\.m2\\repository\\net\\sf\\json-lib\\json-lib\\2.4\\json-lib-2.4-jdk15-sources.jar;C:\\Users\\WANGDS\\.m2\\repository\\commons-fileupload\\commons-fileupload\\1.3\\commons-fileupload-1.3.jar;C:\\Users\\WANGDS\\.m2\\repository\\com\\neusoft\\envpro\\EnvProCommon\\2.2.1\\EnvProCommon-2.2.1.jar;D:\\workspace\\EnvProAppExt\\target\\classes")
 		    (object Attribute
 			tool       	"Java"
 			name       	"ReferenceClasspath"

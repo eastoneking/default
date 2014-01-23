@@ -32,8 +32,12 @@ import eastone.common.GeneralParentObject;
  */
 public class Append2BorderLayoutStrategy
   extends GeneralParentObject
-  implements AddGLJPanelStrategy {
+  implements AddGLJPanelStrategy<String> {
 
+  /**
+   * 策略关键字.
+   */
+  private String key;
   /**
    * 在BorderLayout中添加JPanel的区域名称.
    */
@@ -46,6 +50,14 @@ public class Append2BorderLayoutStrategy
     this(BorderLayout.CENTER);
   }
 
+  @Override
+  public void setKey(final String theKey) {
+    this.key = theKey;
+  }
+  @Override
+  public String getKey() {
+    return this.key;
+  }
   /**
    * 构造函数.
    * @param target 要添加的目标位置.
@@ -59,18 +71,19 @@ public class Append2BorderLayoutStrategy
    *    </ul>
    * </p>
    */
-  public Append2BorderLayoutStrategy(String target) {
+  public Append2BorderLayoutStrategy(final String target) {
     if (target == null) {
-      target = BorderLayout.CENTER;
+      this.setBorderName(BorderLayout.CENTER);
+    } else {
+      this.setBorderName(target);
     }
-    this.setBorderName(target);
   }
 
   /**
    * 设置borderName属性值.
    * @param theBorderName borderName属性的新值。
    */
-  public void setBorderName(String theBorderName) {
+  public void setBorderName(final String theBorderName) {
     this.borderName = theBorderName;
   }
 
@@ -94,6 +107,5 @@ public class Append2BorderLayoutStrategy
 
     container.add(this.borderName, panel);
   }
-
 
 }

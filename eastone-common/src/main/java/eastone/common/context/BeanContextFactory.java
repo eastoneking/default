@@ -67,7 +67,7 @@ public class BeanContextFactory implements
    * @return 上下文.
    */
   @Override
-  public final BeanContext getInstance() {
+  public BeanContext getInstance() {
     BeanContext res = null;
     synchronized (lock) {
       if (instance == null) {

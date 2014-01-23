@@ -49,7 +49,7 @@ public class TestSwingMainJFrame extends AbstractSwingMainJFrame {
    * 构造函数.
    * @param windowSize 窗口大小.
    */
-  public TestSwingMainJFrame(Rectangle<Integer> windowSize) {
+  public TestSwingMainJFrame(final Rectangle<Integer> windowSize) {
     super(windowSize);
   }
 
@@ -58,8 +58,9 @@ public class TestSwingMainJFrame extends AbstractSwingMainJFrame {
    * @param gc 图形配置.
    * @param windowSize 窗口大小.
    */
-  public TestSwingMainJFrame(GraphicsConfiguration gc,
-      Rectangle<Integer> windowSize) {
+  public TestSwingMainJFrame(
+      final GraphicsConfiguration gc,
+      final Rectangle<Integer> windowSize) {
     super(gc, windowSize);
   }
 
@@ -68,7 +69,9 @@ public class TestSwingMainJFrame extends AbstractSwingMainJFrame {
    * @param title 标题.
    * @param windowSize 窗口大小.
    */
-  public TestSwingMainJFrame(String title, Rectangle<Integer> windowSize) {
+  public TestSwingMainJFrame(
+      final String title,
+      final Rectangle<Integer> windowSize) {
     super(title, windowSize);
   }
 
@@ -78,8 +81,14 @@ public class TestSwingMainJFrame extends AbstractSwingMainJFrame {
    * @param gc 图形配置.
    * @param windowSize 窗口大小.
    */
-  public TestSwingMainJFrame(String title, GraphicsConfiguration gc,
-      Rectangle<Integer> windowSize) {
+  public TestSwingMainJFrame(
+      final
+      String title,
+      final
+      GraphicsConfiguration gc,
+      final
+      Rectangle<Integer> windowSize
+  ) {
     super(title, gc, windowSize);
   }
 
@@ -88,7 +97,10 @@ public class TestSwingMainJFrame extends AbstractSwingMainJFrame {
    * @param windowSize 窗口大小.
    * @param strategyOfAddGLJPanel GL面板添加策略.
    */
-  public TestSwingMainJFrame(Rectangle<Integer> windowSize,
+  public TestSwingMainJFrame(
+      final
+      Rectangle<Integer> windowSize,
+      final
       String strategyOfAddGLJPanel) {
     super(windowSize, strategyOfAddGLJPanel);
   }
@@ -99,8 +111,11 @@ public class TestSwingMainJFrame extends AbstractSwingMainJFrame {
    * @param windowSize 窗口大小.
    * @param strategyOfAddGLJPanel GL面板添加策略.
    */
-  public TestSwingMainJFrame(GraphicsConfiguration gc,
-      Rectangle<Integer> windowSize, String strategyOfAddGLJPanel) {
+  public TestSwingMainJFrame(
+      final GraphicsConfiguration gc,
+      final Rectangle<Integer> windowSize,
+      final String strategyOfAddGLJPanel
+  ) {
     super(gc, windowSize, strategyOfAddGLJPanel);
   }
 
@@ -110,8 +125,11 @@ public class TestSwingMainJFrame extends AbstractSwingMainJFrame {
    * @param windowSize 窗口大小.
    * @param strategyOfAddGLJPanel GL面板添加策略.
    */
-  public TestSwingMainJFrame(String title, Rectangle<Integer> windowSize,
-      String strategyOfAddGLJPanel) {
+  public TestSwingMainJFrame(
+      final String title,
+      final Rectangle<Integer> windowSize,
+      final String strategyOfAddGLJPanel
+  ) {
     super(title, windowSize, strategyOfAddGLJPanel);
   }
 
@@ -122,8 +140,12 @@ public class TestSwingMainJFrame extends AbstractSwingMainJFrame {
    * @param windowSize 窗口大小.
    * @param strategyOfAddGLJPanel GL面板添加策略.
    */
-  public TestSwingMainJFrame(String title, GraphicsConfiguration gc,
-      Rectangle<Integer> windowSize, String strategyOfAddGLJPanel) {
+  public TestSwingMainJFrame(
+      final String title,
+      final GraphicsConfiguration gc,
+      final Rectangle<Integer> windowSize,
+      final String strategyOfAddGLJPanel
+  ) {
     super(title, gc, windowSize, strategyOfAddGLJPanel);
   }
 
@@ -131,7 +153,7 @@ public class TestSwingMainJFrame extends AbstractSwingMainJFrame {
    * 测试主函数.
    * @param args 命令行参数.
    */
-  public static void main(String[] args) {
+  public static void main(final String[] args) {
     TestSwingMainJFrame f = new TestSwingMainJFrame(
         new Rectangle<Integer>((Integer) WINDOW_WIDTH, (Integer) WINDOW_HEIGHT)
      );

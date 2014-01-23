@@ -47,7 +47,7 @@ public class Rectangle<T extends Number> implements Graphic {
    * @param theWidth 宽.
    * @param theHeight 高.
    */
-  public Rectangle(T theWidth, T theHeight) {
+  public Rectangle(final T theWidth, final T theHeight) {
     this.width = theWidth;
     this.height = theHeight;
   }
@@ -56,7 +56,7 @@ public class Rectangle<T extends Number> implements Graphic {
    * 设置height属性值.
    * @param theHeight height属性的新值。
    */
-  public final void setHeight(final T theHeight) {
+  public void setHeight(final T theHeight) {
     this.height = theHeight;
   }
 
@@ -64,7 +64,7 @@ public class Rectangle<T extends Number> implements Graphic {
    * 获得height属性值.
    * @return height属性现值。
    */
-  public final T getHeight() {
+  public T getHeight() {
     return height;
   }
 
@@ -72,7 +72,7 @@ public class Rectangle<T extends Number> implements Graphic {
    * 设置width属性值.
    * @param theWidth width属性的新值。
    */
-  public final void setWidth(final T theWidth) {
+  public void setWidth(final T theWidth) {
     this.width = theWidth;
   }
 
@@ -80,7 +80,7 @@ public class Rectangle<T extends Number> implements Graphic {
    * 获得width属性值.
    * @return width属性现值。
    */
-  public final T getWidth() {
+  public T getWidth() {
     return width;
   }
 

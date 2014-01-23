@@ -50,7 +50,7 @@ public class AddGLJPanelStrategyContext
    * @param theStrategyMap 策略图.
    */
   public AddGLJPanelStrategyContext(
-      Map<String, Strategy> theStrategyMap
+      final Map<String, Strategy<String>> theStrategyMap
   ) {
     super(theStrategyMap);
   }
@@ -59,7 +59,7 @@ public class AddGLJPanelStrategyContext
    * 设置container属性值.
    * @param theContainer container属性的新值。
    */
-  public void setContainer(Container theContainer) {
+  public void setContainer(final Container theContainer) {
     this.container = theContainer;
   }
 
@@ -75,7 +75,7 @@ public class AddGLJPanelStrategyContext
    * 设置panel属性值.
    * @param thePanel panel属性的新值。
    */
-  public void setPanel(GLJPanel thePanel) {
+  public void setPanel(final GLJPanel thePanel) {
     this.panel = thePanel;
   }
 
@@ -95,7 +95,8 @@ public class AddGLJPanelStrategyContext
   }
 
   @Override
-  protected <S extends Strategy> void proccessStrategry(S strategy)
+  protected <S extends Strategy<String>> void
+    proccessStrategry(final S strategy)
       throws StrategyRuntimeException {
     Append2BorderLayoutStrategy a2bs = (Append2BorderLayoutStrategy) strategy;
     a2bs.append(container, panel);

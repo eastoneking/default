@@ -58,7 +58,7 @@ public class DefaultFlyweightFactory<K, F extends Flyweight>
    * </p>
    * @param strategyMap 策略图.
    */
-  public DefaultFlyweightFactory(Map<K, Strategy<K>> strategyMap) {
+  public DefaultFlyweightFactory(final Map<K, Strategy<K>> strategyMap) {
     this(new LinkedHashMap<K, Factory<F, Exception>>(), strategyMap);
   }
   /**
@@ -67,8 +67,8 @@ public class DefaultFlyweightFactory<K, F extends Flyweight>
    * @param strategyMap 策略图.
    */
   public DefaultFlyweightFactory(
-      Map<K, Factory<F, Exception>> map,
-      Map<K, Strategy<K>> strategyMap
+      final Map<K, Factory<F, Exception>> map,
+      final Map<K, Strategy<K>> strategyMap
   ) {
     super(strategyMap);
     this.factoriesMap = map;
@@ -84,7 +84,7 @@ public class DefaultFlyweightFactory<K, F extends Flyweight>
   private F currentInstance = null;
 
   @Override
-  public F getFlyweight(K key) {
+  public F getFlyweight(final K key) {
     F res = null;
     this.currentKey = key;
     try {
@@ -108,7 +108,10 @@ public class DefaultFlyweightFactory<K, F extends Flyweight>
    * @param theKey 唯一识别标识.
    * @param factory 工厂实例.
    */
-  public void registerFactory(K theKey, Factory<F, Exception> factory) {
+  public void registerFactory(
+      final K theKey,
+      final Factory<F, Exception> factory
+  ) {
     this.factoriesMap.put(theKey, factory);
   }
 
@@ -117,19 +120,19 @@ public class DefaultFlyweightFactory<K, F extends Flyweight>
    * @param theKey 关键字.
    * @return 实例.
    */
-  protected F findFlyweightInstance(K theKey) {
+  protected F findFlyweightInstance(final K theKey) {
     F res = null;
     res = this.instanceMap.get(theKey);
     return res;
   }
 
   @Override
-  protected <S extends Strategy<K>> void proccessStrategry(S strategy)
+  protected <S extends Strategy<K>> void proccessStrategry(final S strategy)
       throws StrategyRuntimeException {
   }
 
   @Override
-  public void accept(FlyweightGenerateStrategyVisitor<K, F> visitor) {
+  public void accept(final FlyweightGenerateStrategyVisitor<K, F> visitor) {
     visitor.setFactoryInstanceMap(this.instanceMap);
     visitor.setKey(this.currentKey);
     visitor.setInstance(this.currentInstance);

@@ -30,13 +30,13 @@ public abstract class AbstractDecorator<C extends Component> extends
 
   // @Override
   @Override
-  public final C getComponent() {
+  public C getComponent() {
     return this.component;
   }
 
   // @Override
   @Override
-  public final void setComponent(final C theComponent) {
+  public void setComponent(final C theComponent) {
     this.component = theComponent;
   }
 

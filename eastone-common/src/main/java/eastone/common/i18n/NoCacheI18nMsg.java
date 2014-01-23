@@ -35,7 +35,7 @@ public class NoCacheI18nMsg extends AbstractI18nMsg {
   private static final long serialVersionUID = 2137818718162241755L;
 
   @Override
-  public final String getMessage() {
+  public String getMessage() {
     String res = null;
     BeanContext<?> ctx = BeanContextFactory.getBeanContext();
     String id = this.getId();

@@ -25,7 +25,7 @@ public class ProviderFactory {
    * @param interfaceclass 目标类型
    * @return 目标实例.
    */
-  public final <T> T getInstance(final Class<T> interfaceclass) {
+  public <T> T getInstance(final Class<T> interfaceclass) {
     T res = null;
     try {
       ServiceLoader<T> loader = ServiceLoader.load(interfaceclass);

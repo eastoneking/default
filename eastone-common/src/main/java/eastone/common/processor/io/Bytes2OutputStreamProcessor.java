@@ -36,7 +36,7 @@ public class Bytes2OutputStreamProcessor extends GeneralParentObject implements
    *          输出流应该未被关闭.
    *          </p>
    */
-  public final void setOutputStream(final OutputStream theOutputStream) {
+  public void setOutputStream(final OutputStream theOutputStream) {
     this.outputStream = theOutputStream;
   }
 
@@ -44,7 +44,7 @@ public class Bytes2OutputStreamProcessor extends GeneralParentObject implements
    * 获得用于输出的输出流.
    * @return 输出流.
    */
-  public final OutputStream getOutputStream() {
+  public OutputStream getOutputStream() {
     return outputStream;
   }
 
@@ -57,7 +57,7 @@ public class Bytes2OutputStreamProcessor extends GeneralParentObject implements
    * 设置输出数据.
    * @param theData 输出数据.
    */
-  public final void setData(final byte[] theData) {
+  public void setData(final byte[] theData) {
     this.data = theData;
   }
 
@@ -65,7 +65,7 @@ public class Bytes2OutputStreamProcessor extends GeneralParentObject implements
    * 获得输出数据.
    * @return 输出数据.
    */
-  public final byte[] getData() {
+  public byte[] getData() {
     return data;
   }
 
@@ -81,7 +81,7 @@ public class Bytes2OutputStreamProcessor extends GeneralParentObject implements
    *          0<=offset<=data.length.
    *          </p>
    */
-  public final void setOffset(final int theOffset) {
+  public void setOffset(final int theOffset) {
     this.offset = theOffset;
   }
 
@@ -95,7 +95,7 @@ public class Bytes2OutputStreamProcessor extends GeneralParentObject implements
    * @param theLength 输出长度.
    * @see #process()
    */
-  public final void setLength(final int theLength) {
+  public void setLength(final int theLength) {
     this.length = theLength;
   }
 
@@ -104,7 +104,7 @@ public class Bytes2OutputStreamProcessor extends GeneralParentObject implements
    * @return 输出数据的长度.
    * @see #process()
    */
-  public final int getLength() {
+  public int getLength() {
     return length;
   }
 
@@ -151,7 +151,7 @@ public class Bytes2OutputStreamProcessor extends GeneralParentObject implements
    * @throws IOException 异常.
    */
   @Override
-  public final void process() throws IOException {
+  public void process() throws IOException {
     if (outputStream != null && this.data != null) {
       int maxLength = data.length;
       int offsizeValue = calculateOffset(maxLength);
@@ -300,7 +300,7 @@ public class Bytes2OutputStreamProcessor extends GeneralParentObject implements
    * </p>
    */
   @Override
-  public final void clear() {
+  public void clear() {
     this.data = new byte[0];
     this.offset = 0;
     this.length = -1;

@@ -36,7 +36,7 @@ public abstract class AbstractCommand<E extends Exception> extends
   private CommandReceiver receiver;
 
   @Override
-  public final <R extends CommandReceiver> void setReceiver(
+  public <R extends CommandReceiver> void setReceiver(
       final R theReceiver
   ) {
     this.receiver = theReceiver;
@@ -44,7 +44,7 @@ public abstract class AbstractCommand<E extends Exception> extends
 
   @SuppressWarnings("unchecked")
   @Override
-  public final <R extends CommandReceiver> R getReceiver() {
+  public <R extends CommandReceiver> R getReceiver() {
     return (R) this.receiver;
   }
 

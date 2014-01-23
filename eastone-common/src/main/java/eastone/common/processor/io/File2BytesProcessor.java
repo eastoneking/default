@@ -43,7 +43,7 @@ public class File2BytesProcessor extends
    * 设置要读取的文件.
    * @param theFile 文件
    */
-  public final void setFile(final File theFile) {
+  public void setFile(final File theFile) {
     this.file = theFile;
   }
 
@@ -51,7 +51,7 @@ public class File2BytesProcessor extends
    * 获得要读取的文件.
    * @return 文件
    */
-  public final File getFile() {
+  public File getFile() {
     return file;
   }
 
@@ -69,7 +69,7 @@ public class File2BytesProcessor extends
    * @return 获得转换器.
    */
   @Override
-  public final Convertor<InputStream, byte[], IOException> getAdaptee() {
+  public Convertor<InputStream, byte[], IOException> getAdaptee() {
     return inner;
   }
 
@@ -77,7 +77,7 @@ public class File2BytesProcessor extends
    * 设置转换器.
    * @param theInner 转换器.
    */
-  public final void setInner(
+  public void setInner(
       final Convertor<InputStream, byte[], IOException> theInner
   ) {
     this.inner = theInner;
@@ -143,7 +143,7 @@ public class File2BytesProcessor extends
    * @return 转换结果.
    */
   @Override
-  public final byte[] convert(final File src) throws IOException {
+  public byte[] convert(final File src) throws IOException {
     byte[] res = null;
     if (src == null || this.inner == null) {
       return res;
@@ -171,7 +171,7 @@ public class File2BytesProcessor extends
   }
 
   @Override
-  protected final byte[] execute() throws IOException {
+  protected byte[] execute() throws IOException {
     return convert(file);
   }
 

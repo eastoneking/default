@@ -80,7 +80,7 @@ public class DerbyTestCase extends TestCase {
    * 测试此方法执行时 {@link #beforeClassRunCount}的值是否正确.
    */
   @Test
-  public final void testBeforeClass1() {
+  public void testBeforeClass1() {
     assertEquals(beforeClassRunCount, 1);
   }
 
@@ -88,7 +88,7 @@ public class DerbyTestCase extends TestCase {
    * 测试此方法执行时 {@link #beforeClassRunCount}的值是否正确.
    */
   @Test
-  public final void testBeforeClass2() {
+  public void testBeforeClass2() {
     assertEquals(beforeClassRunCount, 1);
   }
 

@@ -51,7 +51,7 @@ public class I18NMsgTestCase {
    * 简单测试消息.
    */
   @Test
-  public final void testSimpleMsg() {
+  public void testSimpleMsg() {
     ProviderFactory fac = new ProviderFactory();
     I18nMsg msg = fac.getInstance(I18nMsg.class);
     TestCase.assertNotNull(msg);

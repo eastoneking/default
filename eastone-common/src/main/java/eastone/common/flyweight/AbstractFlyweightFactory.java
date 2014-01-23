@@ -42,12 +42,12 @@ public abstract class AbstractFlyweightFactory<K, F extends Flyweight>
    * 构造函数.
    * @param map 实例图.
    */
-  protected AbstractFlyweightFactory(Map<K, F> map) {
+  protected AbstractFlyweightFactory(final Map<K, F> map) {
     this.instanceMap = map;
   }
 
   @Override
-  public F getFlyweight(K key) {
+  public F getFlyweight(final K key) {
     return instanceMap.get(key);
   }
 

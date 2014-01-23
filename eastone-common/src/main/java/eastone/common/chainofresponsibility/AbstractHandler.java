@@ -40,7 +40,7 @@ public abstract class AbstractHandler
   }
 
   @Override
-  public void setNext(H theNext) {
+  public void setNext(final H theNext) {
     this.next = theNext;
   }
 

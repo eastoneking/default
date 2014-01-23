@@ -62,7 +62,7 @@ public abstract class AbstractFlyweightGenerateStrategy<K, F extends Flyweight>
    * @param initFactoriesContext 工厂上下文.
    */
   public AbstractFlyweightGenerateStrategy(
-    DefaultFlyweightFactory<K, F> initFactoriesContext
+    final DefaultFlyweightFactory<K, F> initFactoriesContext
   ) {
     factoriesContext = initFactoriesContext;
   }
@@ -72,7 +72,7 @@ public abstract class AbstractFlyweightGenerateStrategy<K, F extends Flyweight>
    * @param newFactoriesContext factoriesContext属性的新值。
    */
   public void setFactoriesContext(
-    DefaultFlyweightFactory<K, F> newFactoriesContext
+    final DefaultFlyweightFactory<K, F> newFactoriesContext
   ) {
     this.factoriesContext = newFactoriesContext;
   }
@@ -91,30 +91,30 @@ public abstract class AbstractFlyweightGenerateStrategy<K, F extends Flyweight>
   }
 
   @Override
-  public void disregister(Class<DefaultFlyweightFactory<K, F>> type,
-      FlyweightGenerateStrategyVisitor<K, F> visitor) {
+  public void disregister(final Class<DefaultFlyweightFactory<K, F>> type,
+      final FlyweightGenerateStrategyVisitor<K, F> visitor) {
     this.visitorController.disregister(type, visitor);
   }
 
   @Override
-  public void invokeVisitors(DefaultFlyweightFactory<K, F> visitable) {
+  public void invokeVisitors(final DefaultFlyweightFactory<K, F> visitable) {
     this.visitorController.invokeVisitors(visitable);
   }
 
   @Override
-  public void registorVisitor(Class<DefaultFlyweightFactory<K, F>> type,
-      FlyweightGenerateStrategyVisitor<K, F> visitor) {
+  public void registorVisitor(final Class<DefaultFlyweightFactory<K, F>> type,
+      final FlyweightGenerateStrategyVisitor<K, F> visitor) {
     this.visitorController.registorVisitor(type, visitor);
   }
 
   @Override
-  public void clear(Class<DefaultFlyweightFactory<K, F>> type) {
+  public void clear(final Class<DefaultFlyweightFactory<K, F>> type) {
     this.clear(type);
   }
 
   @Override
   public List<FlyweightGenerateStrategyVisitor<K, F>> findVisitors(
-      Class<DefaultFlyweightFactory<K, F>> type) {
+      final Class<DefaultFlyweightFactory<K, F>> type) {
     return this.findVisitors(type);
   }
 
@@ -125,7 +125,7 @@ public abstract class AbstractFlyweightGenerateStrategy<K, F extends Flyweight>
    * @return 实例对象.
    * @throws StrategyRuntimeException 异常.
    */
-  public F generateInstance(K key) throws StrategyRuntimeException {
+  public F generateInstance(final K key) throws StrategyRuntimeException {
     F res = null;
     res = this.generateInstanceByKey(key);
     this.invokeVisitors(this.factoriesContext);

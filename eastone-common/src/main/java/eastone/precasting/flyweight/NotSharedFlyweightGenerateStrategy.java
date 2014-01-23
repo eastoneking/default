@@ -36,12 +36,13 @@ public class NotSharedFlyweightGenerateStrategy<K, F extends Flyweight>
    * @param initFactoriesContext .
    */
   public NotSharedFlyweightGenerateStrategy(
-      DefaultFlyweightFactory<K, F> initFactoriesContext) {
+      final DefaultFlyweightFactory<K, F> initFactoriesContext) {
     super(initFactoriesContext);
   }
 
   @Override
-  protected F generateInstanceByKey(K key) throws StrategyRuntimeException {
+  protected F generateInstanceByKey(final K key)
+      throws StrategyRuntimeException {
     return this.getFactoriesContext().getFlyweight(key);
   }
 

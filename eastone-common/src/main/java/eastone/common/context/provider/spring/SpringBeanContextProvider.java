@@ -36,7 +36,7 @@ public class SpringBeanContextProvider implements BeanContext<String> {
   private AbstractApplicationContext context = null;
 
   @Override
-  public final <T> T status(final Object... inputs) {
+  public <T> T status(final Object... inputs) {
     assert inputs != null : "";
     int len = inputs.length - 1;
     Object[] args = new Object[len];
@@ -46,7 +46,7 @@ public class SpringBeanContextProvider implements BeanContext<String> {
 
   @SuppressWarnings("unchecked")
   @Override
-  public final <B> B getBean(final String beanid, final Object... args) {
+  public <B> B getBean(final String beanid, final Object... args) {
     B res = null;
     if (args == null || args.length == 0) {
       res = (B) context.getBean(beanid);
@@ -71,7 +71,7 @@ public class SpringBeanContextProvider implements BeanContext<String> {
    * @return 更新后的上下文.
    */
   @Override
-  public final BeanContext<String> appendContext(final String newer) {
+  public BeanContext<String> appendContext(final String newer) {
     String path = StringUtils.trimToEmpty(newer);
     String[] configs = new String[] {path };
     AbstractApplicationContext ctx = null;
@@ -87,7 +87,7 @@ public class SpringBeanContextProvider implements BeanContext<String> {
   }
 
   @Override
-  public final String getMessage(final String code, final Locale locale,
+  public String getMessage(final String code, final Locale locale,
       final Object... args) {
 
     String res = null;
