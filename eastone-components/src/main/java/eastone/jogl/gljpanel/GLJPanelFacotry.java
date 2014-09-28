@@ -37,7 +37,6 @@ public class GLJPanelFacotry implements Factory<GLJPanel, RuntimeException> {
   public GLJPanelFacotry() {
   }
 
-  @Override
   public GLJPanel getInstance() {
     GLJPanel res = null;
     GLProfile glprofile = GLProfile.getDefault();

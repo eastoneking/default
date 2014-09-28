@@ -50,11 +50,10 @@ public class Append2BorderLayoutStrategy
     this(BorderLayout.CENTER);
   }
 
-  @Override
   public void setKey(final String theKey) {
     this.key = theKey;
   }
-  @Override
+
   public String getKey() {
     return this.key;
   }
@@ -95,8 +94,6 @@ public class Append2BorderLayoutStrategy
     return borderName;
   }
 
-
-  @Override
   public void append(final Container container, final GLJPanel panel) {
     if (container == null) {
       return;

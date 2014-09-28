@@ -45,29 +45,24 @@ public class FormBaseSimpleHttpClientComponentProvider
     this.setImplementor(impl);
   }
 
-  @Override
   public String post(final URL url) throws HttpException {
     return fillImple(HttpMethodEnum.POST, url, null).request();
   }
 
-  @Override
   public String get(final URL url) throws HttpException {
     return fillImple(HttpMethodEnum.GET, url, null).request();
   }
 
-  @Override
   public String post(final URL url, final Map<String, String> form)
       throws HttpException {
     return fillImple(HttpMethodEnum.POST, url, form).request();
   }
 
-  @Override
   public String get(final URL url, final Map<String, String> form)
       throws HttpException {
     return fillImple(HttpMethodEnum.GET, url, form).request();
   }
 
-  @Override
   public void close() {
   }
 

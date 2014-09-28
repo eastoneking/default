@@ -58,22 +58,18 @@ public final class OneTriangleSwingGLJPanel {
 
     gljpanel.addGLEventListener(new GLEventListener() {
 
-      @Override
       public void reshape(
           final GLAutoDrawable glautodrawable, final int x, final int y,
           final int width, final int height) {
         OneTriangle.setup(glautodrawable.getGL().getGL2(), width, height);
       }
 
-      @Override
       public void init(final GLAutoDrawable glautodrawable) {
       }
 
-      @Override
       public void dispose(final GLAutoDrawable glautodrawable) {
       }
 
-      @Override
       public void display(final GLAutoDrawable glautodrawable) {
         OneTriangle.render(glautodrawable.getGL().getGL2(),
             glautodrawable.getWidth(), glautodrawable.getHeight());

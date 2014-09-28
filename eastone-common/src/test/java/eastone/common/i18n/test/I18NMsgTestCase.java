@@ -8,7 +8,6 @@ import java.util.Locale;
 import junit.framework.TestCase;
 
 import org.junit.Test;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import eastone.common.context.BeanContext;
 import eastone.common.context.BeanContextFactory;
@@ -44,7 +43,7 @@ public class I18NMsgTestCase {
   static {
     String config = "eastone/common/i18n/test/context.xml";
     BeanContext ctx = BeanContextFactory.getBeanContext();
-    ctx.appendContext(new ClassPathXmlApplicationContext(config));
+    ctx.appendContext(config);
   }
 
   /**

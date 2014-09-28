@@ -6,8 +6,9 @@ package eastone.component.http;
 
 import java.net.URL;
 
-import com.sun.xml.internal.ws.Closeable;
 
+
+import eastone.common.processor.Closeable;
 import eastone.common.processor.Processor;
 
 /**

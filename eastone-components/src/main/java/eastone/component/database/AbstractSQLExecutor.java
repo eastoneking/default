@@ -44,12 +44,10 @@ public abstract class AbstractSQLExecutor<S, R, E extends Exception> extends
    */
   private Object parameters;
 
-  @Override
   public R getResult() {
     return result;
   }
 
-  @Override
   public void setResult(final R theResult) {
     this.result = theResult;
   }
@@ -62,27 +60,22 @@ public abstract class AbstractSQLExecutor<S, R, E extends Exception> extends
     return dBResource;
   }
 
-  @Override
   public void setDBResource(final S resource) {
     this.dBResource = resource;
   }
 
-  @Override
   public void setCommandText(final String theCommandText) {
     this.commandText = theCommandText;
   }
 
-  @Override
   public String getCommandText() {
     return this.commandText;
   }
 
-  @Override
   public <T> void setParameters(final T theParameters) {
     this.parameters = (Object) theParameters;
   }
 
-  @Override
   @SuppressWarnings("unchecked")
   public <T> T getParameters() {
     return (T) this.parameters;

@@ -55,22 +55,18 @@ public class GeneralPosition<T, D>
     this.setDimensions(theDimensions);
   }
 
-  @Override
   public void setPos(final T thePos) {
     this.pos = thePos;
   }
 
-  @Override
   public T getPos() {
     return this.pos;
   }
 
-  @Override
   public Set<D> listDimensions() {
     return this.dimensions;
   }
 
-  @Override
   public D findDimension(final int index) {
     D res = null;
     int size = this.size();
@@ -83,12 +79,10 @@ public class GeneralPosition<T, D>
     return res;
   }
 
-  @Override
   public void setDimensions(final Set<D> theDimensions) {
     this.dimensions = theDimensions;
   }
 
-  @Override
   public int size() {
     return this.dimensions.size();
   }
