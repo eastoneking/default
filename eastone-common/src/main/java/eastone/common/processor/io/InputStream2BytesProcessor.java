@@ -27,8 +27,8 @@ import eastone.common.processor.AbstractProcessorWithResult;
  * @since 0.1
  */
 public class InputStream2BytesProcessor extends
-    AbstractProcessorWithResult<byte[], IOException> implements
-    Convertor<InputStream, byte[], IOException> {
+    AbstractProcessorWithResult<byte[]> implements
+    Convertor<InputStream, byte[]> {
 
   /**
    * 默认缓冲大小.
@@ -84,7 +84,7 @@ public class InputStream2BytesProcessor extends
   }
 
   @Override
-  protected byte[] execute() throws IOException {
+  protected byte[] execute() {
     return convert(inputStream);
   }
 
@@ -136,7 +136,7 @@ public class InputStream2BytesProcessor extends
    * @throws IOException 异常.
    */
   @Override
-  public byte[] convert(final InputStream src) throws IOException {
+  public byte[] convert(final InputStream src) {
     byte[] res = null;
 
     if (src == null) {
@@ -152,6 +152,8 @@ public class InputStream2BytesProcessor extends
         buf.write(cur, 0, len);
       }
       buf.flush();
+    } catch(Exception e){
+        throw new RuntimeException(e.getLocalizedMessage(), e);
     } finally {
       try {
         buf.close();

@@ -13,12 +13,11 @@ import eastone.common.processor.Processor;
  * <li>初始版本, by wangdongshi@neusoft.com, 2013-11-7 上午10:28:08</li>
  * </ol>
  * </p>
- * @param <E> 可能的异常.
  * @author 王东石 <wangdongshi@neusoft.com>
  * @version 0.1.1
  * @since 0.1
  */
-public interface Command<E extends Exception> extends Processor<E> {
+public interface Command extends Processor {
 
   /**
    * 设置命令接收者.

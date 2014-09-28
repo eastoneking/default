@@ -53,9 +53,9 @@ import eastone.common.GeneralParentObject;
  * @since 0.1
  */
 public abstract class AbstractStrategyContext
-  <K, E extends StrategyRuntimeException>
+  <K>
   extends GeneralParentObject
-  implements StrategyContext<K, E> {
+  implements StrategyContext<K> {
 
   /**
    * 策略图.
@@ -120,7 +120,7 @@ public abstract class AbstractStrategyContext
   }
 
   @Override
-  public void process() throws E {
+  public void process() {
     Strategy<K> selectStrategy = this.findStrategy(selectedStrategy);
     if (selectStrategy != null) {
       proccessStrategry(selectStrategy);
@@ -139,7 +139,6 @@ public abstract class AbstractStrategyContext
    * @param strategy 被执行策略.
    * @throws E 执行期间可能发生的异常.
    */
-  protected abstract <S extends Strategy<K>> void proccessStrategry(S strategy)
-      throws E;
+  protected abstract <S extends Strategy<K>> void proccessStrategry(S strategy);
 
 }

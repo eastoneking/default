@@ -21,14 +21,12 @@ import eastone.common.GeneralParentObject;
  * </li>
  * </ol>
  * </p>
- * @param <E>
- *          命令执行过程中可能的异常.
  * @author 王东石 <wangdongshi@neusoft.com>
  * @version 0.1.1
  * @since 0.1
  */
-public abstract class AbstractCommand<E extends Exception> extends
-    GeneralParentObject implements Command<E> {
+public abstract class AbstractCommand extends
+    GeneralParentObject implements Command {
 
   /**
    * 命令接收者.

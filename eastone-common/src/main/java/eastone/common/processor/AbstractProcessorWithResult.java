@@ -25,27 +25,24 @@ package eastone.common.processor;
  * @version 0.1.1
  * @since 0.1
  */
-public abstract class AbstractProcessorWithResult<T, E extends Exception>
+public abstract class AbstractProcessorWithResult<T>
     extends eastone.common.GeneralParentObject implements
-    ProcessorWithResult<T, E> {
+    ProcessorWithResult<T> {
 
   /**
    * 保存执行结果的属性.
    */
   private T result = null;
 
-  @Override
   public void setResult(final T theResult) {
     this.result = theResult;
   }
 
-  @Override
   public T getResult() {
     return this.result;
   }
 
-  @Override
-  public void process() throws E {
+  public void process(){
     if (this.result != null) {
       return;
     }
@@ -55,10 +52,8 @@ public abstract class AbstractProcessorWithResult<T, E extends Exception>
   /**
    * 执行方法.
    * @return 执行结果.
-   * @throws E
-   *           异常.
    */
-  protected abstract T execute() throws E;
+  protected abstract T execute();
 
   /**
    * 清理状态.

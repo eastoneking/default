@@ -22,7 +22,7 @@ import eastone.common.processor.Processor;
  * @since 0.1
  */
 public class Bytes2OutputStreamProcessor extends GeneralParentObject implements
-    Processor<IOException>, Clearable {
+    Processor, Clearable {
 
   /**
    * 用于数据的输出流.
@@ -151,15 +151,19 @@ public class Bytes2OutputStreamProcessor extends GeneralParentObject implements
    * @throws IOException 异常.
    */
   @Override
-  public void process() throws IOException {
-    if (outputStream != null && this.data != null) {
-      int maxLength = data.length;
-      int offsizeValue = calculateOffset(maxLength);
-      int len = calculateLength(offsizeValue, maxLength);
-      outputStream.write(data, offsizeValue, len);
-      outputStream.flush();
+    public void process() {
+        if (outputStream != null && this.data != null) {
+            try {
+                int maxLength = data.length;
+                int offsizeValue = calculateOffset(maxLength);
+                int len = calculateLength(offsizeValue, maxLength);
+                outputStream.write(data, offsizeValue, len);
+                outputStream.flush();
+            } catch (Exception e) {
+                throw new RuntimeException(e.getLocalizedMessage(), e);
+            }
+        }
     }
-  }
 
   /**
    * 计算输出长度.

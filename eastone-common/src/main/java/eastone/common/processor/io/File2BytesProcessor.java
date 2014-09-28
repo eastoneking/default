@@ -30,10 +30,10 @@ import eastone.common.processor.Processor;
  * @since 0.1
  */
 public class File2BytesProcessor extends
-    AbstractProcessorWithResult<byte[], IOException> implements
-    Convertor<File, byte[], IOException>,
-    Adapter<Convertor<InputStream, byte[], IOException>>,
-    Processor<IOException> {
+    AbstractProcessorWithResult<byte[]> implements
+    Convertor<File, byte[]>,
+    Adapter<Convertor<InputStream, byte[]>>,
+    Processor {
   /**
    * 要读取的文件.
    */
@@ -61,15 +61,14 @@ public class File2BytesProcessor extends
    * 默认值为 {@link InputStream2BytesProcessor}类型.
    * </p>
    */
-  private Convertor<InputStream, byte[], IOException> inner
+  private Convertor<InputStream, byte[]> inner
     = new InputStream2BytesProcessor();
 
   /**
    * 获得转换器.
    * @return 获得转换器.
    */
-  @Override
-  public Convertor<InputStream, byte[], IOException> getAdaptee() {
+  public Convertor<InputStream, byte[]> getAdaptee() {
     return inner;
   }
 
@@ -78,7 +77,7 @@ public class File2BytesProcessor extends
    * @param theInner 转换器.
    */
   public void setInner(
-      final Convertor<InputStream, byte[], IOException> theInner
+      final Convertor<InputStream, byte[]> theInner
   ) {
     this.inner = theInner;
   }
@@ -143,21 +142,23 @@ public class File2BytesProcessor extends
    * @return 转换结果.
    */
   @Override
-  public byte[] convert(final File src) throws IOException {
+  public byte[] convert(final File src) {
     byte[] res = null;
     if (src == null || this.inner == null) {
       return res;
     }
     if (!src.exists()) {
-      throw new FileNotFoundException(src.getPath());
+      throw new RuntimeException(new FileNotFoundException(src.getPath()));
     }
     if (!src.canRead()) {
-      throw new IOException("file can't be read. the file is " + src.getPath());
+      throw new RuntimeException(new IOException("file can't be read. the file is " + src.getPath()));
     }
     FileInputStream fis = null;
     try {
       fis = new FileInputStream(src);
       res = this.inner.convert(fis);
+    } catch(Exception e) {
+        throw new RuntimeException(e);
     } finally {
       if (fis != null) {
         try {
@@ -171,8 +172,8 @@ public class File2BytesProcessor extends
   }
 
   @Override
-  protected byte[] execute() throws IOException {
-    return convert(file);
+  protected byte[] execute() {
+        return convert(file);
   }
 
 }

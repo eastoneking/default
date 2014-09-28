@@ -19,24 +19,22 @@ public interface Invoker {
 
   /**
    * 构建命令对象.
-   * @param <E> 异常.
    * @param <C> 命令.
    * @param <R> 接收者类型.
    * @param receiver 命令接收者.
    * @param command 命令.
    * @return 设置接收者的命令.
    */
-  <E extends Exception, C extends Command<E>, R extends CommandReceiver>
+  <C extends Command, R extends CommandReceiver>
     C buildCommand(
       R receiver, C command);
 
   /**
    * 调用命令.
-   * @param <E> 命令执行中可能的异常类型.
    * @param <C> 命令类型.
    * @param command 命令.
    * @throws E 命令执行中可能的异常.
    */
-  <E extends Exception, C extends Command<E>> void invoke(C command) throws E;
+  <C extends Command> void invoke(C command);
 
 }

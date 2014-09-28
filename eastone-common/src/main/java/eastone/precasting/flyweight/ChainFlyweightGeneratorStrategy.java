@@ -37,7 +37,7 @@ import eastone.common.strategy.StrategyRuntimeException;
 public class ChainFlyweightGeneratorStrategy<K, F extends Flyweight>
   extends AbstractFlyweightGenerateStrategy<K, F>
   implements
-    Handler<StrategyRuntimeException, ChainFlyweightGeneratorStrategy<K, F>>,
+    Handler<ChainFlyweightGeneratorStrategy<K, F>>,
     Adapter<AbstractFlyweightGenerateStrategy<K, F>> {
 
   /**
@@ -91,16 +91,20 @@ public class ChainFlyweightGeneratorStrategy<K, F extends Flyweight>
   }
 
   @Override
-  public boolean handle() throws StrategyRuntimeException {
+  public boolean handle() {
     K theKey = this.getKey();
     this.innerStrategy.setFactoriesContext(this.getFactoriesContext());
     this.innerStrategy.setKey(theKey);
-    this.result = this.innerStrategy.generateInstance(theKey);
+    try {
+        this.result = this.innerStrategy.generateInstance(theKey);
+    } catch (StrategyRuntimeException e) {
+        throw new RuntimeException(e);
+    }
     return this.result == null;
   }
 
   @Override
-  public void process() throws StrategyRuntimeException {
+  public void process() {
     //递归
     if (this.handle() && this.next != null) {
       this.next.process();

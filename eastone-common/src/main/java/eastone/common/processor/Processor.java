@@ -20,17 +20,16 @@ package eastone.common.processor;
  * by wangdongshi@neusoft.com 2013-10-13 09:20</li>
  * </ol>
  * </p>
- * @param <E> 执行过程中可能抛出的异常
  * @author 王东石 <wangdongshi@neusoft.com>
  * @version 0.1.1
  * @since 0.1
  */
-public interface Processor<E extends Exception> {
+public interface Processor {
 
   /**
    * 执行功能的方法.
    * @throws E 可能出现的异常类型.
    */
-  void process() throws E;
+  void process();
 
 }

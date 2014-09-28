@@ -26,8 +26,8 @@ import eastone.common.GeneralParentObject;
  * @since 0.1
  */
 public abstract class AbstractHandler
-  <E extends Exception, H extends Handler<E, H>>
-  extends GeneralParentObject implements Handler<E, H> {
+  <H extends Handler<H>>
+  extends GeneralParentObject implements Handler<H> {
 
   /**
    * 责任链中下一个处理器.
@@ -45,7 +45,7 @@ public abstract class AbstractHandler
   }
 
   @Override
-  public void process() throws E {
+  public void process() {
     if (this.handle() && this.next != null) {
       this.next.process();
     }

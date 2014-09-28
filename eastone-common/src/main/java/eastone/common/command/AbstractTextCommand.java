@@ -22,8 +22,8 @@ package eastone.common.command;
  * @version 0.1.1
  * @since 0.1
  */
-public abstract class AbstractTextCommand<E extends Exception> extends
-    AbstractCommand<E> {
+public abstract class AbstractTextCommand extends
+    AbstractCommand {
 
   /**
    * 命令文本.

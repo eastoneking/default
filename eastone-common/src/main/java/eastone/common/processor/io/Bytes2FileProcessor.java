@@ -26,7 +26,7 @@ import eastone.common.processor.Processor;
  * @since 0.1
  */
 public class Bytes2FileProcessor extends eastone.common.GeneralParentObject
-    implements Processor<IOException>, Clearable {
+    implements Processor, Clearable {
 
   /**
    * 是否创建父目录.
@@ -186,15 +186,19 @@ public class Bytes2FileProcessor extends eastone.common.GeneralParentObject
    *           异常
    */
   @Override
-  public void process() throws IOException {
-    assert file != null;
-    if (this.data != null && this.file != null) {
-      if (!validateParentPath(file)) {
-        throw new IOException();
-      }
-      writeData2File(this.data, this.file);
+    public void process() {
+        assert file != null;
+        if (this.data != null && this.file != null) {
+            if (!validateParentPath(file)) {
+                throw new RuntimeException(new IOException());
+            }
+            try {
+                writeData2File(this.data, this.file);
+            } catch (IOException e) {
+                new RuntimeException(e.getLocalizedMessage(), e);
+            }
+        }
     }
-  }
 
   /**
    * 将数据写入文件.

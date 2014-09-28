@@ -35,8 +35,8 @@ import eastone.common.processor.Processor;
  * @version 0.1.1
  * @since 0.1
  */
-public interface StrategyContext<K, E extends StrategyRuntimeException>
-  extends Processor<E> {
+public interface StrategyContext<K>
+  extends Processor {
 
   /**
    * 注册策略.

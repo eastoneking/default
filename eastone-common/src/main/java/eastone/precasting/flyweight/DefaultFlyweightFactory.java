@@ -14,7 +14,6 @@ import eastone.common.flyweight.Flyweight;
 import eastone.common.flyweight.FlyweightFactory;
 import eastone.common.strategy.AbstractStrategyContext;
 import eastone.common.strategy.Strategy;
-import eastone.common.strategy.StrategyRuntimeException;
 import eastone.common.visitor.Visitable;
 
 /**
@@ -38,7 +37,7 @@ import eastone.common.visitor.Visitable;
  * @since 0.1
  */
 public class DefaultFlyweightFactory<K, F extends Flyweight>
-  extends AbstractStrategyContext<K, StrategyRuntimeException>
+  extends AbstractStrategyContext<K>
   implements
     FlyweightFactory<K, F>,
     Visitable<FlyweightGenerateStrategyVisitor<K, F>> {
@@ -127,8 +126,7 @@ public class DefaultFlyweightFactory<K, F extends Flyweight>
   }
 
   @Override
-  protected <S extends Strategy<K>> void proccessStrategry(final S strategy)
-      throws StrategyRuntimeException {
+  protected <S extends Strategy<K>> void proccessStrategry(final S strategy) {
   }
 
   @Override
