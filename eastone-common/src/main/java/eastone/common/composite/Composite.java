@@ -3,7 +3,7 @@
  */
 package eastone.common.composite;
 
-import java.util.List;
+import java.util.Collection;
 
 import eastone.common.Component;
 
@@ -27,7 +27,7 @@ import eastone.common.Component;
  * @version 0.1.1
  * @since 0.1
  */
-public interface Composite<C extends Component, I> {
+public interface Composite<C extends Component, I> extends Component {
 
   /**
    * 添加组件.
@@ -66,6 +66,6 @@ public interface Composite<C extends Component, I> {
    * 获得所有组件列表.
    * @return 所有组件列表.
    */
-  List<C> listAllComponent();
+  Collection<C> listAllComponent();
 
 }

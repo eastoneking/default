@@ -34,7 +34,7 @@ public class DefaultCommandInvoker extends GeneralParentObject implements
 
   @Override
   public <C extends Command>
-  void invoke(final C command) {
+  void invoke(final C command) throws Exception{
     if (command != null) {
       command.process();
     }

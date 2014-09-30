@@ -6,6 +6,7 @@ package eastone.common.strategy;
 import java.util.Map;
 
 import eastone.common.annotation.Callback;
+import eastone.common.composite.Composite;
 import eastone.common.processor.Processor;
 
 /**
@@ -36,7 +37,7 @@ import eastone.common.processor.Processor;
  * @since 0.1
  */
 public interface StrategyContext<K>
-  extends Processor {
+  extends Processor, Composite<Strategy<K>, K> {
 
   /**
    * 注册策略.

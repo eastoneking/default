@@ -1,4 +1,4 @@
-package eastone.common.processor.io;
+package eastone.precasting.processor.io;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

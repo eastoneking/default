@@ -35,6 +35,6 @@ public interface Invoker {
    * @param command 命令.
    * @throws E 命令执行中可能的异常.
    */
-  <C extends Command> void invoke(C command);
+  <C extends Command> void invoke(C command) throws Exception;
 
 }

@@ -1,4 +1,4 @@
-package eastone.common.processor.io;
+package eastone.precasting.processor.io;
 
 /**
  * 修改文件时是覆盖或者追加.

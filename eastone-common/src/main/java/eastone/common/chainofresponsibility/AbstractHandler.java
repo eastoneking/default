@@ -45,7 +45,7 @@ public abstract class AbstractHandler
   }
 
   @Override
-  public void process() {
+  public void process() throws Exception{
     if (this.handle() && this.next != null) {
       this.next.process();
     }
