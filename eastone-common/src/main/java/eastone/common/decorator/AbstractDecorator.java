@@ -20,7 +20,7 @@ import eastone.common.GeneralParentObject;
  * @version 0.1.1
  * @since 0.1
  */
-public abstract class AbstractDecorator<C extends Component> extends
+public abstract class AbstractDecorator<C> extends
     GeneralParentObject implements Decorator<C> {
 
   /**

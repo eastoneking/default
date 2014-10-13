@@ -23,6 +23,6 @@ public interface Context {
    * @param <T> 状态类型.
    * @return 与输入条件对应的状态.
    */
-  <T> T status(Object... inputs);
+  <T> T status(Object... inputs) throws Exception;
 
 }

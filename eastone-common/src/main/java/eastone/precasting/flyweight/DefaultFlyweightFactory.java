@@ -49,7 +49,7 @@ public class DefaultFlyweightFactory<K, F extends Flyweight>
   /**
    * 工厂图.
    */
-  private final Map<K, Factory<F, Exception>> factoriesMap;
+  private final Map<K, Factory<F>> factoriesMap;
   /**
    * 构造函数.
    * <p>
@@ -58,7 +58,7 @@ public class DefaultFlyweightFactory<K, F extends Flyweight>
    * @param strategyMap 策略图.
    */
   public DefaultFlyweightFactory(final Map<K, Strategy<K>> strategyMap) {
-    this(new LinkedHashMap<K, Factory<F, Exception>>(), strategyMap);
+    this(new LinkedHashMap<K, Factory<F>>(), strategyMap);
   }
   /**
    * 构造函数.
@@ -66,7 +66,7 @@ public class DefaultFlyweightFactory<K, F extends Flyweight>
    * @param strategyMap 策略图.
    */
   public DefaultFlyweightFactory(
-      final Map<K, Factory<F, Exception>> map,
+      final Map<K, Factory<F>> map,
       final Map<K, Strategy<K>> strategyMap
   ) {
     super(strategyMap);
@@ -99,7 +99,7 @@ public class DefaultFlyweightFactory<K, F extends Flyweight>
    * 获得内部唯一识别标识-工厂图.
    * @return 唯一识别标识-工厂图.
    */
-  protected Map<K, Factory<F, Exception>> getFactoriesMapRef() {
+  protected Map<K, Factory<F>> getFactoriesMapRef() {
     return this.factoriesMap;
   }
   /**
@@ -109,7 +109,7 @@ public class DefaultFlyweightFactory<K, F extends Flyweight>
    */
   public void registerFactory(
       final K theKey,
-      final Factory<F, Exception> factory
+      final Factory<F> factory
   ) {
     this.factoriesMap.put(theKey, factory);
   }

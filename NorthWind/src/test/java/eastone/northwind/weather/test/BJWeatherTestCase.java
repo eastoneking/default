@@ -42,11 +42,12 @@ public class BJWeatherTestCase {
 
   /**
    * 测试.
+ * @throws Exception .
    */
   @Test
-  public final void test() {
+  public final void test() throws Exception {
     BeanContext<?> ctx = BeanContextFactory.getBeanContext();
-    Processor<RuntimeException> p = ctx.getBean("Proc.Weather.BJ.Loader");
+    Processor p = ctx.getBean("Proc.Weather.BJ.Loader");
     p.process();
   }
 

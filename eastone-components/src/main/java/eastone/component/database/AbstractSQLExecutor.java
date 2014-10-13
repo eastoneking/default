@@ -21,8 +21,8 @@ import eastone.common.GeneralParentObject;
  * @version 0.1.1
  * @since 0.1
  */
-public abstract class AbstractSQLExecutor<S, R, E extends Exception> extends
-    GeneralParentObject implements SQLExecutor<S, R, E> {
+public abstract class AbstractSQLExecutor<S, R> extends
+    GeneralParentObject implements SQLExecutor<S, R> {
 
   /**
    * 保存执行结果.
@@ -85,7 +85,7 @@ public abstract class AbstractSQLExecutor<S, R, E extends Exception> extends
    * 业务处理.
    * @throws E 异常.
    */
-  public void process() throws E {
+  public void process() throws Exception {
     this.setResult(executeSQL(this.dBResource, this.commandText,
         this.parameters));
   }
@@ -99,6 +99,6 @@ public abstract class AbstractSQLExecutor<S, R, E extends Exception> extends
    * @throws E 可能发生的异常.
    */
   protected abstract R executeSQL(S theDBResource, String theCommandText,
-      Object theParameters) throws E;
+      Object theParameters) throws Exception;
 
 }

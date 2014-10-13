@@ -12,7 +12,6 @@ import javax.media.opengl.awt.GLJPanel;
 
 import eastone.common.strategy.AbstractStrategyContext;
 import eastone.common.strategy.Strategy;
-import eastone.common.strategy.StrategyRuntimeException;
 
 /**
  * 向容器中添加GLJPanel对象策略上下文.
@@ -33,7 +32,7 @@ import eastone.common.strategy.StrategyRuntimeException;
  * @since 0.1
  */
 public class AddGLJPanelStrategyContext
-  extends AbstractStrategyContext<String, StrategyRuntimeException> {
+  extends AbstractStrategyContext<String> {
 
   /**
    * 被添加GLJPanel对象的容器.
@@ -96,8 +95,7 @@ public class AddGLJPanelStrategyContext
 
   @Override
   protected <S extends Strategy<String>> void
-    proccessStrategry(final S strategy)
-      throws StrategyRuntimeException {
+    proccessStrategry(final S strategy) {
     Append2BorderLayoutStrategy a2bs = (Append2BorderLayoutStrategy) strategy;
     a2bs.append(container, panel);
   }

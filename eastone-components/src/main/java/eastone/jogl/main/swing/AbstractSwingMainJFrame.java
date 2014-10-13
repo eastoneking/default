@@ -14,7 +14,6 @@ import javax.media.opengl.awt.GLJPanel;
 import javax.swing.JFrame;
 
 import eastone.common.strategy.Strategy;
-import eastone.common.strategy.StrategyRuntimeException;
 import eastone.graphic.Rectangle;
 import eastone.jogl.gljpanel.GLJPanelFacotry;
 import eastone.jogl.gljpanel.strategy.AddGLJPanelStrategyContext;
@@ -282,7 +281,7 @@ public class AbstractSwingMainJFrame
       ADD_GLJP_CTX.setPanel(thegljp);
       try {
         ADD_GLJP_CTX.process();
-      } catch (StrategyRuntimeException e) {
+      } catch (Exception e) {
         throw new RuntimeException(e);
       }
     }

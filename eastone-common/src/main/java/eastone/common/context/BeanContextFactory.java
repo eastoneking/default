@@ -25,7 +25,7 @@ import eastone.common.factory.Factory;
  */
 @SuppressWarnings("rawtypes")
 public class BeanContextFactory implements
-    Factory<BeanContext, RuntimeException> {
+    Factory<BeanContext> {
 
   /**
    * 默认工厂对象.

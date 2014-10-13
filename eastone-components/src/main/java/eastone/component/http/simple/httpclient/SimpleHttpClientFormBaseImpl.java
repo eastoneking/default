@@ -23,10 +23,10 @@ import org.apache.http.impl.client.HttpClients;
 
 import eastone.common.processor.AbstractProcessorWithResult;
 import eastone.common.processor.ProcessorWithResult;
-import eastone.common.processor.io.InputStream2BytesProcessor;
 import eastone.component.http.HttpException;
 import eastone.component.http.simple.HttpMethodEnum;
 import eastone.component.http.simple.SimpleHttpClientComponentBridgeImplementor;
+import eastone.precasting.processor.io.InputStream2BytesProcessor;
 
 /**
  * HTTP Client实现.
@@ -40,9 +40,9 @@ import eastone.component.http.simple.SimpleHttpClientComponentBridgeImplementor;
  * @since 0.1
  */
 public class SimpleHttpClientFormBaseImpl extends
-    AbstractProcessorWithResult<String, HttpException> implements
+    AbstractProcessorWithResult<String> implements
     SimpleHttpClientComponentBridgeImplementor,
-    ProcessorWithResult<String, HttpException> {
+    ProcessorWithResult<String> {
 
   /**
    * Http方法.
@@ -196,7 +196,11 @@ public class SimpleHttpClientFormBaseImpl extends
    * @throws HttpException 可能的异常.
    */
   public String request() throws HttpException {
-    this.process();
+    try {
+        this.process();
+    } catch (Exception e) {
+        throw new HttpException(e);
+    }
     return this.getResult();
   }
 

@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
  * @version 0.1.1
  * @since 0.1
  */
-public class GeneralParentObject {
+public class GeneralParentObject implements Component{
 
   /**
    * 获得日志对象.

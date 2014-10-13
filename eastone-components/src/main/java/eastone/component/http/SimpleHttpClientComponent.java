@@ -31,7 +31,7 @@ import eastone.common.processor.Processor;
  */
 
 public interface SimpleHttpClientComponent<P> extends
-    Processor<RuntimeException>, Closeable {
+    Processor, Closeable {
 
   /**
    * 发起不传递任何参数的POST请求到指定的URL.

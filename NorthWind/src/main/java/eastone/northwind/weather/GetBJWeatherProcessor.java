@@ -25,7 +25,7 @@ import eastone.component.http.SimpleHttpClientComponent;
  * @version 0.1.1
  * @since 0.1
  */
-public class GetBJWeatherProcessor implements Processor<RuntimeException> {
+public class GetBJWeatherProcessor implements Processor {
 
   /**
    * 请求的URL.

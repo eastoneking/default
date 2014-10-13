@@ -11,6 +11,7 @@ import java.awt.Container;
 import javax.media.opengl.awt.GLJPanel;
 
 import eastone.common.GeneralParentObject;
+import eastone.common.strategy.StrategyContext;
 
 /**
  * .
@@ -34,6 +35,8 @@ public class Append2BorderLayoutStrategy
   extends GeneralParentObject
   implements AddGLJPanelStrategy<String> {
 
+    
+  private StrategyContext<String> context = null;
   /**
    * 策略关键字.
    */
@@ -104,5 +107,22 @@ public class Append2BorderLayoutStrategy
 
     container.add(this.borderName, panel);
   }
+
+/*
+ * @see eastone.common.strategy.Strategy#getContext()
+ * @author wangds 2014年10月5日 下午7:29:45.
+ */
+@SuppressWarnings("unchecked")
+public <C extends StrategyContext<String>> C getContext() {
+    return (C)this.context;
+}
+
+/*
+ * @see eastone.common.strategy.Strategy#setContext(eastone.common.strategy.StrategyContext)
+ * @author wangds 2014年10月5日 下午7:29:45.
+ */
+public <C extends StrategyContext<String>> void setContext(C ctx) {
+    this.context = ctx;
+}
 
 }

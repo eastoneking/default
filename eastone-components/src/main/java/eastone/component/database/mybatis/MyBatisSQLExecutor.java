@@ -24,12 +24,12 @@ import eastone.component.database.AbstractSQLExecutor;
  * @since 0.1
  */
 public abstract class MyBatisSQLExecutor<R> extends
-    AbstractSQLExecutor<SqlSessionFactoryBean, R, Exception> {
+    AbstractSQLExecutor<SqlSessionFactoryBean, R> {
 
   @Override
   protected final R executeSQL(
       final SqlSessionFactoryBean dBResource, final String commandText,
-      final Object parameters) throws Exception {
+      final Object parameters) throws Exception  {
     SqlSessionFactory fac = dBResource.getObject();
     SqlSession session = openSession(fac);
     R res = null;

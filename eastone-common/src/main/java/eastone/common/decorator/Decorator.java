@@ -18,7 +18,7 @@ import eastone.common.Component;
  * @version 0.1.1
  * @since 0.1
  */
-public interface Decorator<C extends Component> {
+public interface Decorator<C> {
   /**
    * 获得被装饰组件.
    * @return 被装饰组件.

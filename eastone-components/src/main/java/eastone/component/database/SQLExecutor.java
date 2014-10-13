@@ -24,7 +24,7 @@ import eastone.common.processor.ResultContainer;
  * @version 0.1.1
  * @since 0.1
  */
-public interface SQLExecutor<S, R, E extends Exception> extends Processor<E>,
+public interface SQLExecutor<S, R> extends Processor,
     ResultContainer<R>, WithDBResource<S> {
 
   /**

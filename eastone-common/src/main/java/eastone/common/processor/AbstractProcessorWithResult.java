@@ -42,7 +42,7 @@ public abstract class AbstractProcessorWithResult<T>
     return this.result;
   }
 
-  public void process(){
+  public void process() throws Exception{
     if (this.result != null) {
       return;
     }
@@ -53,7 +53,7 @@ public abstract class AbstractProcessorWithResult<T>
    * 执行方法.
    * @return 执行结果.
    */
-  protected abstract T execute();
+  protected abstract T execute() throws Exception;
 
   /**
    * 清理状态.
