@@ -29,7 +29,7 @@ import eastone.common.factory.Factory;
  * @version 0.1
  * @since 0.1
  */
-public class GLJPanelFacotry implements Factory<GLJPanel, RuntimeException> {
+public class GLJPanelFacotry implements Factory<GLJPanel> {
 
   /**
    * 构造函数.
