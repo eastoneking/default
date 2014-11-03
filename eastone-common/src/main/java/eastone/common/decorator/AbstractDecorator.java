@@ -3,7 +3,6 @@
  */
 package eastone.common.decorator;
 
-import eastone.common.Component;
 import eastone.common.GeneralParentObject;
 
 /**

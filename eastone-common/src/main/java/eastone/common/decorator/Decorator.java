@@ -3,7 +3,6 @@
  */
 package eastone.common.decorator;
 
-import eastone.common.Component;
 
 /**
  * 装饰模式(Decorator).
