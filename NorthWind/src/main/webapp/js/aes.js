@@ -73,9 +73,9 @@ var JsonFormatter = {
 
 var key =  CryptoJS.enc.Hex.parse('31323334353637383132333435363738')
 var iv =  CryptoJS.enc.Hex.parse('1000dee1817259c0d473ae537b721e8b')
-    var encrypted = CryptoJS.AES.encrypt("Message", key, { iv: iv , format: JsonFormatter});
+var encrypted = CryptoJS.AES.encrypt("Message", key, { iv: iv , format: JsonFormatter});
 
-    document.write(encrypted.toString());
+    //document.write(encrypted.toString());
    /*  var encrypted = {};
     encrypted.ct="c19590457821fd59";
     encrypted.iv='eef9a768a90978d2';

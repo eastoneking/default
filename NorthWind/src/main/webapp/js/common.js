@@ -1,387 +1,630 @@
-var DEBUG = false;
-var ISDEMO = false;
+/**
+ * 
+ */
+var jq = $ === jQuery ? $ : jQuery.noConflict();/*解决$冲突问题.*/
 
-var CONTEXT_PATH = "/bmnc";
-
-var URL_CREATE_FILE = CONTEXT_PATH+"/CreateFileServlet";
-
-function CreateFileRequest(filepath,filedata){
-	this.filePath = filepath;
-	this.fileData = filedata;
-}
-
-function createfile(path,data){
-	$.ajax(
-			{
-				type:"POST",
-				accepts:"text/json",
-				contentType:"text/json",
-				dataType:"json",
-				success:function(res){
-					alert(res&&res.message?res.message:res);},
-				error:function(){alert(URL_CREATE_FILE+":"+$(this).responseText);},
-				async:true,
-				data:JSON.stringify(new CreateFileRequest(path,data)),
-				url:URL_CREATE_FILE
-				});
-}
-
-function loadScript(url){$.ajax({
-	  async: false,
-	  url: url,
-	  dataType: 'script'
-	});
-}
-
-function parseurl(url,objstr){
-	if(ISDEMO){
-		objstr =  objstr.replace(/\{/g,"");
-		objstr =  objstr.replace(/\}/g,"");
-		objstr =  objstr.replace(/\(/g,"");
-		objstr =  objstr.replace(/\)/g,"");
-		objstr =  objstr.replace(/\[/g,"");
-		objstr =  objstr.replace(/\]/g,"");
-		objstr =  objstr.replace(/\:/g,"");
-		objstr =  objstr.replace(/\,/g,"");
-		objstr =  objstr.replace(/\=/g,"");
-		objstr =  objstr.replace(/\'/g,"");
-		objstr =  objstr.replace(/\"/g,"");
-		objstr =  objstr.replace(/\n/g,"");
-		objstr =  objstr.replace(/\r/g,"");
-		objstr =  objstr.replace(/\\/g,"");
-	}
-	var rec = (url.charAt(0)=='.'?"":((url.indexOf("http")||url.indexOf("."))==0?"":CONTEXT_PATH))+(ISDEMO?"/data":"")+url+(ISDEMO?(","+objstr+".json"):"");
-	return rec;
-}
-
-function apost(url,data,succfunc,failfunc){
-	 return post(true,url,data,succfunc,failfunc);
-}
-
-function spost(url,data,succfunc,failfunc){
-	 return post(false,url,data,succfunc,failfunc);
-}
-
-function post(async,url,data,succfunc,failfunc){
-	var objstr = JSON.stringify(data);
-	var purl = parseurl(url,objstr);
-	return $.ajax(
-			{
-				type:"POST",
-				accepts:"text/*",
-				contentType:"text/json",
-				dataType:"json",
-				success:succfunc,
-				error:failfunc?failfunc:function(jqXHR, textStatus, errorThrown){
-						if(ISDEMO)
-							alert("url:"+purl+";err:"+errorThrown+";");
-					},
-				async:async,
-				data:objstr,
-				url:purl
-			}
-		);
-}
-
-function uploadForm(url,form,succfunc,failfunc){
-	return form.ajaxSubmit({
-		async:true,
-		type:"POST",
-		accepts:"text/*",
-		contentType:false,
-		processData: false,
-		dataType:"json",
-		url:url,
-		success:succfunc,
-		error:failfunc?failfunc:function(jqXHR, textStatus, errorThrown){
-			if(ISDEMO)
-				alert(";err:"+errorThrown+";");
-		}
-	});
-}
-
-function uploadfiles(url,fileinputlist,succfunc,failfunc){
-	var formdata = new FormData();
-	$(fileinputlist).each(
-		function(i){
-			var _field = this;
-			$(this.files).each(
-				function(){
-					formdata.append(_field.name, this);
-				}
-			);
-		}
-	);
-	return $.ajax(
-			{
-				type:"POST",
-				accepts:"text/*",
-				contentType:false,
-				processData: false,
-				dataType:"json",
-				success:succfunc,
-				error:failfunc?failfunc:function(jqXHR, textStatus, errorThrown){
-						if(ISDEMO)
-							alert(";err:"+errorThrown+";");
-					},
-				async:true,
-				data:formdata,
-				url:url
-			}
-		);
-}
-
-var DateUtil = function(){
+jq.extend({
+  /**
+   * 调试开关.
+   * <p>
+   * 预留的调试开关。代码中可以检测本开关，适当输出调试信息。
+   * </p>
+   */
+  debugStatus : false,
+  /**
+   * 调试器.
+   */
+  debug : (function() {
     /**
-    * 判断闰年
-    * @param date Date日期对象
-    * @return boolean true 或false
-    */
-    this.isLeapYear = function(date){
-    return (0==date.getYear()%4&&((date.getYear()%100!=0)||(date.getYear()%400==0)));
+     * 捉虫机.
+     * @constructor .
+     *              <p>
+     *              <strong>That's a joke.</strong>
+     *              </p>
+     */
+    function DebugRobot() {
+
+    }
+    /**
+     * 是否处于调试状态.
+     * 
+     * @returns 是否处于调试状态.
+     */
+    DebugRobot.isDebug = function() {
+      return jq.debugStatus;
+    };
+
+    DebugRobot.changeDebug = function(debugStatus) {
+      jq.debugStatus = debugStatus;
+    };
+
+    DebugRobot.DEBUG_LEVEL = {
+      "100" : "debug",
+      "300" : "info",
+      "500" : "warn",
+      "700" : "error",
+      "999" : "fatal"
+    };
+
+    DebugRobot.DEBUG_LEVEL_REVERSE = {
+      "trace" : "100",
+      "debug" : "100",
+      "info" : "300",
+      "warn" : "500",
+      "error" : "700",
+      "fatal" : "999"
+    };
+
+    DebugRobot.register = function(label, value) {
+      if (typeof label == 'object') {
+        value = label.value;
+        label = label.label;
+      }
+      if (/^debug|info|warn|error|fatal|trace$/.test(label)) {
+        return false;
+      }
+      if (/^100|300|500|700|999$/.test(value)) {
+        return false;
+      }
+      DebugRobot.DEBUG_LEVEL[label] = value;
+      DebugRobot.DEBUG_LEVEL_REVERSE[value] = label;
+      return true;
     };
     /**
-    * 日期对象转换为指定格式的字符串
-    * @param f 日期格式,格式定义如下 yyyy-MM-dd HH:mm:ss
-    * @param date Date日期对象, 如果缺省,则为当前时间
-    *
-    * YYYY/yyyy/YY/yy 表示年份
-    * MM/M 月份
-    * W/w 星期
-    * dd/DD/d/D 日期
-    * hh/HH/h/H 时间
-    * mm/m 分钟
-    * ss/SS/s/S 秒
-    * @return string 指定格式的时间字符串
-    */
-    this.dateToStr = function(formatStr, date){
-    formatStr = arguments[0] || "yyyy-MM-dd HH:mm:ss";
-    date = arguments[1] || new Date();
-    var str = formatStr;
-    var Week = ['日','一','二','三','四','五','六'];
-    str=str.replace(/yyyy|YYYY/,date.getFullYear());
-    str=str.replace(/yy|YY/,(date.getYear() % 100)>9?(date.getYear() % 100).toString():'0' + (date.getYear() % 100));
-    str=str.replace(/MM/,date.getMonth()>9?(date.getMonth() + 1):'0' + (date.getMonth() + 1));
-    str=str.replace(/M/g,date.getMonth()+1);
-    str=str.replace(/w|W/g,Week[date.getDay()]);
-    str=str.replace(/dd|DD/,date.getDate()>9?date.getDate().toString():'0' + date.getDate());
-    str=str.replace(/d|D/g,date.getDate());
-    str=str.replace(/hh|HH/,date.getHours()>9?date.getHours().toString():'0' + date.getHours());
-    str=str.replace(/h|H/g,date.getHours());
-    str=str.replace(/mm/,date.getMinutes()>9?date.getMinutes().toString():'0' + date.getMinutes());
-    str=str.replace(/m/g,date.getMinutes());
-    str=str.replace(/ss|SS/,date.getSeconds()>9?date.getSeconds().toString():'0' + date.getSeconds());
-    str=str.replace(/s|S/g,date.getSeconds());
-    return str;
-    }
-    /**
-    * 日期计算
-    * @param strInterval string  可选值 y 年 m月 d日 w星期 ww周 h时 n分 s秒
-    * @param num int
-    * @param date Date 日期对象
-    * @return Date 返回日期对象
-    */
-    this.dateAdd = function(strInterval, num, date){
-    date =  arguments[2] || new Date();
-    switch (strInterval) {
-    case 's' :return new Date(date.getTime() + (1000 * num));
-    case 'n' :return new Date(date.getTime() + (60000 * num));
-    case 'h' :return new Date(date.getTime() + (3600000 * num));
-    case 'd' :return new Date(date.getTime() + (86400000 * num));
-    case 'w' :return new Date(date.getTime() + ((86400000 * 7) * num));
-    case 'm' :return new Date(date.getFullYear(), (date.getMonth()) + num, date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds());
-    case 'y' :return new Date((date.getFullYear() + num), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds());
-    }
-    }
-    /**
-    * 比较日期差 dtEnd 格式为日期型或者有效日期格式字符串
-    * @param strInterval string  可选值 y 年 m月 d日 w星期 ww周 h时 n分 s秒
-    * @param dtStart Date  可选值 y 年 m月 d日 w星期 ww周 h时 n分 s秒
-    * @param dtEnd Date  可选值 y 年 m月 d日 w星期 ww周 h时 n分 s秒
-    */
-    this.dateDiff = function(strInterval, dtStart, dtEnd) {
-    switch (strInterval) {
-    case 's' :return parseInt((dtEnd - dtStart) / 1000);
-    case 'n' :return parseInt((dtEnd - dtStart) / 60000);
-    case 'h' :return parseInt((dtEnd - dtStart) / 3600000);
-    case 'd' :return parseInt((dtEnd - dtStart) / 86400000);
-    case 'w' :return parseInt((dtEnd - dtStart) / (86400000 * 7));
-    case 'm' :return (dtEnd.getMonth()+1)+((dtEnd.getFullYear()-dtStart.getFullYear())*12) - (dtStart.getMonth()+1);
-    case 'y' :return dtEnd.getFullYear() - dtStart.getFullYear();
-    }
-    }
-    /**
-    * 字符串转换为日期对象
-    * @param date Date 格式为yyyy-MM-dd HH:mm:ss,必须按年月日时分秒的顺序,中间分隔符不限制
-    */
-    this.strToDate = function(dateStr){
-    var data = dateStr;
-    var reCat = /(\d{1,4})/gm;
-    var t = data.match(reCat);
-    t[1] = t[1] - 1;
-    eval('var d = new Date('+t.join(',')+');');
-    return d;
-    }
-    /**
-    * 把指定格式的字符串转换为日期对象yyyy-MM-dd HH:mm:ss
-    *
-    */
-    this.strFormatToDate = function(formatStr, dateStr){
-    var year = 0;
-    var start = -1;
-    var len = dateStr.length;
-    if((start = formatStr.indexOf('yyyy')) > -1 && start < len){
-    year = dateStr.substr(start, 4);
-    }
-    var month = 0;
-    if((start = formatStr.indexOf('MM')) > -1  && start < len){
-    month = parseInt(dateStr.substr(start, 2)) - 1;
-    }
-    var day = 0;
-    if((start = formatStr.indexOf('dd')) > -1 && start < len){
-    day = parseInt(dateStr.substr(start, 2));
-    }
-    var hour = 0;
-    if( ((start = formatStr.indexOf('HH')) > -1 || (start = formatStr.indexOf('hh')) > 1) && start < len){
-    hour = parseInt(dateStr.substr(start, 2));
-    }
-    var minute = 0;
-    if((start = formatStr.indexOf('mm')) > -1  && start < len){
-    minute = dateStr.substr(start, 2);
-    }
-    var second = 0;
-    if((start = formatStr.indexOf('ss')) > -1  && start < len){
-    second = dateStr.substr(start, 2);
-    }
-    return new Date(year, month, day, hour, minute, second);
-    }
-    /**
-    * 日期对象转换为毫秒数
-    */
-    this.dateToLong = function(date){
-    return date.getTime();
-    }
-    /**
-    * 毫秒转换为日期对象
-    * @param dateVal number 日期的毫秒数
-    */
-    this.longToDate = function(dateVal){
-    return new Date(dateVal);
-    }
-    /**
-    * 判断字符串是否为日期格式
-    * @param str string 字符串
-    * @param formatStr string 日期格式, 如下 yyyy-MM-dd
-    */
-    this.isDate = function(str, formatStr){
-    if (formatStr == null){
-    formatStr = "yyyyMMdd";
-    }
-    var yIndex = formatStr.indexOf("yyyy");
-    if(yIndex==-1){
-    return false;
-    }
-    var year = str.substring(yIndex,yIndex+4);
-    var mIndex = formatStr.indexOf("MM");
-    if(mIndex==-1){
-    return false;
-    }
-    var month = str.substring(mIndex,mIndex+2);
-    var dIndex = formatStr.indexOf("dd");
-    if(dIndex==-1){
-    return false;
-    }
-    var day = str.substring(dIndex,dIndex+2);
-    if(!isNumber(year)||year>"2100" || year< "1900"){
-    return false;
-    }
-    if(!isNumber(month)||month>"12" || month< "01"){
-    return false;
-    }
-    if(day>getMaxDay(year,month) || day< "01"){
-    return false;
-    }
-    return true;
-    }
-    this.getMaxDay = function(year,month) {
-    if(month==4||month==6||month==9||month==11)
-    return "30";
-    if(month==2)
-    if(year%4==0&&year%100!=0 || year%400==0)
-    return "29";
-    else
-    return "28";
-    return "31";
-    }
-    /**
-    *    变量是否为数字
-    */
-    this.isNumber = function(str)
-    {
-    var regExp = /^\d+$/g;
-    return regExp.test(str);
-    }
-    /**
-    * 把日期分割成数组 [年、月、日、时、分、秒]
-    */
-    this.toArray = function(myDate)
-    {
-    myDate = arguments[0] || new Date();
-    var myArray = Array();
-    myArray[0] = myDate.getFullYear();
-    myArray[1] = myDate.getMonth();
-    myArray[2] = myDate.getDate();
-    myArray[3] = myDate.getHours();
-    myArray[4] = myDate.getMinutes();
-    myArray[5] = myDate.getSeconds();
-    return myArray;
-    }
-    /**
-    * 取得日期数据信息
-    * 参数 interval 表示数据类型
-    * y 年 M月 d日 w星期 ww周 h时 n分 s秒
-    */
-    this.datePart = function(interval, myDate)
-    {
-    myDate = arguments[1] || new Date();
-    var partStr='';
-    var Week = ['日','一','二','三','四','五','六'];
-    switch (interval)
-    {
-    case 'y' :partStr = myDate.getFullYear();break;
-    case 'M' :partStr = myDate.getMonth()+1;break;
-    case 'd' :partStr = myDate.getDate();break;
-    case 'w' :partStr = Week[myDate.getDay()];break;
-    case 'ww' :partStr = myDate.WeekNumOfYear();break;
-    case 'h' :partStr = myDate.getHours();break;
-    case 'm' :partStr = myDate.getMinutes();break;
-    case 's' :partStr = myDate.getSeconds();break;
-    }
-    return partStr;
-    }
-    /**
-    * 取得当前日期所在月的最大天数
-    */
-    this.maxDayOfDate = function(date)
-    {
-    date = arguments[0] || new Date();
-    date.setDate(1);
-    date.setMonth(date.getMonth() + 1);
-    var time = date.getTime() - 24 * 60 * 60 * 1000;
-    var newDate = new Date(time);
-    return newDate.getDate();
-    }
-    return this;
-    }();
+     * 记录调试信息.
+     * @param msg 调试信息.
+     * @param level 输出级别.
+     * @returns (void).
+     */
+    DebugRobot.prototype.log = function(msg, level) {
+      if (!level) {
+        level = "info";
+      }
+      return this._output(msg, level);
+    };
 
+    /**
+     * 输出消息.
+     * 
+     * @param msg
+     *          输出的信息.
+     * @param level
+     *          日志级别(可选，默认值“info”).
+     */
+    DebugRobot.prototype._output = function(msg, level) {
+      // TODO: 浏览器检查.
+      if (console && console.log) {
+        console.log("[" + (DebugRobot.DEBUG_LEVEL_REVERSE[level] && level)
+            + "] " + msg);
+      }
+    };
 
-///////////////////accounting.js start/////////////////
-/*!
-* accounting.js v0.3.2, copyright 2011 Joss Crowcroft, MIT license, http://josscrowcroft.github.com/accounting.js
-*/
-(function(p,z){function q(a){return!!(""===a||a&&a.charCodeAt&&a.substr)}function m(a){return u?u(a):"[object Array]"===v.call(a)}function r(a){return"[object Object]"===v.call(a)}function s(a,b){var d,a=a||{},b=b||{};for(d in b)b.hasOwnProperty(d)&&null==a[d]&&(a[d]=b[d]);return a}function j(a,b,d){var c=[],e,h;if(!a)return c;if(w&&a.map===w)return a.map(b,d);for(e=0,h=a.length;e<h;e++)c[e]=b.call(d,a[e],e,a);return c}function n(a,b){a=Math.round(Math.abs(a));return isNaN(a)?b:a}function x(a){var b=c.settings.currency.format;"function"===typeof a&&(a=a());return q(a)&&a.match("%v")?{pos:a,neg:a.replace("-","").replace("%v","-%v"),zero:a}:!a||!a.pos||!a.pos.match("%v")?!q(b)?b:c.settings.currency.format={pos:b,neg:b.replace("%v","-%v"),zero:b}:a}var c={version:"0.3.2",settings:{currency:{symbol:"$",format:"%s%v",decimal:".",thousand:",",precision:2,grouping:3},number:{precision:0,grouping:3,thousand:",",decimal:"."}}},w=Array.prototype.map,u=Array.isArray,v=Object.prototype.toString,o=c.unformat=c.parse=function(a,b){if(m(a))return j(a,function(a){return o(a,b)});a=a||0;if("number"===typeof a)return a;var b=b||".",c=RegExp("[^0-9-"+b+"]",["g"]),c=parseFloat((""+a).replace(/\((.*)\)/,"-$1").replace(c,"").replace(b,"."));return!isNaN(c)?c:0},y=c.toFixed=function(a,b){var b=n(b,c.settings.number.precision),d=Math.pow(10,b);return(Math.round(c.unformat(a)*d)/d).toFixed(b)},t=c.formatNumber=function(a,b,d,i){if(m(a))return j(a,function(a){return t(a,b,d,i)});var a=o(a),e=s(r(b)?b:{precision:b,thousand:d,decimal:i},c.settings.number),h=n(e.precision),f=0>a?"-":"",g=parseInt(y(Math.abs(a||0),h),10)+"",l=3<g.length?g.length%3:0;return f+(l?g.substr(0,l)+e.thousand:"")+g.substr(l).replace(/(\d{3})(?=\d)/g,"$1"+e.thousand)+(h?e.decimal+y(Math.abs(a),h).split(".")[1]:"")},A=c.formatMoney=function(a,b,d,i,e,h){if(m(a))return j(a,function(a){return A(a,b,d,i,e,h)});var a=o(a),f=s(r(b)?b:{symbol:b,precision:d,thousand:i,decimal:e,format:h},c.settings.currency),g=x(f.format);return(0<a?g.pos:0>a?g.neg:g.zero).replace("%s",f.symbol).replace("%v",t(Math.abs(a),n(f.precision),f.thousand,f.decimal))};c.formatColumn=function(a,b,d,i,e,h){if(!a)return[];var f=s(r(b)?b:{symbol:b,precision:d,thousand:i,decimal:e,format:h},c.settings.currency),g=x(f.format),l=g.pos.indexOf("%s")<g.pos.indexOf("%v")?!0:!1,k=0,a=j(a,function(a){if(m(a))return c.formatColumn(a,f);a=o(a);a=(0<a?g.pos:0>a?g.neg:g.zero).replace("%s",f.symbol).replace("%v",t(Math.abs(a),n(f.precision),f.thousand,f.decimal));if(a.length>k)k=a.length;return a});return j(a,function(a){return q(a)&&a.length<k?l?a.replace(f.symbol,f.symbol+Array(k-a.length+1).join(" ")):Array(k-a.length+1).join(" ")+a:a})};if("undefined"!==typeof exports){if("undefined"!==typeof module&&module.exports)exports=module.exports=c;exports.accounting=c}else"function"===typeof define&&define.amd?define([],function(){return c}):(c.noConflict=function(a){return function(){p.accounting=a;c.noConflict=z;return c}}(p.accounting),p.accounting=c)})(this);
+    /*
+     * Debug常量.
+     */
+    var _ROBOT = new DebugRobot();
 
+    var interfaceFunction = function(func, msg, level) {
+      jq.debug.METHODS[func].call(_ROBOT, msg, level);
+    };
 
-var NumberFormat = accounting;
-//////////////////accounting.js end///////////////////////
+    interfaceFunction.METHODS = {
+      debug : function(msg) {
+        return _ROBOT.log(msg, "debug");
+      },
+      trace : function(msg) {
+        return _ROBOT.log(msg, "trace");
+      },
+      info : function(msg) {
+        return _ROBOT.log(msg, "info");
+      },
+      warn : function(msg) {
+        return _ROBOT.log(msg, "warn");
+      },
+      error : function(msg) {
+        return _ROBOT.log(msg, "error");
+      },
+      fatal : function(msg) {
+        return _ROBOT.log(msg, "fatal");
+      },
+      idDebug : DebugRobot.isDebug,
+      changeDebug : DebugRobot.changeDebug,
+      register : DebugRobot.register
+    };
 
+    return interfaceFunction;
+  })(),
+
+  /**
+   * 原型开关.
+   * <p>
+   * 原型开关被置为"true"意味着所有与服务器交互均采用访问静态资源的方式。 请求的参数被处理为请求URL的一部分。
+   * </p>
+   */
+  demoStatus : false,
+  isDemo : function() {
+    return jq.demoStatus;
+  },
+  /**
+   * 插件A,用于封装Ajax相关功能.
+   * <p>
+   * 
+   * </p>
+   */
+  a : (function() {
+
+    /**
+     * Ajax工具类.
+     * 
+     * @constructor .
+     */
+    function AjaxUtils() {
+    }
+    /**
+     * ajax请求默认值.
+     */
+    AjaxUtils.DEFAULTS = {
+      type : "POST",
+      accepts : "application/*",
+      contentType : "application/json",
+      dataType : "json",
+      success : jq.noop,// function(data, textStatus, jqXHR){},
+      error : function(jqXHR, textStatus, errorThrown) {
+        $.isDemo() && alert("url:" + jqXHR + ";err:" + errorThrown + ";");
+        $.debug("error", " [status:" + textStatus + "] " + errorThrown);
+      },
+      async : true,
+      data : "{}",
+      url : '#'
+    };
+
+    /**
+     * 同步请求.
+     * @param options 请求选项.
+     * @returns 当用户指定了success方法时无返回值；当success方法没有返回时，如果请求成功返回服务器端返回数据解析后的对象.
+     */
+    AjaxUtils.sync = function(options) {
+      var settings = jq.extend({}, AjaxUtils.DEFAULTS, options, {
+        async : false
+      });
+      if (settings.success === jQuery.noop) {
+        var res = undefined;
+        settings.success = function(data) {
+          res = data;
+        };
+        jq.ajax(settings);
+        return res;
+      } else {
+        return jq.ajax(settings);
+      }
+    };
+
+    /**
+     * 异步请求.
+     * @param options 请求选项.
+     * @returns 无返回值.
+     */
+    AjaxUtils.async = function(options) {
+      return jq.ajax(jq.extend({}, AjaxUtils.DEFAULTS, options, {
+        async : true
+      }));
+    };
+
+    /**
+     * 加载脚本.
+     * @param options 请求选项.
+     * @returns 无返回值.
+     */
+    AjaxUtils.loadScript = function(options) {
+      return AjaxUtils.sync(jq.extend({}, options, {
+        dataType : 'script'
+      }));
+    };
+
+    var AJAX_UTILS = new AjaxUtils();
+
+    var interfaceFunc = function(options, url, parameter, callbackOnSuccess,
+        callbackOnFailure) {
+      /*
+       * 当输入参数为一个对象时,代理jQuery.ajax()方法.
+       */
+      if (typeof options == 'object') {
+        return $.ajax(options);
+      }
+      var method = undefined;
+      if (typeof options == 'string') {
+        method = jq.a.METHODS[options];
+      } else {
+        return undefined;
+      }
+
+      var args = {};
+      if (callbackOnFailure) {
+        args.error = callbackOnFailure;
+      }
+      if (callbackOnSuccess) {
+        args.success = callbackOnSuccess;
+      }
+      if (parameter) {
+        args.data = JSON.stringify(parameter);
+      }
+      if (url) {
+        args.url = url;
+      }
+      return method.call(AJAX_UTILS, args);
+    };
+
+    interfaceFunc.METHODS = {
+      "sync" : function() {
+        return AjaxUtils.sync.apply({}, arguments);
+      },
+      "async" : function() {
+        return AjaxUtils.async.apply({}, arguments);
+      },
+      "loadScript" : function() {
+        return AjaxUtils.loadScript.apply({}, arguments);
+      }
+    };
+    return interfaceFunc;
+  })(),
+  /**
+   * 日期工具插件.
+   */
+  dateUtils:(function(){
+    
+    /**
+     * 日期工具类.
+     * @constructor .
+     */
+    function DateUtils(){};
+    
+    /**
+     * 一天中的毫秒数(86400000).
+     */
+    DateUtils.MICRO_SECONDS_OF_A_DAY=86400000;
+    
+    /**
+     * 两个时间之间的时间差.
+     * @param t1 {Date} 被减日期.
+     * @param t2 {Date} 减数日期.
+     * @returns {Number} t1与t2之间相差的天数.
+     */
+    DateUtils.diff = function(t1,t2){
+      var t1value = t1.getTime();
+      var t2value = (t2?t2.getTime():jq.now());
+      return (t1value-t2value)/DateUtils.MICRO_SECONDS_OF_A_DAY;
+    };
+    
+    var MONTH_SORT_ZHCN = ['一','二','三','四','五','六',
+                      '七','八','九','十','十一','十二'];
+    var MONTH_LONG_ZHCN = ['一月','二月','三月',
+                      '四月','五月','六月',
+                      '七月','八月','九月',
+                      '十月','十一月','十二月'];
+    
+    
+    var MONTH_SORT = ['Jan','Feb','Mar','Apr','May','Jun',
+                      'Jul','Aug','Sep','Oct','Nov','Dec'];
+    var MONTH_LONG = ['January','February','March',
+                      'April','May','June',
+                      'July','August','September',
+                      'October','November','December'];
+    
+    var WEEK_DAY_SORT = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var WEEK_DAY_LONG = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var WEEK_DAY_SORT_ZHCN = ['日','一','二','三','四','五','六'];
+    var WEEK_DAY_LONG_ZHCN = ['周日','周一','周二','周三','周四','周五','周六'];
+    
+    
+    DateUtils.format = function(date, format){
+      if(!format){
+        format = 'YYYY-MM-DD';
+      }
+      var res = format;
+      res = res.replace(/YYYY/g, date.getFullYear());
+      res = res.replace(/YY/g, date.getFullYear()%100);
+      var month = date.getMonth()+1;
+      
+      res = res.replace(/MMMM\.zhCN/g, MONTH_LONG_ZHCN[month-1]);
+      res = res.replace(/MMM\.zhCN/g, MONTH_SORT_ZHCN[month-1]);
+      
+      res = res.replace(/MMMM/g, MONTH_LONG[month-1]);
+      res = res.replace(/MMM/g, MONTH_SORT[month-1]);
+      res = res.replace(/MM/g, (month<10?'0':'')+month);
+      res = res.replace(/M/g, month);
+      var day = date.getDate();
+      res = res.replace(/DD/g, (day<10?'0':'')+day);
+      res = res.replace(/D/g,day);
+
+      var weekday = date.getDay();
+      res = res.replace(/ww/g, weekday);
+      res = res.replace(/w/g, weekday);
+
+      res = res.replace(/WWWW\.zhCN/g, WEEK_DAY_LONG_ZHCN[weekday]);
+      res = res.replace(/WWW\.zhCN/g, WEEK_DAY_SORT_ZHCN[weekday]);
+      
+      res = res.replace(/WWWW/g, WEEK_DAY_LONG[weekday]);
+      res = res.replace(/WWW/g, WEEK_DAY_SORT[weekday]);
+      
+      
+      var hours = date.getHours();
+      res = res.replace(/HH/g,(hours<10?'0':'')+hours);
+      res = res.replace(/H/g, hours);
+      if(hours>12){
+        hours-=12;
+      }
+      res = res.replace(/hh/g, (hours<10?'0':'')+hours);
+      res = res.replace(/h/g, hours);
+      var mi = date.getMinutes();
+      res = res.replace(/mm/g, (mi<10?'0':'')+mi);
+      res = res.replace(/m/g, mi);
+      var se = date.getSeconds();
+      res = res.replace(/ss/g,(se<10?'0':'')+se);
+      res = res.replace(/s/g,se);
+      var ms = date.getMilliseconds();
+      res = res.replace(/SSS/g,(ms<100?'0':'')+(ms<10?'0':'')+ms);
+      res = res.replace(/S/g,ms);
+      
+      
+      
+      return res;
+    };
+    
+    DateUtils.parse = function(str){
+      var res = new Date();
+      str = jq.trim(str);
+      if(str.length==10){
+        str=str+" 00:00:00.000";
+      }else if(str.length>10){
+        str="1970-01-01 "+str;
+      }
+      res.setFullYear(str.substring(0,4));
+      res.setMonth(new Number(str.substring(5,7).replace(/^0/,''))-1);
+      res.setDate(new Number(str.substring(8,10).replace(/^0/,'')));
+      res.setHours(new Number(str.substring(11,13).replace(/^0/,'')));
+      res.setMinutes(new Number(str.substring(14,16).replace(/^0/,'')));
+      res.setSeconds(new Number(str.substring(17,19).replace(/^0/,'')));
+      res.setMilliseconds(new Number(str.substring(20,23).replace(/^0/,'').replace(/^0/,'')));
+      
+      return res;
+    }
+    
+    var DATE_UTILS = new DateUtils();
+    
+    /**
+     * 接口函数.
+     */
+    var interfaceFunc = function(func){
+      var args = [];
+      var len = arguments.length;
+      for(var i=1;i<len;i++){
+        args[args.length]=arguments[i];
+      }
+      return jq.dateUtils.METHODS[func].apply(DATE_UTILS,args);
+    };
+    
+    interfaceFunc.METHODS={
+        diff:function(){return DateUtils.diff.apply(DATE_UTILS, arguments);},
+        format:function(){return DateUtils.format.apply(DATE_UTILS, arguments);},
+        parse:function(){return DateUtils.parse.apply(DATE_UTILS, arguments);}
+    };
+    
+    return interfaceFunc;
+  })(),
+  /**
+   * 数字工具插件.
+   * <p>
+   * 主要完成数字格式化的工作.
+   * </p>
+   */
+  numberUtils:(function(){
+    /**
+     * 数字工具类.
+     * @constructor .
+     */
+    function NumberUtils(){}
+    
+    /**
+     * 默认配置.
+     * $-999,000.000999
+     */
+    NumberUtils.DEFAULTS={
+        
+    };
+    
+    var _find_separator = function(fmt){
+      var res="";
+      var flag = false;
+      for(var i=0;i<fmt.length;i++){
+        var cur = fmt.charAt(i);
+        if(!(cur=='0'||cur=='9')){
+          flag=true;
+          res+=cur;
+        }else if(flag){
+          break;
+        }
+      }
+      return res;
+    };
+    
+    NumberUtils.format=function(num,format){
+      
+      if(!format){
+        format = "0";
+      }
+      
+      var str = format;
+      var baseStr = new Number(num).toString();
+      var idxFormatPoint = str.indexOf(".");
+      var idxBasePoint = baseStr.indexOf(".");
+      
+      if(idxFormatPoint<0){
+        idxFormatPoint=str.length;
+      }
+      
+      if(idxBasePoint<0){
+        idxBasePoint=baseStr.length;
+      }
+      
+      var fmtWhole = format.substr(0,idxFormatPoint);
+      var fmtFractional = format.substr(idxFormatPoint);
+      var strWhole = baseStr.substr(0,idxBasePoint);
+      var strFractional = baseStr.substr(idxBasePoint+1);
+      
+      if(fmtWhole==""){//支持.0格式写法
+        fmtWhole="0";
+      }
+      
+      var res = "";
+      //处理整数部分
+      var idx0_fmt = fmtWhole.indexOf("0");
+      var idx9_fmt = fmtWhole.indexOf("9");
+      
+      if(idx0_fmt<0){
+        idx0_fmt =fmtWhole.length;
+      }
+      
+      if(idx9_fmt<0){
+        idx9_fmt = fmtWhole.length;
+      }
+      
+      var idxStart = (idx0_fmt<idx9_fmt?idx0_fmt:idx9_fmt);
+      res += fmtWhole.substr(0,idxStart);
+       
+      fmtWhole=fmtWhole.substr(idxStart);
+      
+      var suffix = "";//后缀
+      if(fmtFractional.length==0){
+        var idxLast0 = fmtWhole.lastIndexOf('0');
+        var idxLast9 = fmtWhole.lastIndexOf('9');
+        
+        if(idxLast0<0){
+          idxLast0=fmtWhole.length;
+        }
+        if(idxLast9<0){
+          idxLast9=fmtWhole.length;
+        }
+        
+        var idxLastNum=(idxLast0>idxLast9?idxLast0:idxLast9);//最后一个非数字格式
+        
+        suffix = fmtWhole.substr(idxLastNum+1);//小数部分后缀
+        
+        fmtWhole=fmtWhole.substr(0,fmtWhole.length-suffix.length);
+        
+      }
+      
+      var whole = "";
+      var len = strWhole.length;
+      var pos = fmtWhole.length-1;//整数部分格式当前位 位置，右侧压栈
+      var separator = _find_separator(fmtWhole);
+      for(var i=0;i<len;i++){
+        var char = strWhole.charAt(len-1-i);
+        var f = fmtWhole.charAt(pos);
+        while(!(f=='0'||f=='9')){
+          whole = f+whole;
+          pos--;
+          if(pos<0){
+            whole = separator+whole;
+            fmtWhole=fmtWhole.replace(/0/g,'9');
+            pos=fmtWhole.length-1;
+          }
+          f = fmtWhole.charAt(pos);
+        }
+        pos--;
+        
+        whole = char+whole;
+        
+      }
+      
+      fmtWhole=fmtWhole.substr(0,pos+1).replace(/9/g,"");
+      whole = fmtWhole+whole;
+      if(whole.indexOf(separator)==0){
+        whole=whole.substr(separator.length);
+      }
+      
+      res += whole;
+      //处理整数部分结束
+      //处理小数部分
+      if(fmtFractional.indexOf('.')==0){//格式中包含小数点则处理小数部分，否则不处理.
+        var idxLast0 = fmtFractional.lastIndexOf('0');
+        var idxLast9 = fmtFractional.lastIndexOf('9');
+        var idxLastNum = 0;
+        if(idxLast0<0&&idxLast9<0){
+          idxLastNum = 1;
+        }else if((idxLast0<0&&idxLast9>=0)||(idxLast0>=0&&idxLast9<0)){
+          idxLastNum = Math.max(idxLast0, idxLast9)+1;
+        }else{
+        if(idxLast0<0){
+          idxLast0=fmtFractional.length;
+        }
+        if(idxLast9<0){
+          idxLast9=fmtFractional.length;
+        }
+        
+        idxLastNum=(idxLast0>idxLast9?idxLast0:idxLast9)+1;//最后一个非数字格式
+        }
+        
+        if((!suffix)||suffix==''){
+          suffix = fmtFractional.substr(idxLastNum);//小数部分后缀
+        }
+        
+        fmtFractional=fmtFractional.substr(0,idxLastNum);
+        if(fmtFractional=='.'){
+          fmtFractional=strFractional.replace(/./g,'9');
+        }else{
+          fmtFractional=fmtFractional.substr(1);
+        }
+        var separator = _find_separator(fmtFractional);
+        
+        var fractional = "";
+        var len = strFractional.length;
+        var pos = 0;//小数部分格式当前位 位置，左侧压栈
+        for(var i=0;i<len;i++){
+          var char = strFractional.charAt(i);
+          var f = fmtFractional.charAt(pos);
+          while(!(f=='0'||f=='9')){
+            fractional = fractional+f;
+            pos++;
+            if(pos>=fmtFractional.length){
+              break;
+            }
+            f = fmtFractional.charAt(pos);
+          }
+          if(pos>=fmtFractional.length){
+            break;
+          }
+          pos++;
+          
+          fractional = fractional+char;
+          
+        }
+        var sub = fmtFractional.substr(pos).replace(/9/g,"");
+        fractional = fractional + sub;
+        //alert(fractional+":"+suffix)
+        if(fractional.lastIndexOf(separator)==fractional.length-separator.length){
+          fractional=fractional.substr(0,fractional.lastIndexOf(separator));
+        }
+        res +=('.'+fractional);
+      }
+      
+      return res+suffix;
+      
+    };
+    
+    var NUMBER_UTILS = new NumberUtils();
+    
+    var interfaceFunc = function(options){
+      var args = [];
+      for(var i=1;i<arguments.length;i++){
+        args[args.length]=arguments[i];
+      }
+      return jq.numberUtils.METHODS[options].apply(NUMBER_UTILS,args);
+    };
+    
+    interfaceFunc.METHODS={
+        format:function(){return NumberUtils.format.apply(NUMBER_UTILS,arguments);}
+    };
+    
+    return interfaceFunc;
+  })()
+});
