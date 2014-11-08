@@ -1,9 +1,26 @@
-/**
- * 
- */
-var jq = $ === jQuery ? $ : jQuery.noConflict();/*解决$冲突问题.*/
 
+(function(jq){
 jq.extend({
+  /**
+   * 数组左移一位.
+   * 返回新数组.
+   * 支持arguments.
+   */
+  shift:function(){
+    var res = [];
+    try{
+      var arg = arguments[0];
+      var len = arg.length;
+      if(len&&len>1){
+        for(var i=1;i<len;i++){
+          res[res.length]=arg[i];
+        }
+      }
+    }catch(e){
+      $.debug("warn",e.toString());
+    }
+    return res;
+  },
   /**
    * 调试开关.
    * <p>
@@ -626,5 +643,72 @@ jq.extend({
     };
     
     return interfaceFunc;
+  })(),
+  /**
+   * 注册插件对象和业务对象之间的关系.
+   */
+  register:(function(){
+    /**
+     * 注册工具.
+     * <p>用于将插件对象和插件业务对象关联起来。
+     * 关联方式采用jQuery.data()方法.
+     * </p>
+     * @constructor .
+     */
+    function Register(){}
+    
+    Register.UUID='62C88DBEF29B8DB7A65298AB46E3929E';
+    
+    /**
+     * 查找target参数对象关联的func插件的业务对象.
+     * @param func 插件业务类型.
+     * <p>需要func.UUID属性作为查找依据.</p>
+     * @param target 需要查找管理的对象.
+     * <p>此对象一般为DOM节点或其他经过jQuery封装的对象.</p>
+     * @return 如果无法找到返回"undefined"或"null".
+     */
+    Register.find=function(func,target){
+      var res = undefined;
+      res = jq.data(target,func.UUID);
+      return res;
+    };
+    /**
+     * 获得与target相关的业务对象.
+     * <p>
+     * 如果没有关联的业务对象则实例化新的业务对象。
+     * </p>
+     * @param func 业务对象的构造函数.
+     * @param target 目标元素.
+     * @returns 与目标元素相关的业务对象.
+     */
+    Register.findOrNew=function(func,target){
+      var res = undefined;
+      if(target instanceof jQuery){
+        target = target[0];
+      }
+      res = Register.find(func,target);
+      if(!res){
+        res = new func();
+        jq.data(res, func.UUID, target);
+        jq.data(target,func.UUID,res);
+      }
+      return res;
+    }
+    
+    var REGISTER = Register();
+    
+    var interfaceFunction = function(options){
+      return jq.register.METHODS[options].apply(REGISTER,jq.shift(arguments));
+    };
+    interfaceFunction.METHODS={
+      find:function(){
+        return Register.findOrNew.apply(REGISTER,arguments);
+      },
+      findTarget:function(func,object){
+        return $.data(object,func.UUID);
+      }
+    };
+    return interfaceFunction;
   })()
-});
+})
+})($ === jQuery ? $ : jQuery.noConflict());
