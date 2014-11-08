@@ -54,8 +54,9 @@
         if(object.followingElement){
           $("body").append(object.followingElement);
         }
-        object.followingElement.offset({left:mouseOffset.left+1,top:mouseOffset.top+1});
-        
+        if(object.followingElement){
+          object.followingElement.offset({left:mouseOffset.left+1,top:mouseOffset.top+1});
+        }
       };
       /**
        * 拖拽过程中更新业务对象的状态信息.
@@ -79,7 +80,15 @@
         var target = $(this);
         var object = $.register("find", Draggable, target);
         if(object.options.moveable){
-          target.offset(object.status.current.mouseOffset);
+          var m = object.status.current.mouseOffset;
+          var ot = object.status.start.targetOffset;
+          var om = object.status.start.mouseOffset;
+          //var left = m.left;
+          target.offset(
+              {
+                left:m.left-(om.left-ot.left),
+                top:m.top-(om.top-ot.top)
+              });
         }
         if(object.followingElement){
           object.followingElement.detach();

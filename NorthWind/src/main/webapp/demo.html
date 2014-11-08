@@ -8,13 +8,16 @@
 <script type="text/javascript" src="./js/button.js" ></script>
 <script type="text/javascript" src="./js/draggable.js" ></script>
 <script type="text/javascript" src="./js/droppable.js" ></script>
+<script type="text/javascript" src="./js/resizeable.js" ></script>
 <script type="text/javascript">
 
 $("body").ready(
     function(){
-      var o = $("a");
-      o.draggable({following:$("<span style='color:red'>I'm the following!</span>")});
-      $("#t").droppable({accept:"a"});
+      //var o = $("a");
+      //o.draggable({following:$("<span style='color:red'>I'm the following!</span>")});
+      //$("#t").droppable({accept:"a"});
+      $("#t").resizeable();
+      $("#t").draggable({moveable:true});
     }
 );
 
@@ -23,6 +26,6 @@ $("body").ready(
 </head>
 <body style="width:100%;height:100%">
 <a style='background-color:red' href="http://www.baidu.com">a</a>
-<div id="t" style="width:300px;height:300px;background-color:#e1e1e1;">&nbsp;</div>
+<div id="t" style="padding:0px; margin:0px; width:300px;height:300px;background-color:#e1e1e1;border:0px solid black;">&nbsp;</div>
 </body>
 </html>
