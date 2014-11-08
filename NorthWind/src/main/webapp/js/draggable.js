@@ -74,6 +74,7 @@
         if(object.followingElement){
           object.followingElement.offset({left:mouseOffset.left+1,top:mouseOffset.top+1});
         }
+        target.css("cursor","move");
       };
       
       Draggable.onDragEndDefaultActions=function(e){
@@ -94,7 +95,7 @@
           object.followingElement.detach();
           object.followingElement=undefined;
         }
-        
+        target.css("cursor","default");
         CURRENT_DRAG_CONTEXT.target = undefined;
       };
       /**

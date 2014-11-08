@@ -18,7 +18,11 @@
        * 默认属性.
        */
       Resizeable.DEFAULTS={
-        
+        /**
+         * 敏感度.
+         * <p>距离边框小于此数值则调整大小生效.</p>
+         */
+        effect:15
       };
       Resizeable.onMouseleave = function(ev){
         var target = jq(this);
@@ -43,7 +47,7 @@
         
         var offset = target.offset();
         
-        var effect = 15;
+        var effect = object.options.effect;
         
         var b_w = ((target.outerWidth()-target.innerWidth())/2
             +(target.width()-target.innerWidth())/2//考虑padding /*效果依然
