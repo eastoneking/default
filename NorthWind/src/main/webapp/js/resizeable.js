@@ -1,7 +1,6 @@
 /*
  * 
  */
-
 (function(jq){
   jq.fn.extend({
     resizeable:(function(){
@@ -24,6 +23,16 @@
          */
         effect:15
       };
+      Resizeable.onMousedown = function(ev){
+        var target = jq(this);
+        var object = jq.register("find", Resizeable, target);
+        object.leftDown = true;
+      };
+      Resizeable.onMouseup = function(ev){
+        var target = jq(this);
+        var object = jq.register("find", Resizeable, target);
+        object.leftDown = false;
+      };
       Resizeable.onMouseleave = function(ev){
         var target = jq(this);
         var object = jq.register("find", Resizeable, target);
@@ -36,6 +45,11 @@
       Resizeable.onDragstart = function(ev){
         ev.preventDefault();
         ev.stopImmediatePropagation();
+      };
+      Resizeable.onDragstartHouseKeeping=function(){
+        var target = jq(this);
+        var object = jq.register("find", Resizeable, target);
+        object.houseKeeping();
       };
       /**
        * 鼠标移动回调函数.
@@ -68,32 +82,40 @@
           target.on("dragstart", Resizeable.onDragstart);
         }else if(c_nw){
           target.css("cursor","nw-resize");
+          target.off("dragstart", Resizeable.onDragstartHouseKeeping);
           target.on("dragstart", Resizeable.onDragstart);
         }else if(c_se){
           target.css("cursor","se-resize");
+          target.off("dragstart", Resizeable.onDragstartHouseKeeping);
           target.on("dragstart", Resizeable.onDragstart);
         }else if(c_sw){
           target.css("cursor","sw-resize");
+          target.off("dragstart", Resizeable.onDragstartHouseKeeping);
           target.on("dragstart", Resizeable.onDragstart);
         }else if(c_w){
           target.css("cursor","w-resize");
+          target.off("dragstart", Resizeable.onDragstartHouseKeeping);
           target.on("dragstart", Resizeable.onDragstart);
         }else if(c_n){
           target.css("cursor","n-resize");
+          target.off("dragstart", Resizeable.onDragstartHouseKeeping);
           target.on("dragstart", Resizeable.onDragstart);
         }else if(c_e){
           target.css("cursor","e-resize");
+          target.off("dragstart", Resizeable.onDragstartHouseKeeping);
           target.on("dragstart", Resizeable.onDragstart);
         }else if(c_s){
           target.css("cursor","s-resize");
+          target.off("dragstart", Resizeable.onDragstartHouseKeeping);
           target.on("dragstart", Resizeable.onDragstart);
         }
         else{
           target.css("cursor","default");
           target.off("dragstart", Resizeable.onDragstart);
+          target.on("dragstart", Resizeable.onDragstartHouseKeeping);
         }
-        
-        if(ev.which==1){
+
+        if(object.leftDown==1){
           var curOffset = {
               left:ev.pageX,top:ev.pageY
           };
@@ -161,6 +183,7 @@
        * <p>用于确定调整大小的方向是向内或向外.</p>
        */
       Resizeable.prototype.originOffset=undefined;
+      Resizeable.prototype.leftDown=false;
       //----成员属性--定义结束----------
       //----私有----成员方法----定义开始----
       //----私有----成员方法----定义结束----
@@ -173,12 +196,16 @@
         jq.extend(this.options, Resizeable.DEFAULTS, options);
         target.on("mouseenter", Resizeable.onMouseenter);
         target.on("mousemove",Resizeable.onMousemove);
+        target.on("mousedown", Resizeable.onMousedown);
+        target.on("mouseup", Resizeable.onMouseup);
+        target.on("dragstart", Resizeable.onDragstartHouseKeeping);
       };
       /**
        * 清理过程状态.
        */
       Resizeable.prototype.houseKeeping = function(){
         this.originOffset = undefined;
+        this.leftDown=false;
       };
       /**
        * 接口方法.
