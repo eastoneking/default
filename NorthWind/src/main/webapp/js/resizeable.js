@@ -198,6 +198,7 @@
         target.on("mousemove",Resizeable.onMousemove);
         target.on("mousedown", Resizeable.onMousedown);
         target.on("mouseup", Resizeable.onMouseup);
+        target.on("mouseleave", Resizeable.onMouseleave);
         target.on("dragstart", Resizeable.onDragstartHouseKeeping);
       };
       /**
