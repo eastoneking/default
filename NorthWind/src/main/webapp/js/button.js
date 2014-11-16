@@ -36,7 +36,7 @@ jq.fn.extend(
          * button插件接口函数.
          */
         var interfaceFunction = function(){
-          var object = jq.register("find", Button, this);
+          var object = jq.register("find", this, Button);
           
           var res = null;
           if(typeof arguments[0] == "string"){

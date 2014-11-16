@@ -1,23 +1,29 @@
 /*
  * 
  */
-(function(jq){
+(function(jq) {
   jq.fn.extend({
-    layout:(function(){
+    layout:(function() {
       /**
        * Border布局.
+       * <p>
+       * 在所选元素中添加子<code><div/></code>.
+       * </p>
+       * @constructor
        */
       function Layout(){
       }
       /**
        * 类UUID.
        */
-      Layout.UUID='F80074936B06E38A5BF363B21EE17C10';
+      Layout.UUID = '5986A989-1BC0-1DB6-2A0A-C11066792052';
       /**
        * 默认属性.
        */
-      Layout.DEFAULTS={
-          
+      Layout.DEFAULTS = {
+          panels:[
+            {name:"center"}
+          ]
       };
       //----成员属性--定义开始----------
       /**
@@ -33,10 +39,25 @@
        */
       Layout.prototype.options={};
       /**
-       * 调整大小过程中，第一次按下鼠标左键时的位置.
-       * <p>用于确定调整大小的方向是向内或向外.</p>
+       * 中心Panel元素.
        */
-      Layout.prototype.originOffset=undefined;
+      Layout.prototype.center=undefined;
+      /**
+       * 上部Panel元素.
+       */
+      Layout.prototype.north=undefined;
+      /**
+       * 下部Panel元素.
+       */
+      Layout.prototype.sorth=undefined;
+      /**
+       * 左部Panel元素.
+       */
+      Layout.prototype.west=undefined;
+      /**
+       * 右部Panel元素.
+       */
+      Layout.prototype.east=undefined;
       //----成员属性--定义结束----------
       //----私有----成员方法----定义开始----
       //----私有----成员方法----定义结束----
@@ -44,21 +65,33 @@
       /**
        * 初始化方法.
        */
-      Layout.prototype.init=function(options){
-        var target = $($.register("findTarget",Layout,this));
-        jq.extend(this.options, Layout.DEFAULTS, options);
-
+      Layout.prototype.init=function(options) {
+        var target = $($.register("findTarget", this, Layout));
+        jq.extend(this.options, Layout.DEFAULTS, options&&typeof options=="object"?options:{});
+        
+      };
+      /**
+       * .
+       */
+      Layout.prototype.binds=function(){
+        $(this).bind("render",this.onRender);
+      };
+      /**
+       * .
+       */
+      Layout.prototype.onRender=function(){
+        
       };
 
       /**
        * 接口方法.
        */
       Layout.interfaceMethod = function(){
-        var object = jq.register("find", Layout, this);
+        var object = jq.register("find", this, Layout);
         var res = null;
         if(typeof arguments[0] == "string"){
           res = this.layout.METHODS[arguments[0]]
-            &&this.layout.METHODS[arguments[0]].apply(
+          &&this.layout.METHODS[arguments[0]].apply(
                 object,
                 jq.shift(arguments)
               );

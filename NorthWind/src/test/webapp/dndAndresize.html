@@ -2,7 +2,6 @@
 <html style="width:100%;height:100%">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/north.css">
 <title>Demo</title>
 <script type="text/javascript" src="./js/jquery-2.1.1.min.js" ></script>
 <script type="text/javascript" src="./js/common.js" ></script>
@@ -10,16 +9,15 @@
 <script type="text/javascript" src="./js/draggable.js" ></script>
 <script type="text/javascript" src="./js/droppable.js" ></script>
 <script type="text/javascript" src="./js/resizeable.js" ></script>
-<script type="text/javascript" src="./js/panel.js" ></script>
-
 <script type="text/javascript">
 
 $("body").ready(
     function(){
-      $("#t").panel({title:{text:"Abcd"}})
-        .draggable({moveable:true}).resizeable({effect:5});
-      
-      $("#t").panel("getBody").empty();
+      //var o = $("a");
+      //o.draggable({following:$("<span style='color:red'>I'm the following!</span>")});
+      //$("#t").droppable({accept:"a"});
+      $("#t").resizeable({effect:50});
+      $("#t").draggable({moveable:true});
     }
 );
 
@@ -27,10 +25,7 @@ $("body").ready(
 
 </head>
 <body style="width:100%;height:100%">
-<div id="t" style="padding:0px; margin:0px; width:300px;height:300px;background-color:#e1e1e1;border:0px solid black;">
-    <span>x</span>
-    <div>y</div>
-    z
-</div>
+<a style='background-color:red' href="http://www.baidu.com">a</a>
+<div id="t" style="padding:0px; margin:0px; width:300px;height:300px;background-color:#e1e1e1;border:0px solid black;">&nbsp;</div>
 </body>
 </html>

@@ -1,3 +1,48 @@
+/**
+ * 元素大小.
+ */
+function Size(target){
+  this.width=0;
+  this.height=0;
+  this.outerWidth=0;
+  this.outHeight=0;
+  this.innerWidth=0;
+  this.innerHeight=0;
+  
+  if(target){
+    if(target instanceof jQuery){
+    }else if(typeof target=="object"){
+      target = jQuery(target);
+    }else{
+      return;
+    }
+    this.width=target.width();
+    this.height=target.height();
+    this.outerWidth=target.outerWidth();
+    this.outerHeight=target.outerHeight();
+    this.innerWidth=target.innerWidth();
+    this.innerHeight=target.innerHeight();
+  }
+}
+/**
+ * 计算内部元素最大大小.
+ * <p>innerWidth－$innerTarget.outerWidth+$innerTarget.width.
+ * 只有width和height属性.</p>
+ * @param $innerTarget 内部元素.
+ */
+Size.prototype.calcInnerElementMaxSize = function($innerTarget){
+  var dW = $innerTarget.outerWidth()-$innerTarget.width();
+  var dH = $innerTarget.outerHeight()-$innerTarget.height();
+  var res = new Size();
+  res.width=this.innerWidth-dW;
+  res.height=this.innerHeight-dH;
+  return res;
+};
+
+Size.prototype.applyTo=function($target){
+  $target.width(this.width);
+  $target.height(this.height);
+};
 
 (function(jq){
 jq.extend({
@@ -673,6 +718,21 @@ jq.extend({
       return res;
     };
     /**
+     * 设置两个对象之间的关联.
+     * @param master 主对象.
+     * @param key 关联关键字.
+     * @param target 关联目标.
+     * @returns 如果为设置关联,返回master;如果为获取关联,返回之前关联的target.
+     */
+    Register.ref=function(master, key, target){
+      if(target){
+        jq.data(master,key,target);
+        return master;
+      }else{
+        return jq.data(master,key);
+      }
+    };
+    /**
      * 获得与target相关的业务对象.
      * <p>
      * 如果没有关联的业务对象则实例化新的业务对象。
@@ -681,7 +741,7 @@ jq.extend({
      * @param target 目标元素.
      * @returns 与目标元素相关的业务对象.
      */
-    Register.findOrNew=function(func,target){
+    Register.findOrNew=function(target, func){
       var res = undefined;
       if(target instanceof jQuery){
         target = target[0];
@@ -704,11 +764,17 @@ jq.extend({
       find:function(){
         return Register.findOrNew.apply(REGISTER,arguments);
       },
-      findTarget:function(func,object){
-        return $.data(object,func.UUID);
+      findTarget:function(object, func){
+        return jq.data(object,func.UUID);
+      },
+      ref:function(master,key,target){
+        return Register.ref.call(REGISTER,master,key,target);
       }
     };
     return interfaceFunction;
+  })(),
+  size:(function(){
+    return new Size(this);
   })()
 })
 })($ === jQuery ? $ : jQuery.noConflict());

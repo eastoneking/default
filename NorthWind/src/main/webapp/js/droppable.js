@@ -14,7 +14,7 @@
       /**
        * 类UUID.
        */
-      Droppable.UUID='08D04A8F622803A25BBFEA53F0F75104';
+      Droppable.UUID='F5C46A39-ED6C-ABCE-0843-ACFF31095869';
       /**
        * 默认属性.
        */
@@ -46,7 +46,7 @@
        * 拖拽业务对象初始化.
        */
       Droppable.prototype.init=function(options){
-        var target = $($.register("findTarget",Droppable,this));
+        var target = $($.register("findTarget",this,Droppable));
         target.on("dragover",function(ev){ev.preventDefault();});//默认处理无法触发drop事件.
 
         jq.extend(this.options, Droppable.DEFAULTS, options);
@@ -56,7 +56,7 @@
         target.on("dragleave",this.options.onDragleave);
         
         target.on("drop", function(ev){
-          var object = jq.register("find", Droppable, this);
+          var object = jq.register("find", this, Droppable);
           if(!$(this).draggable("context").target.is(object.options.accept)){
             ev.stopImmediatePropagation();
           }
@@ -70,7 +70,7 @@
        * 接口方法.
        */
       Droppable.interfaceMethod = function(){
-        var object = jq.register("find", Droppable, this);
+        var object = jq.register("find", this, Droppable);
         var res = null;
         if(typeof arguments[0] == "string"){
           res = this.droppable.METHODS[arguments[0]]

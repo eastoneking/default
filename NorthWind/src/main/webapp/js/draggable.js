@@ -18,7 +18,7 @@
       /**
        * 类UUID.
        */
-      Draggable.UUID='A4E725B60F7ECA6C54B5FA45659BC89E';
+      Draggable.UUID='7CCF34F0-DD85-3610-529F-223002453357';
       /**
        * 默认属性.
        */
@@ -39,7 +39,7 @@
       Draggable.onDragStartSaveStatus = function(e){
         
         var target = $(this);
-        var object = $.register("find", Draggable, target);
+        var object = $.register("find", target, Draggable);
         
         CURRENT_DRAG_CONTEXT.target = target;
         
@@ -64,7 +64,7 @@
        */
       Draggable.onDragUpdateStatus = function(e){
         var target = $(this);
-        var object = $.register("find", Draggable, target);
+        var object = $.register("find", target, Draggable);
         var targetOffset=target.offset();
         var mouseOffset={left:event.pageX,top:event.pageY};
         jq.extend(object.status.current,{
@@ -79,7 +79,7 @@
       
       Draggable.onDragEndDefaultActions=function(e){
         var target = $(this);
-        var object = $.register("find", Draggable, target);
+        var object = $.register("find", target, Draggable);
         if(object.options.moveable){
           var m = object.status.current.mouseOffset;
           var ot = object.status.start.targetOffset;
@@ -163,7 +163,7 @@
        * 拖拽业务对象初始化.
        */
       Draggable.prototype.init=function(options){
-        var target = $($.register("findTarget",Draggable,this));
+        var target = $($.register("findTarget",this,Draggable));
         target.attr("draggable","true");//设置目标可拖拽 html5生效
 
         //合并业务选项.
@@ -189,7 +189,7 @@
        * 接口方法.
        */
       Draggable.interfaceMethod = function(){
-        var object = jq.register("find", Draggable, this);
+        var object = jq.register("find", this, Draggable);
         var res = null;
         if(typeof arguments[0] == "string"){
           res = this.draggable.METHODS[arguments[0]]

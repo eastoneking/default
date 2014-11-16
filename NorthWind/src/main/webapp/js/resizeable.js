@@ -12,7 +12,7 @@
       /**
        * 类UUID.
        */
-      Resizeable.UUID='1F086779BEFF2A7ABCFB5DFCAB0942B3';
+      Resizeable.UUID='3C0E9A61-152A-A379-55B6-DC763EEE5E62';
       /**
        * 默认属性.
        */
@@ -25,22 +25,22 @@
       };
       Resizeable.onMousedown = function(ev){
         var target = jq(this);
-        var object = jq.register("find", Resizeable, target);
+        var object = jq.register("find", target, Resizeable);
         object.leftDown = true;
       };
       Resizeable.onMouseup = function(ev){
         var target = jq(this);
-        var object = jq.register("find", Resizeable, target);
+        var object = jq.register("find", target, Resizeable);
         object.leftDown = false;
       };
       Resizeable.onMouseleave = function(ev){
         var target = jq(this);
-        var object = jq.register("find", Resizeable, target);
+        var object = jq.register("find", target, Resizeable);
         object.houseKeeping();
       };
       Resizeable.onMouseenter = function(ev){
         var target = jq(this);
-        var object = jq.register("find", Resizeable, target);
+        var object = jq.register("find", target, Resizeable);
       };
       Resizeable.onDragstart = function(ev){
         ev.preventDefault();
@@ -48,7 +48,7 @@
       };
       Resizeable.onDragstartHouseKeeping=function(){
         var target = jq(this);
-        var object = jq.register("find", Resizeable, target);
+        var object = jq.register("find", target, Resizeable);
         object.houseKeeping();
       };
       /**
@@ -57,7 +57,7 @@
       Resizeable.onMousemove = function(ev){
         var p = {top:ev.pageY,left:ev.pageX};
         var target = jq(this);
-        var object = jq.register("find", Resizeable, target);
+        var object = jq.register("find", target, Resizeable);
         
         var offset = target.offset();
         
@@ -192,7 +192,7 @@
        * 初始化方法.
        */
       Resizeable.prototype.init=function(options){
-        var target = $($.register("findTarget",Resizeable,this));
+        var target = $($.register("findTarget", this, Resizeable));
         jq.extend(this.options, Resizeable.DEFAULTS, options);
         target.on("mouseenter", Resizeable.onMouseenter);
         target.on("mousemove",Resizeable.onMousemove);
@@ -212,7 +212,7 @@
        * 接口方法.
        */
       Resizeable.interfaceMethod = function(){
-        var object = jq.register("find", Resizeable, this);
+        var object = jq.register("find", this, Resizeable);
         var res = null;
         if(typeof arguments[0] == "string"){
           res = this.resizeable.METHODS[arguments[0]]
