@@ -44,6 +44,7 @@ Size.prototype.applyTo=function($target){
   $target.height(this.height);
 };
 
+
 (function(jq){
 jq.extend({
   /**
@@ -65,6 +66,27 @@ jq.extend({
       $.debug("warn",e.toString());
     }
     return res;
+  },
+  /**
+   * 获取表达式的值.
+   * <p>如果表达式为一个函数，则返回执行结果.</p>
+   */
+  v:function(val){
+    if(val&&typeof val == "function"){
+      val=val.apply(window,jq.shift(arguments));
+    }
+    return val;
+  },
+  vs:function(val){
+    val = jq.v(val);
+    if(val){
+      if(!(val instanceof Array)){
+        val = [val];
+      }
+    }else{
+      val=[];
+    }
+    return val;
   },
   /**
    * 调试开关.
@@ -776,5 +798,27 @@ jq.extend({
   size:(function(){
     return new Size(this);
   })()
-})
+});
+  jq.fn.extend(
+    {
+      addClasses:function(classes){
+        if(classes instanceof Array){
+          for(var i=0;i<classes.length;i++){
+            this.addClass(classes[i]);
+          }
+        }
+        return this;
+      },
+      addClassesEveryOne:function(classes){
+        if(this.length>1){
+          for(var i=0;i<this.length;i++){
+            $(this[i]).addClass(classes[i%classes.length]);
+          }
+        }else{
+          return this.addClasses(classes);
+        }
+        return this;
+      }
+    }
+  );
 })($ === jQuery ? $ : jQuery.noConflict());

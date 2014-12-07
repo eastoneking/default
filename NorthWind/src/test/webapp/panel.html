@@ -11,7 +11,6 @@
 <script type="text/javascript" src="./js/droppable.js" ></script>
 <script type="text/javascript" src="./js/resizeable.js" ></script>
 <script type="text/javascript" src="./js/panel.js" ></script>
-<script type="text/javascript" src="./js/datagrid.js" ></script>
 
 <script type="text/javascript">
 
@@ -19,18 +18,9 @@ $("body").ready(
     function(){
       $("#t").panel({title:{text:"Abcd"}})
         .draggable({moveable:true}).resizeable({effect:5});
-      $("#t").panel("getBody").datagrid({
-        columns:[[
-            {title:"1", field:"a"},{title:"2",field:"b"},{title:"3","field":"c"}
-        ]],
-        data:[
-           {a:1,b:2,c:3},
-           {a:11,b:12,c:13},
-           {a:21,b:22,c:23}
-        ]});
+      $("#t").panel("getBody").empty();
     }
 );
-
 
 </script>
 
@@ -41,7 +31,5 @@ $("body").ready(
     <div>y</div>
     z
 </div>
-
-<div id="aaa">aaa</div>
 </body>
 </html>
