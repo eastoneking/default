@@ -1,8 +1,8 @@
 /*
- * create:2015年4月17日 下午3:55:05
+ * create:2015年4月19日 下午8:53:28
  * author:wangds  
  */
-package eastone.controller;
+package eastone.business;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author wangds
  *
  */
-public interface HttpController extends Controller{
+public interface HttpBusiness extends Business {
     /**
      * .
      * @author wangds 2015年4月19日 下午8:24:43.
@@ -37,4 +37,5 @@ public interface HttpController extends Controller{
      * @return .
      */
     HttpServletResponse getHttpServletResponse();
+
 }
