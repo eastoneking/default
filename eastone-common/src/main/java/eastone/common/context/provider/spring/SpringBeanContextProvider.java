@@ -100,7 +100,3 @@ public class SpringBeanContextProvider implements BeanContext<String> {
   }
 
 }
-/*
- * 开发札记:
- * 2014-01-11 下午和曲迪约定了下周一去离婚.
- */

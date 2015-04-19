@@ -4,12 +4,17 @@
  */
 package eastone.endpoint;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletInputStream;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import eastone.common.factory.ProviderFactory;
 import eastone.json.JsonInterpreter;
 
 /**
@@ -19,11 +24,11 @@ import eastone.json.JsonInterpreter;
  */
 public abstract class AbstractJsonHttpEndPoint<R,A> extends AbstractHttpEndPoint{
     private Class<R> reqClass;
-
+    private static final int BYTE_BUFF_LEN = 524288;
     @SuppressWarnings("rawtypes")
-    private JsonInterpreter requestJsonInterpreter = null;
+    private JsonInterpreter requestJsonInterpreter = new ProviderFactory().getInstance(JsonInterpreter.class);
     @SuppressWarnings("rawtypes")
-    private JsonInterpreter responseJsonInterpreter = null;
+    private JsonInterpreter responseJsonInterpreter = this.requestJsonInterpreter;
     /**
      * The setter method of the property reqClass.
      * @param thereqClass the reqClass to set
@@ -90,7 +95,13 @@ public abstract class AbstractJsonHttpEndPoint<R,A> extends AbstractHttpEndPoint
      * @param output
      */
     protected void writeResponse(HttpServletResponse resp, byte[] output) {
-        // //TODO: Auto-generated method stub
+        ServletOutputStream os = null;
+        try {
+            os = resp.getOutputStream();
+            os.flush();
+        } catch (IOException e) {
+            this.getLogger().error(e.getLocalizedMessage(), e);
+        }
         
     }
     /**
@@ -125,8 +136,29 @@ public abstract class AbstractJsonHttpEndPoint<R,A> extends AbstractHttpEndPoint
      * @param httpRequest
      * @return
      */
-    protected byte[] loadRequestBody(HttpServletRequest httpRequest) {
-        // //TODO: Auto-generated method stub
-        return null;
+    protected byte[] loadRequestBody(HttpServletRequest req) {
+        ServletInputStream is = null;
+        ByteArrayOutputStream buf = null;
+        byte[] res = null;
+        try {
+            is = req.getInputStream();
+            buf = new ByteArrayOutputStream();
+            int len = 0;
+            byte[] tmp = new byte[BYTE_BUFF_LEN];
+            while((len=is.read(tmp))>=0){
+                buf.write(tmp, 0, len);
+            }
+            buf.flush();
+            res = buf.toByteArray();
+        } catch (IOException e) {
+            this.getLogger().error(e.getLocalizedMessage(), e);
+        }finally{
+            try {
+                buf.close();
+            } catch (IOException e) {
+                this.getLogger().error(e.getLocalizedMessage(),e);
+            }
+        }
+        return res;
     }
 }

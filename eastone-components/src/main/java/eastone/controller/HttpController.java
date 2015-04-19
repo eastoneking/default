@@ -9,6 +9,7 @@ package eastone.controller;
  * @author wangds
  *
  */
-public interface WithHttpController extends Controller{
+public interface HttpController extends Controller{
+    
 
 }
