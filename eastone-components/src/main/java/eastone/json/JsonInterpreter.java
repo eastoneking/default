@@ -22,6 +22,13 @@ public interface JsonInterpreter<T> extends Expression<JsonContext<T>>{
      * <p>为空时默认为HashMap</p>
      * @return
      */
-    public abstract T json2Object(String json, Class<T> clazz);
+    T json2Object(String json, Class<T> clazz);
+    /**
+     * .
+     * @author wangds 2015年4月19日 下午7:38:08.
+     * @param obj
+     * @return
+     */
+    String object2Json(T obj);
 
 }

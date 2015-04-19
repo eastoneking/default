@@ -10,8 +10,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.JsonElement;
-
 import eastone.json.JsonInterpreter;
 
 /**
@@ -21,7 +19,11 @@ import eastone.json.JsonInterpreter;
  */
 public abstract class AbstractJsonHttpEndPoint<R,A> extends AbstractHttpEndPoint{
     private Class<R> reqClass;
-    private JsonInterpreter<?> jsonInterpreter = null; 
+
+    @SuppressWarnings("rawtypes")
+    private JsonInterpreter requestJsonInterpreter = null;
+    @SuppressWarnings("rawtypes")
+    private JsonInterpreter responseJsonInterpreter = null;
     /**
      * The setter method of the property reqClass.
      * @param thereqClass the reqClass to set
@@ -39,20 +41,22 @@ public abstract class AbstractJsonHttpEndPoint<R,A> extends AbstractHttpEndPoint
         return reqClass;
     }
     /**
-     * The setter method of the property jsonInterpreter.
-     * @param thejsonInterpreter the jsonInterpreter to set
-     * @author wangds 2015年4月18日 下午11:56:26.
+     * The setter method of the property requestJsonInterpreter.
+     * @param therequestJsonInterpreter the requestJsonInterpreter to set
+     * @author wangds 2015年4月19日 下午7:43:22.
      */
-    public void setJsonInterpreter(JsonInterpreter<?> jsonInterpreter) {
-        this.jsonInterpreter = jsonInterpreter;
+    @SuppressWarnings("rawtypes")
+    public void setRequestJsonInterpreter(JsonInterpreter requestJsonInterpreter) {
+        this.requestJsonInterpreter = requestJsonInterpreter;
     }
     /**
-     * The getter method of the property jsonInterpreter.
-     * @author wangds 2015年4月18日 下午11:56:32.
-     * @return the jsonInterpreter.
+     * The getter method of the property requestJsonInterpreter.
+     * @author wangds 2015年4月19日 下午7:43:28.
+     * @return the requestJsonInterpreter.
      */
-    public JsonInterpreter<?> getJsonInterpreter() {
-        return jsonInterpreter;
+    @SuppressWarnings("rawtypes")
+    public JsonInterpreter getRequestJsonInterpreter() {
+        return requestJsonInterpreter;
     }
     /*
      * @see eastone.common.processor.Processor#process()
@@ -72,7 +76,7 @@ public abstract class AbstractJsonHttpEndPoint<R,A> extends AbstractHttpEndPoint
             this.getLogger().error(e.getLocalizedMessage(),e);
             throw new ServletException(e.getLocalizedMessage(), e);
         }
-        R requestObject = ((JsonInterpreter<R>)(this.jsonInterpreter)).json2Object(strReqBody, this.reqClass);
+        R requestObject = ((JsonInterpreter<R>)(this.requestJsonInterpreter)).json2Object(strReqBody, this.reqClass);
         A answer = process(requestObject);
         byte[] output = handleAnswerObject(answer);
         HttpServletResponse resp = this.getHttpResponse();
@@ -95,8 +99,18 @@ public abstract class AbstractJsonHttpEndPoint<R,A> extends AbstractHttpEndPoint
      * @param answer
      * @return
      */
+    @SuppressWarnings("unchecked")
     protected byte[] handleAnswerObject(A answer) {
-        return null;
+        HttpServletRequest req = this.getHttpRequest();
+        String charset = req.getCharacterEncoding();
+        String strJson = this.responseJsonInterpreter.object2Json(answer);
+        byte[] res = new byte[0];
+        try {
+            res = strJson.getBytes(charset);
+        } catch (UnsupportedEncodingException e) {
+            this.getLogger().error(e.getLocalizedMessage(), e);
+        }
+        return res;
     }
     /**
      * .

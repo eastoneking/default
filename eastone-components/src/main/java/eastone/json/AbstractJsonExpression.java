@@ -30,13 +30,27 @@ public abstract class AbstractJsonExpression<T> implements JsonInterpreter<T>{
         if(targetClass==null){
             targetClass = HashMap.class;
         }
+        
         String strJson = ctx.status("jsonString");
-        T res = null;
-        
-        res = parseJson2Object(strJson, targetClass);
-        
-        ctx.status("target",res);
+        T target = ctx.status("target");
+        if(strJson!=null&&target==null){
+            T res = null;
+            res = parseJson2Object(strJson, targetClass);
+            ctx.status("target",res);
+        }else{
+            String res = "";
+            res = parseObject2Json(target);
+            ctx.status("jsonString",res);
+        }
     }
+
+    /**
+     * .
+     * @author wangds 2015年4月19日 下午7:30:52.
+     * @param target
+     * @return
+     */
+    protected abstract String parseObject2Json(T target);
 
     /*
      * @see eastone.json.JsonInterpreter#json2Object(java.lang.String, java.lang.Class)
@@ -53,6 +67,17 @@ public abstract class AbstractJsonExpression<T> implements JsonInterpreter<T>{
         }
         interpreter(ctx);
         return ctx.getTarget();
+    }
+    
+    @SuppressWarnings("unchecked")
+    public String object2Json(T object){
+        String res = "";
+        JsonContext<T> ctx = new JsonContext<T>();
+        ctx.setTarget(object);
+        ctx.setTargetClass((Class<T>)object.getClass());
+        interpreter(ctx);
+        res = ctx.getJsonString();
+        return res;
     }
 
 }
