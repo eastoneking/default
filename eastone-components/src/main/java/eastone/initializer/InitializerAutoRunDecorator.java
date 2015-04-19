@@ -17,7 +17,6 @@ public class InitializerAutoRunDecorator<C extends Initializer> extends Abstract
      * @see eastone.common.decorator.AbstractDecorator#setComponent(eastone.common.Component)
      * @author wangds 2014年10月12日 下午6:54:23.
      */
-    @Override
     public void setComponent(C theComponent) {
         if(theComponent==null){
             return;

@@ -18,7 +18,7 @@ import eastone.common.GeneralParentObject;
  * @author wangds
  *
  */
-public class BeanAsContext extends GeneralParentObject implements Context {
+public abstract class BeanAsContext extends GeneralParentObject implements Context {
 
     /*
      * @see eastone.common.context.Context#status(java.lang.Object[])

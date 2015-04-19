@@ -3,5 +3,16 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+  <display-name>NorthWind演示系统</display-name>
+  
+  <servlet>
+    <servlet-name>LoadContextServlet</servlet-name>
+    <servlet-class>eastone.web.LoadContextServlet</servlet-class>
+    <init-param>
+        <param-name>conf</param-name>
+        <param-value>file:///Users/wangds/git/default/NorthWind/src/main/apphome/conf/servlet.xml</param-value>
+    </init-param>
+    <load-on-startup>100</load-on-startup>
+  </servlet>
+  
 </web-app>
