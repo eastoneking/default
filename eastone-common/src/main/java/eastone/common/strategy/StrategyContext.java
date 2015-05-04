@@ -85,5 +85,7 @@ public interface StrategyContext<K>
    * @param theSelectedStrategy 被选策略.
    */
   void setSelectedStrategy(K theSelectedStrategy);
+  
+  <S extends Strategy<K>> S decide();
 
 }

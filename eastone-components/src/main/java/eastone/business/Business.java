@@ -4,13 +4,14 @@
  */
 package eastone.business;
 
+import eastone.common.mediator.Colleague;
 import eastone.common.processor.Processor;
 
 /**
  * 业务接口.
- * @author wangds
+ * @author wangds.
  *
  */
-public interface Business extends Processor{
+public interface Business extends Processor, Colleague{
 
 }

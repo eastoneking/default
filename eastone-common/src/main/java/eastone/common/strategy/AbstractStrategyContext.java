@@ -201,5 +201,13 @@ public abstract class AbstractStrategyContext<K> extends GeneralParentObject imp
      *             执行期间可能发生的异常.
      */
     protected abstract <S extends Strategy<K>> void proccessStrategry(S strategy);
-
+    
+    /*
+     * @see eastone.common.strategy.StrategyContext#decide()
+     * @author wangds 2015年5月2日 上午11:08:33.
+     */
+    @Override
+    public <S extends Strategy<K>> S decide() {
+        return this.findStrategy(this.selectedStrategy);
+    }
 }

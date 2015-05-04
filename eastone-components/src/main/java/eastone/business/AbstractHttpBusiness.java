@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import eastone.common.GeneralParentObject;
 
 /**
- * .
+ * 抽象HTTP业务.
  * @author wangds
  *
  */

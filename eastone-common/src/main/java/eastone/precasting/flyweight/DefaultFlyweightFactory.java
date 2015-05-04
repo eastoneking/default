@@ -138,4 +138,13 @@ public class DefaultFlyweightFactory<K, F extends Flyweight>
     visitor.clear();
   }
 
+  /*
+     * @see eastone.common.strategy.StrategyContext#decide()
+     * @author wangds 2015年5月2日 上午10:55:33.
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public <S extends Strategy<K>> S decide() {
+        return (S)this.getFlyweight(currentKey);
+    }
 }

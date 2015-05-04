@@ -21,7 +21,7 @@ package eastone.common.bridge;
  * @since 0.1
  * @see eastone.common.bridge.BridgeImplementor
  */
-public interface Bridge<T extends BridgeImplementor> {
+public interface Bridge<T> {
 
   /**
    * 获得实现对象.

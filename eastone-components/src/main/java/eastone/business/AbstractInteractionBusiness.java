@@ -7,7 +7,7 @@ package eastone.business;
 import eastone.common.GeneralParentObject;
 
 /**
- * .
+ * 抽象交互业务.
  * @author wangds
  *
  */

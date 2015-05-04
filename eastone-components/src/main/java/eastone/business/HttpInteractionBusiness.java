@@ -4,11 +4,13 @@
  */
 package eastone.business;
 
+import eastone.common.context.Environment;
+
 /**
  * .
  * @author wangds
  *
  */
-public interface HttpInteractionBusiness<IN,OUT> extends HttpBusiness, InteractionBusiness<IN, OUT> {
+public interface HttpInteractionBusiness<IN,OUT> extends HttpBusiness, InteractionBusiness<IN, OUT>, Environment {
 
 }

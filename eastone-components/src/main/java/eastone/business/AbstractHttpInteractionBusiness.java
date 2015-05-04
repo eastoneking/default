@@ -4,13 +4,18 @@
  */
 package eastone.business;
 
+import eastone.common.context.DefaultMapAsEnvironment;
+import eastone.common.context.Environment;
+
 /**
- * .
+ * 抽象Http交互业务.
  * @author wangds
  *
  */
 public abstract class AbstractHttpInteractionBusiness<IN,OUT> extends AbstractHttpBusiness implements HttpInteractionBusiness<IN, OUT> {
 
+
+    private Environment ctx = new DefaultMapAsEnvironment();
     private IN input;
     private OUT output;
 
@@ -51,5 +56,32 @@ public abstract class AbstractHttpInteractionBusiness<IN,OUT> extends AbstractHt
     public OUT getOutput() {
         return output;
     }
+    
+
+    /*
+     * @see eastone.common.context.Context#status(java.lang.Object[])
+     * @author wangds 2015年5月1日 下午10:27:22.
+     */
+    @Override
+    public <T> T status(Object... args) throws Exception {
+        return this.ctx.status(args);
+    }
+    /*
+     * @see eastone.common.context.Environment#getEnvironment(java.lang.String)
+     * @author wangds 2015年5月1日 下午10:31:11.
+     */
+    @Override
+    public <T> T getEnvironment(String key) {
+        return ctx.getEnvironment(key);
+    }
+    /*
+     * @see eastone.common.context.Environment#setEnvironment(java.lang.String, java.lang.Object)
+     * @author wangds 2015年5月1日 下午10:31:11.
+     */
+    @Override
+    public <T> void setEnvironment(String key, T value) {
+        this.ctx.setEnvironment(key, value);
+    }
+
 
 }
