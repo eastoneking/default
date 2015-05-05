@@ -4,22 +4,17 @@
  */
 package eastone.business.strategy;
 
-import java.util.Collection;
-
 import eastone.business.BizProcedure;
+import eastone.common.context.InterimContext;
 import eastone.common.strategy.Strategy;
 
 /**
- * .
+ * 业务处理策略.
  * @author wangds
- *
+ * 20150505 v0.1 初始版本.
  */
-public interface BizProcStrategy<K> extends Strategy<K>, BizProcedure{
+public interface BizProcStrategy<K> extends Strategy<K>, BizProcedure, InterimContext{
     
-    <P extends BizProcedure> void registorBizProcedure(P proc);
-    <P extends BizProcedure> void registorBizProcedures(Collection<P> procs);
-    <P extends BizProcedure> void unregistorBizProcedure(P proc);
-    <P extends BizProcedure> void unregistorBizProcedures(Collection<P> procs);
     
-
+    
 }

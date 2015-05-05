@@ -15,11 +15,7 @@ package eastone.common.processor;
  * @version 0.1.1
  * @since 0.1
  */
-public interface Clearable {
+public interface Clearable extends eastone.common.Clearable{
 
-  /**
-   * 清理方法.
-   */
-  void clear();
 
 }

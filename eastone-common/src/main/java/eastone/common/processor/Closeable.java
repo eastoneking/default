@@ -12,11 +12,6 @@ package eastone.common.processor;
  * @version 0.1.1
  * @since 0.1
  */
-public interface Closeable {
-
-  /**
-   * 关闭方法.
-   */
-  void close();
+public interface Closeable extends eastone.common.Closeable{
 
 }

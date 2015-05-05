@@ -5,66 +5,28 @@
 package eastone.business.strategy;
 
 import java.util.Collection;
-import java.util.LinkedList;
 
 import eastone.business.BizProcedure;
 import eastone.business.IaBizProcedure;
-import eastone.common.bridge.Bridge;
 import eastone.common.strategy.AbstractStrategy;
 
 /**
- * .
+ * 尝试运行所有注册处理过程的策略.
+ * <p>一个处理过程发生错误不影响其他处理过程执行。执行顺序为同步顺序执行。</p>
  * @author wangds
- *
+ * 20150505 v0.1 初始版本.
  */
 public class 
-AllStrategy<I, O, K> extends AbstractStrategy<K> implements IaBizProcStrategy<I, O, K>, Bridge<Collection<? super BizProcedure>>{
-
-    private final Collection<? super BizProcedure> procs = new LinkedList<BizProcedure>();;
-    /*
-     * @see eastone.business.strategy.BizProcStrategy#registorBizProcedure(eastone.business.BizProcedure)
-     * @author wangds 2015年5月2日 下午8:08:57.
-     */
-    @Override
-    public <P extends BizProcedure> void registorBizProcedure(P proc) {
-        this.procs.add(proc);
-    }
-
-    /*
-     * @see eastone.business.strategy.BizProcStrategy#registorBizProcedures(java.util.Collection)
-     * @author wangds 2015年5月2日 下午8:08:57.
-     */
-    @Override
-    public <P extends BizProcedure> void registorBizProcedures(Collection<P> procs) {
-        this.procs.addAll(procs);
-    }
-
-    /*
-     * @see eastone.business.strategy.BizProcStrategy#unregistorBizProcedure(eastone.business.BizProcedure)
-     * @author wangds 2015年5月2日 下午8:08:57.
-     */
-    @Override
-    public <P extends BizProcedure> void unregistorBizProcedure(P proc) {
-        this.procs.remove(proc);
-    }
-
-    /*
-     * @see eastone.business.strategy.BizProcStrategy#unregistorBizProcedures(java.util.Collection)
-     * @author wangds 2015年5月2日 下午8:08:57.
-     */
-    @Override
-    public <P extends BizProcedure> void unregistorBizProcedures(Collection<P> procs) {
-        this.procs.removeAll(procs);
-    }
+SyncAllNoOrderStrategy<I, O, K> extends AbstractStrategy<K> implements IaBizProcStrategy<I, O, K>{
 
     /*
      * @see eastone.business.BizProcedure#beforeProcess()
      * @author wangds 2015年5月2日 下午8:08:57.
      */
-    @SuppressWarnings("unchecked")
     @Override
     public void beforeProcess() {
-        for(BizProcedure p:(Collection<BizProcedure>)this.procs){
+        BizProcStrategyContext<K> ctx = this.getContext();
+        for(BizProcedure p:(Collection<BizProcedure>)ctx.getBizProcedures()){
             try{
                 p.beforeProcess();
             }catch(Exception e){
@@ -77,10 +39,10 @@ AllStrategy<I, O, K> extends AbstractStrategy<K> implements IaBizProcStrategy<I,
      * @see eastone.business.BizProcedure#onProcessd()
      * @author wangds 2015年5月2日 下午8:08:57.
      */
-    @SuppressWarnings("unchecked")
     @Override
     public void onProcessd() {
-        for(BizProcedure p:(Collection<BizProcedure>)this.procs){
+        BizProcStrategyContext<K> ctx = this.getContext();
+        for(BizProcedure p:(Collection<BizProcedure>)ctx.getBizProcedures()){
             try{
                 p.onProcessd();
             }catch(Exception e){
@@ -93,10 +55,10 @@ AllStrategy<I, O, K> extends AbstractStrategy<K> implements IaBizProcStrategy<I,
      * @see eastone.business.BizProcedure#afterProcess()
      * @author wangds 2015年5月2日 下午8:08:57.
      */
-    @SuppressWarnings("unchecked")
     @Override
     public void afterProcess() {
-        for(BizProcedure p:(Collection<BizProcedure>)this.procs){
+        BizProcStrategyContext<K> ctx = this.getContext();
+        for(BizProcedure p:(Collection<BizProcedure>)ctx.getBizProcedures()){
             try{
                 p.afterProcess();
             }catch(Exception e){
@@ -109,10 +71,10 @@ AllStrategy<I, O, K> extends AbstractStrategy<K> implements IaBizProcStrategy<I,
      * @see eastone.business.BizProcedure#beforeThrowException(java.lang.Object)
      * @author wangds 2015年5月2日 下午8:08:57.
      */
-    @SuppressWarnings("unchecked")
     @Override
     public <E> void beforeThrowException(E exception) {
-        for(BizProcedure p:(Collection<BizProcedure>)this.procs){
+        BizProcStrategyContext<K> ctx = this.getContext();
+        for(BizProcedure p:(Collection<BizProcedure>)ctx.getBizProcedures()){
             try{
                 p.beforeThrowException(exception);
             }catch(Exception e){
@@ -125,10 +87,10 @@ AllStrategy<I, O, K> extends AbstractStrategy<K> implements IaBizProcStrategy<I,
      * @see eastone.business.BizProcedure#throwedException(java.lang.Object)
      * @author wangds 2015年5月2日 下午8:08:57.
      */
-    @SuppressWarnings("unchecked")
     @Override
     public <E> void throwedException(E exception) {
-        for(BizProcedure p:(Collection<BizProcedure>)this.procs){
+        BizProcStrategyContext<K> ctx = this.getContext();
+        for(BizProcedure p:(Collection<BizProcedure>)ctx.getBizProcedures()){
             try{
                 p.throwedException(exception);
             }catch(Exception e){
@@ -141,10 +103,10 @@ AllStrategy<I, O, K> extends AbstractStrategy<K> implements IaBizProcStrategy<I,
      * @see eastone.business.BizProcedure#afterThrowException(java.lang.Object)
      * @author wangds 2015年5月2日 下午8:08:57.
      */
-    @SuppressWarnings("unchecked")
     @Override
     public <E> void afterThrowException(E exception) {
-        for(BizProcedure p:(Collection<BizProcedure>)this.procs){
+        BizProcStrategyContext<K> ctx = this.getContext();
+        for(BizProcedure p:(Collection<BizProcedure>)ctx.getBizProcedures()){
             try{
                 p.beforeProcess();
             }catch(Exception e){
@@ -160,7 +122,8 @@ AllStrategy<I, O, K> extends AbstractStrategy<K> implements IaBizProcStrategy<I,
     @SuppressWarnings("unchecked")
     @Override
     public I beforeChangeInput(I newValue, I oldValue) {
-        for(BizProcedure p:(Collection<BizProcedure>)this.procs){
+        for(BizProcedure p:(Collection<BizProcedure>)
+                ((BizProcStrategyContext<K>)this.getContext()).getBizProcedures()){
             try{
                 if(p instanceof IaBizProcedure){
                     newValue=((IaBizProcedure<I, O>)p).beforeChangeInput(newValue, oldValue);
@@ -179,7 +142,8 @@ AllStrategy<I, O, K> extends AbstractStrategy<K> implements IaBizProcStrategy<I,
     @SuppressWarnings("unchecked")
     @Override
     public void onChangedInput(I newValue, I oldValue) {
-        for(BizProcedure p:(Collection<BizProcedure>)this.procs){
+        for(BizProcedure p:(Collection<BizProcedure>)
+                ((BizProcStrategyContext<K>)this.getContext()).getBizProcedures()){
             try{
                 if(p instanceof IaBizProcedure){
                     ((IaBizProcedure<I, O>)p).onChangedInput(newValue, oldValue);
@@ -197,7 +161,8 @@ AllStrategy<I, O, K> extends AbstractStrategy<K> implements IaBizProcStrategy<I,
     @SuppressWarnings("unchecked")
     @Override
     public void afterChangedInput(I newValue, I oldValue) {
-        for(BizProcedure p:(Collection<BizProcedure>)this.procs){
+        for(BizProcedure p:(Collection<BizProcedure>)
+                ((BizProcStrategyContext<K>)this.getContext()).getBizProcedures()){
             try{
                 if(p instanceof IaBizProcedure){
                     ((IaBizProcedure<I, O>)p).afterChangedInput(newValue, oldValue);
@@ -215,7 +180,8 @@ AllStrategy<I, O, K> extends AbstractStrategy<K> implements IaBizProcStrategy<I,
     @SuppressWarnings("unchecked")
     @Override
     public O beforeChangeOutput(O newValue, O oldValue) {
-        for(BizProcedure p:(Collection<BizProcedure>)this.procs){
+        for(BizProcedure p:(Collection<BizProcedure>)
+                ((BizProcStrategyContext<K>)this.getContext()).getBizProcedures()){
             try{
                 if(p instanceof IaBizProcedure){
                     newValue=((IaBizProcedure<I, O>)p).beforeChangeOutput(newValue, oldValue);
@@ -234,7 +200,8 @@ AllStrategy<I, O, K> extends AbstractStrategy<K> implements IaBizProcStrategy<I,
     @SuppressWarnings("unchecked")
     @Override
     public void onChangedOutput(O newValue, O oldValue) {
-        for(BizProcedure p:(Collection<BizProcedure>)this.procs){
+        for(BizProcedure p:(Collection<BizProcedure>)
+                ((BizProcStrategyContext<K>)this.getContext()).getBizProcedures()){
             try{
                 if(p instanceof IaBizProcedure){
                     ((IaBizProcedure<I, O>)p).onChangedOutput(newValue, oldValue);
@@ -252,7 +219,8 @@ AllStrategy<I, O, K> extends AbstractStrategy<K> implements IaBizProcStrategy<I,
     @SuppressWarnings("unchecked")
     @Override
     public void afterChangedOutput(O newValue, O oldValue) {
-        for(BizProcedure p:(Collection<BizProcedure>)this.procs){
+        for(BizProcedure p:(Collection<BizProcedure>)
+                ((BizProcStrategyContext<K>)this.getContext()).getBizProcedures()){
             try{
                 if(p instanceof IaBizProcedure){
                     ((IaBizProcedure<I, O>)p).afterChangedOutput(newValue, oldValue);
@@ -263,23 +231,26 @@ AllStrategy<I, O, K> extends AbstractStrategy<K> implements IaBizProcStrategy<I,
         }
     }
 
+
+
     /*
-     * @see eastone.common.bridge.Bridge#getImplementor()
-     * @author wangds 2015年5月2日 下午8:08:57.
+     * @see eastone.common.context.Context#status(java.lang.Object[])
+     * @author wangds 2015年5月4日 上午10:11:06.
      */
     @Override
-    public Collection<? super BizProcedure> getImplementor() {
-        return this.procs;
+    public <T> T status(Object... arg0) throws Exception {
+        // //TODO: Auto-generated method stub
+        return null;
     }
 
     /*
-     * @see eastone.common.bridge.Bridge#setImplementor(java.lang.Object)
-     * @author wangds 2015年5月2日 下午8:08:57.
+     * @see eastone.common.Clearable#clear()
+     * @author wangds 2015年5月4日 上午10:11:06.
      */
-    @SuppressWarnings("unchecked")
     @Override
-    public void setImplementor(Collection<? super BizProcedure> procs) {
-        this.procs.addAll((Collection<BizProcedure>)procs);
+    public void clear() {
+        // //TODO: Auto-generated method stub
+        
     }
 
 

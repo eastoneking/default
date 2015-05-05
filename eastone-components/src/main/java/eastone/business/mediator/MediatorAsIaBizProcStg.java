@@ -5,7 +5,6 @@
 package eastone.business.mediator;
 
 import java.util.Collection;
-import java.util.LinkedList;
 
 import eastone.business.BizProcedure;
 import eastone.business.InteractionBusiness;
@@ -15,13 +14,12 @@ import eastone.business.strategy.IaBizProcStrategy;
 import eastone.common.GeneralParentObject;
 
 /**
- * .
+ * 交互业务处理策略中介.
  * @author wangds
- *
+ * 20150505 v0.1 初始版本.
  */
 public class MediatorAsIaBizProcStg<I,O,K, B extends InteractionBusiness<I, O>> extends GeneralParentObject implements InteractionBizProcStrategyMediator<I, O, K, B> {
 
-    private final Collection<BizProcedure> procs = new LinkedList<BizProcedure>();
     private B innerBiz;
     private BizProcStrategyContext<K> ctx;
     
@@ -54,7 +52,13 @@ public class MediatorAsIaBizProcStg<I,O,K, B extends InteractionBusiness<I, O>> 
         BizProcStrategyContext<K> ctx = this.getStrategyContext();
         BizProcStrategy<K> s = ctx.decide();
         if(s!=null){
-            s.beforeProcess();
+            ctx.setSelectedStrategy(s.getKey());
+            
+            try {
+                ctx.process();
+            } catch (Exception e) {
+                this.getLogger().error(e.getLocalizedMessage(), e);
+            }
         }
     }
 
@@ -202,42 +206,6 @@ public class MediatorAsIaBizProcStg<I,O,K, B extends InteractionBusiness<I, O>> 
             s.afterChangedOutput(newValue, oldValue);
         }
     }
-
-    /*
-     * @see eastone.business.mediator.BizProcStrategyMediator#registorProcedure(eastone.business.BizProcedure)
-     * @author wangds 2015年5月2日 上午10:11:21.
-     */
-    @Override
-    public <P extends BizProcedure> void registorProcedure(P proc) {
-        this.procs.add(proc);
-    }
-
-    /*
-     * @see eastone.business.mediator.BizProcStrategyMediator#registorProcedures(java.util.Collection)
-     * @author wangds 2015年5月2日 上午10:11:21.
-     */
-    @Override
-    public <P extends BizProcedure> void registorProcedures(Collection<P> procs) {
-        this.procs.addAll(procs);
-    }
-
-    /*
-     * @see eastone.business.mediator.BizProcStrategyMediator#unregistorProcedure(eastone.business.BizProcedure)
-     * @author wangds 2015年5月2日 上午10:11:21.
-     */
-    @Override
-    public <P extends BizProcedure> void unregistorProcedure(P proc) {
-        this.procs.remove(proc);
-    }
-
-    /*
-     * @see eastone.business.mediator.BizProcStrategyMediator#unregistorProcedures(java.util.Collection)
-     * @author wangds 2015年5月2日 上午10:11:21.
-     */
-    @Override
-    public <P extends BizProcedure> void unregistorProcedures(Collection<P> procs) {
-        this.procs.removeAll(procs);
-    }
     
     /*
      * @see eastone.business.mediator.BizProcStrategyMediator#setStrategyContext(eastone.business.strategy.BizProcStrategyContext)
@@ -256,6 +224,42 @@ public class MediatorAsIaBizProcStg<I,O,K, B extends InteractionBusiness<I, O>> 
     @Override
     public <C extends BizProcStrategyContext<K>> C getStrategyContext() {
         return (C)this.ctx;
+    }
+
+    /*
+     * @see eastone.business.mediator.BizProcStrategyMediator#registorProcedure(eastone.business.BizProcedure)
+     * @author wangds 2015年5月4日 上午10:03:50.
+     */
+    @Override
+    public <P extends BizProcedure> void registorProcedure(P proc) {
+        this.ctx.registorBizProcedure(proc);
+    }
+
+    /*
+     * @see eastone.business.mediator.BizProcStrategyMediator#registorProcedures(java.util.Collection)
+     * @author wangds 2015年5月4日 上午10:03:50.
+     */
+    @Override
+    public <P extends BizProcedure> void registorProcedures(Collection<P> procs) {
+        this.ctx.registorBizProcedures(procs);
+    }
+
+    /*
+     * @see eastone.business.mediator.BizProcStrategyMediator#unregistorProcedure(eastone.business.BizProcedure)
+     * @author wangds 2015年5月4日 上午10:03:50.
+     */
+    @Override
+    public <P extends BizProcedure> void unregistorProcedure(P proc) {
+        this.ctx.unregistorBizProcedure(proc);
+    }
+
+    /*
+     * @see eastone.business.mediator.BizProcStrategyMediator#unregistorProcedures(java.util.Collection)
+     * @author wangds 2015年5月4日 上午10:03:50.
+     */
+    @Override
+    public <P extends BizProcedure> void unregistorProcedures(Collection<P> procs) {
+        this.ctx.unregistorBizProcedures(procs);
     }
 
 }
