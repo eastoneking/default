@@ -4,6 +4,7 @@
  */
 package eastone.common.context;
 
+import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -15,4 +16,5 @@ public interface MapAsEnvironment extends Environment {
 
     public void setEnvironmentMap(Map<String, Object> map);
     public Map<String, Object> getEnvironmentMap();
+    public Collection<String> getEnvironmentKey();
 }

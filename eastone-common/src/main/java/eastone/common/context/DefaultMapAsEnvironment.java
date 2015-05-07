@@ -4,6 +4,7 @@
  */
 package eastone.common.context;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -91,4 +92,12 @@ public class DefaultMapAsEnvironment extends GeneralParentObject
         return map;
     }
 
+    /*
+     * @see eastone.common.context.MapAsEnvironment#getEnvironmentKey()
+     * @author wangds 2015年5月5日 下午3:30:15.
+     */
+    @Override
+    public Collection<String> getEnvironmentKey() {
+        return this.map.keySet();
+    }
 }
