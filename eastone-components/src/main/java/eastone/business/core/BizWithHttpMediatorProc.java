@@ -34,8 +34,8 @@ public class BizWithHttpMediatorProc<I,O,K, B extends HttpInteractionBusiness<I,
      * @author wangds 2015年5月1日 下午9:12:42.
      */
     public void setMediator(M mediator) {
-        this.mediator.setBusiness(this);
         this.mediator = mediator;
+        this.mediator.setBusiness(this);
     }
     /**
      * The getter method of the property mediator.
@@ -201,11 +201,19 @@ public class BizWithHttpMediatorProc<I,O,K, B extends HttpInteractionBusiness<I,
     public void process() throws Exception {
         this.currentException = null;
         try{
-            this.mediator.beforeProcess();
+            if(this.mediator!=null){
+                this.mediator.beforeProcess();
+            }
             this.comp.process();
-            this.mediator.onProcessd();
+            if(this.mediator!=null){
+                this.mediator.onProcessd();
+            }
+            O out = this.comp.getOutput();
+            this.setOutput(out);
         }catch(Exception e){
-            this.mediator.beforeThrowException(e);
+            if(this.mediator!=null){
+                this.mediator.beforeThrowException(e);
+            }
             this.currentException = e;
             throw e;
         }finally{

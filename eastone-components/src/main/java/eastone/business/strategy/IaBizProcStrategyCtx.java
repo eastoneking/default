@@ -5,6 +5,7 @@
 package eastone.business.strategy;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
@@ -28,10 +29,18 @@ public class IaBizProcStrategyCtx<K> extends AbstractStrategyContext<K> implemen
     
     /**
      * The constructor of IaBizProcStrategyCtx.
+     * @author wangds 2015年5月11日 上午11:41:55.
+     */
+    public IaBizProcStrategyCtx() {
+        this(new HashMap<K, Strategy<K>>());
+    }
+    
+    /**
+     * The constructor of IaBizProcStrategyCtx.
      * @author wangds 2015年5月4日 上午9:25:17.
      * @param theStrategyMap
      */
-    protected IaBizProcStrategyCtx(Map<K, Strategy<K>> theStrategyMap) {
+    public IaBizProcStrategyCtx(Map<K, Strategy<K>> theStrategyMap) {
         super(theStrategyMap);
     }
     

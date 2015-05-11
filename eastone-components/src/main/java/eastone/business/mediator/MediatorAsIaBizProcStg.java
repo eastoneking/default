@@ -11,6 +11,7 @@ import eastone.business.InteractionBusiness;
 import eastone.business.strategy.BizProcStrategy;
 import eastone.business.strategy.BizProcStrategyContext;
 import eastone.business.strategy.IaBizProcStrategy;
+import eastone.business.strategy.IaBizProcStrategyCtx;
 import eastone.common.GeneralParentObject;
 
 /**
@@ -21,7 +22,7 @@ import eastone.common.GeneralParentObject;
 public class MediatorAsIaBizProcStg<I,O,K, B extends InteractionBusiness<I, O>> extends GeneralParentObject implements InteractionBizProcStrategyMediator<I, O, K, B> {
 
     private B innerBiz;
-    private BizProcStrategyContext<K> ctx;
+    private BizProcStrategyContext<K> ctx = new IaBizProcStrategyCtx<K>();
     
     
     
