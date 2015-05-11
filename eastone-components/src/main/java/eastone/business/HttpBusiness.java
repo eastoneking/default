@@ -38,6 +38,6 @@ public interface HttpBusiness extends Business {
      * @author wangds 2015年4月19日 下午8:25:19.
      * @return .
      */
-    HttpServletResponse getHttpServletResponse();
+    HttpServletResponse getHttpResponse();
 
 }

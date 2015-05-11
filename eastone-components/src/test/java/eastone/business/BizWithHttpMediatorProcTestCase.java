@@ -18,6 +18,8 @@ import eastone.business.mediator.InteractionBizProcStrategyMediator;
 import eastone.business.mediator.MediatorAsIaBizProcStg;
 import eastone.business.strategy.BizProcStrategyContext;
 import eastone.business.strategy.SyncAllNoOrderStrategy;
+import eastone.common.context.BeanContext;
+import eastone.common.context.BeanContextFactory;
 
 /**
  * .
@@ -62,7 +64,7 @@ public class BizWithHttpMediatorProcTestCase {
         
         
         BizProcStrategyContext<String> sctx = mediator.getStrategyContext();
-        sctx.add(st);
+        sctx.registerStrategy(st);
         sctx.registorBizProcedure(new IaBizProcedure<Map<String,Object>, Map<String, Object>>() {
 
             @Override
@@ -135,5 +137,22 @@ public class BizWithHttpMediatorProcTestCase {
         assertTrue((Boolean)out.get("checkpoint"));
 
     }
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testFac() throws Exception{
+        BeanContext<String> ctx = BeanContextFactory.getBeanContext();
+        ctx.appendContext("eastone/business/test/context.xml");
+        Object biz = ctx.getBean("testBiz");
+        assertNotNull(biz);
+        
+        assertTrue(biz instanceof InteractionBusiness);
+        InteractionBusiness<Object, Object> ib = (InteractionBusiness<Object, Object>)biz;
+        ib.setInput(new HashMap<String, Object>());
+        ib.process();
+        Map<String, Object> out = (Map<String, Object>)ib.getOutput();
+        assertNotNull(out);
+        assertNotNull(out.get("checkpoint"));
+        assertTrue((Boolean)out.get("checkpoint"));
 
+    }
 }

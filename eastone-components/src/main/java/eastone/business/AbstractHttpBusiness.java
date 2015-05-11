@@ -52,7 +52,7 @@ public abstract class AbstractHttpBusiness extends GeneralParentObject implement
      * @author wangds 2015年4月19日 下午8:31:31.
      */
     @Override
-    public HttpServletResponse getHttpServletResponse() {
+    public HttpServletResponse getHttpResponse() {
         return this.resp;
     }
 

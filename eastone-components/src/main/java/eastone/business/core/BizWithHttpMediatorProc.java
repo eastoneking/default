@@ -82,8 +82,8 @@ public class BizWithHttpMediatorProc<I,O,K, B extends HttpInteractionBusiness<I,
      * @author wangds 2015年5月1日 下午9:18:28.
      */
     @Override
-    public HttpServletResponse getHttpServletResponse() {
-        return this.comp.getHttpServletResponse();
+    public HttpServletResponse getHttpResponse() {
+        return this.comp.getHttpResponse();
     }
     /*
      * @see eastone.business.AbstractHttpBusiness#setHttpResponse(javax.servlet.http.HttpServletResponse)
