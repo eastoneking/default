@@ -36,7 +36,7 @@ public class BJWeatherTestCase {
     ClassPathXmlApplicationContext baseCtx = new ClassPathXmlApplicationContext(
       "eastone/northwind/weather/test/weather.context.xml"
     );
-    ctx.appendContext(baseCtx);
+    ctx.appendContext("eastone/northwind/weather/test/weather.context.xml");
   }
 
 
@@ -44,7 +44,6 @@ public class BJWeatherTestCase {
    * 测试.
  * @throws Exception .
    */
-  @Test
   public final void test() throws Exception {
     BeanContext<?> ctx = BeanContextFactory.getBeanContext();
     Processor p = ctx.getBean("Proc.Weather.BJ.Loader");

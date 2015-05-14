@@ -23,7 +23,10 @@ import eastone.business.strategy.BizProcStrategyContext;
 import eastone.business.strategy.SyncAllNoOrderStrategy;
 
 /**
- * .
+ * 操作HTTP请求应答的中介业务类工厂.
+ * <p>
+ * 可选策略、接入过程等。
+ * </p>
  * @author wangds
  *
  */
