@@ -38,7 +38,7 @@ public abstract class AbstractAboutUriDispatherServlet extends HttpServlet{
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        throw new ServletException();
+        this.doPost(req, resp);
     }
 
     /*

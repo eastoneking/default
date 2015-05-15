@@ -14,7 +14,7 @@ import eastone.json.AbstractJsonExpression;
  * @author wangds
  *
  */
-public class GsonExpression<T> extends AbstractJsonExpression<T>  {
+public class GsonExpression extends AbstractJsonExpression  {
 
     /**
      * .
@@ -24,8 +24,7 @@ public class GsonExpression<T> extends AbstractJsonExpression<T>  {
      * @return
      */
     @Override
-    @SuppressWarnings("unchecked")
-    protected T parseJson2Object(String strJson, Class<?> targetClass) {
+    protected <T> T parseJson2Object(String strJson, Class<T> targetClass) {
         T res;
         Gson gson = new GsonBuilder().create();
         res = (T)gson.fromJson(strJson, targetClass);
@@ -37,7 +36,7 @@ public class GsonExpression<T> extends AbstractJsonExpression<T>  {
      * @author wangds 2015年4月19日 下午7:33:00.
      */
     @Override
-    protected String parseObject2Json(T target) {
+    protected <T> String parseObject2Json(T target) {
         String res = "";
         Gson gson = new GsonBuilder().create();
         res = gson.toJson(target);

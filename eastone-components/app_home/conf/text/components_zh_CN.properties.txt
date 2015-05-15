@@ -1,0 +1,3 @@
+EntryServlet.setSubject.0=不支持通过本方法设置代理对象.
+EntryServlet.service.0="{0}"不支持GET方法.
+EntryServlet.service.1=接收到从{0}:{1}发起的非http请求，请注意检查.

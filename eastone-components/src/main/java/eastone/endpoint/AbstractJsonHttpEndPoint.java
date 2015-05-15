@@ -25,10 +25,7 @@ import eastone.json.JsonInterpreter;
 public abstract class AbstractJsonHttpEndPoint<R,A> extends AbstractHttpEndPoint{
     private Class<R> reqClass;
     private static final int BYTE_BUFF_LEN = 524288;
-    @SuppressWarnings("rawtypes")
-    private JsonInterpreter requestJsonInterpreter = new ProviderFactory().getInstance(JsonInterpreter.class);
-    @SuppressWarnings("rawtypes")
-    private JsonInterpreter responseJsonInterpreter = this.requestJsonInterpreter;
+    private JsonInterpreter jsonInterpreter = new ProviderFactory().getInstance(JsonInterpreter.class);
     /**
      * The setter method of the property reqClass.
      * @param thereqClass the reqClass to set
@@ -50,24 +47,21 @@ public abstract class AbstractJsonHttpEndPoint<R,A> extends AbstractHttpEndPoint
      * @param therequestJsonInterpreter the requestJsonInterpreter to set
      * @author wangds 2015年4月19日 下午7:43:22.
      */
-    @SuppressWarnings("rawtypes")
-    public void setRequestJsonInterpreter(JsonInterpreter requestJsonInterpreter) {
-        this.requestJsonInterpreter = requestJsonInterpreter;
+    public void setJsonInterpreter(JsonInterpreter requestJsonInterpreter) {
+        this.jsonInterpreter = requestJsonInterpreter;
     }
     /**
      * The getter method of the property requestJsonInterpreter.
      * @author wangds 2015年4月19日 下午7:43:28.
      * @return the requestJsonInterpreter.
      */
-    @SuppressWarnings("rawtypes")
-    public JsonInterpreter getRequestJsonInterpreter() {
-        return requestJsonInterpreter;
+    public JsonInterpreter getJsonInterpreter() {
+        return jsonInterpreter;
     }
     /*
      * @see eastone.common.processor.Processor#process()
      * @author wangds 2015年4月18日 下午10:30:25.
      */
-    @SuppressWarnings("unchecked")
     @Override
     public void process() throws ServletException {
         HttpServletRequest req = this.getHttpRequest();
@@ -81,7 +75,7 @@ public abstract class AbstractJsonHttpEndPoint<R,A> extends AbstractHttpEndPoint
             this.getLogger().error(e.getLocalizedMessage(),e);
             throw new ServletException(e.getLocalizedMessage(), e);
         }
-        R requestObject = ((JsonInterpreter<R>)(this.requestJsonInterpreter)).json2Object(strReqBody, this.reqClass);
+        R requestObject = ((JsonInterpreter)(this.jsonInterpreter)).json2Object(strReqBody, this.reqClass);
         A answer = process(requestObject);
         byte[] output = handleAnswerObject(answer);
         HttpServletResponse resp = this.getHttpResponse();
@@ -110,11 +104,10 @@ public abstract class AbstractJsonHttpEndPoint<R,A> extends AbstractHttpEndPoint
      * @param answer
      * @return
      */
-    @SuppressWarnings("unchecked")
     protected byte[] handleAnswerObject(A answer) {
         HttpServletRequest req = this.getHttpRequest();
         String charset = req.getCharacterEncoding();
-        String strJson = this.responseJsonInterpreter.object2Json(answer);
+        String strJson = this.jsonInterpreter.object2Json(answer);
         byte[] res = new byte[0];
         try {
             res = strJson.getBytes(charset);

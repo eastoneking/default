@@ -12,7 +12,7 @@ import java.util.HashMap;
  *
  * @param <T>
  */
-public abstract class AbstractJsonExpression<T> implements JsonInterpreter<T>{
+public abstract class AbstractJsonExpression implements JsonInterpreter{
 
     /**
      * The constructor of AbstractJsonExpression.
@@ -22,19 +22,19 @@ public abstract class AbstractJsonExpression<T> implements JsonInterpreter<T>{
         super();
     }
 
-    protected abstract T parseJson2Object(String strJson, Class<?> targetClass);
+    protected abstract <T> T parseJson2Object(String strJson, Class<T> targetClass);
 
     @Override
-    public void interpreter(JsonContext<T> ctx) {
+    public void interpreter(JsonContext ctx) {
         Class<?> targetClass = ctx.status("targetClass");
         if(targetClass==null){
             targetClass = HashMap.class;
         }
         
         String strJson = ctx.status("jsonString");
-        T target = ctx.status("target");
+        Object target = ctx.status("target");
         if(strJson!=null&&target==null){
-            T res = null;
+            Object res = null;
             res = parseJson2Object(strJson, targetClass);
             ctx.status("target",res);
         }else{
@@ -50,7 +50,7 @@ public abstract class AbstractJsonExpression<T> implements JsonInterpreter<T>{
      * @param target
      * @return
      */
-    protected abstract String parseObject2Json(T target);
+    protected abstract <T> String parseObject2Json(T target);
 
     /*
      * @see eastone.json.JsonInterpreter#json2Object(java.lang.String, java.lang.Class)
@@ -58,8 +58,8 @@ public abstract class AbstractJsonExpression<T> implements JsonInterpreter<T>{
      */
     @Override
     @SuppressWarnings("unchecked")
-    public T json2Object(String json, Class<T> clazz) {
-        JsonContext<T> ctx = new JsonContext<T>();
+    public <T> T json2Object(String json, Class<T> clazz) {
+        JsonContext ctx = new JsonContext();
         ctx.setJsonString(json);
         ctx.setTargetClass(clazz);
         if(clazz==null){
@@ -70,9 +70,9 @@ public abstract class AbstractJsonExpression<T> implements JsonInterpreter<T>{
     }
     
     @SuppressWarnings("unchecked")
-    public String object2Json(T object){
+    public<T> String object2Json(T object){
         String res = "";
-        JsonContext<T> ctx = new JsonContext<T>();
+        JsonContext ctx = new JsonContext();
         ctx.setTarget(object);
         ctx.setTargetClass((Class<T>)object.getClass());
         interpreter(ctx);

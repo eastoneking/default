@@ -11,13 +11,13 @@ import eastone.common.context.BeanAsContext;
  * @author wangds
  *
  */
-public class JsonContext<T> extends BeanAsContext {
+public class JsonContext extends BeanAsContext {
 
     private String jsonString;
     
-    private Class<T> targetClass;
+    private Class<?> targetClass;
     
-    private T target;
+    private Object target;
     
     /**
      * The setter method of the property jsonString.
@@ -42,7 +42,7 @@ public class JsonContext<T> extends BeanAsContext {
      * @param thetarget the target to set
      * @author wangds 2015年4月18日 下午10:58:13.
      */
-    public void setTarget(T target) {
+    public <T> void setTarget(T target) {
         this.target = target;
     }
     
@@ -51,8 +51,9 @@ public class JsonContext<T> extends BeanAsContext {
      * @author wangds 2015年4月18日 下午10:58:16.
      * @return the target.
      */
-    public T getTarget() {
-        return target;
+    @SuppressWarnings("unchecked")
+    public <T> T getTarget() {
+        return (T)target;
     }
     
     /**
@@ -60,7 +61,7 @@ public class JsonContext<T> extends BeanAsContext {
      * @param thetargetClass the targetClass to set
      * @author wangds 2015年4月18日 下午10:58:19.
      */
-    public void setTargetClass(Class<T> targetClass) {
+    public void setTargetClass(Class<?> targetClass) {
         this.targetClass = targetClass;
     }
     
@@ -69,7 +70,7 @@ public class JsonContext<T> extends BeanAsContext {
      * @author wangds 2015年4月18日 下午10:58:22.
      * @return the targetClass.
      */
-    public Class<T> getTargetClass() {
+    public Class<?> getTargetClass() {
         return targetClass;
     }
     
