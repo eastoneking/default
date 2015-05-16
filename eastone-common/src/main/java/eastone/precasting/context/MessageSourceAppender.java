@@ -6,14 +6,13 @@ import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.context.support.DelegatingMessageSource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
-public class MessageSourceAppender implements FactoryBean<DelegatingMessageSource>, InitializingBean{
+public class MessageSourceAppender implements FactoryBean<ReloadableResourceBundleMessageSource>, InitializingBean{
   
   private static Set<String> BASENAMES = new HashSet<String>();
   
-  private DelegatingMessageSource messageSource;
+  private ReloadableResourceBundleMessageSource messageSource;
   private String seperator = ",";
   private String basenames = "";
   /**
@@ -27,14 +26,14 @@ public class MessageSourceAppender implements FactoryBean<DelegatingMessageSourc
    * @param messageSource messageSource属性的新值.
    */
   public void setMessageSource(
-      DelegatingMessageSource messageSource) {
+          ReloadableResourceBundleMessageSource messageSource) {
     this.messageSource = messageSource;
   }
   /**
    * 获得messageSource属性值.
    * @return messageSource属性现值.
    */
-  public DelegatingMessageSource getMessageSource() {
+  public ReloadableResourceBundleMessageSource getMessageSource() {
     return messageSource;
   }
   
@@ -69,7 +68,7 @@ public class MessageSourceAppender implements FactoryBean<DelegatingMessageSourc
   }
   @Override
   public void afterPropertiesSet() throws Exception {
-    ReloadableResourceBundleMessageSource ms = (ReloadableResourceBundleMessageSource)this.messageSource.getParentMessageSource();
+    ReloadableResourceBundleMessageSource ms = (ReloadableResourceBundleMessageSource)this.messageSource;
     
     if(ms==null){
       return ;
@@ -93,12 +92,14 @@ public class MessageSourceAppender implements FactoryBean<DelegatingMessageSourc
     
     bases = new String[BASENAMES.size()];
     bases = BASENAMES.toArray(bases);
-    
+    for(String t:bases){
+        System.out.println(t);
+    }
     ms.setBasenames(bases);
   }
 
   @Override
-  public DelegatingMessageSource getObject() throws Exception {
+  public ReloadableResourceBundleMessageSource getObject() throws Exception {
     return this.messageSource;
   }
 

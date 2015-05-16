@@ -59,6 +59,7 @@ public class EntryServlet extends GenericServlet implements Proxy<Servlet> {
      * 业务Servlet再Spring容器中的BeanId。
      */
     private String beanId = "";
+    private String charset = "UTF-8";
     
     /*
      * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig)
@@ -69,6 +70,10 @@ public class EntryServlet extends GenericServlet implements Proxy<Servlet> {
         super.init(config);
         this.enableGet = BooleanUtils.toBoolean(config.getInitParameter("enableGet"));
         this.beanId = StringUtils.trim(config.getInitParameter("beanId"));
+        String charsetConfig = StringUtils.trim(config.getInitParameter("charset"));
+        if(!StringUtils.isEmpty(charsetConfig)){
+            this.charset=charsetConfig;
+        }
     }
 
     /*
@@ -120,7 +125,11 @@ public class EntryServlet extends GenericServlet implements Proxy<Servlet> {
         Map<String, Object> obj = new HashMap<String, Object>();
         obj.put("msg", msg);
         msg = jip.object2Json(obj);
-        res.setCharacterEncoding(req.getCharacterEncoding());
+        String encoding = req.getCharacterEncoding();
+        if(StringUtils.isEmpty(encoding)){
+            encoding = this.charset ;
+        }
+        res.setCharacterEncoding(encoding);
         res.setContentType("application/json");
         OutputStream os = null;
         try {

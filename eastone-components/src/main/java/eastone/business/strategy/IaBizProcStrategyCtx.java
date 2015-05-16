@@ -272,7 +272,7 @@ public class IaBizProcStrategyCtx<K> extends AbstractStrategyContext<K> implemen
             this.getLogger().error(e.getLocalizedMessage(), e);
         }
     }
-    public <E extends Exception> E getException(){
+    public <E extends Throwable> E getException(){
         E res = null;
         try {
             res = this.procInterimCtx.status(BizProcStrConstrants.PROC_EXCEPTION);
@@ -282,7 +282,7 @@ public class IaBizProcStrategyCtx<K> extends AbstractStrategyContext<K> implemen
         return res;
     }
     
-    public <E extends Exception> void setException(E ex){
+    public <E extends Throwable> void setException(E ex){
         try {
             this.procInterimCtx.status(BizProcStrConstrants.PROC_EXCEPTION, ex);
         } catch (Exception e) {

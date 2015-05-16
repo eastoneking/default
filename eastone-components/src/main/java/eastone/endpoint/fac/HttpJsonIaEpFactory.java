@@ -10,7 +10,7 @@ import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 
 import eastone.business.HttpInteractionBusiness;
-import eastone.controller.Controller;
+import eastone.controller.HttpInteractionController;
 import eastone.controller.core.HttpIaBizController;
 import eastone.endpoint.HttpEndPoint;
 import eastone.endpoint.HttpJsonInteractionControllerEndPoint;
@@ -21,17 +21,17 @@ import eastone.endpoint.WithControllerEndPoint;
  * @author wangds
  *
  */
-public class HttpJsonIaEpFactory<E extends WithControllerEndPoint<Controller>&HttpEndPoint>
+public class HttpJsonIaEpFactory<I, O, E extends WithControllerEndPoint<HttpInteractionController<I,O>>&HttpEndPoint>
     implements FactoryBean<E>, InitializingBean, ApplicationListener<ApplicationEvent> {
 
-    private HttpInteractionBusiness<Object, Object> business;
+    private HttpInteractionBusiness<I, O> business;
     
     /**
      * The setter method of the property business.
      * @param thebusiness the business to set
      * @author wangds 2015年5月11日 下午2:58:30.
      */
-    public void setBusiness(HttpInteractionBusiness<Object, Object> business) {
+    public void setBusiness(HttpInteractionBusiness<I, O> business) {
         this.business = business;
     }
     
@@ -40,7 +40,7 @@ public class HttpJsonIaEpFactory<E extends WithControllerEndPoint<Controller>&Ht
      * @author wangds 2015年5月11日 下午2:58:34.
      * @return the business.
      */
-    public HttpInteractionBusiness<Object, Object> getBusiness() {
+    public HttpInteractionBusiness<I, O> getBusiness() {
         return business;
     }
 
@@ -67,8 +67,8 @@ public class HttpJsonIaEpFactory<E extends WithControllerEndPoint<Controller>&Ht
     @SuppressWarnings("unchecked")
     @Override
     public E getObject() throws Exception {
-        HttpJsonInteractionControllerEndPoint<Object, Object> res = new HttpJsonInteractionControllerEndPoint<Object, Object>();
-        HttpIaBizController<Object, Object, HttpInteractionBusiness<Object, Object>> ctrl = new HttpIaBizController<Object, Object, HttpInteractionBusiness<Object, Object>>();
+        HttpJsonInteractionControllerEndPoint<I, O> res = new HttpJsonInteractionControllerEndPoint<I, O>();
+        HttpIaBizController<I, O, HttpInteractionBusiness<I, O>> ctrl = new HttpIaBizController<I, O, HttpInteractionBusiness<I, O>>();
         ctrl.setBusiness(business);
         res.setController(ctrl);
         return (E)res;

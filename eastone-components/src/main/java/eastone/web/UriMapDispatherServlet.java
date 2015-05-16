@@ -6,6 +6,7 @@ package eastone.web;
 
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 
 import eastone.common.GeneralParentObject;
@@ -28,24 +29,46 @@ public class UriMapDispatherServlet extends AbstractAboutUriDispatherServlet{
     
     private Map<String, String> processorMap = null;
     
-
+    /**
+     * The setter method of the property processorMap.
+     * @param theprocessorMap the processorMap to set
+     * @author wangds 2015年5月16日 上午12:12:37.
+     */
+    public void setProcessorMap(Map<String, String> processorMap) {
+        this.processorMap = processorMap;
+    }
+    /**
+     * The getter method of the property processorMap.
+     * @author wangds 2015年5月16日 上午12:12:43.
+     * @return the processorMap.
+     */
+    public Map<String, String> getProcessorMap() {
+        return processorMap;
+    }
     /*
      * @see eastone.web.AbstractAboutUriDispatherServlet#selectProcessor(java.lang.String)
      * @author wangds 2015年5月11日 下午3:16:53.
      */
     @Override
-    protected Processor selectProcessor(String strUri) {
+    protected Processor selectProcessor(String contentPath, String uri) {
         Processor res = null;
-        String beanid = this.processorMap.get(strUri);
+        if(uri.startsWith(contentPath)){
+            uri = uri.substring(contentPath.length());
+        }
+        String beanId = this.processorMap.get(uri);
         if(logger.isDebugEnabled()){
-            StringBuffer sb = new StringBuffer(12+strUri.length()+(beanid==null?4:beanid.length()));
+            StringBuffer sb = new StringBuffer(12+uri.length()+(beanId==null?4:beanId.length()));
             sb.append("URI:")
-                .append(strUri)
+                .append(uri)
                 .append(";beanId:")
-                .append(beanid);
+                .append(beanId);
             logger.debug(sb.toString());
         }
-        res = (Processor)BeanContextFactory.getBeanContext().getBean(beanid);
+        if(StringUtils.isNotEmpty(beanId)){
+            res = (Processor)BeanContextFactory.getBeanContext().getBean(beanId);
+        }else{
+            
+        }
         return res;
     }
 

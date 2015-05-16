@@ -5,7 +5,6 @@
 package eastone.northwind.weather.test;
 
 import org.junit.BeforeClass;
-import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import eastone.common.context.BeanContext;

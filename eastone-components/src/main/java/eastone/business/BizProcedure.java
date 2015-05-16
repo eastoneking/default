@@ -15,8 +15,8 @@ public interface BizProcedure extends BridgeImplementor {
     void beforeProcess();
     void onProcessd();
     void afterProcess();
-    <E> void beforeThrowException(E exception);
-    <E> void throwedException(E exception);
-    <E> void afterThrowException(E exception);
+    <E extends Throwable> void beforeThrowException(E exception);
+    <E extends Throwable> void throwedException(E exception);
+    <E extends Throwable> void afterThrowException(E exception);
 
 }

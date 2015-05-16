@@ -4,6 +4,7 @@
  */
 package eastone.endpoint;
 
+import eastone.common.adapter.Adapter;
 import eastone.controller.Controller;
 
 /**
@@ -11,7 +12,8 @@ import eastone.controller.Controller;
  * @author wangds
  *
  */
-public interface WithControllerEndPoint<C extends Controller> extends EndPoint{
+public interface WithControllerEndPoint<C extends Controller>
+    extends EndPoint, Adapter<C> {
 
     void setController(C ctrl);
     C getController();

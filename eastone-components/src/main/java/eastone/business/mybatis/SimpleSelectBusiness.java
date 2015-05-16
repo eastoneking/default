@@ -25,7 +25,7 @@ public class SimpleSelectBusiness<I, O> extends AbstractMybatisHttpIaBusiness<I,
     @Override
     protected Collection<O> execute(SqlSessionFactory fac, String sql, I input, Map<String, Object> p) {
         Collection<O> res = null;
-        res = MybatisUtil.selectList(fac, sql, input, -1, -1);
+        res = MybatisUtil.selectList(fac, sql, input, 0, Integer.MAX_VALUE);
         return res;
     }
 

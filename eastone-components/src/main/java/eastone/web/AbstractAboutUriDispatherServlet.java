@@ -50,11 +50,11 @@ public abstract class AbstractAboutUriDispatherServlet extends HttpServlet{
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String strContentPath = req.getContextPath();
         String strUri = req.getRequestURI();
-        
         Processor fn = null;
         
-        fn = selectProcessor(strUri);
+        fn = selectProcessor(strContentPath, strUri);
         
         if (fn != null) {
             
@@ -78,9 +78,10 @@ public abstract class AbstractAboutUriDispatherServlet extends HttpServlet{
     /**
      * .
      * @author wangds 2015年5月11日 下午3:13:17.
-     * @param strUri
+     * @param contentPath
+     * @param uri 
      * @return
      */
-    abstract protected Processor selectProcessor(String strUri);
+    abstract protected Processor selectProcessor(String strUri, String uri);
 
 }

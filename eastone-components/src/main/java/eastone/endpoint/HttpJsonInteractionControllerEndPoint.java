@@ -4,7 +4,6 @@
  */
 package eastone.endpoint;
 
-import eastone.common.adapter.Adapter;
 import eastone.controller.HttpInteractionController;
 
 /**
@@ -13,7 +12,7 @@ import eastone.controller.HttpInteractionController;
  *
  */
 public class HttpJsonInteractionControllerEndPoint<R, A> extends AbstractJsonHttpEndPoint<R, A>
-implements Adapter<HttpInteractionController<R,A>>{
+implements WithControllerEndPoint<HttpInteractionController<R,A>>{
 
     private HttpInteractionController<R, A> ctrl = null;
     

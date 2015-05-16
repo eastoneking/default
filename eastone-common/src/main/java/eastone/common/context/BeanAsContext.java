@@ -9,6 +9,7 @@ package eastone.common.context;
 import java.lang.reflect.InvocationTargetException;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.math3.exception.OutOfRangeException;
 
 import eastone.common.GeneralParentObject;
@@ -31,7 +32,7 @@ public abstract class BeanAsContext extends GeneralParentObject implements Conte
         int inputsLen = inputs.length;
         if(inputsLen==1){
             String propName = inputs[0].toString();
-            res = BeanUtils.getProperty(this, propName);
+            res = PropertyUtils.getProperty(this, propName);
         } else if(inputsLen>1) {
             String propName = inputs[0].toString();
             Object value = null;

@@ -178,8 +178,9 @@ jq.extend({
     DebugRobot.prototype._output = function(msg, level) {
       // TODO: 浏览器检查.
       if (console && console.log) {
-        console.log("[" + (DebugRobot.DEBUG_LEVEL_REVERSE[level] && level)
-            + "] " + msg);
+        console.log(level+":"+msg)
+      }else{
+        alert(level+":"+msg);
       }
     };
 
@@ -276,6 +277,7 @@ jq.extend({
         settings.success = function(data) {
           res = data;
         };
+        alert(JSON.stringify(settings))
         jq.ajax(settings);
         return res;
       } else {
@@ -347,7 +349,29 @@ jq.extend({
       },
       "loadScript" : function() {
         return AjaxUtils.loadScript.apply({}, arguments);
-      }
+      },
+      "postJson" : function(setting){
+        var defaultSetting = 
+            {
+              type:"POST",
+              accepts:"text/*",
+              contentType:"application/json",
+              dataType:"json"
+            };
+          
+        return AjaxUtils.sync.call({}, jq.extend({},defaultSetting, setting));
+      },
+      "postJsonA" : function(setting){
+        var defaultSetting = 
+        {
+          type:"POST",
+          accepts:"text/*",
+          contentType:"application/json",
+          dataType:"json"
+        };
+      
+    return AjaxUtils.async.call({}, jq.extend({},defaultSetting, setting));
+  }
     };
     return interfaceFunc;
   })(),

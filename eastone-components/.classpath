@@ -37,7 +37,7 @@
 	<classpathentry kind="var" path="M2_REPO/org/mybatis/mybatis/3.2.1/mybatis-3.2.1.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/apache/httpcomponents/httpclient/4.3/httpclient-4.3.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/apache/httpcomponents/httpcore/4.3/httpcore-4.3.jar"/>
-	<classpathentry kind="var" path="M2_REPO/eastone-common/eastone-common/0.1/eastone-common-0.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/eastone-common/eastone-common/0.1/eastone-common-0.1.jar" sourcepath="/M2_REPO"/>
 	<classpathentry kind="var" path="M2_REPO/org/bouncycastle/bcprov-jdk16/1.46/bcprov-jdk16-1.46.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/apache/poi/poi/3.9/poi-3.9.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/apache/poi/ooxml-schemas/1.1/ooxml-schemas-1.1.jar"/>

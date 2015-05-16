@@ -177,6 +177,9 @@ public abstract class AbstractStrategyContext<K> extends GeneralParentObject imp
 
     @Override
     public void process() {
+        if(this.selectedStrategy==null){
+            this.setSelectedStrategy(this.decide().getKey());
+        }
         Strategy<K> selectStrategy = this.findStrategy(selectedStrategy);
         if (selectStrategy != null) {
             selectStrategy.setContext(this);

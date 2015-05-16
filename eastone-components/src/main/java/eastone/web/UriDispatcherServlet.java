@@ -57,7 +57,7 @@ public class UriDispatcherServlet extends AbstractAboutUriDispatherServlet {
      * @author wangds 2015年5月11日 下午3:14:02.
      */
     @Override
-    protected Processor selectProcessor(String strUri) {
+    protected Processor selectProcessor(String contextpath, String strUri) {
 
         String fnName = null;
         try {

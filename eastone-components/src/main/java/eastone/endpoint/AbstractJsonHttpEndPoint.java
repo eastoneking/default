@@ -14,6 +14,8 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+
 import eastone.common.factory.ProviderFactory;
 import eastone.json.JsonInterpreter;
 
@@ -26,6 +28,7 @@ public abstract class AbstractJsonHttpEndPoint<R,A> extends AbstractHttpEndPoint
     private Class<R> reqClass;
     private static final int BYTE_BUFF_LEN = 524288;
     private JsonInterpreter jsonInterpreter = new ProviderFactory().getInstance(JsonInterpreter.class);
+    private String charset = "UTF-8";
     /**
      * The setter method of the property reqClass.
      * @param thereqClass the reqClass to set
@@ -58,6 +61,22 @@ public abstract class AbstractJsonHttpEndPoint<R,A> extends AbstractHttpEndPoint
     public JsonInterpreter getJsonInterpreter() {
         return jsonInterpreter;
     }
+    /**
+     * The setter method of the property charset.
+     * @param thecharset the charset to set
+     * @author wangds 2015年5月16日 上午11:16:28.
+     */
+    public void setCharset(String charset) {
+        this.charset = charset;
+    }
+    /**
+     * The getter method of the property charset.
+     * @author wangds 2015年5月16日 上午11:16:35.
+     * @return the charset.
+     */
+    public String getCharset() {
+        return charset;
+    }
     /*
      * @see eastone.common.processor.Processor#process()
      * @author wangds 2015年4月18日 下午10:30:25.
@@ -66,6 +85,9 @@ public abstract class AbstractJsonHttpEndPoint<R,A> extends AbstractHttpEndPoint
     public void process() throws ServletException {
         HttpServletRequest req = this.getHttpRequest();
         String charset = req.getCharacterEncoding();
+        if(StringUtils.isEmpty(charset)){
+            charset = this.charset ;
+        }
         byte[] data = loadRequestBody(req);
         
         String strReqBody = null;
@@ -91,7 +113,10 @@ public abstract class AbstractJsonHttpEndPoint<R,A> extends AbstractHttpEndPoint
     protected void writeResponse(HttpServletResponse resp, byte[] output) {
         ServletOutputStream os = null;
         try {
+            resp.setContentType("application/json");
+            resp.setCharacterEncoding(this.charset);
             os = resp.getOutputStream();
+            os.write(output);
             os.flush();
         } catch (IOException e) {
             this.getLogger().error(e.getLocalizedMessage(), e);
@@ -107,10 +132,18 @@ public abstract class AbstractJsonHttpEndPoint<R,A> extends AbstractHttpEndPoint
     protected byte[] handleAnswerObject(A answer) {
         HttpServletRequest req = this.getHttpRequest();
         String charset = req.getCharacterEncoding();
-        String strJson = this.jsonInterpreter.object2Json(answer);
+        if(charset==null){
+            charset=this.charset;
+        }
+        String strJson  = null;
+        if(answer!=null){
+            strJson = this.jsonInterpreter.object2Json(answer);
+        }else{
+            strJson = this.jsonInterpreter.object2Json(new Object());
+        }
         byte[] res = new byte[0];
         try {
-            res = strJson.getBytes(charset);
+            res = strJson.getBytes(this.charset);
         } catch (UnsupportedEncodingException e) {
             this.getLogger().error(e.getLocalizedMessage(), e);
         }

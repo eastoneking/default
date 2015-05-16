@@ -54,7 +54,7 @@ public class DefaultMapAsEnvironment extends GeneralParentObject
         if(len==1){
             return this.getEnvironment(inputs[0].toString());
         }else if(len == 2){
-            this.setEnvironment(inputs[0].toString(), inputs[2]);
+            this.setEnvironment(inputs[0].toString(), inputs[1]);
         }else if(len>2){
             Object[] arr = new Object[inputs.length-1];
             System.arraycopy(inputs, 0, arr, 0, arr.length);

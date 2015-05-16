@@ -83,17 +83,17 @@ public class BizWithHttpMediatorProcTestCase {
             }
 
             @Override
-            public <E> void beforeThrowException(E exception) {
+            public <E extends Throwable> void beforeThrowException(E exception) {
                 
             }
 
             @Override
-            public <E> void throwedException(E exception) {
+            public <E extends Throwable> void throwedException(E exception) {
                 
             }
 
             @Override
-            public <E> void afterThrowException(E exception) {
+            public <E extends Throwable> void afterThrowException(E exception) {
                 
             }
 

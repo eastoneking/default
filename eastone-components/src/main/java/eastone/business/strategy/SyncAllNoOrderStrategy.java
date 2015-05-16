@@ -72,7 +72,7 @@ SyncAllNoOrderStrategy<I, O, K> extends AbstractStrategy<K> implements IaBizProc
      * @author wangds 2015年5月2日 下午8:08:57.
      */
     @Override
-    public <E> void beforeThrowException(E exception) {
+    public <E extends Throwable> void beforeThrowException(E exception) {
         BizProcStrategyContext<K> ctx = this.getContext();
         for(BizProcedure p:(Collection<BizProcedure>)ctx.getBizProcedures()){
             try{
@@ -88,7 +88,7 @@ SyncAllNoOrderStrategy<I, O, K> extends AbstractStrategy<K> implements IaBizProc
      * @author wangds 2015年5月2日 下午8:08:57.
      */
     @Override
-    public <E> void throwedException(E exception) {
+    public <E extends Throwable> void throwedException(E exception) {
         BizProcStrategyContext<K> ctx = this.getContext();
         for(BizProcedure p:(Collection<BizProcedure>)ctx.getBizProcedures()){
             try{
@@ -104,7 +104,7 @@ SyncAllNoOrderStrategy<I, O, K> extends AbstractStrategy<K> implements IaBizProc
      * @author wangds 2015年5月2日 下午8:08:57.
      */
     @Override
-    public <E> void afterThrowException(E exception) {
+    public <E extends Throwable> void afterThrowException(E exception) {
         BizProcStrategyContext<K> ctx = this.getContext();
         for(BizProcedure p:(Collection<BizProcedure>)ctx.getBizProcedures()){
             try{

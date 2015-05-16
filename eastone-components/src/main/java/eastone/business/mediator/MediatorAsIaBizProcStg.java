@@ -6,11 +6,10 @@ package eastone.business.mediator;
 
 import java.util.Collection;
 
+import eastone.business.BizProcSectionEnum;
 import eastone.business.BizProcedure;
 import eastone.business.InteractionBusiness;
-import eastone.business.strategy.BizProcStrategy;
 import eastone.business.strategy.BizProcStrategyContext;
-import eastone.business.strategy.IaBizProcStrategy;
 import eastone.business.strategy.IaBizProcStrategyCtx;
 import eastone.common.GeneralParentObject;
 
@@ -51,15 +50,11 @@ public class MediatorAsIaBizProcStg<I,O,K, B extends InteractionBusiness<I, O>> 
     @Override
     public void beforeProcess() {
         BizProcStrategyContext<K> ctx = this.getStrategyContext();
-        BizProcStrategy<K> s = ctx.decide();
-        if(s!=null){
-            ctx.setSelectedStrategy(s.getKey());
-            
-            try {
-                ctx.process();
-            } catch (Exception e) {
-                this.getLogger().error(e.getLocalizedMessage(), e);
-            }
+        ctx.setSection(BizProcSectionEnum.BEFORE_PROC);
+        try {
+            ctx.process();
+        } catch (Exception e) {
+            this.getLogger().error(e.getLocalizedMessage(), e);
         }
     }
 
@@ -70,9 +65,11 @@ public class MediatorAsIaBizProcStg<I,O,K, B extends InteractionBusiness<I, O>> 
     @Override
     public void onProcessd() {
         BizProcStrategyContext<K> ctx = this.getStrategyContext();
-        BizProcStrategy<K> s = ctx.decide();
-        if(s!=null){
-            s.onProcessd();
+        ctx.setSection(BizProcSectionEnum.ON_PROC);
+        try {
+            ctx.process();
+        } catch (Exception e) {
+            this.getLogger().error(e.getLocalizedMessage(), e);
         }
     }
 
@@ -83,9 +80,11 @@ public class MediatorAsIaBizProcStg<I,O,K, B extends InteractionBusiness<I, O>> 
     @Override
     public void afterProcess() {
         BizProcStrategyContext<K> ctx = this.getStrategyContext();
-        BizProcStrategy<K> s = ctx.decide();
-        if(s!=null){
-            s.afterProcess();
+        ctx.setSection(BizProcSectionEnum.AFTER_PROC);
+        try {
+            ctx.process();
+        } catch (Exception e) {
+            this.getLogger().error(e.getLocalizedMessage(), e);
         }
     }
 
@@ -94,11 +93,14 @@ public class MediatorAsIaBizProcStg<I,O,K, B extends InteractionBusiness<I, O>> 
      * @author wangds 2015年5月2日 上午10:11:21.
      */
     @Override
-    public <E> void beforeThrowException(E exception) {
+    public <E extends Throwable> void beforeThrowException(E exception) {
         BizProcStrategyContext<K> ctx = this.getStrategyContext();
-        BizProcStrategy<K> s = ctx.decide();
-        if(s!=null){
-            s.beforeThrowException(exception);
+        ctx.setSection(BizProcSectionEnum.BEFORE_THROW);
+        ctx.setException(exception);
+        try {
+            ctx.process();
+        } catch (Exception e) {
+            this.getLogger().error(e.getLocalizedMessage(), e);
         }
     }
 
@@ -107,11 +109,14 @@ public class MediatorAsIaBizProcStg<I,O,K, B extends InteractionBusiness<I, O>> 
      * @author wangds 2015年5月2日 上午10:11:21.
      */
     @Override
-    public <E> void throwedException(E exception) {
+    public <E extends Throwable> void throwedException(E exception) {
         BizProcStrategyContext<K> ctx = this.getStrategyContext();
-        BizProcStrategy<K> s = ctx.decide();
-        if(s!=null){
-            s.throwedException(exception);
+        ctx.setSection(BizProcSectionEnum.ON_THROW);
+        ctx.setException(exception);
+        try {
+            ctx.process();
+        } catch (Exception e) {
+            this.getLogger().error(e.getLocalizedMessage(), e);
         }
     }
 
@@ -120,11 +125,14 @@ public class MediatorAsIaBizProcStg<I,O,K, B extends InteractionBusiness<I, O>> 
      * @author wangds 2015年5月2日 上午10:11:21.
      */
     @Override
-    public <E> void afterThrowException(E exception) {
+    public <E extends Throwable> void afterThrowException(E exception) {
         BizProcStrategyContext<K> ctx = this.getStrategyContext();
-        BizProcStrategy<K> s = ctx.decide();
-        if(s!=null){
-            s.afterThrowException(exception);
+        ctx.setSection(BizProcSectionEnum.AFTER_THROW);
+        ctx.setException(exception);
+        try {
+            ctx.process();
+        } catch (Exception e) {
+            this.getLogger().error(e.getLocalizedMessage(), e);
         }
     }
 
@@ -135,11 +143,15 @@ public class MediatorAsIaBizProcStg<I,O,K, B extends InteractionBusiness<I, O>> 
     @Override
     public I beforeChangeInput(I newValue, I oldValue) {
         BizProcStrategyContext<K> ctx = this.getStrategyContext();
-        IaBizProcStrategy<I, O, K> s = ctx.decide();
-        if(s!=null){
-            newValue = s.beforeChangeInput(newValue, oldValue);
+        ctx.setSection(BizProcSectionEnum.BEFORE_INPUT);
+        ctx.setInputNew(newValue);
+        ctx.setInputOld(oldValue);
+        try {
+            ctx.process();
+        } catch (Exception e) {
+            this.getLogger().error(e.getLocalizedMessage(), e);
         }
-        return newValue;
+        return ctx.getInputNew();
     }
 
     /*
@@ -149,9 +161,13 @@ public class MediatorAsIaBizProcStg<I,O,K, B extends InteractionBusiness<I, O>> 
     @Override
     public void onChangedInput(I newValue, I oldValue) {
         BizProcStrategyContext<K> ctx = this.getStrategyContext();
-        IaBizProcStrategy<I, O, K> s = ctx.decide();
-        if(s!=null){
-            s.onChangedInput(newValue, oldValue);
+        ctx.setSection(BizProcSectionEnum.ON_INPUT);
+        ctx.setInputNew(newValue);
+        ctx.setInputOld(oldValue);
+        try {
+            ctx.process();
+        } catch (Exception e) {
+            this.getLogger().error(e.getLocalizedMessage(), e);
         }
     }
 
@@ -162,9 +178,13 @@ public class MediatorAsIaBizProcStg<I,O,K, B extends InteractionBusiness<I, O>> 
     @Override
     public void afterChangedInput(I newValue, I oldValue) {
         BizProcStrategyContext<K> ctx = this.getStrategyContext();
-        IaBizProcStrategy<I, O, K> s = ctx.decide();
-        if(s!=null){
-            s.afterChangedInput(newValue, oldValue);
+        ctx.setSection(BizProcSectionEnum.AFTER_INPUT);
+        ctx.setInputNew(newValue);
+        ctx.setInputOld(oldValue);
+        try {
+            ctx.process();
+        } catch (Exception e) {
+            this.getLogger().error(e.getLocalizedMessage(), e);
         }
     }
 
@@ -175,11 +195,15 @@ public class MediatorAsIaBizProcStg<I,O,K, B extends InteractionBusiness<I, O>> 
     @Override
     public O beforeChangeOutput(O newValue, O oldValue) {
         BizProcStrategyContext<K> ctx = this.getStrategyContext();
-        IaBizProcStrategy<I, O, K> s = ctx.decide();
-        if(s!=null){
-            newValue = s.beforeChangeOutput(newValue, oldValue);
+        ctx.setSection(BizProcSectionEnum.BEFORE_OUTPUT);
+        ctx.setOutputNew(newValue);
+        ctx.setOutputOld(oldValue);
+        try {
+            ctx.process();
+        } catch (Exception e) {
+            this.getLogger().error(e.getLocalizedMessage(), e);
         }
-        return newValue;
+        return ctx.getOutputNew();
     }
 
     /*
@@ -189,9 +213,13 @@ public class MediatorAsIaBizProcStg<I,O,K, B extends InteractionBusiness<I, O>> 
     @Override
     public void onChangedOutput(O newValue, O oldValue) {
         BizProcStrategyContext<K> ctx = this.getStrategyContext();
-        IaBizProcStrategy<I, O, K> s = ctx.decide();
-        if(s!=null){
-            s.onChangedOutput(newValue, oldValue);
+        ctx.setSection(BizProcSectionEnum.ON_OUTPUT);
+        ctx.setOutputNew(newValue);
+        ctx.setOutputOld(oldValue);
+        try {
+            ctx.process();
+        } catch (Exception e) {
+            this.getLogger().error(e.getLocalizedMessage(), e);
         }
     }
 
@@ -202,9 +230,13 @@ public class MediatorAsIaBizProcStg<I,O,K, B extends InteractionBusiness<I, O>> 
     @Override
     public void afterChangedOutput(O newValue, O oldValue) {
         BizProcStrategyContext<K> ctx = this.getStrategyContext();
-        IaBizProcStrategy<I, O, K> s = ctx.decide();
-        if(s!=null){
-            s.afterChangedOutput(newValue, oldValue);
+        ctx.setSection(BizProcSectionEnum.AFTER_OUTPUT);
+        ctx.setOutputNew(newValue);
+        ctx.setOutputOld(oldValue);
+        try {
+            ctx.process();
+        } catch (Exception e) {
+            this.getLogger().error(e.getLocalizedMessage(), e);
         }
     }
     

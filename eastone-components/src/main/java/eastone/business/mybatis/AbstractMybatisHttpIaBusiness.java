@@ -23,7 +23,7 @@ public abstract class AbstractMybatisHttpIaBusiness<I, O> extends AbstractHttpIn
     public static String SESSION_FACTORY_KEY = "BIZ_SESSION_FACTORY";
     public static String SQL_INFO_KEY = "SQL_INFO_KEY";
 
-    private Env2MapDecorator env2MapDec = null;
+    private Env2MapDecorator env2MapDec = new Env2MapDecorator();
 
     public void setSessionFactory(SqlSessionFactory fac) {
         try {
@@ -43,7 +43,7 @@ public abstract class AbstractMybatisHttpIaBusiness<I, O> extends AbstractHttpIn
         return res;
     }
 
-    public <S> void setSqlInfo(S sqlInfo) {
+    public <S extends SqlInfo> void setSqlInfo(S sqlInfo) {
         try {
             this.status(AbstractMybatisHttpIaBusiness.SQL_INFO_KEY, sqlInfo);
         } catch (Exception e) {
@@ -51,7 +51,7 @@ public abstract class AbstractMybatisHttpIaBusiness<I, O> extends AbstractHttpIn
         }
     }
 
-    public <S> S getSqlInfo() {
+    public <S extends SqlInfo> S getSqlInfo() {
         S res = null;
         try {
             res = this.status(SQL_INFO_KEY);
