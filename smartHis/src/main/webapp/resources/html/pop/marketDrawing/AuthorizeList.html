@@ -1,0 +1,317 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>菜单</title>
+<link href="/GSCManager/resources/css/goldcow-all.css" rel="stylesheet"
+	type="text/css" />
+<link href="/GSCManager/resources/css/realTimeQuotes.css" rel="stylesheet"
+	type="text/css" />
+<link href="/GSCManager/resources/css/common.css" rel="stylesheet"
+	type="text/css" />
+<link href="/GSCManager/resources/css/jquery-ui-1.10.3.custom.min.css"
+	rel="stylesheet" type="text/css" />
+<link href="/GSCManager/resources/css/icon.css" rel="stylesheet"
+	type="text/css" />
+<script src="/GSCManager/resources/js/goldcow-all.js" type="text/javascript"></script>
+<script type="text/javascript">
+	//小数位数的处理
+	function doubleNumber(Number, Count) {
+		if (Count == undefined || Count == "undefined") {
+			Count = 1;
+		}
+		var _count = 0;
+		var _temp = "";
+		var str = Number.toString();
+		if (str.indexOf(".") > 0) {
+			var arr = str.split(".");
+			if (arr[1].length >= Count) {
+				return arr[0] + "." + arr[1].substr(0, Count);
+			} else {
+				_count = Count - arr[1].length;
+				for (var i = 0; i < _count; i++) {
+					_temp += "0";
+				}
+				return str + _temp;
+			}
+		} else {
+			for (var i = 0; i < Count; i++) {
+				_temp += "0";
+			}
+			return str + "." + _temp;
+		}
+	}
+
+	/**
+	 * 定义时间格转换
+	 */
+	Date.prototype.format = function(format) {
+		var o = {
+			"M+" : this.getMonth() + 1, //month
+			"d+" : this.getDate(), //day
+			"h+" : this.getHours(), //hour
+			"m+" : this.getMinutes(), //minute
+			"s+" : this.getSeconds(), //second
+			"q+" : Math.floor((this.getMonth() + 3) / 3), //quarter
+			"S" : this.getMilliseconds()
+		//millisecond
+		}
+		if (/(y+)/.test(format))
+			format = format.replace(RegExp.$1, (this.getFullYear() + "")
+					.substr(4 - RegExp.$1.length));
+		for ( var k in o)
+			if (new RegExp("(" + k + ")").test(format))
+				format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k]
+						: ("00" + o[k]).substr(("" + o[k]).length));
+		return format;
+	}
+	/**
+	 * 执行时就加载
+	 */
+	var timename;
+	$(function() {
+		//最新的记录
+		getLatestDeals();
+		//查询开盘时间、开盘、最高价、最低价、收盘价、成交量
+		marketFigureData();
+		dengesNumber();
+	})
+	timename = setInterval("getLatestDeals();marketFigureData();dengesNumber();", 15000);
+	
+	//最新成交价、买1、卖1、当日最高价、当日最低价、当日总成交量	
+	function dengesNumber() {
+		var newMarket = util.ajax(global_param.context_name + '/getNewNumber');
+		if (newMarket) {
+			$("#NewPrice").text(doubleNumber(newMarket.newPrice,2));
+			$("#NewPrice2").text(doubleNumber(newMarket.newPrice,2));
+			$("#Top1Buy").text(doubleNumber(newMarket.buyPrice,2));
+			$("#Top1Sell").text(doubleNumber(newMarket.sellPrice,2));
+			$("#ToDayHighPrice").text(doubleNumber(newMarket.dengesMaxPirce,2));
+			$("#ToDayLowPrice").text(doubleNumber(newMarket.dengesMinPirce,2));
+			$("#ToDayGsc").text(doubleNumber(newMarket.dengesSumGSC,6));
+		}
+	}
+	
+	/**	
+	 * 委托信息
+	 */
+	function delegation(theHistory) {
+		var theEntrustHtml = "<div class=\"Entrustbox\"><div class=\"infotitle\">委托信息</div>";
+		var theBuyEntrustHtml = "<ul class=\"ul1\"><li><span class=\"sp1\">买入</span> <span>买入价</span><span>委单量</span> <span></span></li>";
+		var buy = util.ajax(global_param.context_name + '/getMaxBuyAuthorize');
+		if (buy) {
+			for (var i = 0; i < buy.length; i++) {
+				theBuyEntrustHtml += "<li><span class=\"sp1 sp4\">买(" + (i + 1)
+						+ ")</span> <span>" + doubleNumber(buy[i].pirce, 2)
+						+ "</span> <span>" + doubleNumber(buy[i].deputeNum, 6)
+						+ "</span> <span class=\"sp2\"><span style=\"width:"
+						+ buy[i].deputeNum + "%;\"></span></span></li>";
+			}
+			theBuyEntrustHtml += "</ul>";
+		}
+		var theSellEntrustHtml = "<ul class=\"ul1 ul2\"><li><span class=\"sp1\">卖出</span> <span>卖出价</span> <span>委单量</span> <span class=\"sp2\"></span></li>";
+		var sell = util
+				.ajax(global_param.context_name + '/getMinSellAuthorize');
+		if (sell) {
+			for (var i = 0; i < sell.length; i++) {
+				theSellEntrustHtml += "<li><span class=\"sp1 sp3\">卖("
+						+ (i + 1) + ")</span> <span>"
+						+ doubleNumber(sell[i].pirce, 2) + "</span> <span>"
+						+ doubleNumber(sell[i].deputeNum, 6)
+						+ "</span> <span class=\"sp2\"><span style=\"width:"
+						+ sell[i].deputeNum + "%;\"></span></span></li>";
+			}
+			theSellEntrustHtml += "</ul>";
+		}
+		theEntrustHtml += theBuyEntrustHtml + theSellEntrustHtml + "</div>";
+		$("#indexother").html(theEntrustHtml + theHistory);
+	}
+
+	//最新的成交记录
+	function getLatestDeals() {
+		var theHistory = "<div class=\"Dealbox\"><div class=\"infotitle\">最新成交</div><ul class=\"ul3\"><li><span>成交时间</span> <span>成交价</span> <span>成交量</span> </li>";
+		var newest = util.ajax(global_param.context_name + '/getLatestDeals');
+		if (newest) {
+			for (var i = 0; i < newest.length; i++) {
+				var cls = newest[i].tardetype == 1 ? "class='sp1'"
+						: "class='sp2'";
+				var date = new Date(newest[i].tardedate).format('hh:mm:ss');
+				theHistory += " <li><span>" + date
+						+ "</span> <span " + cls + ">"
+						+ doubleNumber(newest[i].pirce, 2) + "</span><span>"
+						+ doubleNumber(newest[i].tradeGSCNum, 6)
+						+ "<span> </li>";
+			}
+			theHistory += "</ul></div>";
+			delegation(theHistory);
+		}
+	}
+	function marketFigureData() {
+		var numberData = [];
+		var data = util.ajax(global_param.context_name + '/currentData');
+		if (data) {
+			for (var i = 0; i < data.length; i++) {
+				numberData.push([ data[i].startdate, data[i].firstPrice,
+						data[i].maxPrice, data[i].minPrice, data[i].lastPrice,
+						data[i].gscNumber ]);
+			}
+		}
+		currentData(numberData);
+	}
+	function currentData(data) {
+		var ohlc = [], volume = [], dataLength = data.length;
+
+		for (var i = 0; i < dataLength; i++) {
+			ohlc.push([ data[i][0], // the date
+			data[i][1], // open
+			data[i][2], // high
+			data[i][3], // low
+			data[i][4] // close
+			]);
+
+			volume.push([ data[i][0], // the date
+			data[i][5] // the volume
+			])
+		}
+
+		Highcharts.setOptions({
+			global : {
+				useUTC : false
+			},
+			lang : {
+				rangeSelectorZoom : '缩放',
+				weekdays : [ '周日', '周一', '周二', '周三', '周四', '周五', '周六' ],
+				months : [ '一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月',
+						'九月', '十月', '十一月', '十二月' ],
+				shortMonths : [ '1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月',
+						'9月', '10月', '11月', '12月' ]
+
+			},
+			credits : {
+				enabled : true,
+				text : '戢闯制作',
+				href : 'https://www.baidu.com',
+				position : {
+					align : 'right',
+					x : -10,
+					verticalAlign : 'bottom',
+					y : -5
+				},
+				style : {
+					cursor : 'pointer',
+					color : '#909090',
+					fontSize : '10px'
+				}
+			}
+		});
+		Highcharts.myOpt = {
+			symbolColor : '#058dc7'
+		};
+
+		// create the chart
+		$('#container').highcharts('StockChart', {
+			chart : {
+				backgroundColor : "#e9e9e9"
+			},
+			title : {
+				text : ''
+			},
+			plotOptions : {
+				candlestick : {
+					color : '#9e4',
+					upColor : '#d33',
+					ohlc : {
+						tooltip : {
+							xDateFormat : '%Y-%m-%d %H:%M %A',
+							color : '#f0f',
+							changeDecimals : 4
+						}
+					}
+				},
+				column : {
+					color : '#1080BB'
+				}
+			},
+			yAxis : [ {
+				title : {
+					text : '价格（YTC）'
+				},
+				height : 200,
+				lineWidth : 2
+			}, {
+				title : {
+					text : ''
+				},
+				top : 275,
+				height : 120,
+				offset : 0,
+				lineWidth : 2
+			} ],
+			tooltip : {
+				color : '#f0f',
+				changeDecimals : 4,
+				borderColor : '#058dc7'
+			},
+			rangeSelector : {
+				buttons : [ {
+					type : 'hour',
+					count : 1,
+					text : '1h'
+				}, {
+					type : 'hour',
+					count : 8,
+					text : '8h'
+				}, {
+					type : 'hour',
+					count : 24,
+					text : '24h'
+				}, {
+					type : 'hour',
+					count : 48,
+					text : '48h'
+				}, {
+					type : 'all',
+					text : '全'
+				} ],
+				selected : 0,
+				inputEnabled : false
+			},
+			series : [ {
+				type : 'candlestick',
+				name : 'YTC',
+				data : ohlc
+			}, {
+				type : 'column',
+				name : '成交量',
+				data : volume,
+				yAxis : 1
+			} ]
+		});
+	}
+</script>
+</head>
+
+<body style="width: 100%; height: 100%;">
+	<div align="center">
+		<div class="history_title">
+			<span style="color: red;">GSC 行情</span>
+		</div>
+		<div id="container" class="chart_container"></div>
+		<div class="newest">
+			<div class="theNewPrice">
+				<span>最新价格</span><span style="color: rgb(255, 0, 0);" id="NewPrice">0</span>
+			</div>
+			<div style="margin-top: 10px;" class="theNewPrice">
+				<span>最新成交价</span><span style="color: rgb(255, 0, 0);"
+					id="NewPrice2">0</SPAN><SPAN>买一价</SPAN><SPAN
+					style="color: rgb(255, 0, 0);" id="Top1Buy">0</span><span>卖一价</span><span
+					style="color: rgb(255, 0, 0);" id="Top1Sell">0</span><span>今日最高价</span><span
+					style="color: rgb(255, 0, 0);" id="ToDayHighPrice">0</SPAN><SPAN>今日最低价</span><span
+					style="color: rgb(255, 0, 0);" id="ToDayLowPrice">0</SPAN><SPAN>今日成交量</span><span
+					style="color: rgb(255, 0, 0);" id="ToDayGsc">0</span>
+			</div>
+		</div>
+		<div id="indexother" style="width: 1100px"></div>
+	</div>
+</body>
+</html>

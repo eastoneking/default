@@ -1,0 +1,163 @@
+<script type="text/javascript">
+	$(function() {
+// 		util.datebox("ghriqi");
+		
+		// 类别下拉框
+		util.select({
+			id : 'ghkeshiid',
+			valueField : 'id',
+			textField : 'ksname',
+			multiple : false,
+			url : global_param.context_name + "/select/getByCode/getkeshilist",
+			onSelect:function(date){ 
+				$("#ghkeshiname").val(date.ksname);
+			}
+		});
+		// 状态下拉框
+		util.select({
+			id : 'ghsex',
+			required : true,
+			param : {
+				typeCode : 'SEX'
+			}
+		});
+		// 状态下拉框
+		util.select({
+			id : 'ghtype',
+			required : true,
+			param : {
+				typeCode : 'GHLB'
+			}
+		});
+		var param = util.getWindowParam();
+		// 得到url中id值
+		if (param.id) {
+			var data = util.ajax(global_param.context_name
+					+ '/guahao/guahao/getById', {
+				"id" : param.id
+			});
+			$("#_form").form("load", data);
+		}
+// 		var keshengouliang = util.ajax(global_param.context_name
+// 				+ '/keshi/keshiweihu/keshengouliang');
+// 		$("#keshengouliang").val(doubleNumber(keshengouliang,6));
+
+	});
+
+	function submitForm() {
+		if(!$("#_form").form('enableValidation').form('validate')){
+			return;
+		}
+		var s = $("#ghsex").combobox('getValue');
+		if (s == '请选择') {
+			$.messager.alert('提示', '请选择患者性别', 'error');
+			return;
+		}
+		var s1 = $("#ghkeshiid").combobox('getValue');
+		if (s1 == '请选择') {
+			$.messager.alert('提示', '请选择挂号科室', 'error');
+			return;
+		}
+		var s2 = $("#ghtype").combobox('getValue');
+		if (s2 == '请选择') {
+			$.messager.alert('提示', '请选择挂号类别', 'error');
+			return;
+		}
+		var result = util.submit('_form');
+		if (result) {
+			if (result == "success") {
+// 				util.alert("操作成功");
+				util.show('操作成功');
+				$('#grid').datagrid('reload');
+				util.closeWindow('editWindow');
+			} else  {
+// 				util.error("请选初始化造币");
+				util.show('操作失败');
+			} 
+		}
+	}
+</script>
+<div class="easyui-layout" fit="true">
+	<div region="center" border="false" class="Dialog-Bg">
+	    <div class="Dialog-formDiv clearfix">
+		<form id="_form" action="/YLManager/guahao/guahao/save" method="post">
+			<input id="id" name="id" type="hidden" />
+				<div class="float-l clearboth2">
+			    <div class="Dialog-form-title2">
+			        <label for="ghnumber" class="field">病历号：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="ghnumber" name="ghnumber" type="text"  style="width:  154px;" class="easyui-validatebox" data-options="required:true"/>
+			    </div>
+			</div>
+			<div class="float-l clearboth">
+			    <div class="Dialog-form-title2">
+			        <label for="ghname" class="field">患者姓名：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="ghname" name="ghname" type="text"  class="easyui-validatebox" data-options="required:true" />
+			    </div>
+			</div>
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="ghage" class="field">患者年龄：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="ghage" name="ghage" type="text" class="easyui-validatebox" data-options="required:true"/>
+			    </div>
+			</div>
+		
+			<div class="float-l clearboth2">
+			    <div class="Dialog-form-title2">
+			        <label for="ghsex" class="field">患者性别：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="ghsex" name="ghsex" type="text"  style="width:  154px;" />
+			    </div>
+			</div>
+			<div class="float-l clearboth2">
+			    <div class="Dialog-form-title2">
+			        <label for="ghkeshiid" class="field">挂号科室：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="ghkeshiid" name="ghkeshiid" type="text"  style="width:  154px;" />
+			        <input id="ghkeshiname" name="ghkeshiname" type="hidden"/>
+			    </div>
+			</div>
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="ghtype" class="field">挂号类别：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="ghtype" name="ghtype"  style="width:  154px;" type="text" />
+			    </div>
+			</div>
+						<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="ghfeiyong" class="field">挂号费用：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="ghfeiyong" name="ghfeiyong" type="text" class="easyui-validatebox" data-options="required:true"/>
+			    </div>
+			</div>
+<!-- 			<div class="float-l"> -->
+<!-- 			    <div class="Dialog-form-title2"> -->
+<!-- 			        <label for="ghriqi" class="field">挂号时间：</label> -->
+<!-- 			    </div> -->
+<!-- 			    <div class="Dialog-form-item"> -->
+<!-- 			        <input id="ghriqi" name="ghriqi" type="text" class="easyui-validatebox" data-options="required:true"/> -->
+<!-- 			    </div> -->
+<!-- 			</div> -->
+		</form>
+		</div>
+	</div>
+	<div data-options="region:'south',border:false" class="Dialog-footer">
+	    <input id="" class="btn-save" onmouseover="this.className='btn-save-over'"
+	    onmouseout="this.className='btn-save'" onmousedown="this.className='btn-save-down'" type="button" onclick="submitForm();" />
+	    <input id="" class="btn-cancel" onmouseover="this.className='btn-cancel-over'"
+	    onmouseout="this.className='btn-cancel'" onmousedown="this.className='btn-cancel-down'" type="button" onclick="util.closeWindow('editWindow');" />
+		<!-- <a class="easyui-linkbutton" href="javascript:void(0);"
+			onclick="submitForm();">保存</a> <a class="easyui-linkbutton"
+			href="javascript:void(0);" onclick="util.closeWindow('editWindow');">取消</a> -->
+	</div>
+</div>

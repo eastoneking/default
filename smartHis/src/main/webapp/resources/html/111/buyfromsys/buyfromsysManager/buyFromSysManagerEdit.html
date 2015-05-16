@@ -1,0 +1,222 @@
+<script type="text/javascript">
+	$(function() {
+		util.datebox("sellstarttime");
+		util.datebox("sellendtime");
+		var param = util.getWindowParam();
+		$('#fieldTitle').html("新增系统卖出管理");
+		// 得到url中id值
+		var sys_num = util.ajax(global_param.context_name + "/buyFromSysManager/sys_Count_Num");
+		$("#sys_num").val(doubleNumber(sys_num,6));
+		if (param.sys_sell_manager_id) {
+			var data = util.ajax(global_param.context_name + "/buyFromSysManager/get", {id : param.sys_sell_manager_id});
+			$("#_form").form("load", data.result);
+			$('#sellendtime').val(new Date((data.result).sellendtime).format('yyyy-MM-dd'));
+			$('#sellstarttime').val(new Date((data.result).sellstarttime).format('yyyy-MM-dd'));
+			$('#fieldTitle').html("修改系统卖出管理");
+		}
+	});
+
+	function submitForm() {
+		var star = $('#sellstarttime').val();
+		var end=$('#sellendtime').val();
+		var sell_num= $('#sellCountnum').val();
+		var sys_num= $("#sys_num").val();
+		var min_num= $("#dealsellmin").val()
+		var pattern = /^[1-9]*[1-9][0-9]*$/;
+		var flag = pattern.test(sell_num);
+		var flag2 = pattern.test(min_num);
+		var data = util.ajax(global_param.context_name
+				+ '/shengou/shengoumanager/data');
+		if (!flag) {
+			$.messager.alert('提示', '卖出数量格式不正确，且不能为空请重新输入', 'info');
+			$('#sellCountnum').val("");
+			return;
+		}
+		if (!flag2) {
+			$.messager.alert('提示', '买入最小数量格式不正确，且不能为空请重新输入', 'info');
+			$('#dealsellmin').val("");
+			return;
+		}
+		if(parseInt(sell_num)>parseInt(sys_num)){
+			$.messager.alert('提示', '卖出数量不能大于当前系统可卖量', 'info');
+			$('#sellCountnum').val("");
+			return;
+		}
+		if(parseInt(min_num)>=parseInt(sell_num)){
+			$.messager.alert('提示', '买入最小数量不能大于等于卖出数量', 'info');
+			$('#dealsellmin').val("");
+			return;
+		}
+		if(textcheck.compareDate(star,end)==-2){
+			$.messager.alert('提示', '卖出开始时间和卖出结束时间都不能为空');
+			return;
+		}
+		if (textcheck.compareDate(star,end)==1) {
+			$.messager.alert('提示', '卖出开始时间不能大于卖出结束时间');
+			return;
+		}
+		if (textcheck.compareDate(star,data)==-1) {
+			$.messager.alert('提示', '卖出开始时间不能小于当前时间');
+			return;
+		}
+		var result = util.submit('_form');
+		if (result) {
+			if (result.flag) {
+				util.show("操作成功");
+				$('#dg').datagrid('reload');
+				util.closeWindow('editWindow');
+			} else {
+				util.error(result.message);
+			}
+		}
+	}
+// 	/**判断输入的最小值不能大于卖出数量*/
+// 	function checkNum(n){
+// 		var totl=$('#sellCountnum').val();
+// 		if(n>=totl){
+// 			util.alert('买入最小数量不能大于等于卖出数量');
+// 			var totl=$('#dealsellmin').val("");
+// 			return false;
+// 		}
+// 		return true;
+// 	}
+</script>
+<div class="easyui-layout" fit="true">
+	<div region="center" border="false" class="Dialog-Bg">
+	    <div class="Dialog-formDiv clearfix">
+			<form id="_form" action="/GSCManager/buyFromSysManager/save" method="post">
+				<input id="sys_sell_manager_id" name="sys_sell_manager_id" type="hidden" />
+				<div class="float-l">
+			        <div class="Dialog-form-title">
+			            <label for="sys_num" class="field">当前系统可卖量：</label>
+			        </div>
+			        <div class="Dialog-form-item Dialog-w1">
+			            <input type="text" id="sys_num" name="sys_num" readonly="readonly" class="readOnly" />
+			        </div>
+			    </div>
+			    <div class="float-l">
+			        <div class="Dialog-form-title">
+			            <label for="sellCountnum" class="field">卖&ensp;&ensp;出&ensp;&ensp;数&ensp;&ensp;量：</label>
+			        </div>
+			        <div class="Dialog-form-item">
+			            <input type="text" id="sellCountnum" name="sellCountnum" maxlength="8" />
+			        </div>
+			    </div>
+			    <div class="float-l clearboth">
+			        <div class="Dialog-form-title">
+			            <label for="sellstarttime" class="field letter-sp1">卖出开始时间：</label>
+			        </div>
+			        <div class="Dialog-form-item Dialog-w1">
+			            <input id="sellstarttime" name="sellstarttime" required="true" />
+			        </div>
+			    </div>
+			    <div class="float-l">
+			        <div class="Dialog-form-title">
+			            <label for="sellendtime" class="field letter-sp1">卖出结束时间：</label>
+			        </div>
+			        <div class="Dialog-form-item">
+			            <input id="sellendtime" name="sellendtime" required="true" />
+			        </div>
+			    </div>
+			    <div class="float-l clearboth">
+			        <div class="Dialog-form-title">
+			          <label for="pirce" class="field">单&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;价：</label>
+			        </div>
+			        <div class="Dialog-form-item Dialog-w1" style="position:relative; top:-7px;">
+			          <input type="text" id="pirce" value="1" name="pirce" class="easyui-numberbox readOnly" maxlength="8" data-options="min:0,precision:6" required="true" min="1" max="990000" readonly="readonly" /> 
+			         &ensp;元
+			        </div>
+			    </div>
+			    <div class="float-l">
+			        <div class="Dialog-form-title">
+			            <label for="dealsellmin" class="field letter-sp1">买入最小数量：</label>
+			        </div>
+			        <div class="Dialog-form-item">
+			            <input type="text" id="dealsellmin" name="dealsellmin" maxlength="8" /><label id="errormgs" style="color:red;"></label>
+			        </div>
+			    </div>
+				<!-- <table>
+				   <tr>
+						<td width="60px;">
+							<label for="sys_num" class="field">
+								当前系统可卖量:
+							</label>
+						</td>
+						<td>
+						<input type="text" id="sys_num" name="sys_num" readonly="readonly"></input>  
+						</td>
+					</tr>
+					<tr>
+						<td width="60px;">
+							<label for="sellCountnum" class="field">
+								卖出数量:
+							</label>
+						</td>
+						<td>
+						<input type="text" id="sellCountnum" name="sellCountnum" maxlength="8"></input>  
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="sellstarttime" class="field">
+								卖出开始时间:
+							</label>
+						</td>
+						<td>
+						<input id="sellstarttime" name="sellstarttime" required="true" style="width:150px"> 
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="sellendtime" class="field">
+								卖出结束时间:
+							</label>
+						</td>
+						<td>
+						<input id="sellendtime" name="sellendtime" required="true" style="width:150px"> 
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="pirce" class="field">
+								单价:
+							</label>
+						</td>
+						<td>
+						<input type="text" id="pirce" value="1" name="pirce" class="easyui-numberbox" maxlength="8" data-options="min:0,precision:6" required="true" min="1" max="990000" readonly="readonly"></input>元 
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="dealsellmin" class="field">
+								买入最小数量:
+							</label>
+						</td>
+						<td>
+							<input type="text" id="dealsellmin" name="dealsellmin" maxlength="8"></input><label id="errormgs" style="color:red;"></label>  
+						</td>
+					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td> -->
+<!-- 							<label for="dealsellMax" class="field"> -->
+<!-- 								最大数量: -->
+<!-- 							</label> -->
+<!-- 						</td> -->
+<!-- 						<td> -->
+<!-- 							<input type="text" id="dealsellMax" name="dealsellMax" class="easyui-numberbox" data-options="min:0,precision:6" required="true"></input>   -->
+<!-- 						</td> -->
+<!-- 					</tr> -->
+					
+				<!-- </table> -->
+			</form>
+	    </div>		
+	</div>
+	<div region="south" border="false" class="Dialog-footer">
+	    <input id="" class="btn-save" onmouseover="this.className='btn-save-over'"
+	    onmouseout="this.className='btn-save'" onmousedown="this.className='btn-save-down'" type="button" onclick="submitForm();" />
+	    <input id="" class="btn-cancel" onmouseover="this.className='btn-cancel-over'"
+	    onmouseout="this.className='btn-cancel'" onmousedown="this.className='btn-cancel-down'" type="button" onclick="util.closeWindow('editWindow');" />
+		<!-- <a class="easyui-linkbutton" iconCls="icon-ok" href="javascript:void(0);" onclick="submitForm();">保存</a>
+		<a class="easyui-linkbutton" iconCls="icon-cancel" href="javascript:void(0);" onclick="util.closeWindow('editWindow');">取消</a> -->
+	</div>
+</div>

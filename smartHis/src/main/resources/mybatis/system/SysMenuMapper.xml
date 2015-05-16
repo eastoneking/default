@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 指向Dao接口 -->
+<mapper namespace="com.neusoft.emanage.system.persist.SysMenuDao">
+	<!-- 获取用户 -->
+	<select id="get" parameterType="Integer" resultType="SysMenuBean">
+		select  sm.id,
+				sm.text,
+				sm.url,
+				sm.permission_id,
+				sm.status,
+				sm.parent_id,
+				sm.orders,
+				sm.icon,
+				sm1.text as parentText
+		  from	sys_menu sm left join sys_menu sm1 on sm.parent_id = sm1.id
+		 where  sm.id = #{id}
+	</select>
+
+	<!-- 树结构查询 ，返回List<SysMenuBean>对象， -->
+	<select id="list" parameterType="map" resultType="SysMenuBean">
+		select  sm.id,
+				sm.text,
+				sm.url,
+				sm.permission_id,
+				sm.status,
+				sm.parent_id,
+				sm.orders,
+				sm.icon
+		  from	sys_menu sm
+		<where>
+			<if test="text != null">
+				and sm.text like #{text}
+			</if>
+			<if test="status != null">
+				and sm.status = #{status}
+			</if>
+		</where>
+		<if test="sortname != null and sortorder != null">
+			order by ${sortname} ${sortorder}
+		</if>
+	</select>
+
+	<!-- 检查重名 -->
+	<select id="checkSave" parameterType="SysMenuBean" resultType="int">
+		select count(id) as count
+		  from sys_menu
+		<where>
+			text = #{text}
+			<if test="id != null">
+				and id != #{id}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 获取用户菜单 -->
+	<select id="getUserMenu" parameterType="Integer" resultType="SysMenuBean">
+		select  m.id,
+				m.text,
+				m.url,
+				m.permission_id,
+				m.status,
+				m.parent_id,
+				m.orders,
+				m.icon
+		from
+			sys_menu m
+		where
+			m.permission_id is null
+		and m.status = 0
+		or m.permission_id in (
+			select distinct
+				p.id
+			from
+				sys_user_role ur,
+				sys_role_permission rp,
+				sys1_permission p
+			where
+				ur.role_id = rp.role_id
+			and rp.permission_id = p.id
+			and p. status = 0
+			and ur.user_id = #{user_id}
+		)
+		order by orders asc
+	</select>
+
+	<!-- 向表中插入数据，并在将主键值赋到实体中，返回受影响的记录条数。如果不需要返回主键，无需配置useGeneratedKeys、keyProperty项 -->
+	<insert id="save" parameterType="SysMenuBean" useGeneratedKeys="true" keyProperty="id">
+		insert into sys_menu(text, url, permission_id, status, parent_id, orders, icon)
+			values(#{text}, #{url}, #{permission_id}, #{status}, #{parent_id}, #{orders}, #{icon})
+	</insert>
+
+	<!-- 更新表中数据，返回受影响的记录条数 -->
+	<update id="update" parameterType="SysMenuBean">
+		update sys_menu
+		set text = #{text},
+			url = #{url},
+			permission_id = #{permission_id},
+			status = #{status},
+			parent_id = #{parent_id},
+			orders = #{orders},
+			icon = #{icon}
+		where id = #{id}
+	</update>
+
+	<!-- 根据ID删除表中数据 -->
+	<delete id="delete">
+		delete from sys_menu where id = #{id}
+	</delete>
+</mapper> 

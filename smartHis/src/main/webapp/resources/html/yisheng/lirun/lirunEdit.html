@@ -1,0 +1,256 @@
+
+<script type="text/javascript">
+	jQuery(function($) {
+		var param = util.getWindowParam();
+		// 得到url中id值
+		//诊断ID
+// 		if (param.kcid) {
+// 			$("#zdyp_zdid").val(param.zdyp_zdid);
+// 			var data = util.ajax(global_param.context_name
+// 					+ '/kaiyao/kaiyao/getcount', {
+// 				"zdid" : param.zdyp_zdid
+// 			});
+// 			$("#ghsf_heji").val(data);
+// 			$("#ghsf_ysjine").val(data);
+// 		}
+		//挂号id
+		if (param.tongjishuliang) {
+			$("#tongjishuliang").val(param.tongjishuliang);
+		}
+		if (param.tongjichengben) {
+			$("#tongjichengben").val(param.tongjichengben);
+		}
+		//挂号编号
+		if (param.tongjixiaoshou) {
+			$("#tongjixiaoshou").val(param.tongjixiaoshou);
+		}
+		//挂号编号
+		if (param.tongjilirun) {
+			$("#tongjilirun").val(param.tongjilirun);
+		}
+		//挂号编号
+		if (param.tongjitimestart) {
+			$("#tongjitimestart").val(param.tongjitimestart);
+		}
+		//挂号编号
+		if (param.tongjitimeend) {
+			$("#tongjitimeend").val(param.tongjitimeend);
+		}
+		// 初始化表格
+		util.table('grid1', {
+			url : global_param.context_name + '/yaoju/chuku/lrinfolist', // 数据来源
+			title : '出库列表', // 标题
+			idField : 'id',	
+			queryParams: {
+				zdyp_ypid: param.kcid,
+				tongjitimestart: param.tongjitimestart,
+				tongjitimeend: param.tongjitimeend
+			},
+			sort : 'id', // 排序的列
+			order : 'desc', // 顺序
+			columns : [ [{
+				title : '药品编码',
+				field : 'zdyp_ypbmnumber',
+				width : 20
+			}, {
+				title : '药品名称',
+				field : 'zdyp_ypname',
+				width : 20
+			},{
+				title : '药品单位',
+				field : 'zdyp_ypdanwei',
+				width : 20,
+				formatter : function(value, row, index) {
+					return util.getSysParam('ZDZT', value);
+				}
+			}, {
+				title : '药品生产商',
+				field : 'zdyp_ypshengchanshang',
+				width : 20
+			},  {
+				title : '药品类别',
+				field : 'zdyp_ypleibie',
+				width : 20
+			},  {
+				title : '药品数量',
+				field : 'zdyp_ypshuliang',
+				width : 20
+			}, {
+				title : '本次销售价格',
+				field : 'zdyp_ypbcxsjiage',
+				width : 22
+			}, {
+				title : '单项合计',
+				field : 'zdyp_danxiangjine',
+				width : 22
+			}, {
+				title : '出库时间',
+				field : 'zdyp_ypcktime',
+				width : 22
+			}] ],
+// 			toolbar : [ 
+// 			            {
+// 				text : '新增',
+// 				iconCls : 'icon-add',
+// 				handler : addFunc
+// 			},
+// 			{
+// 				text : '修改',
+// 				iconCls : 'icon-modify',
+// 				handler : updateFunc
+// 			}, 
+// 			{
+// 				text : '删除',
+// 				iconCls : 'icon-delete',
+// 				handler : deleteFunc
+// 			}
+// 			]
+		});
+	});
+	// 新增
+	function addFunc() {
+		// 初始化编辑窗口
+		util.window('editWindow1', {
+			iconCls : '',
+			title : '新增收诊',
+			width : 640,
+			height : 400
+		});
+		
+		util.openWindow('editWindow1', util.getHtml("kaiyaoEdit.html"), {
+			zdyp_zdid : $("#zdyp_zdid_tmp").val(),
+			zdyp_ghid : $("#zdyp_ghid_tmp").val(),
+			zdyp_ghnumber : $("#zdyp_ghnumber_tmp").val()
+		});
+		
+		
+// 		var url = util.getHtml("kaiyaoEdit.html");
+// // 		var url = util.getHtml("rukuEdit.html");
+// 		util.openWindow('editWindow1',  util.getHtml("kaiyaoEdit.html"), {
+// 			zdyp_zdid : param.zdyp_zdid,
+// 			zdyp_ghid : param.zdyp_ghid,
+// 			zdyp_ghnumber : param.zdyp_ghnumber
+// 		});
+// 		util.openWindow('editWindow1', url);
+	}
+	// 修改
+	function updateFunc() {
+		// 初始化编辑窗口
+		util.window('editWindow', {
+			iconCls : '',
+			title : '收诊开药',
+			width : 640,
+			height : 400
+		});
+		var node = $('#grid').datagrid('getSelected');
+		if (!node) {
+				util.show('请选择一行');
+			return;
+		}
+		util.openWindow('editWindow', util.getHtml("guahaoEdit.html"), {
+			id : node.id
+		});
+	}
+	// 删除
+	function deleteFunc() {
+		var node = $('#grid1').datagrid('getSelected');
+		if (!node) {
+			util.show('请选择一行');
+			return;
+		}
+		$.messager.confirm("删除", "确定要执行删除操作？", function(resule) {
+			if(!resule){
+				return;
+			}
+			var data = util.ajax(global_param.context_name +"/kaiyao/kaiyao/delete?id=" + node.id);
+			if (data == "success") {
+				$('#grid1').datagrid('reload');
+				util.show('操作成功');
+			} else {
+				util.show('操作失败');
+			}
+		});
+	}
+	// 查询
+	function query() {
+		util.query("grid", "searchForm");
+	}
+	function initzl(){
+		var ysjine = $("#ghsf_ysjine").val(); 
+		var ssjine = $("#ghsf_ssjine").val();
+		if(ssjine==""){
+			return;
+		}
+		var zl = parseFloat(ssjine)-parseFloat(ysjine);
+		$("#ghsf_zljine").val(zl);
+	}
+
+	function submitForm() {
+		var result = util.submit('_form');
+		if (result) {
+			if (result == "success") {
+// 				util.alert("操作成功");
+				util.show('操作成功');
+				$('#grid').datagrid('reload');
+				util.closeWindow('editWindow');
+			} else  {
+// 				util.error("请选初始化造币");
+				util.show('操作失败');
+			} 
+		}
+	}
+</script>
+	<div class="easyui-layout" fit="true" style="width: 100%; height: 100%;">
+		<!-- 页面头部 -->
+		<div data-options="region:'north',border:false,split:false" class="l-panel-search clearfix" style="overflow:hidden;">
+		    <div class="l-searchbar clearfix centertoolbar-w1" >
+                <div class="l-panel-search-cond clearfix">
+                <form id="_form" action="/YLManager/yaoju/chuku/save" method="post">
+			<input id="id" name="id" type="hidden" />
+	            <div class="float-l">
+                        <div class="l-panel-search-title">合计数量（元）:</div>
+                        <div class="l-panel-search-item">
+                            <input id="tongjishuliang" name="tongjishuliang" type="text" style="width:184px;"/>
+                        </div>
+                    </div>
+                    <div class="float-l">
+                        <div class="l-panel-search-title">合计成本（元）:</div>
+                        <div class="l-panel-search-item">
+                            <input id="tongjichengben" name="tongjichengben" type="text" style="width:184px;"/>
+                        </div>
+                    </div>
+                          <div class="float-l clearboth">
+                        <div class="l-panel-search-title">合计销售（元）:</div>
+                        <div class="l-panel-search-item">
+                            <input id="tongjixiaoshou" name="tongjixiaoshou" type="text" style="width:184px;"/>
+                        </div>
+                    </div>
+                          <div class="float-l">
+                        <div class="l-panel-search-title">合计利润（元）:</div>
+                        <div class="l-panel-search-item">
+                            <input id="tongjilirun" name="tongjilirun" type="text" style="width:184px;"/>
+                        </div>
+                    </div>
+                     <div class="float-l clearboth">
+                        <div class="l-panel-search-title">统计时间段 起:</div>
+                        <div class="l-panel-search-item">
+                            <input id="tongjitimestart" name="tongjitimestart" type="text" style="width:184px;"/>
+                        </div>
+                    </div>
+                     <div class="float-l">
+                        <div class="l-panel-search-title">止:</div>
+                        <div class="l-panel-search-item">
+                            <input id="tongjitimeend" name="tongjitimeend" type="text" style="width:184px;"/>
+                        </div>
+                    </div>
+		</form>
+			    </div>
+			</div>
+		</div>
+		<!-- 显示区域 -->
+		<div data-options="region:'center',border:false" style="overflow: hidden;">
+			<table id="grid1"></table>
+		</div>
+	</div>
+	<!-- 编辑窗口 -->
+	<div id="editWindow1"></div>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 指向Dao接口 -->
+<mapper namespace="com.neusoft.emanage.guahao.persist.ShoukuanDao">
+	<!-- 获取用户 -->
+	<select id="get" parameterType="Integer" resultType="ShoukuanBean">
+		select  id,
+	ghsf_zdid,
+	ghsf_ghid, 
+	ghsf_ghnumber, 
+	ghsf_ysjine, 
+		ghsf_ssjine,
+		ghsf_zljine,
+		ghsf_heji,
+		ghsf_sktime,
+		ghsf_skpersonid,
+		ghsf_skperson
+		  from yl_ghshoufei
+		 where ghsf_zdid = #{id}
+	</select>
+
+	<!-- 分页查询 ，返回List<HashMap>对象， -->
+	<select id="list" parameterType="map" resultType="GuaHaoBean">
+			select  id,
+			ghnumber,
+				ghname,
+				ghsex,
+				ghage,
+				ghkeshiid,
+				ghkeshiname,
+				ghtype,
+				ghstatus,
+				ghyishengid,
+				ghyisheng,
+				ghriqi,
+				ghypfeiyong,
+				ghfeiyong
+		  from yl_ghtaizhang
+		<where>
+			   1=1
+			<if test="ghnumber != null and  ghnumber != '' ">
+				and ghnumber like   CONCAT(CONCAT('%', #{ghnumber}), '%')  
+			</if>
+			<if test="ghkeshiname != null  and ghkeshiname != '' ">
+				and ghkeshiname like CONCAT(CONCAT('%', #{ghkeshiname}), '%')  
+			</if>
+		</where>
+		<if test="sortname != null and sortorder != null">
+			order by ${sortname} ${sortorder}
+		</if>
+				<if test="offset != null and pagesize !=null">
+			LIMIT ${offset}, ${pagesize}
+		</if>
+	</select>
+<select id="findCount" parameterType="map" resultType="int">
+		select  count(0)
+		   from yl_ghtaizhang
+		<where>
+			   1=1
+			<if test="ghkeshiid != null and  ghkeshiid != '' ">
+				and ghkeshiid like   CONCAT(CONCAT('%', #{ghkeshiid}), '%')  
+			</if>
+			<if test="ghname != null  and ghname != '' ">
+				and ghname like CONCAT(CONCAT('%', #{ghname}), '%')  
+			</if>
+		</where>
+		<if test="sortname != null and sortorder != null">
+			order by ${sortname} ${sortorder}
+		</if>
+	</select>
+	<!-- 按类别查询 -->
+	<select id="getByTypeCode" parameterType="string" resultType="GuaHaoBean">
+		select  id,
+				ghnumber,
+				ghname,
+				ghsex,
+				ghage,
+				ghkeshiid,
+				ghkeshiname,
+				ghtype,
+				ghstatus,
+				ghyishengid,
+				ghyisheng,
+				ghriqi,
+				ghypfeiyong,
+				ghfeiyong
+		  from yl_ghtaizhang
+<!-- 		 where type_code = #{typeCode} -->
+	</select>
+	<!-- 向表中插入数据，并在将主键值赋到实体中，返回受影响的记录条数。如果不需要返回主键，无需配置useGeneratedKeys、keyProperty项 -->
+	<insert id="save" parameterType="ShoukuanBean" useGeneratedKeys="true" keyProperty="id">
+		insert into yl_ghshoufei(ghsf_zdid,ghsf_ghid, ghsf_ghnumber, ghsf_ysjine, 
+		ghsf_ssjine,ghsf_zljine,ghsf_heji,ghsf_sktime,
+		ghsf_skpersonid,ghsf_skperson)
+			values(#{ghsf_zdid},#{ghsf_ghid}, #{ghsf_ghnumber}, #{ghsf_ysjine},
+			 #{ghsf_ssjine},  #{ghsf_zljine}, #{ghsf_heji}, CURDATE(),
+			  #{ghsf_skpersonid}, #{ghsf_skperson});
+	</insert>
+
+	<!-- 更新表中数据，返回受影响的记录条数 -->
+	<update id="update" parameterType="GuaHaoBean">
+		update yl_ghtaizhang
+		<set>
+			<if test="ghnumber != null">
+				ghnumber = #{ghnumber},
+			</if>
+			<if test="ghname != null">
+				ghname = #{ghname},
+			</if>
+			<if test="ghsex != null">
+				ghsex = #{ghsex},
+			</if>
+			<if test="ghage != null">
+				ghage = #{ghage},
+			</if>
+			<if test="ghkeshiid != null">
+				ghkeshiid = #{ghkeshiid},
+			</if>
+			<if test="ghkeshiname != null">
+				ghkeshiname = #{ghkeshiname},
+			</if>	
+			<if test="ghtype != null">
+				ghtype = #{ghtype},
+			</if>	
+			<if test="ghstatus != null">
+				ghstatus = #{ghstatus},
+			</if>
+			<if test="ghyishengid != null">
+				ghyishengid = #{ghyishengid},
+			</if>	
+			<if test="ghyisheng != null">
+				ghyisheng = #{ghyisheng},
+			</if>	
+			<if test="ghriqi != null">
+				ghriqi = #{ghriqi},
+			</if>
+			<if test="ghypfeiyong != null">
+				ghypfeiyong = #{ghypfeiyong},
+			</if>
+			<if test="ghfeiyong != null">
+				ghfeiyong = #{ghfeiyong}
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<!-- 根据ID删除表中数据 -->
+	<delete id="delete">
+		delete from yl_ghtaizhang where id =#{id}
+	</delete>
+</mapper> 

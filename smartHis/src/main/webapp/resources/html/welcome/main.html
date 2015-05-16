@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>E-meeting</title>
+<style type="text/css">
+#wrap {
+	width: 996px;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+#login_div {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: 0 auto;
+	width: 400px;
+	height: 200px;
+	position: absolute;
+	margin: -100px 0px 0px -200px;
+	overflow: auto;
+}
+</style>
+<link href="../../css/goldcow-all.css" rel="stylesheet" type="text/css" />
+<link href="../../css/app.css" rel="stylesheet" type="text/css" />
+<script src="../../js/goldcow-all.js"></script>
+
+<link href="../../css/index.css" type="text/css" rel="stylesheet" />
+<link href="../../css/base.css" type="text/css" rel="stylesheet" />
+<link href="../../css/screen.css" rel="stylesheet" type="text/css"
+	media="screen" />
+<style type="text/css">
+</style>
+
+<script type="text/javascript">
+	$(function() {
+
+		$("#layout1").ligerLayout({
+			leftWidth : 230
+		});
+		$("#accordion1").ligerAccordion({
+			height : 600
+		});
+	});
+</script>
+
+
+<script type="text/javascript">
+	function opendemo() {
+		var a = window.parent;
+		//var name = window.parent.frames[1];
+		//         	window.parent.document.getElementById("main_frame").height= '750px';
+		$("#main_frame").attr("src", "../demo/demolist.html");
+		// 		        	$("#yp").html("系统管理->DEMO");
+		//         	$("#pp").attr("title","title");
+		//         	$("#yourposition").attr("title","您的位置：demo");
+		//         	location.href ="resources/html/demo/demolist.html";
+	}
+	function openfilemanager() {
+		var a = window.parent;
+		$("#main_frame").attr("src", "../filedemo/filelist.html");
+
+	}
+</script>
+
+</head>
+<body style="padding: 10px">
+	<div id="layout1">
+		<div position="left" title="&nbsp;菜单列表">
+
+			<div id="accordion1" style="padding: 10px">
+				<div title="系统管理">
+					<ul>
+						<li><a href="#" onclick="opendemo()">demo</a></li>
+					</ul>
+				</div>
+
+				<div title="公文管理" style="padding: 10px">
+					<li><a href="#" onclick="openfilemanager()">模板管理</a></li>
+				</div>
+	
+			</div>
+
+		</div>
+		<div position="center" name="pp" id="pp" title="业务窗体">
+			<!-- 			<div id="yp">您的位置</div> -->
+			<iframe frameborder="0" id="main_frame" width="100%" height="90%"
+				src="center.html" scrolling="no"></iframe>
+
+		</div>
+	</div>
+</body>
+</html>

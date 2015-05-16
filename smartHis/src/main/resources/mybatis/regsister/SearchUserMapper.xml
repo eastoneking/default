@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neusoft.emanage.regsister.persist.SearchUserDao">
+	<select id="searchUser" resultType="SearchUserBean">
+		SELECT user_name,display_name,idCard,phone,useraccess.email FROM
+		sys1_user,useraccess WHERE sys1_user.ID=useraccess.userId
+	</select>
+</mapper>

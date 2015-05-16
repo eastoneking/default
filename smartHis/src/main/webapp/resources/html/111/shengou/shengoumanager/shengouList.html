@@ -1,0 +1,356 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>申购发布列表</title>
+
+<script src="../../../js/goldcow-all.js" type="text/javascript"></script>
+<link href="/GSCManager/resources/css/goldcow-all.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+	jQuery(function($) {
+		
+		util.datebox("search_release_time_start");
+		util.datebox("search_release_time_end");
+		util.datebox("search_forbidden_time_start");
+		util.datebox("search_forbidden_time_end");
+		util.select({
+			id : 'search_subscriptionManage_status',
+			param : {
+				typeCode : 'SUBSCRIPTIONMANAGE_STATUS'
+			}
+		});
+		
+		// 初始化表格
+		util.table('grid', {
+			url : global_param.context_name + '/shengou/shengoumanager/list', // 数据来源
+			title : '申购发布列表', // 标题
+			idField : 'subscriptionManager_id',
+			sortName : 'subscriptionManager_id', // 排序的列
+			sortOrder : 'desc', // 顺序
+			columns : [ [ {
+				title : '申购数量',
+				field : 'subscriptionnum',
+				width : 20,
+				formatter : function(value, row, index) {
+					return doubleNumber(row.subscriptionnum,6);
+				}
+// 				sortable : true
+			}, {
+				title : '申购价格',
+				field : 'pirce',
+				width : 22,
+				formatter : function(value, row, index) {
+					return doubleNumber(row.pirce,2).formatStrNum();
+				}
+// 				sortable : true
+			}, {
+				title : '申购开始时间',
+				field : 'starttime',
+				width : 22
+// 				sortable : true
+			}, {
+				title : '申购结束时间',
+				field : 'endTime',
+				width : 22
+// 				sortable : true
+			}, {
+				title : '最小申购量',
+				field : 'minnum',
+				width : 22,
+				formatter : function(value, row, index) {
+					return doubleNumber(row.minnum,6);
+				}
+// 				sortable : true
+			}, {
+				title : '最大申购量',
+				field : 'maxnum',
+				width : 30,
+				formatter : function(value, row, index) {
+					return doubleNumber(row.maxnum,6);
+				}
+// 				sortable : true
+			},  {
+				title : '申购状态',
+				field : 'subscriptionManage_status',
+				width : 30,
+// 				sortable : true,
+				formatter : function(value, row, index) {
+					return util.getSysParam('SUBSCRIPTIONMANAGE_STATUS', value);
+				}
+			},{
+				title : '当前申购量',
+				field : 'alreadynum',
+				width : 30,
+				formatter : function(value, row, index) {
+					return doubleNumber(row.alreadynum,6);
+				}
+// 				sortable : true
+			}, {
+				title : '开始付款时间',
+				field : 'playallstarttime',
+				width : 30
+// 				sortable : true
+			}, {
+				title : '结束付款时间',
+				field : 'playallendtime',
+				width : 30
+// 				sortable : true
+			},{
+				title : '发布时间',
+				field : 'release_time',
+				width : 30
+// 				sortable : true
+			}
+			, {
+				title : '发布执行人',
+				field : 'option_name',
+				width : 30
+// 				sortable : true
+			}
+			, {
+				title : '封存时间',
+				field : 'forbidden_time',
+				width : 30
+// 				sortable : true
+			}/*
+			, {
+				title : '封存执行人',
+				field : 'forbidden_name',
+				width : 30
+// 				sortable : true
+			}*/] ],
+			toolbar : [ {
+				text : '新增',
+				iconCls : 'icon-add',
+				handler : addFunc
+			}, {
+				text : '修改',
+				iconCls : 'icon-modify',
+				handler : updateFunc
+			}, {
+				text : '删除',
+				iconCls : 'icon-delete',
+				handler : deleteFunc
+			} , {
+				text : '发布申购',
+				iconCls : 'icon-issue',
+				handler : fabuFunc
+			}/*  , {
+				text : '封存申购(慎用)',
+				iconCls : 'icon-remove',
+				handler : fengcunFunc
+			} */]
+		});
+	});
+	// 新增
+	function addFunc() {
+		// 初始化编辑窗口
+		util.window('editWindow', {
+			iconCls : '',
+			title : '新增申购管理',
+			width : 640,
+			height : 400
+		});
+		var url = util.getHtml("shengouEdit.html");
+		util.openWindow('editWindow', url);
+	}
+	// 修改
+	function updateFunc() {
+		// 初始化编辑窗口
+		util.window('editWindow', {
+			iconCls : '',
+			title : '修改申购管理',
+			width : 640,
+			height : 400
+		});
+		var node = $('#grid').datagrid('getSelected');
+		if (!node) {
+// 			util.alert("请选择一行！");
+				util.show('请选择一行');
+			return;
+		}
+		if (node.subscriptionManage_status!=0) {
+			util.show("已经发布或曾经发布过的记录不能修改！");
+			return;
+		}
+		util.openWindow('editWindow', util.getHtml("shengouEdit.html"), {
+			subscriptionManager_id : node.subscriptionManager_id
+		});
+	}
+	// 删除
+	function deleteFunc() {
+		var node = $('#grid').datagrid('getSelected');
+		if (!node) {
+// 			util.alert("请选择一行！");
+			util.show('请选择一行');
+			return;
+		}
+		if (node.subscriptionManage_status!=0) {
+			util.show("已经发布或曾经发布过的记录不能删除！");
+			return;
+		}
+		$.messager.confirm("删除", "确定要执行删除操作？", function(resule) {
+			if(!resule){
+				return;
+			}
+			var data = util.ajax(global_param.context_name +"/shengou/shengoumanager/delete?subscriptionManager_id=" + node.subscriptionManager_id);
+			if (data == "success") {
+				$('#grid').datagrid('reload');
+// 				util.alert("操作成功");
+				util.show('操作成功');
+			} else {
+// 				util.alert("操作失败");
+				util.show('操作失败');
+			}
+		});
+	}
+	//发布申购
+	function fabuFunc() {
+		var newdata = util.ajax(global_param.context_name
+				+ '/shengou/shengoumanager/data');
+		var node = $('#grid').datagrid('getSelected');
+		if (!node) {
+// 			util.alert("请选择一行！");
+				util.show('请选择一行');
+			return;
+		}
+		if (!node) {
+// 			util.alert("请选择一行！");
+				util.show('请选择一行');
+			return;
+		}
+		if (node.subscriptionManage_status!=0) {
+			util.show("该记录已发布或已正常结束，不可再次发布！");
+			return;
+		}
+		if (textcheck.compareDate(newdata, node.endTime) == 1) {
+			util.alert( '申购结束时间必须大于等于服务器时间');
+			return;
+		}
+		util.confirm("确定发布?", function() {
+			var data = util.ajax(global_param.context_name +"/shengou/shengoumanager/fabu?subscriptionManager_id=" + node.subscriptionManager_id);
+			if (data == "success") {
+				$('#grid').datagrid('reload');
+// 				util.alert("发布成功");
+				util.show('发布成功');
+			}else if(data == "error2"){
+				util.alert("发布失败，申购数量不能超出系统可卖数量");				
+			} else {
+				util.alert("发布失败，已存在发布的申购！");
+			}
+		});
+	}
+	// 封存申请
+	function fengcunFunc() {
+		var node = $('#grid').datagrid('getSelected');
+		if (!node) {
+// 			util.alert("请选择一行！");
+			util.show('请选择一行');
+			return;
+		}
+		if (node.subscriptionManage_status!=1) {
+// 			util.alert("请先发布！");
+				util.show('请先发布!');
+			return;
+		}
+		util.confirm("手动封存会给系统带来其他影响?", function() {
+			var data = util.ajax(global_param.context_name +"/shengou/shengoumanager/fengcun?subscriptionManager_id=" + node.subscriptionManager_id);
+			if (data == "success") {
+				$('#grid').datagrid('reload');
+// 				util.alert("封存成功");
+				util.show('封存成功');
+			} else {
+// 				util.alert("封存失败");
+				util.show('封存失败');
+			}
+		});
+	}
+	// 查询
+	function query() {
+		if($('#search_release_time_start').val()!=""&&$('#search_release_time_end').val()!=""){
+			if($('#search_release_time_start').val()> $('#search_release_time_end').val()){
+				util.alert("发布起始时间要小于结束时间");
+				return;
+			}
+		}
+		if($('#search_forbidden_time_start').val()!=""&&$('#search_forbidden_time_start').val()!=""){
+			if($('#search_forbidden_time_start').val()>$('#search_forbidden_time_start').val()){
+				util.alert("封存起始时间要小于结束时间");
+				return;
+			}
+		}
+		util.query("grid", "searchForm");
+	}
+	
+</script>
+</head>
+<body>
+	<div class="easyui-layout" fit="true" style="width: 100%; height: 100%;">
+		<!-- 页面头部 -->
+		<div data-options="region:'north',border:false,split:false" class="l-panel-search clearfix" style="overflow:hidden;">
+		    <div class="l-searchbar clearfix centertoolbar-w1" >
+                <div class="l-panel-search-cond clearfix">
+			    <form id="searchForm" action="#">
+			        <div class="float-l">
+                        <div class="l-panel-search-title">发布时间&ensp;起:</div>
+                        <div class="l-panel-search-item">
+                            <input id="search_release_time_start" name="release_time_start" type="text" style="width:180px;" />
+                        </div>
+                        <div class="l-panel-search-item">
+                                                                                   止：<input id="search_release_time_end" name=release_time_end type="text" style="width:180px;" />
+                        </div>
+                    </div>
+                    <div class="float-l clearboth">
+                        <div class="l-panel-search-title">封存时间&ensp;起:</div>
+                        <div class="l-panel-search-item">
+                            <input id="search_forbidden_time_start" name="forbidden_time_start" type="text" style="width:180px;" />
+                        </div>
+                        <div class="l-panel-search-item">
+                                                                                   止：<input id="search_forbidden_time_end" name="forbidden_time_end" type="text" style="width:180px;" />
+                        </div>
+                    </div>
+                    <div class="float-l">
+                        <div class="l-panel-search-title">申购状态:</div>
+                        <div class="l-panel-search-item">
+                            <input id="search_subscriptionManage_status" name="subscriptionManage_status" type="text" style="width:184px;"/>
+                        </div>
+                    </div>
+				<!-- <table cellpadding="3px;" cellspacing="3px;">
+					<tr>
+						<th>发布时间起：</th>
+						<td><input id="search_release_time_start" name="release_time_start"
+							type="text" /></td>
+						<th>止:</th>
+						<td><input id="search_release_time_end" name=release_time_end type="text" /></td>
+						<th>封存时间起：</th>
+						<td><input id="search_forbidden_time_start" name="forbidden_time_start" type="text" /></td>
+						<th>止：</th>
+						<td><input id="search_forbidden_time_end" name="forbidden_time_end" type="text" /></td>
+						<th>申购状态：</th>
+						<td><input id="search_subscriptionManage_status" name="subscriptionManage_status" type="text"/></td>
+						
+						<td colspan="2"><a href="#" onclick="query();"
+							class="easyui-linkbutton" iconCls="icon-search">查询</a> <a href="#"
+							onclick="$('#searchForm').form('reset');"
+							class="easyui-linkbutton">清空</a></td>
+					</tr>
+				</table> -->
+			    </form>
+			    </div>
+			    <div class="l-panel-search-btn2">
+                   <input id="" class="btn-search" onmouseover="this.className='btn-search-over'"
+                   onmouseout="this.className='btn-search'" onmousedown="this.className='btn-search-down'" type="button" onclick="query();" />
+                   <input id="" class="btn-empty" onmouseover="this.className='btn-empty-over'"
+                   onmouseout="this.className='btn-empty'" onmousedown="this.className='btn-empty-down'" type="button"onclick="$('#searchForm').form('reset');" />
+                </div>
+			</div>
+		</div>
+		<!-- 显示区域 -->
+		<div data-options="region:'center',border:false" style="overflow: hidden;">
+			<table id="grid"></table>
+		</div>
+	</div>
+	<!-- 编辑窗口 -->
+	<div id="editWindow"></div>
+</body>
+</html>

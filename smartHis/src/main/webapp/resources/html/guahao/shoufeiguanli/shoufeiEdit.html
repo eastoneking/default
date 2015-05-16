@@ -1,0 +1,255 @@
+
+<script type="text/javascript">
+	jQuery(function($) {
+		var param = util.getWindowParam();
+		// 得到url中id值
+		//诊断ID
+		if (param.zdyp_zdid) {
+			$("#ghsf_zdid").val(param.zdyp_zdid);
+			var data = util.ajax(global_param.context_name
+					+ '/kaiyao/kaiyao/getcount', {
+				"zdid" : param.zdyp_zdid
+			});
+			$("#ghsf_heji").val(data);
+			$("#ghsf_ysjine").val(data);
+		}
+		//挂号id
+		if (param.zdyp_ghid) {
+			$("#ghsf_ghid").val(param.zdyp_ghid);
+		
+		}	
+		if (param.zd_version) {
+			$("#zd_version").val(param.zd_version);
+		}
+		//挂号编号
+		if (param.zdyp_ghnumber) {
+			$("#ghsf_ghnumber").val(param.zdyp_ghnumber);
+		}
+	
+		// 初始化表格
+		util.table('grid1', {
+			url : global_param.context_name + '/kaiyao/kaiyao/list', // 数据来源
+			title : '药品列表', // 标题
+			idField : 'id',
+			queryParams: {
+				zdyp_zdid: param.zdyp_zdid
+			},
+			sort : 'id', // 排序的列
+			order : 'desc', // 顺序
+			columns : [ [{
+				title : '药品编码',
+				field : 'zdyp_ypbmnumber',
+				width : 20
+			}, {
+				title : '药品名称',
+				field : 'zdyp_ypname',
+				width : 20
+			},{
+				title : '药品单位',
+				field : 'zdyp_ypdanwei',
+				width : 20,
+				formatter : function(value, row, index) {
+					return util.getSysParam('ZDZT', value);
+				}
+			}, {
+				title : '药品生产商',
+				field : 'zdyp_ypshengchanshang',
+				width : 20
+			},  {
+				title : '药品类别',
+				field : 'zdyp_ypleibie',
+				width : 20
+			},  {
+				title : '药品数量',
+				field : 'zdyp_ypshuliang',
+				width : 20
+			}, {
+				title : '本次销售价格',
+				field : 'zdyp_ypbcxsjiage',
+				width : 22
+			}, {
+				title : '单项合计',
+				field : 'zdyp_danxiangjine',
+				width : 22
+			}] ]
+// 			toolbar : [ 
+// 			            {
+// 				text : '新增',
+// 				iconCls : 'icon-add',
+// 				handler : addFunc
+// 			},
+// 			{
+// 				text : '修改',
+// 				iconCls : 'icon-modify',
+// 				handler : updateFunc
+// 			}, 
+// 			{
+// 				text : '删除',
+// 				iconCls : 'icon-delete',
+// 				handler : deleteFunc
+// 			}
+// 			]
+		});
+	});
+	// 新增
+	function addFunc() {
+		// 初始化编辑窗口
+		util.window('editWindow1', {
+			iconCls : '',
+			title : '新增收诊',
+			width : 640,
+			height : 400
+		});
+		
+		util.openWindow('editWindow1', util.getHtml("kaiyaoEdit.html"), {
+			zdyp_zdid : $("#zdyp_zdid_tmp").val(),
+			zdyp_ghid : $("#zdyp_ghid_tmp").val(),
+			zdyp_ghnumber : $("#zdyp_ghnumber_tmp").val()
+		});
+		
+		
+// 		var url = util.getHtml("kaiyaoEdit.html");
+// // 		var url = util.getHtml("rukuEdit.html");
+// 		util.openWindow('editWindow1',  util.getHtml("kaiyaoEdit.html"), {
+// 			zdyp_zdid : param.zdyp_zdid,
+// 			zdyp_ghid : param.zdyp_ghid,
+// 			zdyp_ghnumber : param.zdyp_ghnumber
+// 		});
+// 		util.openWindow('editWindow1', url);
+	}
+	// 修改
+	function updateFunc() {
+		// 初始化编辑窗口
+		util.window('editWindow', {
+			iconCls : '',
+			title : '收诊开药',
+			width : 640,
+			height : 400
+		});
+		var node = $('#grid').datagrid('getSelected');
+		if (!node) {
+				util.show('请选择一行');
+			return;
+		}
+		util.openWindow('editWindow', util.getHtml("guahaoEdit.html"), {
+			id : node.id
+		});
+	}
+	// 删除
+	function deleteFunc() {
+		var node = $('#grid1').datagrid('getSelected');
+		if (!node) {
+			util.show('请选择一行');
+			return;
+		}
+		$.messager.confirm("删除", "确定要执行删除操作？", function(resule) {
+			if(!resule){
+				return;
+			}
+			var data = util.ajax(global_param.context_name +"/kaiyao/kaiyao/delete?id=" + node.id);
+			if (data == "success") {
+				$('#grid1').datagrid('reload');
+				util.show('操作成功');
+			} else {
+				util.show('操作失败');
+			}
+		});
+	}
+	// 查询
+	function query() {
+		util.query("grid", "searchForm");
+	}
+	function initzl(){
+		var ysjine = $("#ghsf_ysjine").val(); 
+		var ssjine = $("#ghsf_ssjine").val();
+		if(ssjine==""){
+			return;
+		}
+		var zl = parseFloat(ssjine)-parseFloat(ysjine);
+		$("#ghsf_zljine").val(zl);
+	}
+
+	function submitForm() {
+		if(!$("#_form").form('enableValidation').form('validate')){
+			return;
+		}
+		var result = util.submit('_form');
+		if (result) {
+			if (result == "success") {
+// 				util.alert("操作成功");
+				util.show('操作成功');
+				$('#grid').datagrid('reload');
+				util.closeWindow('editWindow');
+			} else  {
+// 				util.error("请选初始化造币");
+				util.show('操作失败');
+			} 
+		}
+	}
+	function clearNoNum(obj)  
+	{  
+	   obj.value = obj.value.replace(/[^\d.]/g,"");  //清除“数字”和“.”以外的字符  
+	   obj.value = obj.value.replace(/^\./g,"");  //验证第一个字符是数字而不是.  
+	  obj.value = obj.value.replace(/\.{2,}/g,"."); //只保留第一个. 清除多余的  
+	  obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");  
+	  obj.value=obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');//只能输入两个小数  
+	}  
+</script>
+	<div class="easyui-layout" fit="true" style="width: 100%; height: 100%;">
+		<!-- 页面头部 -->
+		<div data-options="region:'north',border:false,split:false" class="l-panel-search clearfix" style="overflow:hidden;">
+		    <div class="l-searchbar clearfix centertoolbar-w1" >
+                <div class="l-panel-search-cond clearfix">
+                <form id="_form" action="/YLManager/guahao/shoukuan/save" method="post">
+			<input id="id" name="id" type="hidden" />
+	            <div class="float-l">
+                        <div class="l-panel-search-title">挂号编号:</div>
+                        <div class="l-panel-search-item">
+                            <input id="ghsf_ghnumber" name="ghsf_ghnumber" type="text" readonly="readonly" class="easyui-validatebox" data-options="required:true"  style="width:184px;"/>
+                            <input id="ghsf_ghid" name="ghsf_ghid" type="hidden" style="width:184px;"/>
+                            <input id="ghsf_zdid" name="ghsf_zdid" type="hidden" style="width:184px;"/>
+                            <input id="zd_version" name="zd_version" type="hidden" style="width:184px;"/>
+                        </div>
+                    </div>
+                    <div class="float-l">
+                        <div class="l-panel-search-title">合计费用:</div>
+                        <div class="l-panel-search-item">
+                            <input id="ghsf_heji" name="ghsf_heji" type="text" readonly="readonly"  style="width:184px;"/>
+                        </div>
+                    </div>
+                          <div class="float-l clearboth">
+                        <div class="l-panel-search-title">应收费用:</div>
+                        <div class="l-panel-search-item">
+                            <input id="ghsf_ysjine" name="ghsf_ysjine" type="text" readonly="readonly"  style="width:184px;"/>
+                        </div>
+                    </div>
+                          <div class="float-l">
+                        <div class="l-panel-search-title">实收费用:</div>
+                        <div class="l-panel-search-item">
+                            <input id="ghsf_ssjine" name="ghsf_ssjine" onblur="initzl();" onkeyup="clearNoNum(this);" class="easyui-validatebox" data-options="required:true"   type="text" style="width:184px;"/>
+                        </div>
+                    </div>
+                          <div class="float-l clearboth">
+                        <div class="l-panel-search-title">找零:</div>
+                        <div class="l-panel-search-item">
+                            <input id="ghsf_zljine" name="ghsf_zljine" type="text" readonly="readonly"  style="width:184px;"/>
+                        </div>
+                    </div>
+		</form>
+                
+			    </div>
+			</div>
+		</div>
+			<div data-options="region:'south',border:false" class="Dialog-footer">
+	    <input id="" class="btn-save" onmouseover="this.className='btn-save-over'"
+	    onmouseout="this.className='btn-save'" onmousedown="this.className='btn-save-down'" type="button" onclick="submitForm();" />
+	    <input id="" class="btn-cancel" onmouseover="this.className='btn-cancel-over'"
+	    onmouseout="this.className='btn-cancel'" onmousedown="this.className='btn-cancel-down'" type="button" onclick="util.closeWindow('editWindow');" />
+	</div>
+		<!-- 显示区域 -->
+		<div data-options="region:'center',border:false" style="overflow: hidden;">
+			<table id="grid1"></table>
+		</div>
+	</div>
+	<!-- 编辑窗口 -->
+	<div id="editWindow1"></div>

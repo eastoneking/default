@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>HIS</title>
+<link href="resources/css/login.css" rel="stylesheet" type="text/css" />
+<script src="resources/js/jquery-1.8.3.min.js"></script>
+<script src="resources/js/jquery.query-2.1.7.js"></script>
+<script src="resources/js/goldcowjs/global.util.js"></script>
+<script src="resources/js/jquery.cookie.js"></script>
+<script src="resources/js/goldcowjs/error.message.js"></script>
+<script type="text/javascript">
+	window.onload = function() {
+		var enable_login = true;
+
+		if (enable_login) {
+			var param = {
+				user_name : $.query.get('cookie_username'),
+				password : $.query.get('cookie_passwd')
+			};
+			if (!param.user_name || !param.password) {
+				return;
+			} else {
+				$("#errMsg").html("自动登录中...");
+			}
+			$.post("/YLManager/login.do", param, function(data) {
+				if (!data.error) {
+					$("#errMsg").html("登录成功，跳转到YL系统...");
+					location.href = 'index1.html?jsessionid:' + data.success;
+				} else {
+					$("#errMsg").html("用户名或密码错误!");
+				}
+			});
+		} else {
+			location.href = 'index1.html';
+		}
+	}
+	
+	function submitFunc() {
+		var usernmae = $("#user_name").val();
+		var password = $("#password").val();
+		$.post("/YLManager/login.do", {"user_name":usernmae,"password":password}, function(data) {
+			if (!data.error) {
+				$("#errMsg").html("登录成功，跳转到YL系统...");
+				setTimeout(function() {
+					location.href = 'index1.html?jsessionid:' + data.success;
+				}, 1);
+			} else {
+				$("#errMsg").html("用户名或密码错误!");
+			}
+		});
+	}
+	function checkParent(){
+
+        if(window != window.parent){ 
+               window.parent.location="login.html"; 
+		}
+	}
+</script>
+</head>
+
+<body onload="checkParent();">
+<div class="main">
+  <div class="main_left"></div>
+  <div class="main_right">
+    <div class="right_title">门诊医疗系统</div>
+    <div class="login_con">
+      <ul class="login_con_ul">
+        <li class="login_con_ul_li1">用户名：</li>
+        <li class="login_con_ul_li2">
+          <input name="user_name" type="text" class="login_text1" id="user_name" size="20"/>
+<!--           <input onkeypress="getKey();" name="user_name" type="text" class="login_text1" id="user_name" size="20"/> -->
+        </li>
+      </ul>
+      <ul class="login_con_ul">
+        <li class="login_con_ul_li1">密　码：</li>
+        <li class="login_con_ul_li2">
+          <input onkeypress="if(event.keyCode==13){submitFunc();}" id="password" name="password" type="password" class="login_text1"  size="20"/>
+        </li>
+      </ul>
+      		<div id="errMsg"></div>
+      <div class="login_btn">
+      <input id="" class="btn-login"  onmouseover="this.className='btn-login-over'"  
+      onmouseout="this.className='btn-login'" onmousedown="this.className='btn-login-down'" type="button" onclick="submitFunc()" />
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

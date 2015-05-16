@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 指向Dao接口 -->
+<mapper namespace="com.neusoft.emanage.liruntongji.persist.LirunDao">
+	
+	
+		<!-- 分页查询 销售利润统计查询，返回List<HashMap>对象， -->
+	<select id="queryLrlist" parameterType="map" resultType="YaopinLirunBean">
+			select 
+			k.id as kcid,
+			c.zdyp_ypbmnumber,
+			c.zdyp_ypname,
+			c.zdyp_ypdanwei,
+			c.zdyp_ypshengchanshang,
+			 k.kc_yppihao,
+			 k.kc_scpici,
+			 k.kc_scriqi,
+			 #{sel_time_start} as tongjitimestart,
+			 #{sel_time_end} as tongjitimeend,
+			 sum(c.zdyp_ypshuliang) as tongjishuliang,
+			 sum(c.zdyp_ypcbjiage)as tongjichengben,
+			 sum(c.zdyp_ypbcxsjiage) as  tongjixiaoshou,
+			 (sum(c.zdyp_ypbcxsjiage)-sum(c.zdyp_ypcbjiage)) as tongjilirun,
+			 zd.zd_yishengid as zd_yishengid,
+			 zd.zd_yishengname as zd_yishengname,
+			 zd.zd_ghks as zd_ghks
+ 			from yl_kcck c,yl_kc k , yl_yszhenduan zd
+			<where>
+			  c.zdyp_ypid = k.id and zd.id = c.zdyp_zdid
+			<if test="sel_time_end != null ">
+				and UNIX_TIMESTAMP(c.zdyp_ypcktime)  <![CDATA[ <=]]> UNIX_TIMESTAMP(#{sel_time_end})
+			</if>
+			<if test="sel_time_start != null ">
+				and UNIX_TIMESTAMP(c.zdyp_ypcktime) <![CDATA[ >=]]> UNIX_TIMESTAMP(#{sel_time_start})
+			</if>
+			   <if test="zd_yishengid != null and  zd_yishengid != '' ">
+				and zd.zd_yishengid =  #{zd_yishengid}
+			</if>
+			<if test="zdyp_ypbmnumber != null and  zdyp_ypbmnumber != '' ">
+				and c.zdyp_ypbmnumber =   #{zdyp_ypbmnumber}
+			</if>
+			<if test="sel_zdyp_ypname != null  and sel_zdyp_ypname != '' ">
+				and zdyp_ypname like CONCAT(CONCAT('%', #{sel_zdyp_ypname}), '%')  
+			</if>
+		</where>
+		group by  c.zdyp_ypid
+		<if test="sort != null and order != null">
+			order by c.${sort} ${order}
+		</if>
+		<if test="offset != null and pagesize !=null">
+			LIMIT ${offset}, ${pagesize}
+		</if>
+	</select>
+<select id="findCountqueryLrlist" parameterType="map" resultType="int">
+select count(0) from (
+		select  count(0)
+			 from yl_kcck c,yl_kc k , yl_yszhenduan zd
+	<where>
+			  c.zdyp_ypid = k.id and zd.id = c.zdyp_zdid
+			<if test="sel_time_end != null ">
+				and UNIX_TIMESTAMP(c.zdyp_ypcktime)  <![CDATA[ <=]]> UNIX_TIMESTAMP(#{sel_time_end})
+			</if>
+			<if test="sel_time_start != null ">
+				and UNIX_TIMESTAMP(c.zdyp_ypcktime) <![CDATA[ >=]]> UNIX_TIMESTAMP(#{sel_time_start})
+			</if>
+			   <if test="zd_yishengid != null and  zd_yishengid != '' ">
+				and zd.zd_yishengid =  #{zd_yishengid}
+			</if>
+			<if test="sel_zdyp_ypbmnumber != null and  sel_zdyp_ypbmnumber != '' ">
+				and zdyp_ypbmnumber like   CONCAT(CONCAT('%', #{sel_zdyp_ypbmnumber}), '%')  
+			</if>
+			<if test="sel_zdyp_ypname != null  and sel_zdyp_ypname != '' ">
+				and zdyp_ypname like CONCAT(CONCAT('%', #{sel_zdyp_ypname}), '%')  
+			</if>
+		</where>
+		group by  c.zdyp_ypid
+		<if test="sortname != null and sortorder != null">
+			order by ${sortname} ${sortorder}
+		</if>
+		) t
+	</select>
+	
+	
+	<!-- 分页查询 ，返回List<HashMap>对象， -->
+	<select id="queryLrinfolist" parameterType="map" resultType="ChukuBean">
+					select  id,
+				zdyp_zdid,
+				zdyp_ypid,
+				zdyp_ghid,
+				zdyp_ghnumber,
+				zdyp_ypbmid,
+				zdyp_ypbcxsjiage,
+				zdyp_ypbmnumber,
+				zdyp_ypname,
+				zdyp_ypshuliang,
+				zdyp_ypdanwei,
+				zdyp_ypshengchanshang,
+				zdyp_ypleibie,
+				zdyp_ypcbjiage,
+				zdyp_yplsjiage,
+				zdyp_ypzdjiage,
+				zdyp_danxiangjine,
+				zdyp_ypcktime
+		  from yl_kcck
+			<where>
+			   1=1
+			<if test="zdyp_zdid != null and  zdyp_zdid != '' ">
+				and zdyp_zdid =  #{zdyp_zdid}
+			</if>
+			<if test="tongjitimestart != null ">
+				and UNIX_TIMESTAMP(zdyp_ypcktime)  <![CDATA[ >=]]> UNIX_TIMESTAMP(#{tongjitimestart})
+			</if>
+			<if test="tongjitimeend != null ">
+				and UNIX_TIMESTAMP(zdyp_ypcktime) <![CDATA[ <=]]> UNIX_TIMESTAMP(#{tongjitimeend})
+			</if>
+				<if test="zdyp_ypid != null and  zdyp_ypid != '' ">
+				and zdyp_ypid =  #{zdyp_ypid}
+			</if>
+			   <if test="zd_yishengid != null and  zd_yishengid != '' ">
+				and zd_yishengid =  #{zd_yishengid}
+			</if>
+			<if test="sel_zdyp_ypbmnumber != null and  sel_zdyp_ypbmnumber != '' ">
+				and zdyp_ypbmnumber like   CONCAT(CONCAT('%', #{sel_zdyp_ypbmnumber}), '%')  
+			</if>
+			<if test="sel_zdyp_ypname != null  and sel_zdyp_ypname != '' ">
+				and zdyp_ypname like CONCAT(CONCAT('%', #{sel_zdyp_ypname}), '%')  
+			</if>
+		</where>
+		<if test="sort != null and order != null">
+			order by ${sort} ${order}
+		</if>
+		<if test="offset != null and pagesize !=null">
+			LIMIT ${offset}, ${pagesize}
+		</if>
+	</select>
+<select id="findCountqueryLrinfolist" parameterType="map" resultType="int">
+			select  count(0)
+			  from yl_kcck
+			<where>
+			   1=1
+			   <if test="tongjitimestart != null ">
+				and UNIX_TIMESTAMP(zdyp_ypcktime)  <![CDATA[ >=]]> UNIX_TIMESTAMP(#{tongjitimestart})
+			</if>
+			<if test="tongjitimeend != null ">
+				and UNIX_TIMESTAMP(zdyp_ypcktime) <![CDATA[ <=]]> UNIX_TIMESTAMP(#{tongjitimeend})
+			</if>
+			<if test="zdyp_zdid != null and  zdyp_zdid != '' ">
+				and zdyp_zdid =  #{zdyp_zdid}
+			</if>
+				<if test="zdyp_ypid != null and  zdyp_ypid != '' ">
+				and zdyp_ypid =  #{zdyp_ypid}
+			</if>
+			   <if test="zd_yishengid != null and  zd_yishengid != '' ">
+				and zd_yishengid =  #{zd_yishengid}
+			</if>
+			<if test="sel_zdyp_ypbmnumber != null and  sel_zdyp_ypbmnumber != '' ">
+				and zdyp_ypbmnumber like   CONCAT(CONCAT('%', #{sel_zdyp_ypbmnumber}), '%')  
+			</if>
+			<if test="sel_zdyp_ypname != null  and sel_zdyp_ypname != '' ">
+				and zdyp_ypname like CONCAT(CONCAT('%', #{sel_zdyp_ypname}), '%')  
+			</if>
+		</where>
+		<if test="sortname != null and sortorder != null">
+			order by ${sortname} ${sortorder}
+		</if>
+	</select>
+	
+	
+</mapper> 

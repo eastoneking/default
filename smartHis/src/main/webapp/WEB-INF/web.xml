@@ -1,0 +1,146 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>鸿泽SMART医疗信息系统</display-name>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring/root-context.xml</param-value>
+  </context-param>
+  <filter>
+    <filter-name>Set Character Encoding</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <filter>
+    <filter-name>HTMLCharacterFilter</filter-name>
+    <filter-class>com.neusoft.sframe.util.filter.HTMLCharacterFilter</filter-class>
+  </filter>
+  <filter>
+    <filter-name>LoginFilter</filter-name>
+    <filter-class>com.neusoft.sframe.util.filter.LoginFilter</filter-class>
+  </filter>
+  <filter>
+    <filter-name>LoggerFilter</filter-name>
+    <filter-class>com.neusoft.sframe.util.filter.LoggerFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>Set Character Encoding</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <filter-mapping>
+    <filter-name>HTMLCharacterFilter</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+  
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>*</url-pattern>
+  </filter-mapping>
+  
+  <filter-mapping>
+    <filter-name>LoggerFilter</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>com.neusoft.platform.syscontext.BackSystemInitListener</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>appServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring/appServlet/servlet-context.xml</param-value>
+    </init-param>
+    <load-on-startup>110</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>backSystemInit</servlet-name>
+    <servlet-class>com.neusoft.sframe.util.servlet.BackSystemInitServlet</servlet-class>
+    <load-on-startup>200</load-on-startup>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>LoadContextServlet</servlet-name>
+    <servlet-class>eastone.web.LoadContextServlet</servlet-class>
+    <init-param>
+        <param-name>conf</param-name>
+        <param-value>file://${SMART_HIS_HOME}/conf/servlet.xml</param-value>
+    </init-param>
+    <load-on-startup>50</load-on-startup>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>entry</servlet-name>
+    <display-name>Entry Servlet(业务请求入口)</display-name>
+    <description>动态内容入口</description>
+    <servlet-class>eastone.web.EntryServlet</servlet-class>
+    <init-param>
+        <param-name>enableGet</param-name>
+        <param-value>true</param-value>
+        <description>是否支持get方法的Http请求</description>
+    </init-param>
+    <init-param>
+        <param-name>beanId</param-name>
+        <param-value>dispatcher</param-value>
+        <description>本Servlet代理的业务分发Servlet再Spring上下文中的bean id。</description>
+    </init-param>
+    <load-on-startup>500</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>entry</servlet-name>
+    <url-pattern>/fn/*</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>appServlet</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  
+   
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+   <mime-mapping>
+    <extension>xlsx</extension>
+    <mime-type>application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</mime-type>
+  </mime-mapping>
+  <mime-mapping>
+    <extension>docx</extension>
+    <mime-type>application/vnd.openxmlformats-officedocument.wordprocessingml.document</mime-type>
+  </mime-mapping>
+  <mime-mapping>
+    <extension>csv</extension>
+    <mime-type>application/vnd.ms-excel</mime-type>
+  </mime-mapping>
+  <mime-mapping>
+    <extension>rar</extension>
+    <mime-type>application/rar</mime-type>
+  </mime-mapping>
+ 
+  <welcome-file-list>
+    <welcome-file>login.html</welcome-file>
+  </welcome-file-list>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/resources/html/error/404.html</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/resources/html/error/500ErrorPage.html</location>
+  </error-page>
+    
+</web-app>

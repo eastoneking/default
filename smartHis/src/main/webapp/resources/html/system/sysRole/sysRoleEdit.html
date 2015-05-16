@@ -1,0 +1,109 @@
+<script type="text/javascript">
+	$(function() {
+		var param = util.getWindowParam();
+		var _permission_ids = [];
+		// 得到url中id值
+		if (param.id) {
+			var data = util.ajax(global_param.context_name + "/system/role/getById", {id : param.id});
+			$("#_form").form("load", data);
+			var rolePermissions = util.ajax(global_param.context_name + "/system/role/getPermissionsByRoleId", {id : param.id});
+			$.each(rolePermissions, function(i, rp) {
+				_permission_ids.push(rp.permission_id);
+			});
+		}
+		// 状态下拉框
+		util.select({
+			id : 'status',
+			required : true,
+			param : {
+				typeCode : 'STATUS'
+			}
+		});
+		
+		
+		// 权限下拉框
+		util.selectTree({
+			id : 'permission_ids',
+			url : global_param.context_name + "/system/permission/list",
+			idField : 'id',
+			textField : 'permission_name', 
+			multiple : true,
+			cascadeCheck:false,
+			onlyLeafCheck:false,
+			param : {
+				sort : "orders"
+			},
+			onLoadSuccess : function() {
+				$("#permission_ids").combotree('setValues', _permission_ids);
+			}
+		});
+	});
+
+	function submitForm() {
+		if(!$("#_form").form('enableValidation').form('validate')){
+			return;
+		}
+		var result = util.submit('_form');
+		if (result) {
+			if (result == "100012" || result == "success") {
+				util.show("操作成功");
+				$('#dg').datagrid('reload');
+				util.closeWindow('editWindow');
+			} else {
+				util.error("操作失败");
+			}
+		}
+	}
+</script>
+<!-- 菜单增加表单 -->
+<div class="easyui-layout" fit="true">
+	<div region="center" border="false" class="Dialog-Bg">
+	  <div class="Dialog-formDiv clearfix">
+		<form id="_form" action="/YLManager/system/role/save" method="post">
+		  <input id="id" name="id" type="hidden" />
+		  <div class="float-l">
+		    <div class="Dialog-form-title">
+			  <label for="type" class="field"><span class="redStar">*</span>角&ensp;色&ensp;名：</label>
+			</div>
+			<div class="Dialog-form-item">
+			  <input id="name" name="name" class="easyui-validatebox" required="true" />
+			</div>
+		  </div>
+		  <div class="float-l">
+		    <div class="Dialog-form-title">
+			  <label for="type" class="field">角色权限：</label>
+			</div>
+			<div class="Dialog-form-item">
+			  <input id="permission_ids" name="permission_ids" class="easyui-validatebox" style="width:152px;" />
+			</div>
+		  </div>
+				<!-- <table>
+					<tr>
+						<td width="60px;">
+							<label for="type" class="field">角色名:</label>
+						</td>
+						<td>
+							<input id="name" name="name" class="easyui-validatebox" required="true" />
+						</td>
+					</tr>
+					<tr>
+						<td width="60px;">
+							<label for="type" class="field">角色权限:</label>
+						</td>
+						<td>
+							<input id="permission_ids" name="permission_ids" class="easyui-validatebox" />
+						</td>
+					</tr>
+				</table> -->
+	    </form>
+	  </div>
+	</div>
+	<div region="south" border="false" class="Dialog-footer">
+	  <input id="" class="btn-save" onmouseover="this.className='btn-save-over'"
+	    onmouseout="this.className='btn-save'" onmousedown="this.className='btn-save-down'" type="button" onclick="submitForm();" />
+	  <input id="" class="btn-cancel" onmouseover="this.className='btn-cancel-over'"
+	    onmouseout="this.className='btn-cancel'" onmousedown="this.className='btn-cancel-down'" type="button" onclick="util.closeWindow('editWindow');" />
+		<!-- <a class="easyui-linkbutton" iconCls="icon-ok" href="javascript:void(0);" onclick="submitForm();">保存</a>
+		<a class="easyui-linkbutton" iconCls="icon-cancel" href="javascript:void(0);" onclick="util.closeWindow('editWindow');">取消</a> -->
+	</div>
+</div>

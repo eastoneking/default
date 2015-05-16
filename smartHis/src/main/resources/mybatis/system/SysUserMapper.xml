@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 指向Dao接口 -->
+<mapper namespace="com.neusoft.emanage.system.persist.SysUserDao">
+	<!-- 获取用户 -->
+	<select id="get" parameterType="Integer" resultType="SysUserBean">
+		select
+		su.id,
+		su.user_name,
+		su.display_name,
+		su.sex,
+		su.phone_number,
+		su.email,
+		su.note,
+		su.status,
+		su.salt,
+		su.create_time,
+		su.dept_id
+		from sys1_user su
+		where su.id = #{id} 
+	</select>
+
+	<!-- 树结构查询 ，返回List<SysUserBean>对象， -->
+	<select id="list" parameterType="map" resultType="SysUserBean">
+		select  su.id,
+				su.user_name,
+				su.display_name,
+				su.sex,
+				su.phone_number,
+				su.email,
+				su.note,
+				su.status,
+				su.salt,
+				su.create_time,
+				su.dept_id
+		  from	sys1_user su
+		<where>
+			<if test="user_name != null">
+				and su.user_name like #{user_name}
+			</if>
+			<if test="display_name != null">
+				and su.display_name like #{display_name}
+			</if>
+		</where>
+		<if test="sortname != null and sortorder != null">
+			order by ${sortname} ${sortorder}
+		</if>
+		<if test="offset != null and pagesize !=null">
+			LIMIT ${offset}, ${pagesize}
+		</if>
+	</select>
+
+	<select id="findCount" parameterType="map" resultType="int">
+		select  count(0)
+		  from	sys1_user su
+		<where>
+			<if test="user_name != null">
+				and su.user_name like #{user_name}
+			</if>
+			<if test="display_name != null">
+				and su.display_name like #{display_name}
+			</if>
+		</where>
+		<if test="sortname != null and sortorder != null">
+			order by ${sortname} ${sortorder}
+		</if>
+	</select>
+
+	<!-- 检查重名 -->
+	<select id="checkSave" parameterType="SysUserBean" resultType="int">
+		select count(id) as count
+		  from sys1_user
+		<where>
+			user_name = #{user_name}
+			<if test="id != null">
+				and id != #{id}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 根据登录名查询用户 -->
+	<select id="getByUsername" parameterType="String" resultType="SysUserBean">
+		select *
+		  from sys1_user,sys_user_role
+		<where>
+			user_name = #{user_name} and sys1_user.ID = sys_user_role.user_id and sys_user_role.role_id != '2'
+		</where>
+	</select>
+
+	<!-- 根据用户ID查询用户角色 -->
+	<select id="getRolesByUserId" parameterType="Integer" resultType="SysUserRoleBean">
+		select id, user_id, role_id
+		  from sys_user_role
+		<where>
+			user_id = #{user_id}
+		</where>
+	</select>
+
+	<!-- 向表中插入数据，并在将主键值赋到实体中，返回受影响的记录条数。如果不需要返回主键，无需配置useGeneratedKeys、keyProperty项 -->
+	<insert id="save" parameterType="SysUserBean" useGeneratedKeys="true" keyProperty="id">
+		insert into sys1_user(user_name, password, display_name, sex, phone_number, email, note, status, salt, create_time, dept_id)
+			values(#{user_name}, #{password}, #{display_name}, #{sex}, #{phone_number}, #{email}, #{note}, #{status}, #{salt}, #{create_time}, #{deptid})
+	</insert>
+	
+	<!-- 向表中插入数据，并在将主键值赋到实体中，返回受影响的记录条数。如果不需要返回主键，无需配置useGeneratedKeys、keyProperty项 -->
+	<insert id="saveUserRole" parameterType="SysUserRoleBean" useGeneratedKeys="true" keyProperty="id">
+		insert into sys_user_role(user_id, role_id)
+			values(#{user_id}, #{role_id})
+	</insert>
+
+	<!-- 更新表中数据，返回受影响的记录条数 -->
+	<update id="update" parameterType="SysUserBean">
+		update sys1_user
+		set 
+			display_name = #{display_name},
+			sex = #{sex},
+			phone_number = #{phone_number},
+			email = #{email},
+			note = #{note},
+			status = #{status},
+			<if test="password != null and password!=''">
+			password = #{password},
+			</if>
+			dept_id = #{dept_id}
+		where id = #{id}
+	</update>
+
+	<!-- 更新表中数据，返回受影响的记录条数 -->
+	<update id="updatePassword" parameterType="SysUserBean">
+		update sys1_user
+		set password = #{password}
+		where id = #{id}
+	</update>
+
+	<!-- 根据ID删除表中数据 -->
+	<delete id="delete">
+		delete from sys1_user where id = #{id}
+	</delete>
+
+	<!-- 根据ID删除用户角色 -->
+	<delete id="deleteUserRoles">
+		delete from sys_user_role where user_id = #{user_id}
+	</delete>
+	<delete id="deleteUserAccess">
+	delete from useraccess where userid = #{user_id}
+	</delete>
+</mapper> 

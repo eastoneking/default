@@ -1,0 +1,286 @@
+<script type="text/javascript">
+	$(function() {
+		var param = util.getWindowParam();
+
+		var _role_ids = [];
+		var userData = {};
+		// 得到url中id值
+		if (param.id) {
+			userData = util.ajax(global_param.context_name
+					+ "/system/user/getById", {
+				id : param.id
+			});
+			$("#_form").form("load", userData);
+		
+			var roles = util.ajax(global_param.context_name
+					+ "/system/user/getRolesByUserId", {
+				id : param.id
+			});
+			$.each(roles, function(i, r) {
+				_role_ids.push(r.role_id);
+			});
+			document.getElementById("user_name").disabled = true;
+			$("#password").removeAttr('required');
+			$("#passwordConfirm").removeAttr('required');
+			$("#idcard").removeAttr('required');
+		}
+		// 性别下拉框
+		// 		util.select({
+		// 			id : 'sex',
+		// 			required:'true',
+		// 			param : {
+		// 				typeCode : 'SEX'
+		// 			}
+		// 		});
+		util.select({
+			id : 'sex',
+			required : 'true',
+			multiple : false,
+			param : {
+				typeCode : 'SEX'
+			},
+			onLoadSuccess : function() {
+				if (userData) {
+					$("#sex").combobox('setValue', userData.sex);
+				}
+			}
+
+		});
+		// 角色下拉框
+		util.select({
+			id : 'role_ids',
+			valueField : 'id',
+			multiple : false,
+			url : global_param.context_name + "/system/role/searchrole",
+			param : {
+				sort : "orders"
+			},
+			onLoadSuccess : function() {
+				$("#role_ids").combobox('setValues', _role_ids);
+			}
+		});
+		// 部门下拉框
+		util.selectTree({
+			id : 'dept_id',
+			url : global_param.context_name + "/system/dept/list",
+			idField : 'id',
+			textField : 'name',
+			param : {
+				sort : "orders"
+			}
+		});
+	});
+
+	
+	function submitForm() {
+		if(!$("#_form").form('enableValidation').form('validate')){
+			return;
+		}
+		var s = $("#sex").combobox('getValues');
+		if (s == '请选择') {
+			$.messager.alert('提示', '请选择性别', 'error');
+			return;
+		}
+		var result = util.submit('_form');
+		if (result) {
+			if (result == "S99901") {
+				$.messager.alert('提示', '用户名已存在', 'error');
+				return;
+			}
+			if (result == "updatesuccess") {
+				util.show("修改成功");
+				$('#dg').datagrid('reload');
+				util.closeWindow('editWindow');
+				return;
+			}
+			if (result == "success") {
+				util.show("保存成功！");
+				$('#dg').datagrid('reload');
+				util.closeWindow('editWindow');
+			} else {
+				util.show("操作失败");
+			}
+		}
+	}
+</script>
+<div class="easyui-layout" fit="true">
+	<div region="center" border="false" class="Dialog-Bg">
+	  <div class="Dialog-formDiv clearfix">
+      <form id="_form" action="/YLManager/system/user/save" method="post">
+		  <input id="id" name="id" type="hidden" />
+		  <div class="float-l">
+		    <div class="Dialog-form-title">
+			  <label for="user_name" class="field"><span class="redStar">*</span>用&ensp;户&ensp;名：</label>
+			</div>
+			<div class="Dialog-form-item">
+			  <input id="user_name" name="user_name" class="easyui-validatebox" data-options="required:true,validType:['en','nosp','length[4,8]']" />
+			</div>
+	      </div>
+	      <div class="float-l">
+		    <div class="Dialog-form-title">
+			  <label for="display_name" class="field"><span class="redStar">*</span>真实姓名：</label>
+			</div>
+			<div class="Dialog-form-item">
+			  <input id="display_name" name="display_name" class="easyui-validatebox" data-options="required:true,validType:['charts','length[2,8]']" />
+			</div>
+	      </div>
+	      <div class="float-l clearboth">
+		    <div class="Dialog-form-title">
+			  <label for="password" class="field"><span class="redStar">*</span>密&ensp;&ensp;&ensp;&ensp;码：</label>
+			</div>
+			<div class="Dialog-form-item">
+			  <input id="password" name="password" type="password" class="easyui-validatebox" data-options="validType:['length[6,16]','IsString']" required="true" />
+			</div>
+	      </div>
+	      <div class="float-l">
+		    <div class="Dialog-form-title">
+			  <label for="passwordConfirm" class="field"><span class="redStar">*</span>确认密码：</label>
+			</div>
+			<div class="Dialog-form-item">
+			  <input id="passwordConfirm" name="passwordConfirm" type="password" class="easyui-validatebox" validType="equalTo['#password']" required="true" />
+			</div>
+	      </div>
+	      <div class="float-l clearboth">
+		    <div class="Dialog-form-title">
+			  <label for="sex" class="field"><span class="redStar">*</span>性&ensp;&ensp;&ensp;&ensp;别：</label>
+			</div>
+			<div class="Dialog-form-item">
+			  <select id="sex" name="sex"class="easyui-validatebox" multiple="multiple" required="true" style="width:152px;"></select>
+			</div>
+	      </div>
+	      <div class="float-l">
+		    <div class="Dialog-form-title">
+			  <label for="role_ids" class="field"><span class="redStar">*</span>角&ensp;&ensp;&ensp;&ensp;色：</label>
+			</div>
+			<div class="Dialog-form-item">
+			  <select id="role_ids" name="role_ids" class="easyui-validatebox" multiple="multiple" required="true" style="width:152px;"></select>
+			</div>
+	      </div>
+	      <div class="float-l clearboth">
+		    <div class="Dialog-form-title">
+			  <label for="email" class="field">用户邮箱：</label>
+			</div>
+			<div class="Dialog-form-item">
+			  <input id="email" name="email" type="text" class="easyui-validatebox" data-options="validType:['email','maxLength[120]']" />
+			</div>
+	      </div>
+	      <div class="float-l">
+		    <div class="Dialog-form-title">
+			  <label for="phone_number" class="field"><span class="redStar">*</span>手机号码：</label>
+			</div>
+			<div class="Dialog-form-item">
+			  <input id="phone_number" name="phone_number" type="text" class="easyui-validatebox" required="true" data-options="validType:'IsMobile'" />
+			</div>
+	      </div>
+	      <div class="float-l clearboth">
+		    <div class="Dialog-form-title">
+			  <label for="idcard" class="field"><span class="redStar">*</span>身份证号：</label>
+			</div>
+			<div class="Dialog-form-item">
+			  <input id="idcard" name="idcard" type="text" class="easyui-validatebox" data-options="validType:'myidcard'" required="true" />
+			</div>
+	      </div>
+	      <div class="float-l clearboth">
+		    <div class="Dialog-form-title">
+			  <label for="note" class="field">备&ensp;&ensp;&ensp;&ensp;注：</label>
+			</div>
+			<div class="Dialog-form-item">
+			  <textarea id="note" name="note" style="width:419px; height: 120px; resize:none;" class="easyui-validatebox" data-options="validType:'maxLength[20]'" ></textarea>
+			</div>
+	      </div>
+	      
+				<!-- <table>
+					<tr>
+						<td width="60px;"><label for="user_name" class="field">
+								用户名: </label></td>
+						<td><input id="user_name" name="user_name"
+							class="easyui-validatebox"
+							data-options="required:true,validType:['en','nosp','length[4,8]']" /></td>
+					</tr>
+					<tr>
+						<td><label for="display_name" class="field"> 真实姓名: </label></td>
+						<td><input id="display_name" name="display_name"
+							class="easyui-validatebox"
+							data-options="required:true,validType:['charts','length[2,8]']" />
+						</td>
+					</tr>
+					<tr>
+						<td><label for="password" class="field"> 密码: </label></td>
+						<td><input id="password" name="password" type="password"
+							class="easyui-validatebox"
+							data-options="validType:'length[6,16]'" required="true" /></td>
+					</tr>
+					<tr>
+						<td><label for="passwordConfirm" class="field"> 确认密码:
+						</label></td>
+						<td><input id="passwordConfirm" name="passwordConfirm"
+							type="password" class="easyui-validatebox"
+							validType="equalTo['#password']" required="true" /></td>
+					</tr>
+					<tr>
+						<td><label for="sex" class="field"> 性别: </label></td>
+						<td> -->
+							<!-- 							<input id="sex" name="sex" type="text" required="true"/> -->
+							<!-- <select style="width: 154px;" id="sex" name="sex"
+							class="easyui-validatebox" multiple="multiple" required="true">
+						</select>
+						</td>
+					</tr>
+					<tr>
+						<td><label for="role_ids" class="field"> 角色: </label></td>
+						<td><select style="width: 154px;" id="role_ids"
+							name="role_ids" class="easyui-validatebox" multiple="multiple"
+							required="true">
+						</select></td>
+					</tr>
+					<tr>
+						<td><label for="email" class="field"> 用户邮箱: </label></td>
+						<td><input id="email" name="email" type="text"
+							class="easyui-validatebox"
+							data-options="validType:['email','maxLength[120]']" /></td>
+					</tr>
+
+					<tr>
+						<td><label for="phone_number" class="field"> 手机号码: </label></td>
+						<td><input id="phone_number" name="phone_number" type="text"
+							class="easyui-validatebox" required="true"
+							data-options="validType:'IsMobile'" /></td>
+					</tr>
+					<tr>
+						<td><label for="idCard" class="field"> 身份证号: </label></td>
+						<td><input id="idCard" name="idCard" type="text"
+							class="easyui-validatebox" data-options="validType:'myidcard'"
+							required="true" /></td>
+					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td><label for="dept_id" class="field"> 部门: </label></td> -->
+<!-- 						<td><input id="dept_id" name="dept_id" type="text" /></td> -->
+<!-- 					</tr> -->
+					<!-- <tr>
+						<td><label for="note" class="field" > 备注: </label></td>
+						<td><textarea id="note" name="note"
+								style="width: 95%; height: 120px; resize:none;" class="easyui-validatebox"
+								data-options="validType:'maxLength[120]'" ></textarea></td>
+					</tr>
+				</table> -->
+      </form>
+      </div>
+	</div>
+	<div region="south" border="false" class="Dialog-footer">
+	  <input id="" class="btn-save" onmouseover="this.className='btn-save-over'"
+	  onmouseout="this.className='btn-save'" onmousedown="this.className='btn-save-down'" type="button" onclick="submitForm();" />
+	  <input id="" class="btn-cancel" onmouseover="this.className='btn-cancel-over'"
+	  onmouseout="this.className='btn-cancel'" onmousedown="this.className='btn-cancel-down'" type="button" onclick="util.closeWindow('editWindow');" />
+		<!-- <table    style="width: 100%">
+			<tr align="center" >
+				<td valign="middle" align="right"><a class="easyui-linkbutton"
+					iconCls="icon-ok" href="javascript:void(0);"
+					onclick="submitForm();">保存</a></td>
+				<td width="40"></td>
+				<td valign="middle" align="left"><a class="easyui-linkbutton"
+					iconCls="icon-cancel" href="javascript:void(0);"
+					onclick="util.closeWindow('editWindow');">取消</a></td>
+			</tr>
+		</table> -->
+	</div>
+</div>

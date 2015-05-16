@@ -1,0 +1,103 @@
+
+<script type="text/javascript">
+	jQuery(function($) {
+		var param = util.getWindowParam();
+		// 得到url中id值
+		//诊断ID
+		if (param.id) {
+			var data = util.ajax(global_param.context_name
+					+ '/yaoju/chuku/getById', {
+				"id" : param.id
+			});
+			$("#_form").form("load", data);
+		}
+
+	});
+</script>
+<div class="easyui-layout" fit="true">
+	<div region="center" border="false" class="Dialog-Bg">
+	    <div class="Dialog-formDiv clearfix">
+		<form id="_form" action="/GSCManager/shengou/shengoumanager/save" method="post">
+			<input id="subscriptionManager_id" name="subscriptionManager_id" type="hidden" />
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="keshengouliang" class="field">药品编码：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zdyp_ypbmnumber" name="zdyp_ypbmnumber" type="text" style="width:288px;"  />
+			    </div>
+			</div>
+			<div class="float-l clearboth">
+			    <div class="Dialog-form-title2">
+			        <label for="subscriptionnum" class="field">药品名称：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zdyp_ypname" name="zdyp_ypname" type="text" />
+			    </div>
+			</div>
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="pirce" class="field">生产商：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zdyp_ypshengchanshang" name="zdyp_ypshengchanshang" type="text"  />
+			    </div>
+			</div>
+			<div class="float-l clearboth2">
+			    <div class="Dialog-form-title2">
+			        <label for="starttime" class="field">数量：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zdyp_ypshuliang" name="zdyp_ypshuliang" type="text" />
+			    </div>
+			</div>
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="endTime" class="field">最低价格：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zdyp_ypzdjiage" name="zdyp_ypzdjiage" type="text" />
+			    </div>
+			</div>
+			<div class="float-l clearboth">
+			    <div class="Dialog-form-title2">
+			        <label for="minnum" class="field"><span class="letter-sp2">零售价格</span>：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zdyp_yplsjiage" name="zdyp_yplsjiage" type="text" />
+			    </div>
+			</div>
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="maxnum" class="field"><span class="letter-sp2">本次销售价格</span>：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zdyp_ypbcxsjiage" name="zdyp_ypbcxsjiage" type="text" />
+			    </div>
+			</div>
+			<div class="float-l clearboth">
+			    <div class="Dialog-form-title2">
+			        <label for="playallstarttime" class="field">单项金额：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zdyp_danxiangjine" name="zdyp_danxiangjine" type="text" />
+			    </div>
+			</div>
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="playallendtime" class="field">出库时间：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zdyp_ypcktime" name="zdyp_ypcktime" type="text" />
+			    </div>
+			</div>
+		</form>
+		</div>
+	</div>
+	<div data-options="region:'south',border:false" class="Dialog-footer">
+<!-- 	    <input id="" class="btn-save" onmouseover="this.className='btn-save-over'" -->
+<!-- 	    onmouseout="this.className='btn-save'" onmousedown="this.className='btn-save-down'" type="button" onclick="submitForm();" /> -->
+	    <input id="" class="btn-cancel" onmouseover="this.className='btn-cancel-over'"
+	    onmouseout="this.className='btn-cancel'" onmousedown="this.className='btn-cancel-down'" type="button" onclick="util.closeWindow('editWindow');" />
+	</div>
+</div>

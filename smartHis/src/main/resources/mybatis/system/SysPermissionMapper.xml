@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 指向Dao接口 -->
+<mapper namespace="com.neusoft.emanage.system.persist.SysPermissionDao">
+	<!-- 获取用户 -->
+	<select id="get" parameterType="Integer" resultType="SysPermissionBean">
+		select  sp.id,
+				sp.permission_name,
+				sp.permission,
+				sp.status,
+				sp.parent_id,
+				sp.orders,
+				sp1.permission_name as parent_name
+		  from	sys1_permission sp left join sys1_permission sp1 on sp.parent_id = sp1.id
+		 where  sp.id = #{id}
+	</select>
+
+	<!-- 树结构查询 ，返回List<SysPermissionBean>对象， -->
+	<select id="list" parameterType="map" resultType="SysPermissionBean">
+		select  sp.id,
+				sp.permission_name,
+				sp.permission,
+				sp.status,
+				sp.parent_id,
+				sp.orders
+		  from	sys1_permission sp
+<!-- 		<where> -->
+<!-- 			<if test="text != null"> -->
+<!-- 				and sp.permission_name like #{permission_name} -->
+<!-- 			</if> -->
+<!-- 		</where> -->
+<!-- 			order by asc -->
+<!-- 		<if test="sortname != null and sortorder != null"> -->
+<!-- 			${sortname} ${sortorder}, -->
+<!-- 		</if> -->
+<!-- 			orders asc -->
+	</select>
+
+	<!-- 检查重名 -->
+	<select id="checkSave" parameterType="SysPermissionBean" resultType="int">
+		select count(id) as count
+		  from sys1_permission
+		<where>
+			permission_name = #{permission_name}
+			<if test="id != null">
+				and id != #{id}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 向表中插入数据，并在将主键值赋到实体中，返回受影响的记录条数。如果不需要返回主键，无需配置useGeneratedKeys、keyProperty项 -->
+	<insert id="save" parameterType="SysPermissionBean" useGeneratedKeys="true" keyProperty="id">
+		insert into sys1_permission(permission_name, permission, status, parent_id, orders)
+			values(#{permission_name}, #{permission}, #{status}, #{parent_id}, #{orders})
+	</insert>
+
+	<!-- 更新表中数据，返回受影响的记录条数 -->
+	<update id="update" parameterType="SysPermissionBean">
+		update sys1_permission
+		set permission_name = #{permission_name},
+			permission = #{permission},
+			status = #{status},
+			orders = #{orders}
+		where id = #{id}
+	</update>
+
+	<!-- 根据ID删除表中数据 -->
+	<delete id="delete">
+		delete from sys1_permission where id = #{id}
+	</delete>
+</mapper> 

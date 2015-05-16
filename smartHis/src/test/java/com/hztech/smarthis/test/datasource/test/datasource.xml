@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans        
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd       
+        http://www.springframework.org/schema/context        
+        http://www.springframework.org/schema/context/spring-context-2.5.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+    <bean
+    class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <description>
+      之后可以用${环境变量名}替换为环境变量中的值
+    </description>
+    <property name="locations">
+        <list>
+            <value>classpath:com/hztech/smarthis/test/datasource/test/*.properties</value>
+        </list>
+    </property>
+  </bean>
+
+    <bean id="EnvPath" class="java.lang.String">
+        <constructor-arg>
+            <value>${PATH}</value>
+        </constructor-arg>
+    </bean>
+	<bean id="demodb.wangds.net.demo" class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close" lazy-init="true">
+		<property name="driverClassName" value="${driverClass}" />
+		<property name="url" value="jdbc:mysql://demodb.wangds.net:3306/demo?useUnicode=true&amp;characterEncoding=UTF-8" />
+		<property name="username" value="wangds" />
+		<property name="password" value="!QAZ2wsx" />
+		<property name="maxTotal" value="10" />
+		<property name="maxWaitMillis" value="1000" />
+	</bean>
+
+	<alias name="demodb.wangds.net.demo" alias="datasource" />
+    
+    <bean id="tm" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      <property name="dataSource" ref="datasource"></property>
+    </bean>
+    
+    <bean id="baseTransactionProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" abstract="true">
+      <property name="transactionManager" ref="tm"></property>
+      <property name="transactionAttributes">
+        <props>
+          <prop key="execute">PROPAGATION_REQUIRED</prop>
+        </props>
+      </property>
+    </bean>
+
+</beans>

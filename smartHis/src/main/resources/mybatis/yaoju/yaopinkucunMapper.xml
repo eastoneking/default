@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 指向Dao接口 -->
+<mapper namespace="com.neusoft.emanage.yaoju.persist.YaopinkucunDao">
+	<!-- 获取用户 -->
+	<select id="get" parameterType="Integer" resultType="YaopinCKBean">
+		select  id,
+				kc_ypbmid,
+				kc_ypbmnumber,
+				kc_ypleibie,
+				kc_ypname,
+				kc_yppihao,
+				kc_scpici,
+				kc_scriqi,
+				kc_yxriqi,
+				kc_cbjiage,
+				kc_zdjiage,
+				kc_lsjiage,
+				kc_rkriqi,
+				kc_laiyuan,
+				kc_shengchanshang,
+				kc_danwei,
+				kc_shuliang,
+				kc_status,
+			
+				
+		  from yl_kc
+		 where id = #{id}
+	</select>
+<!-- 按类别查询 -->
+	<select id="getByTypeCode" parameterType="string" resultType="YaopinCKBean">
+				select  id,
+				kc_ypbmid,
+				kc_ypbmnumber,
+				kc_ypleibie,
+				kc_ypname,
+				kc_yppihao,
+				kc_scpici,
+				kc_scriqi,
+				kc_yxriqi,
+				kc_cbjiage,
+				kc_zdjiage,
+				kc_lsjiage,
+				kc_rkriqi,
+				kc_laiyuan,
+				kc_shengchanshang,
+				kc_danwei,
+				kc_shuliang,
+				kc_status
+		  from yl_kc
+		  where kc_shuliang > '0'
+	</select>
+	
+	<!-- 分页查询 ，返回List<HashMap>对象， -->
+	<select id="list" parameterType="map" resultType="YaopinCKBean">
+			select  id,
+				kc_ypbmid,
+				kc_ypbmnumber,
+				kc_ypleibie,
+				kc_ypname,
+				kc_yppihao,
+				kc_scpici,
+				kc_scriqi,
+				kc_yxriqi,
+				kc_cbjiage,
+				kc_zdjiage,
+				kc_lsjiage,
+				kc_rkriqi,
+				kc_laiyuan,
+				kc_shengchanshang,
+				kc_danwei,
+				kc_shuliang,
+				kc_status
+		  from yl_kc
+		<where>
+			   1=1 and kc_shuliang != '0'
+			   <if test="zd_yishengid != null and  zd_yishengid != '' ">
+				and zd_yishengid =  #{zd_yishengid}
+			</if>
+			<if test="zd_status != null and  zd_status != '' ">
+				and zd_status =  #{zd_status}
+			</if>
+			<if test="sel_zd_ghnumber != null and  sel_zd_ghnumber != '' ">
+				and zd_ghnumber like   CONCAT(CONCAT('%', #{sel_zd_ghnumber}), '%')  
+			</if>
+			<if test="sel_zd_ghname != null  and sel_zd_ghname != '' ">
+				and zd_ghname like CONCAT(CONCAT('%', #{sel_zd_ghname}), '%')  
+			</if>
+		</where>
+		<if test="sort != null and order != null">
+			order by ${sort} ${order}
+		</if>
+		<if test="offset != null and pagesize !=null">
+			LIMIT ${offset}, ${pagesize}
+		</if>
+	</select>
+<select id="findCount" parameterType="map" resultType="int">
+		select  count(0)
+	  from yl_kc
+		<where>
+			   1=1 and kc_shuliang != '0'
+			   <if test="zd_yishengid != null and  zd_yishengid != '' ">
+				and zd_yishengid =  #{zd_yishengid}
+			</if>
+			<if test="zd_status != null and  zd_status != '' ">
+				and zd_status =  #{zd_status}
+			</if>
+			<if test="sel_zd_ghnumber != null and  sel_zd_ghnumber != '' ">
+				and zd_ghnumber like   CONCAT(CONCAT('%', #{sel_zd_ghnumber}), '%')  
+			</if>
+			<if test="sel_zd_ghname != null  and sel_zd_ghname != '' ">
+				and zd_ghname like CONCAT(CONCAT('%', #{sel_zd_ghname}), '%')  
+			</if>
+		</where>
+		<if test="sortname != null and sortorder != null">
+			order by ${sortname} ${sortorder}
+		</if>
+	</select>
+
+	<!-- 向表中插入数据，并在将主键值赋到实体中，返回受影响的记录条数。如果不需要返回主键，无需配置useGeneratedKeys、keyProperty项 -->
+	<insert id="save" parameterType="YaopinCKBean" useGeneratedKeys="true" keyProperty="id">
+			insert into yl_kc(kc_ypbmid, kc_ypbmnumber,
+		 kc_ypleibie, kc_ypname,   kc_yppihao,
+		  kc_scpici,   kc_scriqi, kc_yxriqi,
+		   kc_cbjiage,  kc_zdjiage,kc_lsjiage, kc_rkriqi,	kc_shengchanshang,		kc_danwei,
+				kc_shuliang,
+		  kc_laiyuan, kc_status
+		     )
+			values(#{kc_ypbmid}, #{kc_ypbmnumber},
+			 #{kc_ypleibie}, #{kc_ypname}, #{kc_yppihao},
+			 #{kc_scpici},#{kc_scriqi},#{kc_yxriqi},
+			 #{kc_cbjiage},#{kc_zdjiage},#{kc_lsjiage},#{kc_rkriqi},#{kc_shengchanshang},#{kc_danwei},#{kc_shuliang},
+			 #{kc_laiyuan},#{kc_status});
+	</insert>
+
+	<!-- 更新表中数据，返回受影响的记录条数 -->
+	<update id="update" parameterType="YaopinCKBean">
+		update yl_kc
+		<set>
+			<if test="kc_shuliang != null">
+				kc_shuliang = kc_shuliang - #{kc_shuliang}
+			</if>
+	
+		</set>
+		where id = #{id}
+	</update>
+
+	<!-- 根据ID删除表中数据 -->
+	<delete id="delete">
+		delete from ylsys_ypbianma where id =#{id}
+	</delete>
+</mapper> 

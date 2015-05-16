@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>菜单</title>
+<link href="/GSCManager/resources/css/goldcow-all.css" rel="stylesheet" type="text/css" />
+<script src="/GSCManager/resources/js/goldcow-all.js" type="text/javascript"></script>
+<script type="text/javascript">
+var sysSellStatus=[];
+	jQuery(function($) {
+		util.datebox("startdate");
+		util.datebox("enddate");
+		// 初始化表格
+		util.table('dg', {
+			url : globalUtil.getTimestampUrl("/RecoveryGSC/listRecovery"), // 数据来源
+			title : '回收信息列表', // 标题
+			sortName:'recoverydate',
+			sortOrder:'desc',
+			async:true,
+			queryParams : {},
+			columns : [ [ {
+				field : 'recoverydate',
+				title : '回收时间',
+				width : 10,
+				formatter:function(value,row,index){
+					return (new Date(value)).format('yyyy-MM-dd hh:mm:ss');
+				}
+			}, 
+			{
+				field : 'user_code',
+				title : '回收人',
+				width : 10
+			}, 
+			{
+				field : 'recoverynum',
+				title : '回收数量',
+				width : 10,
+				width : 10,
+				formatter:function(value,row,index){
+					return doubleNumber(row.recoverynum,6);
+				}
+			} ] ]
+		});
+		// 初始化编辑窗口
+		util.window('editWindow', {
+			title : '系统卖出管理'
+		});
+	});
+	
+	
+	function query() {
+// 		$('#dg').datagrid('options').queryParams = util.formParams("searchForm");
+		util.query("dg", "searchForm");
+//     	$('#dg').datagrid('reload');
+		if($('#startdate').val()==""&& $('#enddate').val()==""){
+			
+			$('#dg').datagrid('reload');
+		
+		}
+	}
+
+</script>
+</head>
+
+<body>
+	<div class="easyui-layout" fit="true" style="width: 100%; height: 100%;">
+		<!-- 页面头部 -->
+		<div data-options="region:'north',border:false" class="l-panel-search clearfix" style="overflow: hidden;">
+		    <div class="l-searchbar clearfix centertoolbar-w3" >
+                <div class="l-panel-search-cond clearfix">
+			    <form id="searchForm" action="#">
+			      <div class="float-l">
+                    <div class="l-panel-search-title">回收时间&ensp;起:</div>
+                    <div class="l-panel-search-item">
+                       <input type="text" id = "startdate" name="startdate" />
+                    </div>
+                    <div class="l-panel-search-item">
+                                                                      止:&ensp;<input type="text" id = "enddate" name="enddate" />
+                    </div>
+                  </div>
+                </form>
+                </div>
+                <div class="l-panel-search-btn">
+                    <input id="" class="btn-search" onmouseover="this.className='btn-search-over'"
+                    onmouseout="this.className='btn-search'" onmousedown="this.className='btn-search-down'" type="button" onclick="query();" />
+                    <input id="" class="btn-empty" onmouseover="this.className='btn-empty-over'"
+                    onmouseout="this.className='btn-empty'" onmousedown="this.className='btn-empty-down'" type="button"onclick="$('#searchForm').form('reset');" />
+                </div>  
+            </div>  
+              
+			<!-- <table width="100%" height="100%" cellpadding="0" cellspacing="0" border="1" style="border-collapse: collapse; font-size: 12px;"
+				bordercolor="#88C7E7"> -->
+<!-- 				<tr> -->
+<!-- 					<td style="font-size: 12px; font-weight: bold; border: 0px solid; height: 26px; color: #065CB3; padding-left: 20px;"> -->
+						
+<!-- 					</td> -->
+<!-- 				</tr> -->
+				<!-- <tr>
+					<td>
+						<fieldset class="prepend-top">
+							<form id="searchForm" action="#">
+								<table>
+									<tr>
+										<th>回收时间起：</th>
+										<td><input type="text" id = "startdate" name="startdate"></td>
+										<th>止：</th>
+										<td><input type="text" id = "enddate" name="enddate"></td>
+										<td>
+											<a href="#" onclick="query();" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+											<a href="#" onclick="$('#searchForm').form('reset');" class="easyui-linkbutton" iconCls="icon-search">清空</a>
+										</td>
+									</tr>
+									<tr>
+									</tr>
+								</table>
+							</form>
+						</fieldset>
+					</td>
+				</tr>
+			</table> -->
+		</div>
+		<!-- 显示区域 -->
+		<div data-options="region:'center',border:false" style="overflow: hidden;">
+			<table id="dg"></table>
+		</div>
+	</div>
+	<!-- 编辑窗口 -->
+	<div id="editWindow"></div>
+</body>
+</html>

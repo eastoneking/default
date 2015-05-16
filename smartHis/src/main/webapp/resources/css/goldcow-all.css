@@ -1,0 +1,90 @@
+/* @import url("ligerui-all.css"); */
+
+.l-main-page-layout {
+	width:99.9%;
+	margin:0;
+	padding:0;
+}
+.l-page-top {
+	height:60px;
+	margin-bottom:3px;
+	text-align:center;
+}
+.l-page-bottom {
+	height:30px;
+	line-height:26px;
+	text-align:center;
+	background:url(../images/layout/page-bottom-back.gif) 0 0 repeat-x;
+	margin-top:4px;
+	color:#bbe0fa;
+}
+.tabbody1 {
+	FONT-SIZE: 12px;
+	CURSOR: hand;
+	COLOR: #03319A;
+	LINE-HEIGHT: 12pt;
+	FONT-FAMILY: Arial;
+	HEIGHT: 20px;
+	TEXT-DECORATION: none;
+	background-color: #D2E1FD;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #FFFFFF;
+	border-right-color: #EAF4E9;
+	border-bottom-color: #D2E1FD;
+	border-left-color: #D2E1FD;
+}
+
+.tabbody2 {
+	FONT-SIZE: 12px;
+	CURSOR: hand;
+	COLOR: #ffffff;
+	LINE-HEIGHT: 12pt;
+	FONT-FAMILY: Arial;
+	HEIGHT: 20px;
+	TEXT-DECORATION: none;
+	background-color: #84C1FF;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #C6D5F5;
+	border-right-color: #78A2CE;
+	border-bottom-color: #78A2CE;
+	border-left-color: #C6D5F5;
+	vertical-align: bottom;
+}
+
+.tabbody3 {
+	FONT-SIZE: 12px;
+	CURSOR: hand;
+	COLOR: #ffffff;
+	LINE-HEIGHT: 12pt;
+	FONT-FAMILY: Arial;
+	HEIGHT: 20px;
+	TEXT-DECORATION: none;
+	background-color: #84C1FF;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #C6D5F5;
+	border-right-color: #78A2CE;
+	border-bottom-color: #78A2CE;
+	border-left-color: #C6D5F5;
+	vertical-align: bottom;
+}

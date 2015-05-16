@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/"
+	debug="null" threshold="null">
+	<appender name="Console" class="org.apache.log4j.ConsoleAppender">
+	   <param name="Threshold" value="debug" /> 
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%d{yyyy/MM/dd-HH:mm:ss}][%5p][%l]:%m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="file" class="org.apache.log4j.RollingFileAppender">
+        <param name="threshold" value="debug" />
+        <param name="file" value="${SMART_HIS_HOME}/logs/main.log" />
+        <param name="maxBackupIndex" value="5" />
+        <param name="append" value="true" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%-5p][%d{yyyy-MM-dd HH:mm:ss,SSS}][%c] :%m%n" />
+        </layout>
+    </appender>
+     
+    <appender name="ap_net.sf.json.JSONObject" class="org.apache.log4j.ConsoleAppender" >
+    <param name="Threshold" value="error" />  
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern"
+        value="[%d{yyyy/MM/dd-HH:mm:ss}][%5p][%l]:%m%n" />
+    </layout>
+  </appender>
+  <logger name="net.sf.json.JSONObject" >
+      <level value="error"></level>
+    <appender-ref ref="ap_net.sf.json.JSONObject"/>
+  </logger>
+	<root>
+		<priority value="DEBUG" />
+		<appender-ref ref="Console" />
+		<appender-ref ref="file" />
+	</root>
+</log4j:configuration>
+

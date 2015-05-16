@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Cdemo</title>
+<link href="/YLManager/resources/css/goldcow-all.css" rel="stylesheet" type="text/css" />
+<script src="/YLManager/resources/js/goldcow-all.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function() {
+		$.post(globalUtil.getTimestampUrl('/getUser'), null, function(userbean) {
+			$("#username").html(userbean.display_name)
+		});
+	});
+</script>
+</head>
+<body>
+	登录成功！<br>
+	登录用户：<label id="username"></label>
+</body>
+</html>

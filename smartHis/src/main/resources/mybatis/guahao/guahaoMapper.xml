@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 指向Dao接口 -->
+<mapper namespace="com.neusoft.emanage.guahao.persist.GuahaoDao">
+	<!-- 获取用户 -->
+	<select id="get" parameterType="Integer" resultType="GuaHaoBean">
+		select  id,
+		ghnumber,
+				ghname,
+				ghsex,
+				ghage,
+				ghkeshiid,
+				ghkeshiname,
+				ghtype,
+				ghstatus,
+				ghyishengid,
+				ghyisheng,
+				ghriqi,
+				ghypfeiyong,
+				ghfeiyong
+		  from yl_ghtaizhang
+		 where id = #{id}
+	</select>
+
+	<!-- 分页查询 ，返回List<HashMap>对象， -->
+	<select id="list" parameterType="map" resultType="GuaHaoBean">
+			select  id,
+			ghnumber,
+				ghname,
+				ghsex,
+				ghage,
+				ghkeshiid,
+				ghkeshiname,
+				ghtype,
+				ghstatus,
+				ghyishengid,
+				ghyisheng,
+				ghriqi,
+				ghypfeiyong,
+				ghfeiyong
+		  from yl_ghtaizhang
+		<where>
+			   1=1
+			<if test="sel_ghnumber != null and  sel_ghnumber != '' ">
+				and ghnumber like   CONCAT(CONCAT('%', #{sel_ghnumber}), '%')  
+			</if>
+			<if test="sel_ghkeshiname != null  and sel_ghkeshiname != '' ">
+				and ghkeshiname like CONCAT(CONCAT('%', #{sel_ghkeshiname}), '%')  
+			</if>
+		</where>
+		<if test="sortname != null and sortorder != null">
+			order by ${sortname} ${sortorder}
+		</if>
+				<if test="offset != null and pagesize !=null">
+			LIMIT ${offset}, ${pagesize}
+		</if>
+	</select>
+<select id="findCount" parameterType="map" resultType="int">
+		select  count(0)
+		   from yl_ghtaizhang
+		<where>
+			   1=1
+			<if test="ghkeshiid != null and  ghkeshiid != '' ">
+				and ghkeshiid like   CONCAT(CONCAT('%', #{ghkeshiid}), '%')  
+			</if>
+			<if test="ghname != null  and ghname != '' ">
+				and ghname like CONCAT(CONCAT('%', #{ghname}), '%')  
+			</if>
+		</where>
+		<if test="sortname != null and sortorder != null">
+			order by ${sortname} ${sortorder}
+		</if>
+	</select>
+	<!-- 按类别查询 -->
+	<select id="getByTypeCode" parameterType="string" resultType="GuaHaoBean">
+		select  id,
+				ghnumber,
+				ghname,
+				ghsex,
+				ghage,
+				ghkeshiid,
+				ghkeshiname,
+				ghtype,
+				ghstatus,
+				ghyishengid,
+				ghyisheng,
+				ghriqi,
+				ghypfeiyong,
+				ghfeiyong
+		  from yl_ghtaizhang
+<!-- 		 where type_code = #{typeCode} -->
+	</select>
+	<!-- 向表中插入数据，并在将主键值赋到实体中，返回受影响的记录条数。如果不需要返回主键，无需配置useGeneratedKeys、keyProperty项 -->
+	<insert id="save" parameterType="GuaHaoBean" useGeneratedKeys="true" keyProperty="id">
+		insert into yl_ghtaizhang(ghnumber,ghname, ghsex, ghage, ghkeshiid,
+		ghkeshiname,ghtype,ghstatus,ghyishengid,ghyisheng,
+		ghriqi,ghypfeiyong,ghfeiyong)
+			values(#{ghnumber},#{ghname}, #{ghsex}, #{ghage}, #{ghkeshiid},
+			 #{ghkeshiname}, #{ghtype}, #{ghstatus}, #{ghyishengid}, #{ghyisheng},
+			now(),#{ghypfeiyong},#{ghfeiyong});
+	</insert>
+
+	<!-- 更新表中数据，返回受影响的记录条数 -->
+	<update id="update" parameterType="GuaHaoBean">
+		update yl_ghtaizhang
+		<set>
+			<if test="ghnumber != null">
+				ghnumber = #{ghnumber},
+			</if>
+			<if test="ghname != null">
+				ghname = #{ghname},
+			</if>
+			<if test="ghsex != null">
+				ghsex = #{ghsex},
+			</if>
+			<if test="ghage != null">
+				ghage = #{ghage},
+			</if>
+			<if test="ghkeshiid != null">
+				ghkeshiid = #{ghkeshiid},
+			</if>
+			<if test="ghkeshiname != null">
+				ghkeshiname = #{ghkeshiname},
+			</if>	
+			<if test="ghtype != null">
+				ghtype = #{ghtype},
+			</if>	
+			<if test="ghstatus != null">
+				ghstatus = #{ghstatus},
+			</if>
+			<if test="ghyishengid != null">
+				ghyishengid = #{ghyishengid},
+			</if>	
+			<if test="ghyisheng != null">
+				ghyisheng = #{ghyisheng},
+			</if>	
+			<if test="ghriqi != null">
+				ghriqi = #{ghriqi},
+			</if>
+			<if test="ghypfeiyong != null">
+				ghypfeiyong = #{ghypfeiyong},
+			</if>
+			<if test="ghfeiyong != null">
+				ghfeiyong = #{ghfeiyong}
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<!-- 根据ID删除表中数据 -->
+	<delete id="delete">
+		delete from yl_ghtaizhang where id =#{id}
+	</delete>
+</mapper> 

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 指向Dao接口 -->
+<mapper namespace="com.neusoft.emanage.userAccess.persist.UserAccessDao">
+<!-- 	获取用户 -->
+	<select id="getAccessById" parameterType="Integer" resultType="UserAccessBean">
+		select useraccess_id,RMB,GSC,userId,status,phone,email,user_code,idCard,versionNum
+		  from userAccess
+		 where useraccess_id = #{id}
+	</select>
+	
+	<select id="getAccessByElement" parameterType="map" resultType="UserAccessBean">
+		select useraccess_id,RMB,GSC,userId,status,phone,email,user_code,idCard,versionNum
+		  from userAccess
+		  <where>
+		  		1=1 
+		  	<if test="useraccess_id != null">
+		  		and useraccess_id = #{useraccess_id} 
+		  	</if>
+		  	<if test="user_code != null">
+		  		and user_code = #{user_code}
+		  	</if>
+		  	<if test="userId != null">
+		  		and userId = #{userId}
+		  	</if>
+		  </where>
+		  limit 0,1
+	</select>
+	
+	<update id="update" parameterType="UserAccessBean" >
+		update userAccess 
+		<set>
+			versionNum = versionNum+1,
+			<if test="RMB!=null">
+				RMB = #{RMB},
+			</if>
+			<if test="GSC != null">
+				GSC = #{GSC},
+			</if>
+			<if test="userId!=null">
+				userId = #{userId},
+			</if>
+			<if test="status!=null">
+				status = #{status},
+			</if>
+			<if test="phone!=null">
+				phone = #{phone},
+			</if>
+			<if test="email!=null">
+				email = #{email},
+			</if>
+			<if test="user_code!=null">
+				user_code = #{user_code},
+			</if>
+			<if test="idCard!=null">
+				idCard = #{idCard}
+			</if>
+		</set>
+		<where>
+			useraccess_id=#{useraccess_id} and versionNum = #{versionNum}
+		</where>
+	</update>
+	
+	<insert id="save" parameterType="UserAccessBean" useGeneratedKeys="true" keyProperty="useraccess_id">
+		insert into userAccess(RMB,GSC,userId,status,phone,email,user_code,idCard,versionNum)
+			values(#{RMB},#{GSC},#{userId},#{status},#{phone},#{email},#{user_code},#{idCard},0);
+	</insert>
+	
+	<!-- 根据ID删除表中数据 -->
+	<delete id="delete">
+		delete from userAccess where useraccess_id =#{useraccess_id} and versionNum=#{versionNum}
+	</delete>
+</mapper> 

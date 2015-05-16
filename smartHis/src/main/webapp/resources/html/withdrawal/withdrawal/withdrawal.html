@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link href="/GSCManager/resources/css/goldcow-all.css" rel="stylesheet"
+	type="text/css" />
+<link href="/GSCManager/resources/css/icon.css" rel="stylesheet"
+	type="text/css" />
+<script src="/GSCManager/resources/js/goldcow-all.js"
+	type="text/javascript"></script>
+<script src="/GSCManager/resources/js/textcheck.js"
+	type="text/javascript"></script>
+<script type="text/javascript">
+	// 获取数据库中的银行
+	var rmb;
+	$(function() {
+		var url = global_param.context_name + "/system/parameter/get";
+		$.ajax({
+			type : "post",
+			url : url,
+			data : {
+				"typeCode" : "BANK_TYPE"
+			},
+			success : function(list) {
+				$.each(list, function(n, val) {
+					var opt = "<option value="+val.value+">" + val.name
+							+ "</option>";
+					$("#bank").append(opt);
+
+				});
+			}
+		});
+	});
+	// 检验用户名是否存在并获取用户RMB数
+	function clea() {
+		$("#clear").form('clear');
+		$("#RMB").val("");
+	}
+	//通过用户名获得RMB钱数
+	function getRMB() {
+
+		var url = globalUtil.getTimestampUrl("/withdrawal/searchrmb");
+		var user_name = $("#username").val();
+		if (textcheck.IsNull(user_name, "用户名不能为空且不包含空格") == false) {
+
+			return;
+		}
+		if (user_name.length < 4) {
+
+			$.messager.alert("提示", "用户名必须大于4位");
+			return;
+		}
+		if (user_name.length > 8) {
+			$.messager.alert("提示", "用户名不能大于8位");
+			return;
+		}
+		$.post(url, {
+			"user_name" : user_name
+		}, function(query) {
+
+			if ("err" == query.err) {
+				util.alert("请检查你的用户名");
+				$("#RMB").val("");
+				$("#phone").val("");
+				$("#idcard").val("");
+				return;
+			}
+
+			$("#RMB").val(doubleNumber(query.rmb, 2).formatStrNum());
+			$("#phone").val(query.phone);
+			$("#idcard").val(query.idcard);
+		});
+
+	}
+	//进行提现保存和计算
+	function saveWithDrawa() {
+		if(!$("#_form").form('enableValidation').form('validate')){
+			return;
+		}
+		$("#sub").attr({
+			"disabled" : "disabled"
+		});
+		var data = utilJson.formDataObject("clea");
+		var user_name = $("#username").val();
+		var withdrawal = $("#withdrawal").numberbox('getValue');
+		// 		var num = $("#num").val();
+		// 		var bank = data.bank1;
+		if (rmb < withdrawal) {
+			util.show("请核查您的人民币数");
+			clea();
+			$("#username").val(user_name);
+			getRMB();
+			$("#sub").removeAttr("disabled");
+			return;
+		}
+		if (textcheck.IsNull(user_name, "用户名不能为空且不包含空格") == false) {
+			$("#sub").removeAttr("disabled");
+			return;
+		}
+		if (textcheck.IsString(user_name, "用户名不能为汉字，只能为字母或者数字") == false) {
+			$("#sub").removeAttr("disabled");
+			return;
+		}
+		if (textcheck.IsNull(withdrawal, "提现金额不能为空且不包含空格") == false) {
+
+			$("#sub").removeAttr("disabled");
+			return;
+		}
+		if (withdrawal < 0 || withdrawal == 0) {
+			util.alert("提现金额必须大于零");
+			clea();
+			$("#username").val(user_name);
+			// 			getRMB();
+			$("#sub").removeAttr("disabled");
+			return;
+		}
+		if (user_name.length < 4) {
+
+			$.messager.alert("提示", "用户名必须大于4位");
+			$("#sub").removeAttr("disabled");
+			return;
+		}
+		if (user_name.length > 8) {
+			$.messager.alert("提示", "用户名过长8位");
+			$("#sub").removeAttr("disabled");
+			return;
+		}
+		// 		if (textcheck.IsNull(bank, "请选择银行") == false) {
+		// 			return;
+		// 		}
+		// 		if (textcheck.IsNull(num, "请填入银行账号") == false) {
+		// 			return;
+		// 		}
+		if (!$("#clear").form('validate')) {
+			$("#sub").removeAttr("disabled");
+			return;
+		}
+		if (textcheck.IsInteger(withdrawal, "暂不支持小数提现") == false) {
+			$("#sub").removeAttr("disabled");
+			return;
+		}
+		if (withdrawal.length > 8) {
+			$.messager.alert("提示", "您输入的金额过长");
+			return;
+		}
+		var url = globalUtil.getTimestampUrl("/withdrawal/finally");
+		$.post(url, {
+			"user_name" : user_name,
+			"newrmb" : withdrawal
+		}, function(date) {
+			if (date == "success") {
+				util.show("提现成功");
+				$("#sub").removeAttr("disabled");
+				clea();
+				$("#username").val(user_name);
+							getRMB();
+				return;
+			}
+			if (date == "err") {
+				util.show("提现失败");
+				$("#sub").removeAttr("disabled");
+				clea();
+				$("#username").val(user_name);
+				 				getRMB();
+				return;
+			}
+			if (date == "errrmb") {
+				util.alert("您的提现金额大于账户总金额，请您重新输入");
+				$("#sub").removeAttr("disabled");
+				clea();
+				$("#username").val(user_name);
+							getRMB();
+				return;
+			}
+			if (date == "errnull") {
+				util.alert("请填入用户信息");
+				$("#sub").removeAttr("disabled");
+				return;
+			}
+			if (date == "erruser") {
+				util.alert("用户不存在,提现失败");
+				$("#sub").removeAttr("disabled");
+				clea();
+				$("#username").val(user_name);
+
+				return;
+			}
+
+		});
+	}
+	// 	清空
+	// 		function clea() {
+	// 			$("#clear").form('clear');
+	// 		}
+	// 	//获得所有rmb数
+	// 	function All() {
+	// 		var rmb = $("#RMB").text();
+	// 		var rm=rmb.split(".");
+	// 		$("#withdrawal").val(rm);
+	// 		if (rmb == "") {
+	// 			alert("请填写用户名！！！");
+	// 		}
+	// 	}
+</script>
+</head>
+<body>
+	<form id="clear">
+		<div region="center" border="false" class="Center-Bg">
+	        <div class="Center-formDiv clearfix">
+	        <form id="_form" action="#" method="post">
+	            <div class="float-l">
+			        <div class="Center-form-title">
+			            <span class="redStar">*</span>用&ensp;&ensp;户&ensp;&ensp;名：
+			        </div>
+			        <div class="Center-form-item">
+			            <input id="username" name="username1" type="text" onblur="getRMB()" />
+			        </div>
+			    </div>
+			    <div class="float-l clearboth">
+			        <div class="Center-form-title">
+			                                     账户总金额：
+			        </div>
+			        <div class="Center-form-item">
+			            <input type="text" name="RMB1" class="easyui-validatebox disable" id="RMB" disabled="disabled" />&ensp;<span style="color:red;">元</span>
+			        </div>
+			        <div id="msgPhone"></div>
+			    </div>
+			    <div class="float-l clearboth">
+			        <div class="Center-form-title">
+			                                    电&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;话：
+			        </div>
+			        <div class="Center-form-item">
+			            <input type="text" name="phone" class="easyui-validatebox disable" id="phone" disabled="disabled" />
+			        </div>
+			    </div>
+			    <div class="float-l clearboth">
+			        <div class="Center-form-title">
+			                                    用户身份证：
+			        </div>
+			        <div class="Center-form-item">
+			            <input type="text" name="idcard" id="idcard" disabled="disabled" class="easyui-validatebox disable" />
+			        </div>
+			    </div>
+			    <div class="float-l clearboth">
+			        <div class="Center-form-title">
+			            <span class="redStar">*</span><span class="letter-sp2">提现金额</span>：
+			        </div>
+			        <div class="Center-form-item">
+			            <input type="text" class="easyui-numberbox" data-options="groupSeparator:','" precision="2"
+						id="withdrawal" name="withdrawal" maxlength="8" />&ensp;<span style="color: red;"> 元</span>
+			        </div>
+			    </div>
+			    </form>
+	        </div>
+	        <div data-options="region:'south',border:false" class="Center-footer">
+	            <input id="" class="btn-withdraw" onmouseover="this.className='btn-withdraw-over'"
+	            onmouseout="this.className='btn-withdraw'" onmousedown="this.className='btn-withdraw-down'" type="button" onclick="saveWithDrawa()" />
+	            <input id="" class="btn-reset" onmouseover="this.className='btn-reset-over'"
+	            onmouseout="this.className='btn-reset'" onmousedown="this.className='btn-reset-down'" type="button" onclick="clea()" />
+	        </div>
+	    </div>
+			<!-- <table>
+				<tr>
+					<td>用户名：</td>
+
+					<td><input id="username" name="username1" type="text"
+						onblur="getRMB()" /></td>
+				</tr>
+				<tr>
+					<td>账户总金额：</td>
+					<td><input type="text" name="RMB1" class="easyui-validatebox"
+						id="RMB" disabled="disabled" /> <span style="color: red;">元</span>
+					</td>
+
+				</tr>
+				<tr>
+					<td>电话：</td>
+					<td><input type="text" name="phone" class="easyui-validatebox"
+						id="phone" disabled="disabled" /></td>
+				</tr>
+				<tr>
+					<td>用户身份证：</td>
+					<td><input type="text" name="idcard"
+						class="easyui-validatebox" id="idcard" disabled="disabled" /></td>
+				</tr>
+
+				<tr>
+					<td>提现金额：</td>
+					<td><input type="text" class="easyui-numberbox"
+						data-options="groupSeparator:','" precision="2" required="true"
+						id="withdrawal" name="withdrawal" maxlength="8" /> <span
+						style="color: red;"> 元</span></td> -->
+
+					<!-- 					<td><a href="#" onclick="All()">全部</a></td> -->
+				<!-- </tr> -->
+
+				<!-- 				<tr> -->
+				<!-- 					<td>银行类型：</td> -->
+				<!-- 					<td><select name="bank1" id="bank"> -->
+				<!-- 							<option value="0">请选择银行</option> -->
+				<!-- 					</select></td> -->
+				<!-- 				</tr> -->
+				<!-- 				<tr> -->
+				<!-- 					<td>银行卡号：</td> -->
+				<!-- 					<td><input type="text" id="num" name="num1" -->
+				<!-- 						class="easyui-numberbox" required="true" /></td> -->
+				<!-- 				</tr> -->
+				<!-- 				<tr> -->
+				<!-- 					<td>&nbsp;</td> -->
+				<!-- 					<td> -->
+				<!-- 					<input class="easyui-linkbutton" iconCls="icon-ok" value="提现" type="button" id="sub" -->
+				<!-- 						onclick="saveWithDrawa()"  > -->
+				<!-- 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input value="重置" -->
+				<!-- 						type="button" onclick="clea()"> -->
+				<!-- 						</td> -->
+
+				<!-- 				</tr> -->
+				<!-- 				<tr> -->
+				<!-- 					<td></td> -->
+				<!-- 					<td></td> -->
+				<!-- 				</tr> -->
+
+			<!-- </table>
+			<div data-options="region:'south',border:false"
+				style="text-align: center ; padding: 5px 5px;">
+				<a id="sub" class="easyui-linkbutton" href="javascript:void(0);"
+					onclick="saveWithDrawa()">提现</a> <a class="easyui-linkbutton"
+					href="javascript:void(0);" onclick="clea()">重置</a>
+			</div> -->
+	</form>
+</body>
+</html>

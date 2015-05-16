@@ -1,0 +1,252 @@
+<script type="text/javascript">
+	$(function() {
+		util.datebox("starttime");
+		util.datebox("endTime");
+		util.datebox("playallstarttime");
+		util.datebox("playallendtime");
+		var param = util.getWindowParam();
+		// 得到url中id值
+		if (param.subscriptionManager_id) {
+			var data = util.ajax(global_param.context_name
+					+ '/shengou/shengoumanager/getById', {
+				"subscriptionManager_id" : param.subscriptionManager_id
+			});
+			$("#_form").form("load", data);
+		}
+		var keshengouliang = util.ajax(global_param.context_name
+				+ '/shengou/shengoumanager/keshengouliang');
+		$("#keshengouliang").val(doubleNumber(keshengouliang,6));
+
+	});
+
+	function submitForm() {
+		var newdata = util.ajax(global_param.context_name
+				+ '/shengou/shengoumanager/data');
+		var sdate = $('#starttime').val();
+		var edate = $('#endTime').val();
+		var starttime = $('#playallstarttime').val();
+		var endtime = $('#playallendtime').val();
+		if (sdate == '') {
+			$.messager.alert('提示', '申购开始时间不能为空!', 'info');
+			return;
+		}
+		if (edate == '') {
+			$.messager.alert('提示', '申购结束时间不能为空！', 'info');
+			return;
+		}
+		if (starttime == '') {
+			$.messager.alert('提示', '开始付款时间不能为空!', 'info');
+			return;
+		}
+		if (endtime == '') {
+			$.messager.alert('提示', '结束付款时间不能为空!', 'info');
+			return;
+		}
+		if (textcheck.compareDate(newdata, sdate) == 1) {
+			$.messager.alert('提示', '申购开始时间必须大于等于服务器时间');
+			return;
+		}
+		if (textcheck.compareDate(sdate, edate) == 1) {
+			$.messager.alert('提示', '申购结束时间必须大于等于申购开始时间');
+			return;
+		}
+		if (textcheck.compareDate(edate, starttime) != -1) {
+			$.messager.alert('提示', '开始付款时间必须大于申购结束时间');
+			return;
+		}
+		if (textcheck.compareDate(starttime, endtime) == 1) {
+			$.messager.alert('提示', '结束付款时间必须大于等于开始付款时间');
+			return;
+		}
+		var minamount = $('#minnum').val();
+		var maxamount = $('#maxnum').val();
+		if (parseInt(minamount) > parseInt(maxamount)) {
+			$.messager.alert('提示', '最大申购量必须大于最小申购量', 'info');
+			$('#maxnum').val("");
+			return;
+		}
+		var gscnumber = $('#subscriptionnum').val();
+		var pattern = /^[1-9]*[1-9][0-9]*$/;
+		var flag = pattern.test(gscnumber);
+		var flag2 = pattern.test(minamount);
+		var flag3 = pattern.test(maxamount);
+		if (!flag) {
+			$.messager.alert('提示', '申购数量格式不正确，且不能为空请重新输入', 'info');
+			$('#subscriptionnum').val("");
+			return;
+		}
+		if (!flag3) {
+			$.messager.alert('提示', '最大申购量格式不正确，且不能为空请重新输入', 'info');
+			$('#maxnum').val("");
+			return;
+		}
+		if (!flag2) {
+			$.messager.alert('提示', '最小申购量格式不正确，且不能为空请重新输入', 'info');
+			$('#minnum').val("");
+			return;
+		}
+		if (parseInt(minamount) > parseInt(gscnumber)) {
+			$.messager.alert('提示', '最小申购量不能大于申购数量', 'info');
+			$('#minnum').val("");
+			return;
+		}
+		if (parseInt(maxamount) > parseInt(gscnumber)) {
+			$.messager.alert('提示', '最大申购量不能大于申购数量', 'info');
+			$('#maxnum').val("");
+			return;
+		}
+		var result = util.submit('_form');
+		if (result) {
+			if (result == "success") {
+// 				util.alert("操作成功");
+				util.show('操作成功');
+				$('#grid').datagrid('reload');
+				util.closeWindow('editWindow');
+			} else if (result == "error3") {
+// 				util.error("请选初始化造币");
+				util.show('请选初始化造币');
+			} else if (result == "error2") {
+// 				util.error("申购数量不能大于当前最大可申购量");
+				util.show('申购数量不能大于当前最大可申购量');	
+				$('#subscriptionnum').val("");
+			}
+		}
+	}
+</script>
+<div class="easyui-layout" fit="true">
+	<div region="center" border="false" class="Dialog-Bg">
+	    <div class="Dialog-formDiv clearfix">
+		<form id="_form" action="/GSCManager/shengou/shengoumanager/save" method="post">
+			<input id="subscriptionManager_id" name="subscriptionManager_id" type="hidden" />
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="keshengouliang" class="field">当前最大可申购量：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="keshengouliang" name="keshengouliang" type="text" readonly="readonly" style="width:288px;" class="readOnly" />
+			    </div>
+			</div>
+			<div class="float-l clearboth">
+			    <div class="Dialog-form-title2">
+			        <label for="subscriptionnum" class="field">申&nbsp;&nbsp;购&nbsp;&nbsp;数&nbsp;&nbsp;量：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="subscriptionnum" name="subscriptionnum" type="text" />
+			    </div>
+			</div>
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="pirce" class="field">申&nbsp;&nbsp;购&nbsp;&nbsp;价&nbsp;&nbsp;格：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="pirce" name="pirce" type="text" value="1" readonly="readonly" class="readOnly" />
+			    </div>
+			</div>
+			<div class="float-l clearboth2">
+			    <div class="Dialog-form-title2">
+			        <label for="starttime" class="field">申购开始时间：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="starttime" name="starttime" type="text" />
+			    </div>
+			</div>
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="endTime" class="field">申购结束时间：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="endTime" name="endTime" type="text" />
+			    </div>
+			</div>
+			<div class="float-l clearboth">
+			    <div class="Dialog-form-title2">
+			        <label for="minnum" class="field"><span class="letter-sp2">最小申购量</span>：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="minnum" name="minnum" type="text" />
+			    </div>
+			</div>
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="maxnum" class="field"><span class="letter-sp2">最大申购量</span>：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="maxnum" name="maxnum" type="text" />
+			    </div>
+			</div>
+			<div class="float-l clearboth">
+			    <div class="Dialog-form-title2">
+			        <label for="playallstarttime" class="field">开始付款时间：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="playallstarttime" name="playallstarttime" type="text" />
+			    </div>
+			</div>
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="playallendtime" class="field">结束付款时间：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="playallendtime" name="playallendtime" type="text" />
+			    </div>
+			</div>
+			
+			
+			<!-- <table style="width: 100%;" cellpadding=5 cellspacing=5>
+				<tr>
+					<th><label for="keshengouliang" class="field">
+							当前最大可申购量： </label></th>
+					<td><input id="keshengouliang" name="keshengouliang"
+						type="text" readonly="readonly" /></td>
+
+				</tr>
+				<tr>
+					<th><label for="subscriptionnum" class="field"> 申购数量：
+					</label></th>
+					<td><input id="subscriptionnum" name="subscriptionnum"
+						type="text" /><br> -->
+					<!-- <samp style="color: red">申购范围应在100~990000</samp> --><!-- </td>
+
+					<th><label for="pirce" class="field">申购价格： </label></th>
+					<td><input id="pirce" name="pirce" type="text" value="1"
+						readonly="readonly" /><br> -->
+					<!-- <samp style="color: red">申购价格应在 1~50000000</samp>--><!-- </td>
+				</tr>
+				<tr>
+					<th><label for="starttime" class="field"> 申购开始时间： </label></th>
+					<td><input id="starttime" name="starttime" type="text" /></td>
+					<th><label for="endTime" class="field"> 申购结束时间： </label></th>
+					<td><input id="endTime" name="endTime" type="text" /></td>
+				</tr>
+				<tr>
+					<th><label for="minnum" class="field"> 最小申购量： </label></th>
+					<td><input id="minnum" name="minnum" type="text" /><br> -->
+					<!-- <samp style="color: red">申购最小量应在100~990000</samp> --><!-- </td>
+					<th><label for="maxnum" class="field"> 最大申购量： </label></th>
+					<td><input id="maxnum" name="maxnum" type="text" /><br> -->
+				<!-- 	<samp style="color: red">申购最大量应在100~990000</samp> --><!-- </td>
+				</tr>
+				<tr>
+					<th><label for="playallstarttime" class="field">
+							开始付款时间： </label></th>
+					<td><input id="playallstarttime" name="playallstarttime"
+						type="text" /></td>
+					<th><label for="playallendtime" class="field"> 结束付款时间：
+					</label></th>
+					<td><input id="playallendtime" name="playallendtime"
+						type="text" /></td>
+				</tr>
+			</table> -->
+		</form>
+		</div>
+	</div>
+	<div data-options="region:'south',border:false" class="Dialog-footer">
+	    <input id="" class="btn-save" onmouseover="this.className='btn-save-over'"
+	    onmouseout="this.className='btn-save'" onmousedown="this.className='btn-save-down'" type="button" onclick="submitForm();" />
+	    <input id="" class="btn-cancel" onmouseover="this.className='btn-cancel-over'"
+	    onmouseout="this.className='btn-cancel'" onmousedown="this.className='btn-cancel-down'" type="button" onclick="util.closeWindow('editWindow');" />
+		<!-- <a class="easyui-linkbutton" href="javascript:void(0);"
+			onclick="submitForm();">保存</a> <a class="easyui-linkbutton"
+			href="javascript:void(0);" onclick="util.closeWindow('editWindow');">取消</a> -->
+	</div>
+</div>

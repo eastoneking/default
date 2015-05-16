@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                     http://www.springframework.org/schema/context
+                     http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                     http://www.springframework.org/schema/aop
+                     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+                     http://www.springframework.org/schema/tx
+                     http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+	<bean id="debug" class="java.lang.Boolean">
+		<constructor-arg>
+			<value>true</value>
+		</constructor-arg>
+	</bean>
+
+	<!-- 加载环境变量 -->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<description>
+			之后可以用${环境变量名}替换为环境变量中的值
+		</description>
+		<property name="locations">
+			<list>
+				<value>file://${SMART_HIS_HOME}/conf/*.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean class="eastone.logging.Log4JFactroyBean" lazy-init="false">
+		<description>日志的配置和输出文件严禁定位到如下目录：应用目录,包括:
+			/,/WEB-INFO,/WEB-INFO/classes以及它们的子目录.
+			日志配置和日志文件是经常变更或手工操作查找的文件.与应用放在同一目录下会导致应用中资源更新,有可能引起容器其他行为.
+			而且日志是作为运行情况的记录文件，一旦应用部署磁盘损坏或出现其他问题会导致运行记录与源程序一同丢失，没办法查找问题
+			或执行业务恢复。
+		</description>
+		<property name="logConfigXMLPath" value="${SMART_HIS_HOME}/conf/log4j.xml">
+			<description>value值中不能有"file://"的协议前缀.</description>
+		</property>
+	</bean>
+
+	<bean id="messageSource" class="eastone.precasting.context.MessageSourceAppender"
+		lazy-init="false">
+		<description>
+			本地化消息,多个文件用","分割.
+		</description>
+		<property name="messageSource">
+		          <bean class="org.springframework.context.support.ReloadableResourceBundleMessageSource"></bean>
+		
+		</property>
+		<property name="basenames">
+			<value>file://${SMART_HIS_HOME}/conf/text/components,file://${SMART_HIS_HOME}/conf/text/smartHis</value>
+		</property>
+	</bean>
+
+	<import resource="./datasource.xml" />
+	<import resource="./business.xml" />
+	<import resource="./endpoint.xml" />
+
+	<bean id="dispatcher" class="eastone.web.UriMapDispatherServlet"
+		scope="prototype" lazy-init="true">
+		<property name="processorMap">
+			<map>
+				<entry key="/fn/test" value="ep.test"></entry>
+			</map>
+		</property>
+	</bean>
+
+</beans>

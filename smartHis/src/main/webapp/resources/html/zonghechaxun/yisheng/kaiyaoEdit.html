@@ -1,0 +1,189 @@
+<script type="text/javascript">
+	$(function() {
+		var param = util.getWindowParam();
+		// 得到url中id值
+		//诊断ID
+		if (param.id) {
+			var data = util.ajax(global_param.context_name
+					+ '/kaiyao/kaiyao/getById', {
+				"id" : param.id
+			});
+			$("#_form").form("load", data);
+		}
+		
+// 		util.datebox("kc_scriqi");
+// 		util.datebox("kc_yxriqi");
+// 		util.datebox("kc_rkriqi");
+		// 类别下拉框
+		$('#zdyp_ypbmnumber').combogrid({
+  				panelWidth:500,
+			    idField:'kc_ypbmnumber',
+			    textField:'kc_ypbmnumber',
+                mode:'remote',  
+// 				mode:'mode',  
+                fitColumns:true,
+			    url:global_param.context_name + "/select/getByCode/getyaopinkucun",
+			    columns:[[
+						 {field:'kc_ypbmnumber',title:'药品编码',width:100},
+						 {field:'kc_ypname',title:'药品名字',width:100},
+			       	     {field:'kc_shuliang',title:'库存数量',width:50},
+// 						 {field:'kc_cbjiage',title:'成本价格',width:50},
+						 {field:'kc_zdjiage',title:'最低价格',width:50},
+						 {field:'kc_lsjiage',title:'零售价格',width:50},
+			  			 {field:'kc_shengchanshang',title:'生产商',width:100}
+			    ]],
+	 			onSelect:function(index,row){
+	 				$("#zdyp_ypid").val(row.id);
+	 				$("#zdyp_ypbmid").val(row.kc_ypbmid);
+	 				$("#zdyp_ypname").val(row.kc_ypname);
+	 				$("#kc_shuliang").val(row.kc_shuliang);
+	 				$("#zdyp_ypdanwei").val(row.kc_danwei);
+	 				$("#zdyp_ypleibie").val(row.kc_ypleibie);
+	 				$("#zdyp_ypshengchanshang").val(row.kc_shengchanshang);
+	 				
+	 				$("#zdyp_ypbcxsjiage").val(row.kc_lsjiage);
+	 				
+	 				$("#zdyp_yplsjiage").val(row.kc_lsjiage);
+	 				$("#zdyp_ypcbjiage").val(row.kc_cbjiage);
+	 				$("#zdyp_ypzdjiage").val(row.kc_zdjiage);
+		    	}
+ 		});
+		var param = util.getWindowParam();
+		// 得到url中id值
+		if (param.id) {
+			var data = util.ajax(global_param.context_name
+					+ '/yaoju/ruku/getById', {
+				"id" : param.id
+			});
+			$("#_form").form("load", data);
+		}
+// 		var keshengouliang = util.ajax(global_param.context_name
+// 				+ '/keshi/keshiweihu/keshengouliang');
+// 		$("#keshengouliang").val(doubleNumber(keshengouliang,6));
+
+	});
+	function submitForm() {
+		var result = util.submit('_form');
+		if (result) {
+			if (result == "success") {
+// 				util.alert("操作成功");
+				util.show('操作成功');
+				$('#grid1').datagrid('reload');
+				util.closeWindow('editWindow1');
+			} else  {
+// 				util.error("请选初始化造币");
+				util.show('操作失败');
+			} 
+		}
+	}
+	function initJinE(){
+		var jiage = $("#zdyp_ypbcxsjiage").val();
+		var shuliang = $("#zdyp_ypshuliang").val();
+		if(jiage==""){
+			return;
+		}
+		if(shuliang==""){
+			return;
+		}
+		var zdyp_danxiangjine = parseFloat(jiage)*parseFloat(shuliang);
+		$("#zdyp_danxiangjine").val(zdyp_danxiangjine);
+		
+		
+	}
+</script>
+<div class="easyui-layout" fit="true">
+	<div region="center" border="false" class="Dialog-Bg">
+	    <div class="Dialog-formDiv clearfix">
+		<form id="_form" action="/YLManager/kaiyao/kaiyao/save" method="post">
+			<input id="id" name="id" type="hidden" />
+            <input id="zdyp_ghnumber" name="zdyp_ghnumber" type="hidden" />
+            <input id="zdyp_ghid" name="zdyp_ghid" type="hidden"/>
+            <input id="zdyp_zdid" name="zdyp_zdid" type="hidden"/>
+			<div class="float-l clearboth">
+			    <div class="Dialog-form-title2">
+			        <label for="kc_ypbmnumber" class="field">药品编码：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zdyp_ypbmnumber" name="zdyp_ypbmnumber" type="text"  style="width: 158px;" class="easyui-validatebox" data-options="required:true" />
+			        <input id="zdyp_ypid" name="zdyp_ypid" type="hidden"  />
+			        <input id="zdyp_ypbmid" name="zdyp_ypbmid" type="hidden"  />
+			    </div>
+			</div>
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="zdyp_ypname" class="field">药品名称：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zdyp_ypname" name="zdyp_ypname" type="text" class="easyui-validatebox" data-options="required:true" readonly="readonly"/>
+			    </div>
+			</div>
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="kc_shuliang" class="field">库存数量：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="kc_shuliang" name="kc_shuliang" type="text" class="easyui-validatebox" data-options="required:true" />
+			    </div>
+			</div>
+				<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="zdyp_ypshuliang" class="field">销售数量：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zdyp_ypshuliang" name="zdyp_ypshuliang" type="text" class="easyui-validatebox" onblur="initJinE();" data-options="required:true" />
+			    </div>
+			</div>
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="zdyp_ypdanwei" class="field">药品单位：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zdyp_ypdanwei" name="zdyp_ypdanwei" type="text" class="easyui-validatebox" data-options="required:true" readonly="readonly"/>
+			    </div>
+			</div>
+					<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="zdyp_ypbcxsjiage" class="field">销售价格：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zdyp_ypbcxsjiage" name="zdyp_ypbcxsjiage" type="text" class="easyui-validatebox"  onblur="initJinE();"  data-options="required:true" />
+			        <input id="zdyp_yplsjiage" name="zdyp_yplsjiage" type="hidden" class="easyui-validatebox"  onblur="initJinE();"  data-options="required:true" />
+			        <input id="zdyp_ypcbjiage" name="zdyp_ypcbjiage" type="hidden" class="easyui-validatebox"  onblur="initJinE();"  data-options="required:true" />
+			        <input id="zdyp_ypzdjiage" name="zdyp_ypzdjiage" type="hidden" class="easyui-validatebox"  onblur="initJinE();"  data-options="required:true" />
+			    </div>
+			</div>
+							
+			<div class="float-l clearboth2">
+			    <div class="Dialog-form-title2">
+			        <label for="zdyp_ypleibie" class="field">药品类别：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zdyp_ypleibie" name="zdyp_ypleibie" type="text" style="width: 152px"readonly="readonly"/>
+			    </div>
+			</div>
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="zdyp_ypshengchanshang" class="field">生产商：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zdyp_ypshengchanshang" name="zdyp_ypshengchanshang" type="text" class="easyui-validatebox" data-options="required:true"readonly="readonly"/>
+			    </div>
+			</div>
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="zdyp_danxiangjine" class="field">单项金额：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zdyp_danxiangjine" name="zdyp_danxiangjine" type="text" class="easyui-validatebox" data-options="required:true"/>
+			    </div>
+			</div>
+		</form>
+		</div>
+	</div>
+	<div data-options="region:'south',border:false" class="Dialog-footer">
+<!-- 	    <input id="" class="btn-save" onmouseover="this.className='btn-save-over'" -->
+<!-- 	    onmouseout="this.className='btn-save'" onmousedown="this.className='btn-save-down'" type="button" onclick="submitForm();" /> -->
+	    <input id="" class="btn-cancel" onmouseover="this.className='btn-cancel-over'"
+	    onmouseout="this.className='btn-cancel'" onmousedown="this.className='btn-cancel-down'" type="button" onclick="util.closeWindow('editWindow1');" />
+	</div>
+</div>

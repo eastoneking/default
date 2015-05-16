@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 指向Dao接口 -->
+<mapper namespace="com.neusoft.emanage.keshi.persist.KeshiweihuDao">
+	<!-- 获取用户 -->
+	<select id="get" parameterType="Integer" resultType="KeshiBean">
+		select  id,
+				ksname,
+				ksnumber,
+				ksaddress,
+				ksorder
+		  from ylsys_keshi
+		 where id = #{id}
+	</select>
+
+	<!-- 分页查询 ，返回List<HashMap>对象， -->
+	<select id="list" parameterType="map" resultType="KeshiBean">
+			select  id,
+				ksname,
+				ksnumber,
+				ksaddress,
+				ksorder
+		  from ylsys_keshi
+		<where>
+			   1=1
+			<if test="ksnumber != null and  ksnumber != '' ">
+				and ksnumber like   CONCAT(CONCAT('%', #{ksnumber}), '%')  
+			</if>
+			<if test="ksname != null  and ksname != '' ">
+				and ksname like CONCAT(CONCAT('%', #{ksname}), '%')  
+			</if>
+		</where>
+		<if test="sortname != null and sortorder != null">
+			order by ${sortname} ${sortorder}
+		</if>
+				<if test="offset != null and pagesize !=null">
+			LIMIT ${offset}, ${pagesize}
+		</if>
+	</select>
+<select id="findCount" parameterType="map" resultType="int">
+		select  count(0)
+		   from ylsys_keshi
+		<where>
+			   1=1
+			<if test="ksnumber != null and  ksnumber != '' ">
+				and ksnumber like   CONCAT(CONCAT('%', #{ksnumber}), '%')  
+			</if>
+			<if test="ksname != null  and ksname != '' ">
+				and ksname like  CONCAT(CONCAT('%', #{ksname}), '%')  
+			</if>
+		</where>
+		<if test="sortname != null and sortorder != null">
+			order by ${sortname} ${sortorder}
+		</if>
+	</select>
+	<!-- 按类别查询 -->
+	<select id="getByTypeCode" parameterType="string" resultType="KeshiBean">
+		select id,
+			  ksname,
+				ksnumber,
+				ksaddress,
+				ksorder
+		  from ylsys_keshi
+	</select>
+	<!-- 向表中插入数据，并在将主键值赋到实体中，返回受影响的记录条数。如果不需要返回主键，无需配置useGeneratedKeys、keyProperty项 -->
+	<insert id="save" parameterType="KeshiBean" useGeneratedKeys="true" keyProperty="id">
+		insert into ylsys_keshi(ksname, ksnumber, ksaddress, ksorder)
+			values(#{ksname}, #{ksnumber}, #{ksaddress}, #{ksorder});
+	</insert>
+
+	<!-- 更新表中数据，返回受影响的记录条数 -->
+	<update id="update" parameterType="KeshiBean">
+		update ylsys_keshi
+		<set>
+			<if test="ksname != null">
+				ksname = #{ksname},
+			</if>
+			<if test="ksnumber != null">
+				ksnumber = #{ksnumber},
+			</if>
+			<if test="ksaddress != null">
+				ksaddress = #{ksaddress},
+			</if>
+			<if test="ksorder != null">
+				ksorder = #{ksorder}
+			</if>
+		
+		</set>
+		where id = #{id}
+	</update>
+
+	<!-- 根据ID删除表中数据 -->
+	<delete id="delete">
+		delete from ylsys_keshi where id =#{id}
+	</delete>
+</mapper> 

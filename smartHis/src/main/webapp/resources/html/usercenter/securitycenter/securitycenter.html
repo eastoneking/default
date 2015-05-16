@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>安全中心</title>
+<link href="/GSCManager/resources/css/goldcow-all.css" rel="stylesheet"
+	type="text/css" />
+<link href="/GSCManager/resources/css/icon.css" rel="stylesheet"
+	type="text/css" />
+<script src="/GSCManager/resources/js/goldcow-all.js" type="text/javascript"></script>
+<style type="text/css">
+/* 弹出div的样式 */
+.window{
+    width:250px;
+    background-color: #d0def0;
+    padding:2px;
+    margin:5px;
+    position:absolute;
+    display: none;   
+}
+/* div的标题头 */
+.title{
+    font-size: 15px;
+    padding: 3px;
+}
+/* div的关闭按钮图标样式 */
+.title img{
+    float: right;
+    cursor:pointer;
+}
+/* div中类容的样式 */
+.content{
+    font-size:14px;
+    height:180px;
+    background-color: #FFFFFF;
+    padding: 2px;
+    overflow: auto;
+}
+</style>
+<script type="text/javascript">
+
+	$(function() {
+		init();
+		var url= globalUtil.getTimestampUrl("/getuseraccess");
+		
+		$.post(url,function(list){
+			$.each(list,function(n,val){
+				var phone=strConversion(val.phone);
+				var email=strConversion(val.email);
+				var user="<td>"+val.user_code+"</td>";
+				$("#user").append(user);
+				var phone="<td>"+phone+"</td>";
+				$("#phone").append(phone);
+				var email="<td>"+email+"</td>";
+				$("#email").append(email);
+			} );
+			
+		});
+	});
+	
+	//窗口的宽度  
+	var windowWidth;  
+	//窗口的高度  
+	var windowHeight;  
+	//弹窗的高度  
+	var popHeight;  
+	//弹窗自身的宽度  
+	var popWidth;  
+	//获得滚动条距顶端滚动的离  
+	var scrollTop;  
+	//获得滚动条距左端滚动的离  
+	var scrollLeft;  
+	//定义延迟时间  
+	var timeout; 
+	function init(){  
+	    //得到windowWidth  
+	    windowWidth = $(window).width();  
+	    windowHeight = $(window).height();  
+	    popWidth=$(".window").width();  
+	    popHeight=$(".window").height();  
+	    scrollTop = $(window).scrollTop();  
+	    scrollLeft = $(window).scrollLeft();  
+	  
+	}
+	
+	function doupdate() {
+		var popX = (windowWidth-popWidth)/2;
+		 var popY = (windowHeight-popHeight)/2+scrollTop;  
+		 alert(popX);
+		$("#update").animate({left:popX,top:popY},100).show();
+// 		$("#update").css('display', 'block');
+	}
+	function strConversion(str) {
+		//截取字符串获取新的字符串
+		var newstr=str.substring(3,9);
+		//将原来的字符串按照获取新的字符串进行替换
+		var results =str.replace(newstr, "*****");
+		return results;
+	}
+	function closediv(){
+		$("#update").hide();
+	}
+	//修改方法
+	function update() {
+		var username = $("#username").val();
+		var oldpassword = $("#oldpassword").val();
+		var newpassword = $("#newpassword").val();
+		var pwd = $("#pwd").val();
+		if (newpassword == pwd) {
+			var updateurl = globalUtil
+					.getTimestampUrl("/securityCenter/center");
+			//校验用户名和密码
+			$.post(updateurl, {
+				"user_name" : username,
+				"password" : oldpassword,
+				"newpassword" : newpassword
+			}, function(data) {
+				if (data=="success") {
+					alert("修改成功^.^");
+					closediv();
+				} else {
+					alert("请检查你的用户名和密码！！！")
+
+				}
+
+			});
+		}
+	}
+	
+</script>
+</head>
+<body>
+	<div style="width: 100px"></div>
+	<div>
+		<table>
+			<tr>
+				<td height="400" >
+				<table >
+					<tr id="user"><td >用户名：</td></tr>
+					<tr ><td >用户密码：</td><td>******</td></tr>
+					<tr id="phone"><td >手机号码：</td></tr>
+					<tr id="email"><td>用户邮箱：</td></tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+			<tr>
+				<td><a href="#" onclick="doupdate()">修改用户密码</a></td>
+			</tr>
+		</table>
+
+	</div>
+	<div style="display: none;" class="window" id="update">
+	  	<div class="title">密码修改<img src="/GSCManager/resources/images/close.gif" onclick="closediv()"/></div>  
+	  	<div class="content">
+	  		<table>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>用户名：</td>
+				<td><input type="text" id="username"></td>
+			</tr>
+			<tr>
+				<td>旧密码：</td>
+				<td><input type="password" id="oldpassword"></td>
+			</tr>
+			<tr>
+				<td>新密码：</td>
+				<td><input type="password" id="newpassword"></td>
+			</tr>
+			<tr>
+				<td>确认新密码：</td>
+				<td><input type="password" id="pwd"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="button" onclick="update()" value="提交"></td>
+			</tr>
+		</table>
+		</div>  
+		
+<!-- 		<table> -->
+
+<!-- 			<td><iframe src="modify.html" height="200px" frameborder="0"></iframe> -->
+<!-- 			</td> -->
+<!-- 			</tr> -->
+<!-- 		</table> -->
+	</div>
+</body>
+</html>

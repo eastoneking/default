@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 指向Dao接口 -->
+<mapper namespace="com.neusoft.emanage.kaiyao.persist.KaiyaoDao">
+	<!-- 获取用户 -->
+	<select id="get" parameterType="Integer" resultType="KaiyaoBean">
+		select  id,
+				zdyp_zdid,
+				zdyp_ypid,
+				zdyp_ghid,
+				zdyp_ghnumber,
+				zdyp_ypbmid,
+				zdyp_ypbcxsjiage,
+				zdyp_ypbmnumber,
+				zdyp_ypname,
+				zdyp_ypshuliang,
+				zdyp_ypdanwei,
+				zdyp_ypshengchanshang,
+				zdyp_ypleibie,
+				zdyp_ypcbjiage,
+				zdyp_yplsjiage,
+				zdyp_ypzdjiage,
+				zdyp_danxiangjine
+		  from yl_yszdyaopin
+		 where id = #{id}
+	</select>
+
+	<!-- 分页查询 ，返回List<HashMap>对象， -->
+	<select id="list" parameterType="map" resultType="KaiyaoBean">
+			select  y.id as id,
+				y.zdyp_zdid as zdyp_zdid,
+				y.zdyp_ypid as zdyp_ypid,
+				y.zdyp_ghid as zdyp_ghid,
+				y.zdyp_ghnumber as zdyp_ghnumber,
+				y.zdyp_ypbmid as zdyp_ypbmid,
+				y.zdyp_ypbcxsjiage as zdyp_ypbcxsjiage,
+				y.zdyp_ypbmnumber as zdyp_ypbmnumber,
+				y.zdyp_ypname as zdyp_ypname,
+				y.zdyp_ypshuliang as zdyp_ypshuliang,
+				y.zdyp_ypdanwei as zdyp_ypdanwei,
+				y.zdyp_ypshengchanshang as zdyp_ypshengchanshang,
+				y.zdyp_ypleibie as zdyp_ypleibie,
+				y.zdyp_ypcbjiage as zdyp_ypcbjiage,
+				y.zdyp_yplsjiage as zdyp_yplsjiage,
+				y.zdyp_ypzdjiage as zdyp_ypzdjiage,
+				y.zdyp_danxiangjine as zdyp_danxiangjine,
+				z.zd_yishengid as zd_yishengid,
+				z.zd_yishengname as zd_yishengname,
+				z.zd_ghks as zd_ghks,
+				z.zd_status as zd_status,
+				z.zd_fystatus as zd_fystatus
+		  from yl_yszdyaopin y,yl_yszhenduan z
+		<where>
+			   1=1 and  y.zdyp_zdid = z.id 
+			  <if test="zdyp_zdid != null and  zdyp_zdid != '' ">
+			  	and y.zdyp_zdid = #{zdyp_zdid} 
+			</if>
+			  <if test="sel_zd_yishengname != null and  sel_zd_yishengname != '' ">
+			  	and z.zd_yishengname like   CONCAT(CONCAT('%', #{sel_zd_yishengname}), '%')  
+			</if>
+			  <if test="sel_zd_ghks != null and  sel_zd_ghks != '' ">
+			   	and z.zd_ghks like   CONCAT(CONCAT('%', #{sel_zd_ghks}), '%')  
+			</if>
+			  <if test="sel_zdyp_ypbmnumber != null and  sel_zdyp_ypbmnumber != '' ">
+			  	and z.zdyp_ypbmnumber like   CONCAT(CONCAT('%', #{sel_zdyp_ypbmnumber}), '%')  
+			</if>
+			  <if test="sel_zdyp_ypname != null and  sel_zdyp_ypname != '' ">
+			  	and z.zdyp_ypname like   CONCAT(CONCAT('%', #{sel_zdyp_ypname}), '%')  
+			</if>
+		</where>
+		<if test="sort != null and order != null">
+			order by ${sort} ${order}
+		</if>
+		<if test="offset != null and pagesize !=null">
+			LIMIT ${offset}, ${pagesize}
+		</if>
+	</select>
+<select id="findCount" parameterType="map" resultType="int">
+		select  count(0)
+	 from yl_yszdyaopin y,yl_yszhenduan z
+		<where>
+			   1=1 and  y.zdyp_zdid = z.id 
+			  <if test="sel_zd_yishengname != null and  sel_zd_yishengname != '' ">
+				and z.zd_yishengname =  #{sel_zd_yishengname}
+			</if>
+			  <if test="sel_zd_ghks != null and  sel_zd_ghks != '' ">
+				and z.zd_ghks =  #{sel_zd_ghks}
+			</if>
+			  <if test="sel_zdyp_ypbmnumber != null and  sel_zdyp_ypbmnumber != '' ">
+				and y.zdyp_ypbmnumber =  #{sel_zdyp_ypbmnumber}
+			</if>
+			  <if test="sel_zdyp_ypname != null and  sel_zdyp_ypname != '' ">
+				and y.zdyp_ypname =  #{sel_zdyp_ypname}
+			</if>
+		</where>
+		<if test="sortname != null and sortorder != null">
+			order by ${sortname} ${sortorder}
+		</if>
+	</select>
+	
+	
+	<!-- 分页查询 ，返回List<HashMap>对象， -->
+	<select id="listForQuery" parameterType="map" resultType="KaiyaoBean">
+			select  id,
+				zdyp_zdid,
+				zdyp_ypid,
+				zdyp_ghid,
+				zdyp_ghnumber,
+				zdyp_ypbmid,
+				zdyp_ypbcxsjiage,
+				zdyp_ypbmnumber,
+				zdyp_ypname,
+				zdyp_ypshuliang,
+				zdyp_ypdanwei,
+				zdyp_ypshengchanshang,
+				zdyp_ypleibie,
+				zdyp_ypcbjiage,
+				zdyp_yplsjiage,
+				zdyp_ypzdjiage,
+				zdyp_danxiangjine
+		  from yl_yszdyaopin
+		<where>
+			   1=1
+			<if test="zdyp_zdid != null and  zdyp_zdid != '' ">
+				and zdyp_zdid =  #{zdyp_zdid}
+			</if>
+			   <if test="zd_yishengid != null and  zd_yishengid != '' ">
+				and zd_yishengid =  #{zd_yishengid}
+			</if>
+			<if test="sel_zd_ghnumber != null and  sel_zd_ghnumber != '' ">
+				and zd_ghnumber like   CONCAT(CONCAT('%', #{sel_zd_ghnumber}), '%')  
+			</if>
+			<if test="sel_zd_ghname != null  and sel_zd_ghname != '' ">
+				and zd_ghname like CONCAT(CONCAT('%', #{sel_zd_ghname}), '%')  
+			</if>
+		</where>
+		<if test="sort != null and order != null">
+			order by ${sort} ${order}
+		</if>
+		<if test="offset != null and pagesize !=null">
+			LIMIT ${offset}, ${pagesize}
+		</if>
+	</select>
+<select id="findCountForQuery" parameterType="map" resultType="int">
+		select  count(0)
+	 from yl_yszdyaopin
+		<where>
+			   1=1
+			<if test="zd_ghnumber != null and  zd_ghnumber != '' ">
+				and zd_ghnumber like   CONCAT(CONCAT('%', #{zd_ghnumber}), '%')  
+			</if>
+			<if test="zd_ghname != null  and zd_ghname != '' ">
+				and zd_ghname like CONCAT(CONCAT('%', #{zd_ghname}), '%')  
+			</if>
+		</where>
+		<if test="sortname != null and sortorder != null">
+			order by ${sortname} ${sortorder}
+		</if>
+	</select>
+	
+	<!-- 按类别查询 -->
+	<select id="getByTypeCode" parameterType="string" resultType="KaiyaoBean">
+		select id,
+			zdyp_zdid,
+				zdyp_ypid,
+				zdyp_ghid,
+				zdyp_ghnumber,
+				zdyp_ypbmid,
+				zdyp_ypbcxsjiage,
+				zdyp_ypbmnumber,
+				zdyp_ypname,
+				zdyp_ypshuliang,
+				zdyp_ypdanwei,
+				zdyp_ypshengchanshang,
+				zdyp_ypleibie,
+				zdyp_ypcbjiage,
+				zdyp_yplsjiage,
+				zdyp_ypzdjiage,
+				zdyp_danxiangjine
+		  from yl_yszdyaopin where zdyp_zdid = #{zdyp_zdid}  
+	</select>
+		<!-- 按类别查询 -->
+	<select id="getCount" parameterType="KaiyaoBean" resultType="KaiyaoBean">
+		select id,
+			  zdyp_zdid,
+				zdyp_ypid,
+				zdyp_ghid,
+				zdyp_ghnumber,
+				zdyp_ypbmid,
+				zdyp_ypbcxsjiage,
+				zdyp_ypbmnumber,
+				zdyp_ypname,
+				zdyp_ypshuliang,
+				zdyp_ypdanwei,
+				zdyp_ypshengchanshang,
+				zdyp_ypleibie,
+				zdyp_ypcbjiage,
+				zdyp_yplsjiage,
+				zdyp_ypzdjiage,
+				zdyp_danxiangjine
+		  from yl_yszdyaopin 
+		  <where>
+			   1=1 
+			<if test="zdyp_zdid != null and  zdyp_zdid != '' ">
+				and zdyp_zdid =  #{zdyp_zdid}  
+			</if>
+		</where>
+	</select>
+	<!-- 向表中插入数据，并在将主键值赋到实体中，返回受影响的记录条数。如果不需要返回主键，无需配置useGeneratedKeys、keyProperty项 -->
+	<insert id="save" parameterType="KaiyaoBean" useGeneratedKeys="true" keyProperty="id">
+		insert into yl_yszdyaopin(zdyp_zdid, zdyp_ypid, zdyp_ghid, zdyp_ghnumber,
+		zdyp_ypbmid,zdyp_ypbcxsjiage,zdyp_ypbmnumber,zdyp_ypname,
+		zdyp_ypshuliang, zdyp_ypdanwei,zdyp_ypshengchanshang,zdyp_danxiangjine,
+		zdyp_ypleibie, zdyp_ypcbjiage,zdyp_yplsjiage,zdyp_ypzdjiage)
+			values(#{zdyp_zdid}, #{zdyp_ypid}, #{zdyp_ghid}, #{zdyp_ghnumber},
+			#{zdyp_ypbmid}, #{zdyp_ypbcxsjiage}, #{zdyp_ypbmnumber}, #{zdyp_ypname}, 
+			#{zdyp_ypshuliang}, #{zdyp_ypdanwei}, #{zdyp_ypshengchanshang},#{zdyp_danxiangjine},
+			 #{zdyp_ypleibie},  #{zdyp_ypcbjiage}, #{zdyp_yplsjiage}, #{zdyp_ypzdjiage});
+	</insert>
+
+	<!-- 更新表中数据，返回受影响的记录条数 -->
+	<update id="update" parameterType="KaiyaoBean">
+		update yl_yszdyaopin
+		<set>
+			<if test="ksname != null">
+				ksname = #{ksname},
+			</if>
+			<if test="ksnumber != null">
+				ksnumber = #{ksnumber},
+			</if>
+			<if test="ksaddress != null">
+				ksaddress = #{ksaddress},
+			</if>
+			<if test="ksorder != null">
+				ksorder = #{ksorder}
+			</if>
+		
+		</set>
+		where id = #{id}
+	</update>
+
+	<!-- 根据ID删除表中数据 -->
+	<delete id="delete">
+		delete from yl_yszdyaopin where id =#{id}
+	</delete>
+</mapper> 

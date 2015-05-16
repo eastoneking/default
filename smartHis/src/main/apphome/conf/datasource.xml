@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans        
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd       
+        http://www.springframework.org/schema/context        
+        http://www.springframework.org/schema/context/spring-context-2.5.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <bean id="demodb.wangds.net.demo" class="org.apache.commons.dbcp2.BasicDataSource"
+        destroy-method="close" lazy-init="true">
+        <property name="driverClassName" value="${driverClass}" />
+        <property name="url" value="jdbc:mysql://demodb.wangds.net:3306/demo?useUnicode=true&amp;characterEncoding=UTF-8" />
+        <property name="username" value="wangds" />
+        <property name="password" value="!QAZ2wsx" />
+        <property name="maxTotal" value="10" />
+        <property name="maxWaitMillis" value="1000" />
+    </bean>
+
+
+    <alias name="demodb.wangds.net.demo" alias="dataSource"/>
+
+    <bean id="SessionFac" class="org.mybatis.spring.SqlSessionFactoryBean" lazy-init="true">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="configLocation">
+            <bean class="org.springframework.core.io.FileSystemResource">
+                    <constructor-arg value="${SMART_HIS_HOME}/conf/mybatis.xml"></constructor-arg>
+            </bean>
+        </property>
+        <property name="mapperLocations" value="file://${SMART_HIS_HOME}/conf/mapper/**/**.xml" />
+    </bean>
+    
+    <bean id="tm" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    
+    <bean id="baseTransactionProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" abstract="true">
+      <property name="transactionManager" ref="tm"></property>
+      <property name="transactionAttributes">
+        <props>
+          <prop key="execute">PROPAGATION_REQUIRED</prop>
+        </props>
+      </property>
+    </bean>
+</beans>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 指向Dao接口 -->
+<mapper namespace="com.neusoft.emanage.userAccess.persist.UserAccessHisDao">
+<!-- 	获取用户 -->
+<!-- 	<select id="getAccessById" parameterType="Integer" resultType="UserAccessBean"> -->
+<!-- 		select id,RMB,GSC,userId,status,phone,email,user_code -->
+<!-- 		  from userAccess -->
+<!-- 		 where id = #{id} -->
+<!-- 	</select> -->
+	
+	<insert id="save" parameterType="Integer" keyProperty="useraccesschangerecord_id" useGeneratedKeys="true">
+		insert into userAccessChangeRecord(userAccessId,changeType,afterAccessGSCNum,
+			afterAccessRMBNum,
+			<if test="changeGSCNum!=null">
+				changeGSCNum,
+			</if>
+			<if test="changeRMBNum!=null">
+				changeRMBNum,
+			</if>
+			changeDate,description,fkid,fktable,beforeAccessGSCNum,beforeAccessRMBNum) 
+				values(#{userAccessId},#{changeType},#{afterAccessGSCNum},
+			#{afterAccessRMBNum},
+			<if test="changeGSCNum!=null">
+				#{changeGSCNum},
+			</if>
+			<if test="changeRMBNum!=null">
+				#{changeRMBNum},
+			</if>
+			#{changeDate},#{description},#{fkid},#{fktable},#{beforeAccessGSCNum},#{beforeAccessRMBNum})
+	</insert>
+	
+	<!-- 根据ID删除表中数据 -->
+	<delete id="delete">
+		delete from userAccessChangeRecord where id =#{id}
+	</delete>
+</mapper> 

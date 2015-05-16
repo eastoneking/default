@@ -1,0 +1,102 @@
+<script type="text/javascript">
+	$(function() {
+		// 状态下拉框
+		util.select({
+			id : 'yplbstatus',
+			required : true,
+			param : {
+				typeCode : 'STATUS'
+			}
+		});
+// 		util.datebox("starttime");
+// 		util.datebox("endTime");
+// 		util.datebox("playallstarttime");
+// 		util.datebox("playallendtime");
+		var param = util.getWindowParam();
+		// 得到url中id值
+		if (param.id) {
+			var data = util.ajax(global_param.context_name
+					+ '/ypsys/yaopinType/getById', {
+				"id" : param.id
+			});
+			$("#_form").form("load", data);
+		}
+// 		var keshengouliang = util.ajax(global_param.context_name
+// 				+ '/keshi/keshiweihu/keshengouliang');
+// 		$("#keshengouliang").val(doubleNumber(keshengouliang,6));
+
+	});
+
+	function submitForm() {
+		if(!$("#_form").form('enableValidation').form('validate')){
+			return;
+		}
+		var s = $("#yplbstatus").combobox('getValue');
+		if (s == '请选择') {
+			$.messager.alert('提示', '请选择类别状态', 'error');
+			return;
+		}
+		var result = util.submit('_form');
+		if (result) {
+			if (result == "success") {
+// 				util.alert("操作成功");
+				util.show('操作成功');
+				$('#grid').datagrid('reload');
+				util.closeWindow('editWindow');
+			} else  {
+// 				util.error("请选初始化造币");
+				util.show('操作失败');
+			} 
+		}
+	}
+</script>
+<div class="easyui-layout" fit="true">
+	<div region="center" border="false" class="Dialog-Bg">
+	    <div class="Dialog-formDiv clearfix">
+		<form id="_form" action="/YLManager/ypsys/yaopinType/save" method="post">
+			<input id="id" name="id" type="hidden" />
+			<div class="float-l clearboth">
+			    <div class="Dialog-form-title2">
+			        <label for="yplbname" class="field">类&nbsp;&nbsp;别&nbsp;&nbsp;名&nbsp;&nbsp;称：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="yplbname" name="yplbname" type="text"  class="easyui-validatebox" data-options="required:true" />
+			    </div>
+			</div>
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="yplbnumber" class="field">类&nbsp;&nbsp;别&nbsp;&nbsp;编&nbsp;&nbsp;号：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="yplbnumber" name="yplbnumber" type="text" class="easyui-validatebox" data-options="required:true"/>
+			    </div>
+			</div>
+			<div class="float-l clearboth2">
+			    <div class="Dialog-form-title2">
+			        <label for="yplbstatus" class="field">类&nbsp;&nbsp;别&nbsp;&nbsp;状&nbsp;&nbsp;态：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="yplbstatus" name="yplbstatus" type="text" style="width: 152px"/>
+			    </div>
+			</div>
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="yplborder" class="field">类&nbsp;&nbsp;别&nbsp;&nbsp;顺&nbsp;&nbsp;序：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="yplborder" name="yplborder" type="text" class="easyui-validatebox" data-options="required:true"/>
+			    </div>
+			</div>
+		</form>
+		</div>
+	</div>
+	<div data-options="region:'south',border:false" class="Dialog-footer">
+	    <input id="" class="btn-save" onmouseover="this.className='btn-save-over'"
+	    onmouseout="this.className='btn-save'" onmousedown="this.className='btn-save-down'" type="button" onclick="submitForm();" />
+	    <input id="" class="btn-cancel" onmouseover="this.className='btn-cancel-over'"
+	    onmouseout="this.className='btn-cancel'" onmousedown="this.className='btn-cancel-down'" type="button" onclick="util.closeWindow('editWindow');" />
+		<!-- <a class="easyui-linkbutton" href="javascript:void(0);"
+			onclick="submitForm();">保存</a> <a class="easyui-linkbutton"
+			href="javascript:void(0);" onclick="util.closeWindow('editWindow');">取消</a> -->
+	</div>
+</div>

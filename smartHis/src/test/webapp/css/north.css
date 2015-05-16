@@ -1,0 +1,48 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.test {
+}
+
+.panel_title{
+	vertical-align: top;
+	border-bottom: 1px solid gray;
+}
+.panel_title_text{
+	width:auto;
+	height:auto;
+	border:0px none white;
+	overflow: hidden;
+}
+.datagrid {
+	border:0px none white;
+}
+.datagrid table {
+	width:100%;
+	border:1px solid silver;
+    overflow: scroll;
+    border-collapse: collapse;
+}
+
+.datagrid table caption {
+}
+
+.datagrid table tfoot {
+}
+
+.datagrid table thead {
+}
+
+.datagrid table thead tr td{
+	border: 1px solid black;
+	text-align: center;
+}
+
+.datagrid table tbody {
+}
+
+.datagrid table tbody td{
+	border: 1px solid black;
+}
+

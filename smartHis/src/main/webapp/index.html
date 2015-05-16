@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页</title>
+<link href="/GSCManager/resources/css/goldcow-all.css" rel="stylesheet"
+	type="text/css" />
+<link href="/GSCManager/resources/css/app.css" rel="stylesheet" type="text/css" />
+<link href="/GSCManager/resources/css/index.css" type="text/css"
+	rel="stylesheet" />
+<link href="/GSCManager/resources/css/base.css" type="text/css" rel="stylesheet" />
+<link href="/GSCManager/resources/css/screen.css" rel="stylesheet"
+	type="text/css" media="screen" />
+<script src="/GSCManager/resources/js/goldcow-all.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#layout1").ligerLayout({
+			leftWidth : 230
+		});
+		$("#accordion1").ligerAccordion({
+			height : $("#layout1").height() - 50
+		});
+		$(window).resize(
+				function() {
+					$("#accordion1").ligerAccordion('setHeight',
+							$("#layout1").height() - 50);
+				});
+	});
+
+	/* function opendemo() {
+		var a = window.parent;
+		// var name = window.parent.frames[1];
+		// window.parent.document.getElementById("main_frame").height= '750px';
+		$("#main_frame").attr("src", "../demo/demolist.html");
+		// $("#yp").html("系统管理->DEMO");
+		// $("#pp").attr("title","title");
+		// $("#yourposition").attr("title","您的位置：demo");
+		// location.href ="resources/html/demo/demolist.html";
+	} */
+	function linkTo(url) {
+		$("#main_frame").attr("src", global_param.html_path + url + ".html");
+	}
+</script>
+</head>
+<body style="padding: 10px">
+	<div id="layout1">
+		<div position="left" title="&nbsp;菜单列表">
+			<div id="accordion1" style="padding: 10px">
+				<div title="系统管理">
+					<ul>
+						<li><a href="#"
+							onclick="linkTo('sysmanager/usermanager/userList')">用户管理</a></li>
+						<li><a href="#"
+							onclick="linkTo('sysmanager/parammanager/paramList')">字典管理</a></li>
+					</ul>
+				</div>
+				<div title="通讯录">
+					<ul>
+						<li><a href="#" onclick="linkTo('sys_user/sys_userList')">用户</a></li>
+						<li><a href="#" onclick="linkTo('contacts/contactsList')">通讯录</a></li>
+					</ul>
+				</div>
+				<div title="公文管理">
+					<ul>
+						<li><a href="#"
+							onclick="linkTo('officeDocument/officeDocumentList')">发文</a></li>
+						<li><a href="#"
+							onclick="linkTo('officeDocument/officeDocumentList')">收文</a></li>
+						<li><a href="#" onclick="linkTo('testPDF')">网页查看</a></li>
+					</ul>
+				</div>
+				<div title="车辆管理">
+					<ul>
+						<li><a href="#" onclick="linkTo('cars/carsList')">车辆登记</a></li>
+						<li><a href="#" onclick="linkTo('cars/carsUseList')">车辆使用信息</a></li>
+						<li><a href="#" onclick="linkTo('cars/carinfo/carinfoList')">车辆登记easyUI</a></li>
+						<li><a href="#" onclick="linkTo('cars/useinfo/useinfoList')">车辆使用信息easyUI</a></li>
+					</ul>
+				</div>
+				<div title="办公资产管理">
+					<ul>
+						<li><a href="#"
+							onclick="linkTo('officeAssets/officeAssetsTypeList')">物品分类</a></li>
+						<li><a href="#"
+							onclick="linkTo('officeAssets/officeAssetsList')">资产登记</a></li>
+					</ul>
+				</div>
+				<div title="cdemo">
+					<ul>
+						<li><a href="#" onclick="linkTo('demo/cdemo/cdemoList')">增删改查</a></li>
+						<li><a href="#" onclick="linkTo('demo/cdemo/edemoList')">easyUI增删改查</a></li>
+						<li><a href="#"
+							onclick="linkTo('demo/components/components')">常用控件</a></li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+		<div position="center" name="pp" id="pp" title="业务窗体">
+			<!-- <div id="yp">您的位置</div> -->
+			<iframe frameborder="0" id="main_frame" width="100%" height="90%"
+				src="/GSCManager/resources/html/welcome/center.html" scrolling="no"></iframe>
+		</div>
+	</div>
+</body>
+</html>

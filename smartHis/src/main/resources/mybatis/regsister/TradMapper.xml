@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neusoft.emanage.regsister.persist.TradDao">
+<select id="tradSelect" resultType="TradBean" parameterType="int">
+select tardetype,tardedate, tradeGSCNum from traderecord
+where tardetype is  not  null ORDER BY tardedate DESC LIMIT 0,#{row} 
+</select>
+</mapper>

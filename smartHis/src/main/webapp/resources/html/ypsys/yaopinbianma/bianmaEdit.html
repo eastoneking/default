@@ -1,0 +1,142 @@
+<script type="text/javascript">
+	$(function() {
+		// 状态下拉框
+		util.select({
+			id : 'ypbmstatus',
+			required : true,
+			param : {
+				typeCode : 'STATUS'
+			}
+		});
+		// 类别下拉框
+		util.select({
+			id : 'ypbmleibieid',
+			valueField : 'id',
+			textField : 'yplbname',
+			multiple : false,
+			url : global_param.context_name + "/select/getByCode/getYaopinType",
+			onSelect:function(date){ $("#ypbmleibiename").val(date.yplbname);}
+		});
+// 		util.datebox("starttime");
+// 		util.datebox("endTime");
+// 		util.datebox("playallstarttime");
+// 		util.datebox("playallendtime");
+		var param = util.getWindowParam();
+		// 得到url中id值
+		if (param.id) {
+			var data = util.ajax(global_param.context_name
+					+ '/ypsys/yaopinbianma/getById', {
+				"id" : param.id
+			});
+			$("#_form").form("load", data);
+		}
+// 		var keshengouliang = util.ajax(global_param.context_name
+// 				+ '/keshi/keshiweihu/keshengouliang');
+// 		$("#keshengouliang").val(doubleNumber(keshengouliang,6));
+
+	});
+
+	function submitForm() {
+		if(!$("#_form").form('enableValidation').form('validate')){
+			return;
+		}
+		var t = $("#ypbmleibieid").combobox('getValue');
+		if (t == '请选择') {
+			$.messager.alert('提示', '请选择药品类别', 'error');
+			return;
+		}
+		var s = $("#ypbmstatus").combobox('getValue');
+		if (s == '请选择') {
+			$.messager.alert('提示', '请选择状态', 'error');
+			return;
+		}
+	
+		var result = util.submit('_form');
+		if (result) {
+			if (result == "success") {
+// 				util.alert("操作成功");
+				util.show('操作成功');
+				$('#grid').datagrid('reload');
+				util.closeWindow('editWindow');
+			} else  {
+// 				util.error("请选初始化造币");
+				util.show('操作失败');
+			} 
+		}
+	}
+</script>
+<div class="easyui-layout" fit="true">
+	<div region="center" border="false" class="Dialog-Bg">
+	    <div class="Dialog-formDiv clearfix">
+		<form id="_form" action="/YLManager/ypsys/yaopinbianma/save" method="post">
+			<input id="id" name="id" type="hidden" />
+			<div class="float-l clearboth">
+			    <div class="Dialog-form-title2">
+			        <label for="ypbmname" class="field">编码名称：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="ypbmname" name="ypbmname" type="text"  class="easyui-validatebox" data-options="required:true" />
+			    </div>
+			</div>
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="ypbmnumber" class="field">编码编号：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="ypbmnumber" name="ypbmnumber" type="text" class="easyui-validatebox" data-options="required:true"/>
+			    </div>
+			</div>
+			<div class="float-l clearboth2">
+			    <div class="Dialog-form-title2">
+			        <label for="yppihao" class="field">药品批号：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="yppihao" name="yppihao"  class="easyui-validatebox" data-options="required:true" type="text" style="width: 152px"/>
+			    </div>
+			</div>
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="ypbmshengchanshang" class="field">生产商：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="ypbmshengchanshang" name="ypbmshengchanshang" type="text" class="easyui-validatebox" data-options="required:true"/>
+			    </div>
+			</div>
+					<div class="float-l clearboth2">
+			    <div class="Dialog-form-title2">
+			        <label for="ypbmleibiename" class="field">药品类别：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="ypbmleibieid" name="ypbmleibieid" type="text" style="width: 154px"/>
+			         <input id="ypbmleibiename" name="ypbmleibiename" type="hidden" style="width: 154px"/>
+			    </div>
+			</div>
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="ypbmstatus" class="field">状态：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="ypbmstatus" name="ypbmstatus" type="text" style="width: 154px" />
+			    </div>
+			</div>
+			<div class="float-l clearboth2">
+			    <div class="Dialog-form-title2">
+			        <label for="ypbmdanwei" class="field">药品单位：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="ypbmdanwei" name="ypbmdanwei"  class="easyui-validatebox" data-options="required:true" type="text" style="width: 152px"/>
+			    </div>
+			</div>
+		</form>
+		</div>
+	</div>
+	<div data-options="region:'south',border:false" class="Dialog-footer">
+	    <input id="" class="btn-save" onmouseover="this.className='btn-save-over'"
+	    onmouseout="this.className='btn-save'" onmousedown="this.className='btn-save-down'" type="button" onclick="submitForm();" />
+	    <input id="" class="btn-cancel" onmouseover="this.className='btn-cancel-over'"
+	    onmouseout="this.className='btn-cancel'" onmousedown="this.className='btn-cancel-down'" type="button" onclick="util.closeWindow('editWindow');" />
+		<!-- <a class="easyui-linkbutton" href="javascript:void(0);"
+			onclick="submitForm();">保存</a> <a class="easyui-linkbutton"
+			href="javascript:void(0);" onclick="util.closeWindow('editWindow');">取消</a> -->
+	</div>
+</div>

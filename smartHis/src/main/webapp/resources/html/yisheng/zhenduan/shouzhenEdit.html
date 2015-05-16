@@ -1,0 +1,141 @@
+<script type="text/javascript">
+	$(function() {
+// 		util.datebox("zd_riqi");
+		$('#zd_ghnumber').combogrid({
+				panelWidth:400,
+		    idField:'ghnumber',
+		    textField:'ghnumber',
+            mode:'remote',  
+//				mode:'mode',  
+            fitColumns:true,
+		    url:global_param.context_name + "/select/getByCode/getguahaolist",
+		    columns:[[
+					 {field:'ghnumber',title:'病历号',width:100},
+					 {field:'ghname',title:'病人名字',width:60},
+		       	     {field:'ghage',title:'病人年龄',width:100},
+		  			 {field:'ghkeshiname',title:'挂号科室',width:40}
+		    ]],
+ 			onSelect:function(index,row){
+ 				$("#zd_ghid").val(row.id);
+ 				$("#zd_ghname").val(row.ghname);
+ 				$("#zd_ghage").val(row.ghage);
+ 				$("#zd_ghsex").val(util.getSysParam('SEX', row.ghsex));
+ 				$("#zd_ghks").val(row.ghkeshiname);
+ 				$("#zd_ghtype").val(util.getSysParam('GHLB', row.ghtype));
+ 				$("#zd_ghriqi").val(row.ghriqi);
+	    	}
+		});
+	});
+
+	function submitForm() {
+		if(!$("#_form").form('enableValidation').form('validate')){
+			return;
+		}
+		var result = util.submit('_form');
+		if (result) {
+			if (result == "success") {
+				util.show('操作成功');
+				$('#grid').datagrid('reload');
+				util.closeWindow('editWindow');
+			} else  {
+				util.show('操作失败');
+			} 
+		}
+	}
+</script>
+<div class="easyui-layout" fit="true">
+	<div region="center" border="false" class="Dialog-Bg">
+	    <div class="Dialog-formDiv clearfix">
+		<form id="_form" action="/YLManager/kaiyao/zhenduan/save" method="post">
+			<input id="id" name="id" type="hidden" />
+			
+			<div class="float-l clearboth">
+			    <div class="Dialog-form-title2">
+			        <label for="zd_ghnumber" class="field">病历号：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zd_ghnumber" name="zd_ghnumber" type="text"  style="width: 158px;"  />
+			        <input id="zd_ghid" name="zd_ghid" type="hidden"  />
+			        <input id="zd_version" name="zd_version" type="hidden" value="0"  />
+			    </div>
+			</div>
+			
+<!-- 				<div class="float-l clearboth1"> -->
+<!-- 			    <div class="Dialog-form-title2"> -->
+<!-- 			        <label for="ghnumber" class="field">病历号：</label> -->
+<!-- 			    </div> -->
+<!-- 			    <div class="Dialog-form-item"> -->
+<!-- 			        <input id="zd_ghnumber" name="zd_ghnumber" type="text"  style="width:  154px;" class="easyui-validatebox" data-options="required:true"/> -->
+<!-- 			        <input id="zd_ghid" name="zd_ghid" type="hidden"  style="width:  154px;" class="easyui-validatebox" data-options="required:true"/> -->
+<!-- 			    </div> -->
+<!-- 			</div> -->
+<!-- 			<div class="float-l clearboth2"> -->
+<!-- 			    <div class="Dialog-form-title2"> -->
+<!-- 			        <label for="zd_riqi" class="field">收诊时间：</label> -->
+<!-- 			    </div> -->
+<!-- 			    <div class="Dialog-form-item"> -->
+<!-- 			        <input id="zd_riqi" name="zd_riqi" type="text"  style="width:  154px;" class="easyui-validatebox" data-options="required:true"/> -->
+<!-- 			    </div> -->
+<!-- 			</div> -->
+			<div class="float-l clearboth">
+			    <div class="Dialog-form-title2">
+			        <label for="zd_ghname" class="field">患者姓名：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zd_ghname" name="zd_ghname" type="text" readonly="readonly" class="easyui-validatebox" data-options="required:true" />
+			    </div>
+			</div>
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="zd_ghage" class="field">患者年龄：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zd_ghage" name="zd_ghage" type="text" readonly="readonly"class="easyui-validatebox" data-options="required:true"/>
+			    </div>
+			</div>
+		
+			<div class="float-l clearboth2">
+			    <div class="Dialog-form-title2">
+			        <label for="zd_ghsex" class="field">患者性别：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zd_ghsex" name="zd_ghsex" type="text" readonly="readonly" style="width:  154px;" class="easyui-validatebox" data-options="required:true"/>
+			    </div>
+			</div>
+			<div class="float-l clearboth2">
+			    <div class="Dialog-form-title2">
+			        <label for="zd_ghks" class="field">挂号科室：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zd_ghks" name="zd_ghks" type="text" readonly="readonly" style="width:  154px;" class="easyui-validatebox" data-options="required:true"/>
+			    </div>
+			</div>
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="zd_ghtype" class="field">挂号类别：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zd_ghtype" name="zd_ghtype" readonly="readonly" style="width:  154px;" type="text" class="easyui-validatebox" data-options="required:true"/>
+			    </div>
+			</div>
+			<div class="float-l">
+			    <div class="Dialog-form-title2">
+			        <label for="zd_ghriqi" class="field">挂号时间：</label>
+			    </div>
+			    <div class="Dialog-form-item">
+			        <input id="zd_ghriqi" name="zd_ghriqi" type="text"readonly="readonly" class="easyui-validatebox" data-options="required:true"/>
+			    </div>
+			</div>
+		</form>
+		</div>
+	</div>
+	<div data-options="region:'south',border:false" class="Dialog-footer">
+	    <input id="" class="btn-save" onmouseover="this.className='btn-save-over'"
+	    onmouseout="this.className='btn-save'" onmousedown="this.className='btn-save-down'" type="button" onclick="submitForm();" />
+	    <input id="" class="btn-cancel" onmouseover="this.className='btn-cancel-over'"
+	    onmouseout="this.className='btn-cancel'" onmousedown="this.className='btn-cancel-down'" type="button" onclick="util.closeWindow('editWindow');" />
+		<!-- <a class="easyui-linkbutton" href="javascript:void(0);"
+			onclick="submitForm();">保存</a> <a class="easyui-linkbutton"
+			href="javascript:void(0);" onclick="util.closeWindow('editWindow');">取消</a> -->
+	</div>
+</div>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 指向Dao接口 -->
+<mapper namespace="com.neusoft.emanage.system.persist.SysParameterDao">
+	<!-- 获取用户 -->
+	<select id="get" parameterType="Integer" resultType="SysParameterBean">
+		select  id,
+				type,
+				type_code,
+				name,
+				value,
+				status,
+				orders
+		  from sys_parameter
+		 where id = #{id}
+	</select>
+
+	<!-- 分页查询 ，返回List<HashMap>对象， -->
+	<select id="list" parameterType="map" resultType="SysParameterBean">
+		select  id,
+				type,
+				type_code,
+				name,
+				value,
+				status,
+				orders
+		  from sys_parameter
+		<where>
+			   1=1
+			<if test="type != null">
+				and type like #{type}
+			</if>
+			<if test="type_code != null">
+				and type_code like #{type_code}
+			</if>
+		</where>
+		<if test="sortname != null and sortorder != null">
+			order by ${sortname} ${sortorder}
+		</if>
+	</select>
+
+	<!-- 按类别查询 -->
+	<select id="getByTypeCode" parameterType="string" resultType="SysParameterBean">
+		select id,
+			   type,
+			   type_code,
+			   name,
+			   value,
+			   status,
+			   orders
+		  from sys_parameter
+		 where type_code = #{typeCode}
+	</select>
+
+	<!-- 向表中插入数据，并在将主键值赋到实体中，返回受影响的记录条数。如果不需要返回主键，无需配置useGeneratedKeys、keyProperty项 -->
+	<insert id="save" parameterType="SysParameterBean" useGeneratedKeys="true" keyProperty="id">
+		insert into sys_parameter(type, type_code, name, value, status, orders)
+			values(#{type}, #{type_code}, #{name}, #{value}, #{status}, #{orders});
+	</insert>
+
+	<!-- 更新表中数据，返回受影响的记录条数 -->
+	<update id="update" parameterType="SysParameterBean">
+		update sys_parameter
+		<set>
+			<if test="type != null">
+				type = #{type},
+			</if>
+			<if test="type_code != null">
+				type_code = #{type_code},
+			</if>
+			<if test="name != null">
+				name = #{name},
+			</if>
+			<if test="value != null">
+				value = #{value},
+			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
+			<if test="orders != null">
+				orders = #{orders},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<!-- 根据ID删除表中数据 -->
+	<delete id="delete">
+		delete from sys_parameter where id =#{id}
+	</delete>
+</mapper> 

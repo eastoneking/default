@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>系统公告管理</title>
+<link href="/GSCManager/resources/css/goldcow-all.css" rel="stylesheet"
+	type="text/css" />
+<script src="/GSCManager/resources/js/goldcow-all.js"
+	type="text/javascript"></script>
+<script type="text/javascript">
+	var rows = {};
+	var id;
+	var url;
+	$(function() {
+		util.datebox("startTime");
+		util.datebox("endtime");
+		$(".datebox :text").attr("readonly","readonly");
+		$.ajaxSetup({
+			async : true
+		//定义ajax是否同步 
+		});
+		util.table('clientinfo', {
+			title : '公告信息显示列表',
+			url : global_param.context_name
+					+ '/NoticeBeanController/listNoticeBean',
+			sortName : 'notice_id',//选择排序的名称
+			sortOrder : 'asc',//排序方式
+			columns : [ [ {
+				field : 'notice_content',
+				title : '公告内容',
+				width : 600,
+				align : "center"
+			}, {
+				field : 'startTime',
+				title : '开始时间',
+				width : 400,
+				align : "center",
+				formatter : function(value, row, index) {
+					var date = new Date(row.startTime).format('yyyy-MM-dd');
+					return date;
+				}
+			}, {
+				field : 'endtime',
+				title : '结束时间',
+				width : 400,
+				align : "center",
+				formatter : function(value, row, index) {
+					var date = new Date(row.endtime).format('yyyy-MM-dd');
+					return date;
+				}
+			} ] ],
+			toolbar : [ {
+				text : '新增',
+				iconCls : 'icon-add',
+				handler : function() {
+					addClient();//调用添加方法
+				}
+			}, {
+				text : '修改',
+				iconCls : 'icon-modify',
+				handler : function() {
+					updateClient();//修改方法
+				}
+			}, {
+				text : '删除',
+				iconCls : 'icon-delete',
+				handler : function() {
+					deleteClient();//调用删除方法
+				}
+			} ]
+		});
+// 		$('#notice_content').keypress(function(event) {
+// 			if (event.which == 13) {
+// 				submitWindow();
+// 			}
+// 		});
+
+	});
+	function resize(number){
+		$('#openDialog').window({
+			title: ''+number,
+			width: 600,
+			modal: true,
+			shadow: false,
+			closed: false,
+			height: 300
+		});
+	}
+
+	function addClient() {
+		rows = {};
+		id = null;
+		url = null;
+		$("#openDialog").form('clear');
+		$("#notice_content").val("");//数据回显
+		$('#startTime').val("");
+		$("#endtime").val("");
+// 		$(($("#openDialog").prevAll().children("div"))[0]).html("新增公告信息");
+// 		$("#openDialog").window('open');
+		resize("新增公告信息");
+	}
+	/**删除**/
+	function deleteClient() {
+		rows = $("#clientinfo").datagrid('getSelected');//选择一行
+		if (!rows) {
+			util.show( '请选择一行数据');
+			return;
+		}
+		$.messager.confirm('删除', '您确定要删除本条记录吗?', function(data) {
+			if (data) {
+				url = global_param.context_name
+						+ '/NoticeBeanController/deleteNotice';
+				$.post(url, {
+					"id" : rows.notice_id
+				}, function(data) {
+					if (data == 'success') {
+// 						$.messager.alert({
+// 							title : '提示',
+// 							msg : '删除成功',
+// 							showType : 'show'
+// 						});
+						util.show('删除成功')
+						closeWindow1();
+					} else {
+// 						$.messager.alert('提示','删除失败', 'warning');
+						util.show('删除失败')
+					}
+				});
+			}
+		});
+	}
+	/**修改*/
+	function updateClient() {
+		rows = $("#clientinfo").datagrid('getSelected');//选择一行
+		if (!rows) {
+// 			$.messager.alert("提示", "请选择一行数据", 'error');
+			util.show("请选择一行数据");
+			return;
+		}
+		$("#notice_content").val(rows.notice_content);//数据回显
+		var date = new Date(rows.startTime).format('yyyy-MM-dd');
+		$('#startTime').val(date);
+		var enddate = new Date(rows.endtime).format('yyyy-MM-dd');
+		$("#endtime").val(enddate);
+// 		$(($("#openDialog").prevAll().children("div"))[0]).html("修改公告信息");
+// 		$("#openDialog").window('open');
+		resize("修改公告信息");
+	}
+	/**提交按钮*/
+	function submitWindow() {
+		var newdata = util.ajax(global_param.context_name + '/shengou/shengoumanager/data');//获取当前服务器时间
+		if ($("#notice_content").val() == "") {
+			$.messager.alert('提示', '公告内容不能为空','info');
+			return;
+		}
+		if ($("#notice_content").val().length>200) {
+			$.messager.alert('提示', '公告内容200字以内','info');
+			return;
+		}
+		if ($('#startTime').val() == "") {
+			$.messager.alert('提示', '开始时间不能为空','info');
+			return;
+		}
+		if ($('#endtime').val() == '') {
+			$.messager.alert('提示', '结束时间不能为空','info');
+			return;
+		}
+		
+		var sdate = $('#startTime').val();
+		var edate = $('#endtime').val();
+		if (textcheck.compareDate(newdata, sdate) == 1) {
+			$.messager.alert('提示', '开始时间必须大于等于服务器时间','info');
+			return;
+		}
+		if (textcheck.compareDate(sdate, edate) == 1) {
+			$.messager.alert('提示', '结束时间必须大于等于开始时间','info');
+			return;
+		}
+		
+		rows.notice_content = $("#notice_content").val();//获取值
+		rows.startTime = $("#startTime").val();
+		rows.endtime = $("#endtime").val();
+		if (!rows.notice_id) {
+			url = global_param.context_name
+					+ '/NoticeBeanController/saveNotice';//添加路径
+			$.post(url, rows, function(result) {
+				if (result == 'success') {
+// 					$.messager.alert({
+// 						title : '提示',
+// 						msg : '添加成功',
+// 						showType : 'show'
+// 					});
+					util.show('添加成功');
+					closeWindow1();
+				} else {
+// 					$.messager.alert('提示','添加失败', 'info');
+					util.show('添加失败');
+					closeWindow();
+				}
+			});
+		} else {
+			var sdate = $('#startTime').val();
+			var edate = $('#endtime').val();
+			if (textcheck.compareDate(sdate, edate) == 1) {
+				$.messager.alert('提示', '结束时间必须大于等于开始时间','info');
+				return;
+			}
+			url = global_param.context_name
+					+ '/NoticeBeanController/updateNotice';//修改路径
+			$.post(url, rows, function(result) {
+				if (result == 'success') {
+// 					$.messager.alert({
+// 						title : '提示',
+// 						msg : '修改成功',
+// 						showType : 'show'
+// 					});
+					util.show('修改成功');
+					closeWindow1();
+				} else {
+// 					$.messager.alert('提示','修改失败', 'info');
+						util.show('修改失败');
+					closeWindow();
+				}
+			});
+		}
+	}
+	/**关闭窗体，取消按钮*/
+	function closeWindow() {
+		$("#clientinfo").datagrid('reload');
+		$("#openDialog").window('close');
+	}
+	/**关闭窗体*/
+	function closeWindow1() {
+		$("#clientinfo").datagrid('reload');
+		$("#openDialog").window('close');
+	}
+</script>
+</head>
+<body style="font-size: 12px; margin: 0px 0px 0px 0px; padding-right: 20px;">
+	<div class="easyui-layout" fit="true" style="width: 100%; height: 100%;">
+		<!-- 显示区域 -->
+		<div data-options="region:'center',border:false" style="overflow: hidden;">
+			<table id="clientinfo"></table>
+		</div>
+	</div>
+	<form id="frm" action="#">
+	<div closed="true" collapsible="false" minimizable="false" id="openDialog" title="操作" title="操作" style="width:600px;height:253px;" class="easyui-window">
+		<div region="center" border="false" class="Dialog-Bg-help">
+	        <div class="Dialog-formDiv clearfix">
+	            <div class="float-l">
+			        <div class="Dialog-form-title">
+			            <span class="redStar">*</span>开始时间：
+			        </div>
+			        <div class="Dialog-form-item">
+			            <input type="text" id="startTime" name="startTime" style="margin-top:6px;" />
+			        </div>
+			    </div>
+			    <div class="float-l">
+			        <div class="Dialog-form-title">
+			            <span class="redStar">*</span>结束时间：
+			        </div>
+			        <div class="Dialog-form-item">
+			            <input type="text" id="endtime" name="endtime" style="margin-top:6px;" />
+			        </div>
+			    </div>
+			    <div class="float-l clearboth">
+			        <div class="Dialog-form-title">
+			            <span class="redStar">*</span>公告内容：
+			        </div>
+			        <div class="Dialog-form-item">
+			            <textarea rows="5" cols="20" id="notice_content" maxLength="200" style="resize:none; width:420px; margin-top:5px;"></textarea>
+			        </div>
+			    </div>
+	        </div>
+	        <div data-options="region:'south',border:false" class="Dialog-footer">
+	            <input id="" class="btn-save" onmouseover="this.className='btn-save-over'"
+	            onmouseout="this.className='btn-save'" onmousedown="this.className='btn-save-down'" type="button" onclick="submitWindow();" />
+	            <input id="" class="btn-cancel" onmouseover="this.className='btn-cancel-over'"
+	            onmouseout="this.className='btn-cancel'" onmousedown="this.className='btn-cancel-down'" type="button" onclick="closeWindow();" />
+	        </div>
+	    </div>
+		<!-- <fieldset style="margin-left: 10px;height:230px;">
+			<legend>公告编辑信息</legend>
+			<div>
+				<table align="center" >
+					<tr align="center">
+						<td>开始时间：</td>
+						<td><input type="text" id="startTime" 
+							  style="width: 182px;" name="startTime"/><br /></td>
+					</tr>
+					<tr align="center">
+						<td>结束时间：</td>
+						<td><input type="text" id="endtime" name="endtime" style="width: 182px;" /><br /></td>
+					</tr>
+					<tr align="center">
+						<td valign="top">公告内容：</td>
+						<td><textarea rows="5" cols="20" id="notice_content" maxLength="200" style="resize:none;width:182px;"></textarea></td>
+					</tr>
+					<tr>
+						<td >&nbsp;</td>
+						<td align="center"><a id="tbnsave" class="easyui-linkbutton"
+							href="javascript:void(0);" onclick="submitWindow();">保存</a><a
+							id="tbncencal" class="easyui-linkbutton"
+							href="javascript:void(0);" onclick="closeWindow();">取消</a></td>
+					</tr>
+				</table>
+			</div>
+		</fieldset> -->
+	</div>
+	</form>
+</body>
+</html>

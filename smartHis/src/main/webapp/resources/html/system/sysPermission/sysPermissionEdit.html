@@ -1,0 +1,147 @@
+<script type="text/javascript">
+	$(function() {
+		var param = util.getWindowParam();
+		// 得到url中id值
+		var data = {};
+		if (param.id) {
+			 data = util.ajax(global_param.context_name + "/system/permission/getById", {id : param.id});
+			$("#_form").form("load", data);
+		} else if (param.parent_id) {
+			var data = util.ajax(global_param.context_name + "/system/permission/getById", {id : param.parent_id});
+			var _data = {
+				parent_permission_name : data.permission_name,
+				parent_id : param.parent_id
+			};
+			$("#_form").form("load", _data);
+		}
+		
+		// 状态下拉框
+		util.select({
+			id : 'status',
+			required : true,
+			param : {
+				typeCode : 'STATUS'
+			},
+			  onLoadSuccess : function() {
+				  if (data) {
+				
+					 $("#status").combobox('setValue',data.status);
+				 }
+			   }
+		});
+	});
+
+	
+	function submitForm() {
+		if(!$("#_form").form('enableValidation').form('validate')){
+			return;
+		}
+		var result = util.submit('_form');
+		if (result) {
+			if (result == "success") {
+				util.show("操作成功");
+				$('#dg').treegrid('reload');
+				util.closeWindow('editWindow');
+			} else {
+				util.error("操作失败");
+			}
+		}
+	}
+</script>
+<div class="easyui-layout" fit="true">
+	<div region="center" border="false" class="Dialog-Bg">
+	  <div class="Dialog-formDiv clearfix">
+	    <form id="_form" action="/YLManager/system/permission/save" method="post">
+		  <input id="id" name="id" type="hidden" />
+		  <div class="float-l">
+		    <div class="Dialog-form-title">
+			  <label for="type" class="field">上级权限：</label>
+			</div>
+			<div class="Dialog-form-item">
+			  <input id="parent_id" name="parent_id" type="hidden"/>
+			  <input id="parent_permission_name" name="parent_permission_name" class="easyui-validatebox readOnly" readonly="readonly" />
+			</div>
+		  </div>
+		  <div class="float-l">
+		    <div class="Dialog-form-title">
+			  <label for="type" class="field"><span class="redStar">*</span>权限名称：</label>
+			</div>
+			<div class="Dialog-form-item">
+			  <input id="permission_name" name="permission_name" class="easyui-validatebox" required="true" data-options="validType:'maxLength[20]'" />
+			</div>
+		  </div>
+		  <div class="float-l clearboth">
+		    <div class="Dialog-form-title">
+			  <label for="type" class="field"><span class="redStar">*</span>权限标识：</label>
+			</div>
+			<div class="Dialog-form-item">
+			  <input id="permission" name="permission" class="easyui-validatebox" required="true" data-options="validType:'maxLength[20]'" />
+			</div>
+		  </div>
+		  <div class="float-l">
+		    <div class="Dialog-form-title">
+			  <label for="orders" class="field"><span class="redStar">*</span>顺&ensp;&ensp;&ensp;&ensp;序：</label>
+			</div>
+			<div class="Dialog-form-item">
+			  <input id="orders" name="orders" type="text" class="easyui-numberbox" required="true" data-options="min:0,max:999,precision:0" />
+			</div>
+		  </div>
+		  
+				<!-- <table>
+					<tr>
+						<td width="60px;">
+							<label for="type" class="field">上级权限:</label>
+						</td>
+						<td>
+							<input id="parent_id" name="parent_id" type="hidden"/>
+							<input id="parent_permission_name" name="parent_permission_name" class="easyui-validatebox" readonly="readonly" />
+						</td>
+					</tr>
+					<tr>
+						<td width="60px;">
+							<label for="type" class="field">权限名称:</label>
+						</td>
+						<td>
+							<input id="permission_name" name="permission_name" class="easyui-validatebox" required="true" 
+								data-options="validType:'maxLength[20]'" />
+						</td>
+					</tr>
+					<tr>
+						<td width="60px;">
+							<label for="type" class="field">权限标识:</label>
+						</td>
+						<td>
+							<input id="permission" name="permission" class="easyui-validatebox" required="true" 
+								data-options="validType:'maxLength[20]'" />
+						</td>
+					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td> -->
+<!-- 							<label for="status" class="field">状态:</label> -->
+<!-- 						</td> -->
+<!-- 						<td> -->
+<!-- 							<input id="status" name="status" type="text" /> -->
+<!-- 						</td> -->
+<!-- 					</tr> -->
+					<!-- <tr>
+						<td>
+							<label for="orders" class="field">顺序:</label>
+						</td>
+						<td>
+							<input id="orders" name="orders" type="text" class="easyui-numberbox" required="true" 
+								data-options="min:0,max:999,precision:0" />
+						</td>
+					</tr>
+				</table> -->
+	    </form>
+	  </div>
+	</div>
+	<div region="south" border="false" class="Dialog-footer">
+	  <input id="" class="btn-save" onmouseover="this.className='btn-save-over'"
+	    onmouseout="this.className='btn-save'" onmousedown="this.className='btn-save-down'" type="button" onclick="submitForm();" />
+	  <input id="" class="btn-cancel" onmouseover="this.className='btn-cancel-over'"
+	    onmouseout="this.className='btn-cancel'" onmousedown="this.className='btn-cancel-down'" type="button" onclick="util.closeWindow('editWindow');" />
+		<!-- <a class="easyui-linkbutton" iconCls="icon-ok" href="javascript:void(0);" onclick="submitForm();">保存</a>
+		<a class="easyui-linkbutton" iconCls="icon-cancel" href="javascript:void(0);" onclick="util.closeWindow('editWindow');">取消</a> -->
+	</div>
+</div>

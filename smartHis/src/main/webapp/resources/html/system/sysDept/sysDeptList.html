@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>部门</title>
+<link href="../../../css/goldcow-all.css" rel="stylesheet" type="text/css" />
+<!-- <link href="../../../css/icon.css" rel="stylesheet" type="text/css" /> -->
+<script src="../../../js/goldcow-all.js" type="text/javascript"></script>
+<script type="text/javascript">
+	jQuery(function($) {
+		// 初始化表格
+		$('#dg').treegrid({    
+			url : global_param.context_name + "/system/dept/list", // 数据来源
+			title : '部门列表', // 标题
+			idField : 'id',
+			parentField : 'parent_id',
+			treeField : 'name',
+			sortName : 'orders', // 排序的列
+			sortOrder : 'asc', // 顺序
+			queryParams : {},
+			method : 'post',
+			fit : true,
+			fitColumns : true,
+			border : false,
+			onLoadSuccess : function() {
+				$(self).datagrid('clearSelections'); // 一定要加上这一句，要不然datagrid会记住之前的选择状态，删除时会出问题
+				$(this).datagrid('doTreeCellTip',{'max-width':'300px','delay':500});
+			},
+// 			toolbar : [],
+			columns : [ [ {
+				field : 'name',
+				title : '部门名称',
+				width : 20,
+				sortable : true
+			}/*, {
+				field : 'status',
+				title : '状态',
+				width : 10,
+				sortable : true,
+				formatter : function(value, row, index) {
+					return util.getSysParam('STATUS', value);
+				}
+			}*/, {
+				field : 'orders',
+				title : '顺序',
+				width : 10,
+				sortable : true
+			} ] ],
+			toolbar : [ {
+				text : '增加',
+				iconCls : 'icon-add',
+				handler : addFunc
+			}, {
+				text : '修改',
+				iconCls : 'icon-modify',
+				handler : updateFunc
+			}, {
+				text : '删除',
+				iconCls : 'icon-delete',
+				handler : deleteFunc
+			} ]
+		});
+		// 初始化编辑窗口
+		util.window('editWindow', {
+			iconCls : '',
+			title : '部门信息',
+			width : 600,
+			height : 253
+		});
+	});
+
+	
+	function query() {
+		$('#dg').treegrid('options').queryParams = util.formParams("searchForm");
+		$('#dg').treegrid('reload');
+	}
+
+	function addFunc() {
+		util.openWindow('editWindow', globalUtil.getHtml("sysDeptEdit.html"));
+		if (!node) {
+			util.openWindow('editWindow', globalUtil.getHtml("sysDeptEdit.html"));
+		} else {
+			util.openWindow('editWindow', globalUtil.getHtml("sysDeptEdit.html"), {parent_id : node.id});
+		}
+	}
+
+	function updateFunc() {
+		var node = $('#dg').treegrid('getSelected');
+		if (!node) {
+// 			util.alert("请选择一条记录");
+			util.show('请选择一条记录');
+			return;
+		}
+		util.openWindow('editWindow', globalUtil.getHtml("sysDeptEdit.html"), {id : node.id});
+	}
+
+	function deleteFunc() {
+		var node = $('#dg').treegrid('getSelected');
+		if (!node) {
+// 			util.alert("请选择一条记录");
+			util.show('请选择一条记录');
+			return;
+		}
+		util.confirm("确定要执行删除操作？", function() {
+			var data = util.ajax(global_param.context_name + "/system/dept/delete?id=" + node.id);
+			if (data == "success") {
+				$('#dg').treegrid('reload');
+			}
+			util.show("操作成功");
+		},"删除");
+	}
+</script>
+</head>
+
+<body style="font-size: 12px; margin: 0px 0px 0px 0px; padding-right: 20px; background-color: #EDF2F9;">
+	<div class="easyui-layout" fit="true" style="width: 100%; height: 100%;">
+		<!-- 页面头部 -->
+		<div data-options="region:'north',border:false" class="l-panel-search clearfix" style="overflow: hidden;">
+		<div class="l-searchbar clearfix centertoolbar-w4" >
+                <div class="l-panel-search-cond clearfix">
+			    <form id="searchForm" action="#">
+			      <div class="float-l">
+                    <div class="l-panel-search-title">部门名称:</div>
+                    <div class="l-panel-search-item">
+                       <input type="text" id = "search_name" name="name" />
+                    </div>
+                  </div>
+                </form>
+                </div>
+                <div class="l-panel-search-btn">
+                    <input id="" class="btn-search" onmouseover="this.className='btn-search-over'"
+                    onmouseout="this.className='btn-search'" onmousedown="this.className='btn-search-down'" type="button" onclick="query();" />
+                    <input id="" class="btn-empty" onmouseover="this.className='btn-empty-over'"
+                    onmouseout="this.className='btn-empty'" onmousedown="this.className='btn-empty-down'" type="button"onclick="$('#searchForm').form('reset');" />
+                </div>  
+            </div> 
+		</div>
+		
+		<!-- 显示区域 -->
+		<div data-options="region:'center',border:false" style="overflow: hidden;">
+			<table id="dg"></table>
+		</div>
+	</div>
+	<!-- 编辑窗口 -->
+	<div id="editWindow"></div>
+</body>
+</html>

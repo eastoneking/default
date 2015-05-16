@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="/GSCManager/resources/css/goldcow-all.css" rel="stylesheet"
+	type="text/css" />
+<script src="/GSCManager/resources/js/goldcow-all.js" type="text/javascript"></script>
+<script type="text/javascript">
+	/**
+	 * 获取方法
+	 */
+	function doubleNumber(Number, Count) {
+		if (Count == undefined || Count == "undefined") {
+			Count = 1;
+		}
+		var _count = 0;
+		var _temp = "";
+		var str = Number.toString();
+		if (str.indexOf(".") > 0) {
+			var arr = str.split(".");
+			if (arr[1].length >= Count) {
+				return arr[0] + "." + arr[1].substr(0, Count);
+			} else {
+				_count = Count - arr[1].length;
+				for (var i = 0; i < _count; i++) {
+					_temp += "0";
+				}
+				return str + _temp;
+			}
+		} else {
+			for (var i = 0; i < Count; i++) {
+				_temp += "0";
+			}
+			return str + "." + _temp;
+		}
+	}
+	$(function() {
+		userMessage();
+	})
+	function userMessage() {
+		var user = util.ajax(global_param.context_name
+				+ '/userAccess/getUserAccessById');
+		if (user) {
+			$("#user_code").val(user.user_code)
+			$("#rmb").val(doubleNumber(user.rmbs, 2));
+			$("#gsc").val(doubleNumber(user.gscs, 2));
+			$("#idCard").val(user.idCard);
+			$("#phone").val(user.phone);
+		}
+	}
+
+	function numberVerify() {
+		var existingGsc = $("#gsc").val();
+		var originalGsc = $("#recoverynum").val();
+		var pattern = /^(([1-9]\d*(\.\d?[0-9])?)|(0\.[1-9][0-9])|(0\.[0][1-9]))$/;
+		var flag = pattern.test(originalGsc);
+		if (flag) {
+			if (originalGsc != "" && parseFloat(originalGsc) > 0) {
+				if (parseFloat(originalGsc) > parseFloat(existingGsc)) {
+					$("#error").text("*您货币不够");
+					$('#btnSave').linkbutton('disable');
+				} else {
+					$("#error").text("*输入正确");
+					$('#btnSave').linkbutton('enable');
+				}
+			} else {
+				$("#error").text("*请输入回收数量");
+			}
+		} else {
+			if (originalGsc != "") {
+				$("#error").text("*不能输入非法字符");
+				$('#btnSave').linkbutton('disable');
+			} else {
+				$("#error").text("*请输入回收数量");
+			}
+		}
+
+	}
+	/**
+	 * 保存方法
+	 */
+	function save() {
+		var formdata = utilJson.formDataObject("_form");
+		$.ajax({
+			url : global_param.context_name + "/RecoveryGSC/recoverySave",
+			data : formdata,
+			type : "POST",
+			success : function(data) {
+				if (data == "000000") {
+					util.show("回收成功");
+					location.reload();
+				} else if (data == "000020") {
+					util.show("回收失败数量不能为空或者为0");
+				} else {
+					util.show("回收失败值大于用户余额");
+				}
+			}
+		});
+	}
+	function cancel() {
+		location.reload();
+	}
+</script>
+</head>
+<body style="width: 100%">
+	<!-- 页面头部 -->
+	<div
+		style="padding-left: 10px; position: absolute; top: 200px; left: 400px; background: #fff; border: 1px solid #ccc; width: 400px; overflow: auto;">
+		<div border="false"
+			style="padding: 10px; background: #fff; border: 1px solid #ccc;">
+			<fieldset class="prepend-top">
+				<legend>回收管理</legend>
+				<form id="_form" action="" method="post">
+					<input id="useraccess_id" name="useraccess_id" type="hidden" />
+					<table>
+						<tr>
+							<td width="80px;"><label for="user_code" class="field">
+									用户账号: </label></td>
+							<td><input id="user_code" type="text" name="user_code"
+								class="text" data-options="min:0,precision:4" required="true" /></td>
+						</tr>
+						<tr>
+							<td><label for="rmb" class="field"> 账户CNC余额: </label></td>
+							<td><input id="rmb" type="text" name="rmb"
+								class="easyui-numberbox" data-options="min:0,precision:4"
+								required="true" disabled="disabled" /></td>
+						</tr>
+						<tr>
+							<td><label for="gsc" class="field"> 账户GSC余额: </label></td>
+							<td><input id="gsc" type="text" class="text" name="gsc"
+								class="easyui-numberbox" data-options="min:0,precision:4"
+								required="true" disabled="disabled"></td>
+						</tr>
+						<tr>
+							<td><label for="idCard" class="field"> 身份证号码: </label></td>
+							<td><input id="idCard" type="text" name="idCard"
+								class="text" data-options="min:0,precision:0" required="true"
+								disabled="disabled" /></td>
+						</tr>
+						<tr>
+							<td><label for="phone" class="field"> 手机号: </label></td>
+							<td><input id="phone" name="phone" type="text" class="text"
+								precision="4" groupSeparator="," required="true"
+								disabled="disabled" /></td>
+						</tr>
+						<tr>
+							<td><label for="recoverynum" class="field"> 回收量: </label></td>
+							<td><input id="recoverynum" type="text" name="recoverynum"
+								required="true" oninput="numberVerify();" /><span id="error"
+								style="color: red;">请输入回收数量</span></td>
+						</tr>
+					</table>
+				</form>
+			</fieldset>
+		</div>
+		<div style="text-align: center; height: 30px;">
+			<a class="easyui-linkbutton" iconCls="icon-ok"
+				href="javascript:void(0);" id="btnSave" onclick="save();">保存</a> <a
+				class="easyui-linkbutton" iconCls="icon-cancel"
+				href="javascript:void(0);" onclick="cancel()">取消</a>
+		</div>
+	</div>
+	<!-- 			查询所有数据 -->
+	<!-- <div id="buyDepute" style="padding-left:10px;position:absolute;top:200px;right:400px; background: #fff; border: 1px solid #ccc;width: 260px;height: 200px;overflow: auto;"> -->
+	<!-- </div> -->
+	<!-- <div id="sellDepute" style="padding-left:10px;position:absolute;top:400px;right:400px; background: #fff; border: 1px solid #ccc;width: 260px;height: 200px;overflow: auto;"> -->
+	<!-- </div> -->
+</body>
+</html>
