@@ -9,9 +9,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 
-import eastone.business.HttpInteractionBusiness;
 import eastone.controller.HttpInteractionController;
-import eastone.controller.core.HttpIaBizController;
 import eastone.endpoint.HttpEndPoint;
 import eastone.endpoint.HttpJsonInteractionControllerEndPoint;
 import eastone.endpoint.WithControllerEndPoint;
@@ -24,26 +22,26 @@ import eastone.endpoint.WithControllerEndPoint;
 public class HttpJsonIaEpFactory<I, O, E extends WithControllerEndPoint<HttpInteractionController<I,O>>&HttpEndPoint>
     implements FactoryBean<E>, InitializingBean, ApplicationListener<ApplicationEvent> {
 
-    private HttpInteractionBusiness<I, O> business;
+    private HttpInteractionController<I, O> controller;
     
     /**
-     * The setter method of the property business.
-     * @param thebusiness the business to set
-     * @author wangds 2015年5月11日 下午2:58:30.
+     * The setter method of the property controller.
+     * @param thecontroller the controller to set
+     * @author wangds 2015年5月16日 下午2:25:14.
      */
-    public void setBusiness(HttpInteractionBusiness<I, O> business) {
-        this.business = business;
+    public void setController(HttpInteractionController<I, O> controller) {
+        this.controller = controller;
     }
     
     /**
-     * The getter method of the property business.
-     * @author wangds 2015年5月11日 下午2:58:34.
-     * @return the business.
+     * The getter method of the property controller.
+     * @author wangds 2015年5月16日 下午2:25:18.
+     * @return the controller.
      */
-    public HttpInteractionBusiness<I, O> getBusiness() {
-        return business;
+    public HttpInteractionController<I, O> getController() {
+        return controller;
     }
-
+    
     /*
      * @see org.springframework.context.ApplicationListener#onApplicationEvent(org.springframework.context.ApplicationEvent)
      * @author wangds 2015年5月11日 下午2:53:31.
@@ -68,9 +66,7 @@ public class HttpJsonIaEpFactory<I, O, E extends WithControllerEndPoint<HttpInte
     @Override
     public E getObject() throws Exception {
         HttpJsonInteractionControllerEndPoint<I, O> res = new HttpJsonInteractionControllerEndPoint<I, O>();
-        HttpIaBizController<I, O, HttpInteractionBusiness<I, O>> ctrl = new HttpIaBizController<I, O, HttpInteractionBusiness<I, O>>();
-        ctrl.setBusiness(business);
-        res.setController(ctrl);
+        res.setController(this.getController());
         return (E)res;
     }
 
