@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hztech.smartHis.query.guahao">
+	<select id="findGuaHaoSeq" parameterType="hashmap" resultType="hashmap">
+		select date_format(now(), '%Y%m%d') as "date",count(1) as "seq"
+		from yl_ghtaizhang
+		where
+		date_format(now(), '%Y-%m-%d')=substring(ghriqi,1,10)
+	</select>
+</mapper>

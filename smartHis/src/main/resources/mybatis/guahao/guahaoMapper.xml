@@ -48,6 +48,7 @@
 			<if test="sel_ghkeshiname != null  and sel_ghkeshiname != '' ">
 				and ghkeshiname like CONCAT(CONCAT('%', #{sel_ghkeshiname}), '%')  
 			</if>
+			and date_format(now(), '%Y-%m-%d')=substring(ghriqi,1,10)
 		</where>
 		<if test="sortname != null and sortorder != null">
 			order by ${sortname} ${sortorder}
@@ -67,6 +68,7 @@
 			<if test="ghname != null  and ghname != '' ">
 				and ghname like CONCAT(CONCAT('%', #{ghname}), '%')  
 			</if>
+			and date_format(now(), '%Y-%m-%d')=substring(ghriqi,1,10)
 		</where>
 		<if test="sortname != null and sortorder != null">
 			order by ${sortname} ${sortorder}
@@ -89,6 +91,8 @@
 				ghypfeiyong,
 				ghfeiyong
 		  from yl_ghtaizhang
+		  where
+		      date_format(now(), '%Y-%m-%d')=substring(ghriqi,1,10)
 <!-- 		 where type_code = #{typeCode} -->
 	</select>
 	<!-- 向表中插入数据，并在将主键值赋到实体中，返回受影响的记录条数。如果不需要返回主键，无需配置useGeneratedKeys、keyProperty项 -->
@@ -96,8 +100,8 @@
 		insert into yl_ghtaizhang(ghnumber,ghname, ghsex, ghage, ghkeshiid,
 		ghkeshiname,ghtype,ghstatus,ghyishengid,ghyisheng,
 		ghriqi,ghypfeiyong,ghfeiyong)
-			values(#{ghnumber},#{ghname}, #{ghsex}, #{ghage}, #{ghkeshiid},
-			 #{ghkeshiname}, #{ghtype}, #{ghstatus}, #{ghyishengid}, #{ghyisheng},
+			values(#{ghnumber},#{ghname}, #{ghsex}, #{ghage}, 21,
+			 '全科', '普通号', #{ghstatus}, #{ghyishengid}, #{ghyisheng},
 			now(),#{ghypfeiyong},#{ghfeiyong});
 	</insert>
 

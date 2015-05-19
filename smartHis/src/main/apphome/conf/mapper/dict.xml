@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hztech.smartHis.query.dict">
+    <select id="selDictUseMethod" parameterType="hashmap" resultType="hashmap">
+        select * from `dict_base` where `class`='药品使用方式'
+    </select>
+    <select id="selDictUseAmount" parameterType="hashmap" resultType="hashmap">
+        select * from `dict_base` where `class`='药品使用量'
+    </select>
+    <select id="selDictUseFrequence" parameterType="hashmap" resultType="hashmap">
+        select * from `dict_base` where `class`='使用频率'
+    </select>
+    <insert id="insDictUseMethod" parameterType="hashmap">
+        insert into `dict_base` (`id`,`text`,`class`)(
+            select uuid(), #{text}, '药品使用方式'
+            from dual
+            where  
+            not exists (select 1 from `dict_base` where text=#{text} and `class`='药品使用方式')
+        )
+    </insert>
+    <insert id="insDictUseAmount" parameterType="hashmap">
+        insert into `dict_base` (`id`,`text`,`class`)(
+            select uuid(), #{text}, '药品使用量'
+            from dual
+            where  
+            not exists (select 1 from `dict_base` where text=#{text} and `class`='药品使用量')
+        )
+    </insert>
+    <insert id="insDictUseFrequence" parameterType="hashmap">
+        insert into `dict_base` (`id`,`text`,`class`)(
+            select uuid(), #{text}, '使用频率'
+            from dual
+            where  
+            not exists (select 1 from `dict_base` where text=#{text} and `class`='使用频率')
+        )
+    </insert>
+</mapper>

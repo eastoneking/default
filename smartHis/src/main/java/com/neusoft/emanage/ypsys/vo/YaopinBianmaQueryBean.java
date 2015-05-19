@@ -49,6 +49,12 @@ public class YaopinBianmaQueryBean  extends EasyUiBaseBean {
 	 */
 	private String ypbmdanwei;
 	
+	private String useMethod;
+	
+	private String useAmount;
+	
+	private String useSequence;
+	
 	
 	
 	/********getter  setter**************************/
@@ -114,7 +120,54 @@ public class YaopinBianmaQueryBean  extends EasyUiBaseBean {
 	}
 	
 
-	
+	/**
+     * The setter method of the property useAmount.
+     * @param theuseAmount the useAmount to set
+     * @author wangds 2015年5月19日 下午1:07:44.
+     */
+    public void setUseAmount(String useAmount) {
+        this.useAmount = useAmount;
+    }
+    /**
+     * The getter method of the property useAmount.
+     * @author wangds 2015年5月19日 下午1:07:48.
+     * @return the useAmount.
+     */
+    public String getUseAmount() {
+        return useAmount;
+    }
+    /**
+     * The setter method of the property useMethod.
+     * @param theuseMethod the useMethod to set
+     * @author wangds 2015年5月19日 下午1:07:51.
+     */
+    public void setUseMethod(String useMethod) {
+        this.useMethod = useMethod;
+    }
+    /**
+     * The getter method of the property useMethod.
+     * @author wangds 2015年5月19日 下午1:07:57.
+     * @return the useMethod.
+     */
+    public String getUseMethod() {
+        return useMethod;
+    }
+    /**
+     * The setter method of the property useSequence.
+     * @param theuseSequence the useSequence to set
+     * @author wangds 2015年5月19日 下午1:08:00.
+     */
+    public void setUseSequence(String useSequence) {
+        this.useSequence = useSequence;
+    }
+    /**
+     * The getter method of the property useSequence.
+     * @author wangds 2015年5月19日 下午1:08:03.
+     * @return the useSequence.
+     */
+    public String getUseSequence() {
+        return useSequence;
+    }
 	
 	
 }

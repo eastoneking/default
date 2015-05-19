@@ -3,6 +3,7 @@
 // 		util.datebox("ghriqi");
 		
 		// 类别下拉框
+		/*
 		util.select({
 			id : 'ghkeshiid',
 			valueField : 'id',
@@ -12,7 +13,7 @@
 			onSelect:function(date){ 
 				$("#ghkeshiname").val(date.ksname);
 			}
-		});
+		});*/
 		// 状态下拉框
 		util.select({
 			id : 'ghsex',
@@ -38,6 +39,14 @@
 			});
 			$("#_form").form("load", data);
 		}
+		
+		if($("#ghnumber").val().length==0){
+		$.a("postJson", global_param.context_name+"/fn/findGuaHaoSeq", {}, function(data){
+		  //alert(JSON.stringify(data))
+		  $("#ghnumber").val(data[0].date+""+data[0].seq);
+		},function(){});
+		};
+		
 // 		var keshengouliang = util.ajax(global_param.context_name
 // 				+ '/keshi/keshiweihu/keshengouliang');
 // 		$("#keshengouliang").val(doubleNumber(keshengouliang,6));
@@ -53,7 +62,7 @@
 			$.messager.alert('提示', '请选择患者性别', 'error');
 			return;
 		}
-		var s1 = $("#ghkeshiid").combobox('getValue');
+		/*var s1 = $("#ghkeshiid").combobox('getValue');
 		if (s1 == '请选择') {
 			$.messager.alert('提示', '请选择挂号科室', 'error');
 			return;
@@ -62,7 +71,7 @@
 		if (s2 == '请选择') {
 			$.messager.alert('提示', '请选择挂号类别', 'error');
 			return;
-		}
+		}*/
 		var result = util.submit('_form');
 		if (result) {
 			if (result == "success") {
@@ -87,7 +96,7 @@
 			        <label for="ghnumber" class="field">病历号：</label>
 			    </div>
 			    <div class="Dialog-form-item">
-			        <input id="ghnumber" name="ghnumber" type="text"  style="width:  154px;" class="easyui-validatebox" data-options="required:true"/>
+			        <input id="ghnumber" name="ghnumber" readonly="true" type="text"  style="width:  154px;" class="easyui-validatebox" data-options="required:true"/>
 			    </div>
 			</div>
 			<div class="float-l clearboth">
@@ -115,6 +124,7 @@
 			        <input id="ghsex" name="ghsex" type="text"  style="width:  154px;" />
 			    </div>
 			</div>
+			<!-- 
 			<div class="float-l clearboth2">
 			    <div class="Dialog-form-title2">
 			        <label for="ghkeshiid" class="field">挂号科室：</label>
@@ -132,7 +142,8 @@
 			        <input id="ghtype" name="ghtype"  style="width:  154px;" type="text" />
 			    </div>
 			</div>
-						<div class="float-l">
+			 -->
+			<div class="float-l">
 			    <div class="Dialog-form-title2">
 			        <label for="ghfeiyong" class="field">挂号费用：</label>
 			    </div>

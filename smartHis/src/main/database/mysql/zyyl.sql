@@ -709,8 +709,8 @@ CREATE TABLE `ylsys_keshi` (
 -- ----------------------------
 -- Records of ylsys_keshi
 -- ----------------------------
-INSERT INTO `ylsys_keshi` VALUES ('21', '发烧科', 'ks001', 'A座八楼', '001');
-INSERT INTO `ylsys_keshi` VALUES ('22', '耳鼻喉科', 'ks002', 'A2楼111室', '1');
+INSERT INTO `ylsys_keshi` VALUES ('21', '全科', 'ks001', 'A座八楼', '001');
+-- INSERT INTO `ylsys_keshi` VALUES ('22', '耳鼻喉科', 'ks002', '', '1');
 
 -- ----------------------------
 -- Table structure for ylsys_ypbianma
@@ -730,6 +730,9 @@ CREATE TABLE `ylsys_ypbianma` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT='药品编码表';
 
+alter table `ylsys_ypbianma` add column `useMethod` varchar(100) default '' comment '使用方式';
+alter table `ylsys_ypbianma` add column `useAmount` varchar(100) default '' comment '使用数量';
+alter table `ylsys_ypbianma` add column `useFrequence` varchar(100) default '' comment '使用频率';
 -- ----------------------------
 -- Records of ylsys_ypbianma
 -- ----------------------------
@@ -1044,3 +1047,18 @@ INSERT INTO `yl_yszhenduan` VALUES ('34', '1', '18', '超级管理员', '2014-12
 INSERT INTO `yl_yszhenduan` VALUES ('35', '1', '22', '超级管理员', '2014-12-29 17:19:53', '普通号', '222', '2222', '男', '222', null, '0', '发烧科', '0', '2014-12-29 17:17:53');
 INSERT INTO `yl_yszhenduan` VALUES ('36', '1', '23', '超级管理员', '2014-12-30 16:45:33', '普通号', '1230', '张世玺', '男', '30', '1', '1', '耳鼻喉科', '2', '2014-12-30 16:45:15');
 INSERT INTO `yl_yszhenduan` VALUES ('37', '1', '23', '超级管理员', '2014-12-31 10:59:13', '普通号', '1230', '张世玺', '男', '30', '1', '1', '耳鼻喉科', '2', '2014-12-30 16:45:15');
+
+
+DROP TABLE IF EXISTS `dict_base`;
+CREATE TABLE `dict_base` (
+  `id` varchar(36),
+  `text` varchar(100),
+  `class` varchar(100),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+insert into `dict_base` (`id`,`text`,`class`) values ('2d40d0fe-fdd4-11e4-ac83-e60c8472ae15','口服','药品使用方式');
+insert into `dict_base` (`id`,`text`,`class`) values ('555d6052-fdd4-11e4-ac83-e60c8472ae15','注射','药品使用方式');
+
+
+select uuid();

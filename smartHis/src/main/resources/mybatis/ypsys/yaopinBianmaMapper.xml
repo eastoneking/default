@@ -14,7 +14,10 @@
 				ypbmleibiename,
 				ypbmorder,
 				ypbmstatus,
-				ypbmdanwei
+				ypbmdanwei,
+				useMethod,
+				useAmount,
+				useFrequence
 		  from ylsys_ypbianma
 		 where id = #{id}
 	</select>
@@ -29,7 +32,10 @@
 				ypbmleibiename,
 				ypbmorder,
 				ypbmstatus,
-				ypbmdanwei
+				ypbmdanwei,
+                useMethod,
+                useAmount,
+                useFrequence
 		  from ylsys_ypbianma
 	</select>
 	<!-- 分页查询 ，返回List<HashMap>对象， -->
@@ -43,7 +49,10 @@
 				ypbmleibiename,
 				ypbmorder,
 				ypbmstatus,
-				ypbmdanwei
+				ypbmdanwei,
+                useMethod,
+                useAmount,
+                useFrequence
 		  from ylsys_ypbianma
 		<where>
 			   1=1
@@ -87,42 +96,72 @@
 	<insert id="save" parameterType="YaopinBianmaBean" useGeneratedKeys="true" keyProperty="id">
 		insert into ylsys_ypbianma(ypbmname, ypbmnumber, yppihao, ypbmshengchanshang,
 		   ypbmleibieid, ypbmleibiename, ypbmorder, ypbmstatus, ypbmdanwei
+		   <if test="useMethod != null">
+                ,useMethod
+            </if>
+            <if test="useAmount != null">
+                ,useAmount
+            </if>
+            <if test="useFrequence != null">
+                ,useFrequence
+            </if>
 		     )
 			values(#{ypbmname}, #{ypbmnumber}, #{yppihao}, #{ypbmshengchanshang},
-			#{ypbmleibieid},#{ypbmleibiename},#{ypbmorder},#{ypbmstatus},#{ypbmdanwei});
+			#{ypbmleibieid},#{ypbmleibiename},#{ypbmorder},#{ypbmstatus},#{ypbmdanwei}
+			<if test="useMethod != null">
+                ,#{useMethod}
+            </if>
+            <if test="useAmount != null">
+                ,#{useAmount}
+            </if>
+            <if test="useFrequence != null">
+                ,#{useFrequence}
+            </if>
+			
+			);
 	</insert>
 
 	<!-- 更新表中数据，返回受影响的记录条数 -->
 	<update id="update" parameterType="YaopinBianmaBean">
 		update ylsys_ypbianma
 		<set>
+		      id=#{id}
 			<if test="ypbmname != null">
-				ypbmname = #{ypbmname},
+				,ypbmname = #{ypbmname}
 			</if>
 			<if test="ypbmnumber != null">
-				ypbmnumber = #{ypbmnumber},
+				,ypbmnumber = #{ypbmnumber}
 			</if>
 			<if test="yppihao != null">
-				yppihao = #{yppihao},
+				,yppihao = #{yppihao}
 			</if>
 			<if test="ypbmshengchanshang != null">
-				ypbmshengchanshang = #{ypbmshengchanshang},
+				,ypbmshengchanshang = #{ypbmshengchanshang}
 			</if>
-				<if test="ypbmleibieid != null">
-				ypbmleibieid = #{ypbmleibieid},
+			<if test="ypbmleibieid != null">
+				,ypbmleibieid = #{ypbmleibieid}
 			</if>
-					<if test="ypbmleibiename != null">
-				ypbmleibiename = #{ypbmleibiename},
+			<if test="ypbmleibiename != null">
+				,ypbmleibiename = #{ypbmleibiename}
 			</if>
-					<if test="ypbmorder != null">
-				ypbmorder = #{ypbmorder},
+			<if test="ypbmorder != null">
+				,ypbmorder = #{ypbmorder}
 			</if>
-					<if test="ypbmstatus != null">
-				ypbmstatus = #{ypbmstatus},
+			<if test="ypbmstatus != null">
+				,ypbmstatus = #{ypbmstatus}
 			</if>
 			<if test="ypbmdanwei != null">
-				ypbmdanwei = #{ypbmdanwei}
+				,ypbmdanwei = #{ypbmdanwei}
 			</if>
+			<if test="useMethod != null">
+                ,useMethod=#{useMethod}
+            </if>
+            <if test="useAmount != null">
+                ,useAmount=#{useAmount}
+            </if>
+            <if test="useFrequence != null">
+                ,useFrequence=#{useFrequence}
+            </if>
 		</set>
 		where id = #{id}
 	</update>

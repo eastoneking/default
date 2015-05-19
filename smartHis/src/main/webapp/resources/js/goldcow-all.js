@@ -45,3 +45,4 @@ document.write('<script language="Javascript" src="'+global_param.context_name+'
 document.write('<script language="Javascript" src="'+global_param.context_name+'/resources/js/fileUtil.js"></script>');
 document.write('<script language="Javascript" src="'+global_param.context_name+'/resources/js/textcheck.js"></script>');
 document.write('<script language="Javascript" src="'+global_param.context_name+'/resources/js/index.js"></script>');
+document.write('<script language="Javascript" src="'+global_param.context_name+'/resources/js/common.js"></script>');

@@ -64,6 +64,14 @@
 		<property name="processorMap">
 			<map>
 				<entry key="/fn/test" value="ep.test"></entry>
+				<entry key="/fn/findDictUseMethod" value="ep.findDictUseMethod"></entry>
+				<entry key="/fn/findDictUseAmount" value="ep.findDictUseAmount"></entry>
+				<entry key="/fn/findDictUseFrequence" value="ep.findDictUseFrequence"></entry>
+				<entry key="/fn/createDictUseAmount" value="ep.createDictUseAmount"></entry>
+				<entry key="/fn/createDictUseMethod" value="ep.createDictUseMethod"></entry>
+				<entry key="/fn/createDictUseFrequence" value="ep.createDictUseFrequence"></entry>
+				<entry key="/fn/findGuaHaoSeq" value="ep.findGuaHaoSeq"></entry>
+                
 			</map>
 		</property>
 	</bean>

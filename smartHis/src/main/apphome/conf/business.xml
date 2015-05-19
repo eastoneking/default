@@ -23,4 +23,88 @@
           </bean>
         </property>
     </bean>
+    <bean id="bizDictUseMethod" class="eastone.business.fac.HttpIaMedBizFactory" lazy-init="true">
+        <property name="inner">
+          <bean class="eastone.business.mybatis.SimpleSelectBusiness" scope="prototype">
+            <property name="sessionFactory" ref="SessionFac"></property>
+            <property name="sqlInfo">
+                <bean class="eastone.business.sql.BaseSqlInfo" scope="prototye">
+                    <property name="sql" value="selDictUseMethod"></property>
+                </bean>
+            </property>
+          </bean>
+        </property>
+    </bean>
+    <bean id="bizDictUseAmount" class="eastone.business.fac.HttpIaMedBizFactory" lazy-init="true">
+        <property name="inner">
+          <bean class="eastone.business.mybatis.SimpleSelectBusiness" scope="prototype">
+            <property name="sessionFactory" ref="SessionFac"></property>
+            <property name="sqlInfo">
+                <bean class="eastone.business.sql.BaseSqlInfo" scope="prototye">
+                    <property name="sql" value="selDictUseAmount"></property>
+                </bean>
+            </property>
+          </bean>
+        </property>
+    </bean>
+    <bean id="bizDictUseFrequence" class="eastone.business.fac.HttpIaMedBizFactory" lazy-init="true">
+        <property name="inner">
+          <bean class="eastone.business.mybatis.SimpleSelectBusiness" scope="prototype">
+            <property name="sessionFactory" ref="SessionFac"></property>
+            <property name="sqlInfo">
+                <bean class="eastone.business.sql.BaseSqlInfo" scope="prototye">
+                    <property name="sql" value="selDictUseFrequence"></property>
+                </bean>
+            </property>
+          </bean>
+        </property>
+    </bean>
+    <bean id="bizCreateDictUseMethod" class="eastone.business.fac.HttpIaMedBizFactory" lazy-init="true">
+        <property name="inner">
+          <bean class="eastone.business.mybatis.SimpleSelectBusiness" scope="prototype">
+            <property name="sessionFactory" ref="SessionFac"></property>
+            <property name="sqlInfo">
+                <bean class="eastone.business.sql.BaseSqlInfo" scope="prototye">
+                    <property name="sql" value="insDictUseMethod"></property>
+                </bean>
+            </property>
+          </bean>
+        </property>
+    </bean>
+    <bean id="bizCreateDictUseAmount" class="eastone.business.fac.HttpIaMedBizFactory" lazy-init="true">
+        <property name="inner">
+          <bean class="eastone.business.mybatis.SimpleSelectBusiness" scope="prototype">
+            <property name="sessionFactory" ref="SessionFac"></property>
+            <property name="sqlInfo">
+                <bean class="eastone.business.sql.BaseSqlInfo" scope="prototye">
+                    <property name="sql" value="insDictUseAmount"></property>
+                </bean>
+            </property>
+          </bean>
+        </property>
+    </bean>
+    <bean id="bizCreateDictUseFrequence" class="eastone.business.fac.HttpIaMedBizFactory" lazy-init="true">
+        <property name="inner">
+          <bean class="eastone.business.mybatis.SimpleSelectBusiness" scope="prototype">
+            <property name="sessionFactory" ref="SessionFac"></property>
+            <property name="sqlInfo">
+                <bean class="eastone.business.sql.BaseSqlInfo" scope="prototye">
+                    <property name="sql" value="insDictUseFrequence"></property>
+                </bean>
+            </property>
+          </bean>
+        </property>
+    </bean>
+    <bean id="bizFindGuaHaoSeq" class="eastone.business.fac.HttpIaMedBizFactory" lazy-init="true">
+        <property name="inner">
+          <bean class="eastone.business.mybatis.SimpleSelectBusiness" scope="prototype">
+            <property name="sessionFactory" ref="SessionFac"></property>
+            <property name="sqlInfo">
+                <bean class="eastone.business.sql.BaseSqlInfo" scope="prototye">
+                    <property name="sql" value="findGuaHaoSeq"></property>
+                </bean>
+            </property>
+          </bean>
+        </property>
+    </bean>
 </beans>

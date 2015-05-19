@@ -20,4 +20,67 @@
 			</bean>
 		</property>
 	</bean>
+	<bean id="ep.findDictUseMethod" class="eastone.endpoint.fac.HttpJsonIaEpFactory"
+        scope="prototype" lazy-init="true">
+        <property name="controller">
+            <bean class="eastone.controller.fac.HttpIaCtrlFactory"
+                lazy-init="true">
+                <property name="business" ref="bizDictUseMethod"></property>
+            </bean>
+        </property>
+    </bean>
+    <bean id="ep.findDictUseAmount" class="eastone.endpoint.fac.HttpJsonIaEpFactory"
+        scope="prototype" lazy-init="true">
+        <property name="controller">
+            <bean class="eastone.controller.fac.HttpIaCtrlFactory"
+                lazy-init="true">
+                <property name="business" ref="bizDictUseAmount"></property>
+            </bean>
+        </property>
+    </bean>
+    <bean id="ep.findDictUseFrequence" class="eastone.endpoint.fac.HttpJsonIaEpFactory"
+        scope="prototype" lazy-init="true">
+        <property name="controller">
+            <bean class="eastone.controller.fac.HttpIaCtrlFactory"
+                lazy-init="true">
+                <property name="business" ref="bizDictUseFrequence"></property>
+            </bean>
+        </property>
+    </bean>
+    <bean id="ep.createDictUseAmount" class="eastone.endpoint.fac.HttpJsonIaEpFactory"
+        scope="prototype" lazy-init="true">
+        <property name="controller">
+            <bean class="eastone.controller.fac.HttpIaCtrlFactory"
+                lazy-init="true">
+                <property name="business" ref="bizCreateDictUseAmount"></property>
+            </bean>
+        </property>
+    </bean>
+    <bean id="ep.createDictUseMethod" class="eastone.endpoint.fac.HttpJsonIaEpFactory"
+        scope="prototype" lazy-init="true">
+        <property name="controller">
+            <bean class="eastone.controller.fac.HttpIaCtrlFactory"
+                lazy-init="true">
+                <property name="business" ref="bizCreateDictUseMethod"></property>
+            </bean>
+        </property>
+    </bean>
+    <bean id="ep.createDictUseFrequence" class="eastone.endpoint.fac.HttpJsonIaEpFactory"
+        scope="prototype" lazy-init="true">
+        <property name="controller">
+            <bean class="eastone.controller.fac.HttpIaCtrlFactory"
+                lazy-init="true">
+                <property name="business" ref="bizCreateDictUseFrequence"></property>
+            </bean>
+        </property>
+    </bean>
+    <bean id="ep.findGuaHaoSeq" class="eastone.endpoint.fac.HttpJsonIaEpFactory"
+        scope="prototype" lazy-init="true">
+        <property name="controller">
+            <bean class="eastone.controller.fac.HttpIaCtrlFactory"
+                lazy-init="true">
+                <property name="business" ref="bizFindGuaHaoSeq"></property>
+            </bean>
+        </property>
+    </bean>
 </beans>

@@ -49,6 +49,65 @@ public class YaopinBianmaBean implements BaseEntity {
 	 */
 	private String ypbmdanwei;
 	
+	private String useMethod;
+	
+	private String useAmount;
+	
+	private String useFrequence;
+	
+	/**
+     * The setter method of the property useAmount.
+     * @param theuseAmount the useAmount to set
+     * @author wangds 2015年5月19日 下午1:30:40.
+     */
+    public void setUseAmount(String useAmount) {
+        this.useAmount = useAmount;
+    }
+    
+    /**
+     * The getter method of the property useAmount.
+     * @author wangds 2015年5月19日 下午1:30:43.
+     * @return the useAmount.
+     */
+    public String getUseAmount() {
+        return useAmount;
+    }
+    
+    /**
+     * The setter method of the property useFrequence.
+     * @param theuseFrequence the useFrequence to set
+     * @author wangds 2015年5月19日 下午1:30:46.
+     */
+    public void setUseFrequence(String useFrequence) {
+        this.useFrequence = useFrequence;
+    }
+    
+    /**
+     * The getter method of the property useFrequence.
+     * @author wangds 2015年5月19日 下午1:30:51.
+     * @return the useFrequence.
+     */
+    public String getUseFrequence() {
+        return useFrequence;
+    }
+    
+    /**
+     * The setter method of the property useMethod.
+     * @param theuseMethod the useMethod to set
+     * @author wangds 2015年5月19日 下午1:30:56.
+     */
+    public void setUseMethod(String useMethod) {
+        this.useMethod = useMethod;
+    }
+    /**
+     * The getter method of the property useMethod.
+     * @author wangds 2015年5月19日 下午1:30:59.
+     * @return the useMethod.
+     */
+    public String getUseMethod() {
+        return useMethod;
+    }
+	
 	
 	
 	/********getter  setter**************************/
