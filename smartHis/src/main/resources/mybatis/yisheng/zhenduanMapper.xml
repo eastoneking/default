@@ -19,7 +19,8 @@
 				zd_fystatus,
 				zd_ghks,
 				zd_version,
-				zd_ghriqi
+				zd_ghriqi,
+				zdContent
 		  from yl_yszhenduan
 		 where id = #{id}
 	</select>
@@ -40,7 +41,8 @@
 				zd_fystatus,
 				zd_ghks,
 				zd_version,
-				zd_ghriqi
+				zd_ghriqi,
+				zdContent
 		  from yl_yszhenduan
 		<where>
 			   1=1
@@ -107,10 +109,10 @@
 	<!-- 向表中插入数据，并在将主键值赋到实体中，返回受影响的记录条数。如果不需要返回主键，无需配置useGeneratedKeys、keyProperty项 -->
 	<insert id="save" parameterType="ZhenduanBean" useGeneratedKeys="true" keyProperty="id">
 		insert into yl_yszhenduan(zd_yishengid, zd_yishengname, zd_ghid, zd_riqi,
-		zd_ghtype,zd_ghnumber,zd_ghname,zd_ghsex,zd_ghage,zd_status,zd_fystatus,zd_ghks,zd_version,zd_ghriqi)
+		zd_ghtype,zd_ghnumber,zd_ghname,zd_ghsex,zd_ghage,zd_status,zd_fystatus,zd_ghks,zd_version,zd_ghriqi,zdContent)
 			values(#{zd_yishengid}, #{zd_yishengname}, #{zd_ghid}, now(),
 			#{zd_ghtype}, #{zd_ghnumber}, #{zd_ghname}, #{zd_ghsex}, 
-			#{zd_ghage}, #{zd_status}, #{zd_fystatus}, #{zd_ghks},#{zd_version}, #{zd_ghriqi});
+			#{zd_ghage}, #{zd_status}, #{zd_fystatus}, #{zd_ghks},#{zd_version}, #{zd_ghriqi}, #{zdContent});
 	</insert>
 
 	<!-- 更新表中数据，返回受影响的记录条数 -->
@@ -125,6 +127,9 @@
 			</if>
 			<if test="zd_version != null">
 				zd_version = #{zd_version}
+			</if>
+			<if test="zdContent != null">
+			 zdContent = #{zdContent}
 			</if>
 		</set>
 		where id = #{id} and zd_version = #{zd_version_old}

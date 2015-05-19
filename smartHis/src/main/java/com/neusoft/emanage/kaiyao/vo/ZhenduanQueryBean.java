@@ -1,6 +1,5 @@
 package com.neusoft.emanage.kaiyao.vo;
 import com.neusoft.emanage.baseEasyUi.vo.EasyUiBaseBean;
-import com.neusoft.sframe.util.mybatis.BaseEntity;
 /**
  * 
  * @author zhangshixi date:2014年6月20日
@@ -8,7 +7,6 @@ import com.neusoft.sframe.util.mybatis.BaseEntity;
  */
 public class ZhenduanQueryBean extends EasyUiBaseBean  {
 
-	private static final long serialVersionUID = 1L;
 	/**
 	 * id
 	 */
@@ -192,5 +190,21 @@ public class ZhenduanQueryBean extends EasyUiBaseBean  {
 		this.sel_zd_status = sel_zd_status;
 	}
 	
-	
+	private String zdContent;
+	/**
+     * The setter method of the property zdContent.
+     * @param thezdContent the zdContent to set
+     * @author wangds 2015年5月19日 下午6:42:52.
+     */
+    public void setZdContent(String zdContent) {
+        this.zdContent = zdContent;
+    }
+    /**
+     * The getter method of the property zdContent.
+     * @author wangds 2015年5月19日 下午6:42:56.
+     * @return the zdContent.
+     */
+    public String getZdContent() {
+        return zdContent;
+    }
 }

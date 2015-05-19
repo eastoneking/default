@@ -200,5 +200,23 @@ public class ZhenduanBean implements BaseEntity {
 	public void setZd_version_old(String zd_version_old) {
 		this.zd_version_old = zd_version_old;
 	}
+	private String zdContent;
 	
+	/**
+     * The setter method of the property zdContent.
+     * @param thezdContent the zdContent to set
+     * @author wangds 2015年5月19日 下午6:41:09.
+     */
+    public void setZdContent(String zdContent) {
+        this.zdContent = zdContent;
+    }
+
+    /**
+     * The getter method of the property zdContent.
+     * @author wangds 2015年5月19日 下午6:41:13.
+     * @return the zdContent.
+     */
+    public String getZdContent() {
+        return zdContent;
+    }
 }

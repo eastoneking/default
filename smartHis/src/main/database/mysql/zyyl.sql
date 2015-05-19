@@ -1030,6 +1030,7 @@ CREATE TABLE `yl_yszhenduan` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COMMENT='医生诊断表-看病表';
 
+alter table yl_yszhenduan add column zdContent varchar(1000) default '';
 -- ----------------------------
 -- Records of yl_yszhenduan
 -- ----------------------------
