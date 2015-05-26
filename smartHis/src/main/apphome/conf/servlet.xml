@@ -71,7 +71,7 @@
 				<entry key="/fn/createDictUseMethod" value="ep.createDictUseMethod"></entry>
 				<entry key="/fn/createDictUseFrequence" value="ep.createDictUseFrequence"></entry>
 				<entry key="/fn/findGuaHaoSeq" value="ep.findGuaHaoSeq"></entry>
-                
+				<entry key="/fn/queryHisPatients" value="ep.queryHisPatients"></entry>
 			</map>
 		</property>
 	</bean>

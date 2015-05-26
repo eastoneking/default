@@ -107,4 +107,16 @@
           </bean>
         </property>
     </bean>
+    <bean id="bizQueryHisPatients" class="eastone.business.fac.HttpIaMedBizFactory" lazy-init="true">
+        <property name="inner">
+          <bean class="eastone.business.mybatis.SimpleSelectBusiness" scope="prototype">
+            <property name="sessionFactory" ref="SessionFac"></property>
+            <property name="sqlInfo">
+                <bean class="eastone.business.sql.BaseSqlInfo" scope="prototye">
+                    <property name="sql" value="queryHisPatients"></property>
+                </bean>
+            </property>
+          </bean>
+        </property>
+    </bean>
 </beans>

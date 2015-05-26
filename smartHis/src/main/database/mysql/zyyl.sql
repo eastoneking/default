@@ -989,9 +989,13 @@ CREATE TABLE `yl_yszdyaopin` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT='医生诊断从表-开药表';
 
+alter table yl_yszdyaopin add column `useMethod` varchar(100) default '' comment '使用方式';
+alter table yl_yszdyaopin add column `useAmount` varchar(100) default '' comment '使用剂量';
+alter table yl_yszdyaopin add column `useFrequence` varchar(100) default '' comment '使用频率';
 -- ----------------------------
 -- Records of yl_yszdyaopin
 -- ----------------------------
+/*
 INSERT INTO `yl_yszdyaopin` VALUES ('15', '24', '18', 'bl001', '16', '28', '010021', '铺地蓝软胶囊', '1', '盒（36片）', '太极药业', '发热', '1', '3', '3', '3', '2');
 INSERT INTO `yl_yszdyaopin` VALUES ('16', '25', '18', 'bl001', '16', '28', '010021', '铺地蓝软胶囊', '1', '盒（36片）', '太极药业', '发热', '1', '3', '3', '3', '2');
 INSERT INTO `yl_yszdyaopin` VALUES ('17', '27', '19', 'BL1229', '17', '28', '010021', '铺地蓝软胶囊', '1', '盒（36片）', '太极药业', '发热', '1', '1', '1', '1', '1');
@@ -1006,7 +1010,7 @@ INSERT INTO `yl_yszdyaopin` VALUES ('26', '33', '21', 'BL521', '20', '28', '0100
 INSERT INTO `yl_yszdyaopin` VALUES ('27', '36', '23', '1230', '22', '29', '009002', '脉通', '2', '盒（72片）', '东北制药厂', '心脑血管', '30', '500', '500', '1000', '200');
 INSERT INTO `yl_yszdyaopin` VALUES ('28', '34', '18', 'bl001', '22', '29', '009002', '脉通', '11', '盒（72片）', '东北制药厂', '心脑血管', '30', '500', '500', '5500', '200');
 INSERT INTO `yl_yszdyaopin` VALUES ('29', '37', '23', '1230', '19', '28', '010021', '铺地蓝软胶囊', '2', '盒（36片）', '太极药业', '发热', '19', '35', '35', '70', '23');
-
+*/
 -- ----------------------------
 -- Table structure for yl_yszhenduan
 -- ----------------------------

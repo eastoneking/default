@@ -32,8 +32,9 @@
 						 {field:'kc_ypname',title:'药品名字',width:100},
 			       	     {field:'kc_shuliang',title:'库存数量',width:50},
 // 						 {field:'kc_cbjiage',title:'成本价格',width:50},
-						 {field:'kc_zdjiage',title:'最低价格',width:50},
-						 {field:'kc_lsjiage',title:'零售价格',width:50},
+						 {field:'useMethod',title:'使用方式',width:50},
+						 {field:'useAmount',title:'剂量',width:50},
+						 {field:'useFrequence',title:'使用频率',width:50},
 			  			 {field:'kc_shengchanshang',title:'生产商',width:100}
 			    ]],
 	 			onSelect:function(index,row){
@@ -46,10 +47,14 @@
 	 				$("#zdyp_ypshengchanshang").val(row.kc_shengchanshang);
 	 				
 	 				$("#zdyp_ypbcxsjiage").val(row.kc_lsjiage);
-	 				
+	 				//alert(JSON.stringify(row))
 	 				$("#zdyp_yplsjiage").val(row.kc_lsjiage);
 	 				$("#zdyp_ypcbjiage").val(row.kc_cbjiage);
 	 				$("#zdyp_ypzdjiage").val(row.kc_zdjiage);
+	 				//alert(row.useMethod)
+	 				$("#useMethod").combobox("select",row.useMethod);
+	 				$("#useAmount").combobox("select",row.useAmount);
+	 				$("#useFrequence").combobox("select",row.useFrequence);
 		    	}
  		});
 		var param = util.getWindowParam();
@@ -67,6 +72,32 @@
 
 	});
 	function submitForm() {
+
+    var useAmount = $('#useAmount').combobox("getText");
+    var useMethod = $('#useMethod').combobox("getText");
+    var useFrequence = $('#useFrequence').combobox("getText");
+    
+    if (useAmount != "") {
+      $.a("postJsonA", global_param.context_name + "/fn/createDictUseAmount", {
+        text : useAmount
+      }, function() {
+      }, function() {
+      });
+    }
+    if (useMethod != "") {
+      $.a("postJsonA", global_param.context_name + "/fn/createDictUseMethod", {
+        text : useMethod
+      }, function() {
+      }, function() {
+      });
+    }
+    if (useFrequence != "") {
+      $.a("postJsonA", global_param.context_name + "/fn/createDictUseFrequence", {
+        text : useFrequence
+      }, function() {
+      }, function() {
+      });
+    }
 		var result = util.submit('_form');
 		if (result) {
 			if (result == "success") {
@@ -181,6 +212,38 @@
 			        <input id="zdyp_danxiangjine" name="zdyp_danxiangjine" type="text" class="easyui-validatebox" data-options="required:true"/>
 			    </div>
 			</div>
+			<div class="float-l clearboth2">
+                    <div class="Dialog-form-title2">
+                        <label for="useMethod" class="field">使用方式：</label>
+                    </div>
+                    <div class="Dialog-form-item">
+                        <input id="useMethod" name="useMethod" class="easyui-combobox"
+                            data-options="required:false,valueField:'text',textField:'text',url:'/YLManager/fn/findDictUseMethod'"
+                            style="width: 152px" />
+                    </div>
+                </div>
+                <div class="float-l clearboth2">
+                    <div class="Dialog-form-title2">
+                        <label for="useAmount" class="field">用量：</label>
+                    </div>
+                    <div class="Dialog-form-item">
+                        <input id="useAmount" name="useAmount"
+                            class="easyui-combobox"
+                            data-options="required:false,valueField:'text',textField:'text',url:'/YLManager/fn/findDictUseAmount'"
+                            style="width: 152px" />
+                    </div>
+                </div>
+                <div class="float-l clearboth2">
+                    <div class="Dialog-form-title2">
+                        <label for="useFrequence" class="field">使用次数：</label>
+                    </div>
+                    <div class="Dialog-form-item">
+                        <input id="useFrequence" name="useFrequence"
+                            class="easyui-combobox"
+                            data-options="required:false,valueField:'text',textField:'text',url:'/YLManager/fn/findDictUseFrequence'"
+                            style="width: 152px" />
+                    </div>
+                </div>
 		</form>
 		</div>
 	</div>

@@ -49,7 +49,10 @@
 				z.zd_yishengname as zd_yishengname,
 				z.zd_ghks as zd_ghks,
 				z.zd_status as zd_status,
-				z.zd_fystatus as zd_fystatus
+				z.zd_fystatus as zd_fystatus,
+                y.useMethod,
+                y.useAmount,
+                y.useFrequence
 		  from yl_yszdyaopin y,yl_yszhenduan z
 		<where>
 			   1=1 and  y.zdyp_zdid = z.id 
@@ -118,7 +121,10 @@
 				zdyp_ypcbjiage,
 				zdyp_yplsjiage,
 				zdyp_ypzdjiage,
-				zdyp_danxiangjine
+				zdyp_danxiangjine,
+                useMethod,
+                useAmount,
+                useFrequence
 		  from yl_yszdyaopin
 		<where>
 			   1=1
@@ -177,7 +183,10 @@
 				zdyp_ypcbjiage,
 				zdyp_yplsjiage,
 				zdyp_ypzdjiage,
-				zdyp_danxiangjine
+				zdyp_danxiangjine,
+                useMethod,
+                useAmount,
+                useFrequence
 		  from yl_yszdyaopin where zdyp_zdid = #{zdyp_zdid}  
 	</select>
 		<!-- 按类别查询 -->
@@ -198,7 +207,10 @@
 				zdyp_ypcbjiage,
 				zdyp_yplsjiage,
 				zdyp_ypzdjiage,
-				zdyp_danxiangjine
+				zdyp_danxiangjine,
+                useMethod,
+                useAmount,
+                useFrequence
 		  from yl_yszdyaopin 
 		  <where>
 			   1=1 
@@ -212,29 +224,58 @@
 		insert into yl_yszdyaopin(zdyp_zdid, zdyp_ypid, zdyp_ghid, zdyp_ghnumber,
 		zdyp_ypbmid,zdyp_ypbcxsjiage,zdyp_ypbmnumber,zdyp_ypname,
 		zdyp_ypshuliang, zdyp_ypdanwei,zdyp_ypshengchanshang,zdyp_danxiangjine,
-		zdyp_ypleibie, zdyp_ypcbjiage,zdyp_yplsjiage,zdyp_ypzdjiage)
+		zdyp_ypleibie, zdyp_ypcbjiage,zdyp_yplsjiage,zdyp_ypzdjiage
+		<if test="useMethod != null">
+                ,useMethod
+            </if>
+            <if test="useAmount != null">
+                ,useAmount
+            </if>
+            <if test="useFrequence != null">
+                ,useFrequence
+            </if>)
 			values(#{zdyp_zdid}, #{zdyp_ypid}, #{zdyp_ghid}, #{zdyp_ghnumber},
 			#{zdyp_ypbmid}, #{zdyp_ypbcxsjiage}, #{zdyp_ypbmnumber}, #{zdyp_ypname}, 
 			#{zdyp_ypshuliang}, #{zdyp_ypdanwei}, #{zdyp_ypshengchanshang},#{zdyp_danxiangjine},
-			 #{zdyp_ypleibie},  #{zdyp_ypcbjiage}, #{zdyp_yplsjiage}, #{zdyp_ypzdjiage});
+			 #{zdyp_ypleibie},  #{zdyp_ypcbjiage}, #{zdyp_yplsjiage}, #{zdyp_ypzdjiage}
+			 <if test="useMethod != null">
+                ,#{useMethod}
+            </if>
+            <if test="useAmount != null">
+                ,#{useAmount}
+            </if>
+            <if test="useFrequence != null">
+                ,#{useFrequence}
+            </if>
+            );
 	</insert>
 
 	<!-- 更新表中数据，返回受影响的记录条数 -->
 	<update id="update" parameterType="KaiyaoBean">
 		update yl_yszdyaopin
 		<set>
+		      id= #{id}
 			<if test="ksname != null">
-				ksname = #{ksname},
+				,ksname = #{ksname}
 			</if>
 			<if test="ksnumber != null">
-				ksnumber = #{ksnumber},
+				,ksnumber = #{ksnumber}
 			</if>
 			<if test="ksaddress != null">
-				ksaddress = #{ksaddress},
+				,ksaddress = #{ksaddress}
 			</if>
 			<if test="ksorder != null">
-				ksorder = #{ksorder}
+				,ksorder = #{ksorder}
 			</if>
+			<if test="useMethod != null">
+                ,useMethod=#{useMethod}
+            </if>
+            <if test="useAmount != null">
+                ,useAmount=#{useAmount}
+            </if>
+            <if test="useFrequence != null">
+                ,useFrequence=#{useFrequence}
+            </if>
 		
 		</set>
 		where id = #{id}

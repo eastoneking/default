@@ -3,8 +3,32 @@
 <mapper namespace="com.hztech.smartHis.query.guahao">
 	<select id="findGuaHaoSeq" parameterType="hashmap" resultType="hashmap">
 		select date_format(now(), '%Y%m%d') as "date",count(1) as "seq"
-		from yl_ghtaizhang
+		from
+		yl_ghtaizhang
 		where
-		date_format(now(), '%Y-%m-%d')=substring(ghriqi,1,10)
+		date_format(now(),
+		'%Y-%m-%d')=substring(ghriqi,1,10)
+	</select>
+
+	<select id="queryHisPatients" parameterType="hashmap" resultType="hashmap">
+		select
+		id,
+		ghnumber,
+		ghname,
+		ghsex,
+		ghage,
+		ghkeshiid,
+		ghkeshiname,
+		ghtype,
+		ghstatus,
+		ghyishengid,
+		ghyisheng,
+		ghriqi,
+		ghypfeiyong,
+		ghfeiyong
+		from
+		yl_ghtaizhang
+		order by
+		ghriqi desc
 	</select>
 </mapper>

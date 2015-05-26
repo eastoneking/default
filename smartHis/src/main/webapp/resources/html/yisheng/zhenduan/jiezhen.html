@@ -1,0 +1,432 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>菜单</title>
+<link href="/YLManager/resources/css/goldcow-all.css" rel="stylesheet"
+	type="text/css" />
+<link href="/YLManager/resources/css/icon.css" rel="stylesheet"
+	type="text/css" />
+<style type="text/css">
+.HisPatients {
+	margin: 4px 4px 2px 4px;
+	font: bold 12px/14px arial, Microsoft YaHei;
+}
+
+.HisPatients:HOVER {
+	color: white;
+	background-color: lightblue;
+}
+</style>
+<script src="/YLManager/resources/js/goldcow-all.js"
+	type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+  //The beginning of definations --相关插件定义
+  (function($) {
+    $.fn
+        .extend({
+          /**
+           * 病人详细信息.
+           */
+          patientsDetailPanel : $.fn.patientsDetailPanel
+              || (function($) {
+
+                function Patients() {
+                }
+                Patients.prototype.id = "";
+                Patients.prototype.name = "";
+                Patients.prototype.age = "";
+                Patients.prototype.sex = "";
+
+                function PtsDtlVw(ctrl) {
+                  this.ctrl = ctrl;
+                }
+                PtsDtlVw.DETAIL_TEMPLATE = '<div class="float-l">'
+                    + '<div class="Dialog-form-title2">'
+                    + '<label for="patientsName" class="field">姓名：</label>'
+                    + '</div>'
+                    + '<div class="Dialog-form-item">'
+                    + '<input id="patientsName" name="kc_shuliang" type="text" class="easyui-validatebox" data-options="required:true" />'
+                    + '</div>'
+                    + '</div>'
+                    + '<div class="float-l">'
+                    + '<div class="Dialog-form-title2">'
+                    + '    <label for="ghage" class="field">患者年龄：</label>'
+                    + '</div>'
+                    + '<div class="Dialog-form-item">'
+                    + '    <input id="ghage" name="ghage" type="text" class="easyui-validatebox" data-options="required:true"/>'
+                    + '</div>'
+                    + '</div>'
+                    + '<div class="float-l clearboth2">'
+                    + '<div class="Dialog-form-title2">'
+                    + '    <label for="ghsex" class="field">患者性别：</label>'
+                    + '</div>'
+                    + '<div class="Dialog-form-item">'
+                    + '    <input id="ghsex" name="ghsex" type="text"  style="width:  154px;" />'
+                    + '</div>'
+                    + '</div>'
+                    + '<div class="float-l clearboth2">'
+                    + '<div class="Dialog-form-title2">'
+                    + '<a id="btnStatus" href="#" class="easyui-linkbutton" data-options="toggle:true">老患者</a>'
+                    + '</div>'
+                    + '</div>'
+                    + '<div class="float-l clearboth2">'
+                    + '<div class="Dialog-form-title2">'
+                    + '    <label for="txtTel" class="field">联系方式：</label>'
+                    + '</div>'
+                    + '<div class="Dialog-form-item">'
+                    + '<input id="txtTel" name="tel" type="text" class="easyui-validatebox" data-options="required:false" />'
+                    + '</div>'
+                    + '</div>'
+                    + '<div class="float-l clearboth2">'
+                    + '<div class="Dialog-form-title2">'
+                    + '    <label for="txtResult" class="field">诊断结果：</label>'
+                    + '</div>'
+                    + '<div class="Dialog-form-item">'
+                    + '<input id="txtResult" name="result" type="text" class="easyui-validatebox" data-options="required:false" />'
+                    + '</div>' + '</div>';
+                PtsDtlVw.prototype.content = null;
+                PtsDtlVw.prototype.render = function() {
+                  var $target = this.ctrl.getJqTarget();
+                  var object = this;
+                  this.content = $(PtsDtlVw.DETAIL_TEMPLATE);
+                  $target.append(this.content);
+                  this.txtName  = this.content.find("#patientsName");
+                  this.txtAge  = this.content.find("#ghage");
+                  this.selSex = this.content.find("#ghsex");
+                  this.txtTel = this.content.find("#txtTel");
+                  this.txtResult = this.content.find("#txtResult");
+                  this.btnStatus = this.content.find("#btnStatus");
+                  util.select({
+                    id : 'ghsex',
+                    required : true,
+                    param : {
+                      typeCode : 'SEX'
+                    }
+                  });
+
+                  this.content.find("#ghsex").combobox({
+                    panelHeight : 'auto'
+                  });
+                  this.btnStatus.linkbutton({
+                    toggle : true
+                  }).click(function() {
+                    if (object.btnStatus.linkbutton("options").text == "老患者") {
+                      object.btnStatus.linkbutton({
+                        text : "新患者"
+                      });
+                    } else {
+                      object.btnStatus.linkbutton({
+                        text : "老患者"
+                      });
+                    }
+                  });
+                };
+                
+                PtsDtlVw.prototype.updateHis=function(p){
+                  //alert(JSON.stringify(p))
+                  this.txtName.val(p.ghname);
+                  this.txtAge.val(p.ghage);
+                  this.selSex.combobox("select",p.ghsex);
+                  this.txtTel.val("");
+                  this.txtResult.val("");
+                  this.btnStatus.linkbutton({text:"老患者"});
+                }
+
+                function PtsDtlPnlCtrl() {
+
+                }
+                PtsDtlPnlCtrl.UUID = $.uuid();
+                PtsDtlPnlCtrl.prototype.view = null;
+                PtsDtlPnlCtrl.prototype.patients = new Patients();
+
+                PtsDtlPnlCtrl.prototype.initialize = function() {
+                  var object = this;
+                  var $target = this.getJqTarget();
+                  this.bind("initialized", this.onInitialized);
+                  $target.bind("selectHis", function(ev,p){
+                    object.selectHis(p);
+                  });
+                  this.view = new PtsDtlVw(this);
+                };
+                PtsDtlPnlCtrl.prototype.onInitialized = function() {
+                  this.view.render();
+                };
+                PtsDtlPnlCtrl.prototype.selectHis=function(p){
+                  this.view.updateHis(p);
+                };
+                return $.registerFunc(PtsDtlPnlCtrl,
+                    PtsDtlPnlCtrl.prototype.initialize);
+              })($),
+          /**
+           * 病人信息.
+           */
+          patientsHisPanel : $.fn.patientsHisPanel
+              || (function($) {
+
+                function HisVw(ctrl) {
+                  this.ctrl = ctrl;
+                }
+
+                HisVw.prototype.render = function() {
+                  this.ctrl.refreshPatients();
+                  this.renderPatients();
+                };
+                HisVw.prototype.pos = 0;
+                HisVw.prototype.renderPatients = function() {
+                  var object = this;
+                  var $target = this.ctrl.getJqTarget();
+                  var ps = this.ctrl.patients;
+                  $target.empty();
+                  while (true) {
+                    if (this.pos < ps.length) {
+                      var cur = $("<div class='HisPatients'/>");
+                      $target.append(cur);
+                      var c = ps[this.pos];
+                      cur
+                          .html(c.ghname
+                              + (c.ghsex ? ("," + (c.ghsex == "0" ? "男" : "女"))
+                                  : "")
+                              + (c.ghage ? ("," + c.ghage + "岁") : "")
+                              + (c.ghriqi ? (",上次就诊时间是" + (c.ghriqi.length > 10 ? c.ghriqi
+                                  .substring(0, 10)
+                                  : c.ghriqi))
+                                  : ""));
+                      cur.data("patients", c);
+                      if ((cur.offset().top + cur.outerHeight()) > ($target
+                          .offset().top + $target.height())) {
+                        cur.detach();
+                        break;
+                      }
+                      cur.on("click",
+                          function(){
+                            var info = $(this).data("patients");
+                            object.ctrl.options.onSelectHisPatients&&object.ctrl.options.onSelectHisPatients(info);
+                          }
+                      );
+                      this.pos++;
+                    } else {
+                      this.pos = 0;
+                    }
+                  }
+                };
+
+                function HisCtrl() {
+                }
+                HisCtrl.UUID = $.uuid();
+                HisCtrl.prototype.view = null;
+                HisCtrl.prototype.patients = [];
+                HisCtrl.prototype.refreshPatients = function() {
+                  var object = this;
+                  $.a("postJson", $.getContextPath() + "/fn/queryHisPatients",
+                      {}, function(data) {
+                        object.patients = data;
+                      }, function() {
+                        object.patients = [];
+                      });
+                };
+                HisCtrl.prototype.initialize = function() {
+                  var object = this;
+                  object.bind("initialized", this.onInitialized);
+                };
+                HisCtrl.prototype.onInitialized = function(ev) {
+                  this.view = new HisVw(this);
+                  this.view.render();
+                };
+                
+                HisCtrl.prototype.nextBatch = function(){
+                  this.view.renderPatients();
+                };
+                
+                return $.registerFunc(HisCtrl, HisCtrl.prototype.initialize);
+              })(jQuery),
+          /**
+           * 接诊面板
+           */
+          treatPanel : $.fn.treatPanel
+              || (function($) {
+
+                function MainView(ctrl) {
+                  this.ctrl = ctrl;
+                  this.target = ctrl.getTarget();
+                  this.$target = ctrl.getJqTarget();
+                  this.panel = null;
+                }
+
+                MainView.LAYOUT_TEMPLATE = '<div class="easyui-layout">'
+                    + '<div data-options="region:\'north\',collapsible:false" title="当前患者" style="height:120px"></div>'
+                    //+'<div data-options="region:\'south\',split:false" style="height:50px;"></div>'
+                    + '<div data-options="region:\'west\',split:false" title="近期患者" style="width:300px"></div>'
+                    + '<div data-options="region:\'center\'" title="处方信息">'
+                    + '<table/>'
+                    + '</div>' + '</div>';
+
+                MainView.prototype.panel = null;
+                MainView.prototype.pnlCurPatients = null;
+                MainView.prototype.pnlHisPatients = null;
+                MainView.prototype.pnlPrescription = null;
+                MainView.prototype.grdPrescription = null;
+
+                MainView.prototype.render = function() {
+                  var object = this;
+                  this.$target.empty();
+                  this.panel = $(MainView.LAYOUT_TEMPLATE);
+                  this.panel.height(this.$target.height())
+                  this.$target.append(this.panel);
+                  this.panel.layout({
+                    fit : true
+                  });
+                  this.pnlCurPatients = this.panel.layout("panel", "north");
+                  this.pnlHisPatients = this.panel.layout("panel", "west");
+                  this.pnlPrescription = this.panel.layout("panel", "center");
+                  this.grdPrescription = this.pnlPrescription.panel("body").find("table");
+                  
+                  this.pnlCurPatients.patientsDetailPanel();
+                  this.pnlHisPatients.panel({
+                    tools : [ {
+                      iconCls : "icon-reload",
+                      handler : function() {
+                        object.pnlHisPatients.patientsHisPanel("nextBatch");
+                      }
+                    } ]
+                  });
+                  this.pnlHisPatients.patientsHisPanel({
+                    onSelectHisPatients:function(p){
+                      object.pnlCurPatients.trigger("selectHis",p)
+                    }
+                  });
+
+                  function addFunc() {
+                    // 初始化编辑窗口
+                    util.window('editWindow1', {
+                      iconCls : '',
+                      title : '开药',
+                      width : 640,
+                      height : 400
+                    });
+
+                    util.openWindow('editWindow1', util.getHtml("kaiyaoEdit1.html"), {
+                    });
+                  };
+
+                  this.pnlPrescription.panel({
+                    title:"处方信息:&nbsp;共"+0+"种药品",
+                    tools : [ {
+                      iconCls : "icon-add",
+                      handler : addFunc
+                    }, {
+                      iconCls : "icon-delete",
+                      handler : function() {
+                        object.grdPrescription.datagrid("deleteRow",object.grdPrescription.datagrid("getRowIndex",object.grdPrescription.datagrid("getSelected")));
+                      }
+                    }, {
+                      iconCls : "icon-print",
+                      handler : function() {
+                        alert("打印");
+                      }
+                    } ]
+                  });
+                  var wid = this.pnlPrescription.width();
+                  this.grdPrescription.datagrid({
+                    idField : 'zdyp_ypbmnumber',
+                    fitColumns: false,
+                    columns : [ [ {
+                      title : '药品编码',
+                      field : 'zdyp_ypbmnumber',
+                      width : Math.ceil(0.1*wid)
+                    }, {
+                      title : '药品名称',
+                      field : 'zdyp_ypname',
+                      width : Math.ceil(0.15*wid)
+                    }, {
+                      title : '药品数量',
+                      field : 'zdyp_ypshuliang',
+                      width : Math.ceil(0.1*wid)
+                    }, {
+                      title : '用法',
+                      field : 'useMethod',
+                      width : Math.ceil(0.1*wid)
+                    }, {
+                      title : '用量',
+                      field : 'useAmount',
+                      width : Math.ceil(0.1*wid)
+                    }, {
+                      title : '频率',
+                      field : 'useFrequence',
+                      width : Math.ceil(0.1*wid)
+                    }, {
+                      title : '药品单位',
+                      field : 'zdyp_ypdanwei',
+                      width : Math.ceil(0.15*wid),
+                      formatter : function(value, row, index) {
+                        return util.getSysParam('ZDZT', value);
+                      }
+                    }, {
+                      title : '药品生产商',
+                      field : 'zdyp_ypshengchanshang',
+                      width : Math.ceil(0.15*wid)
+                    }
+                    ] ]
+                  });
+                };
+                
+
+                /**
+                 * 接诊面板控制器.
+                 * 所有接诊相关功能的入口.
+                 */
+                function TreatPanelCtrl() {
+
+                }
+
+                TreatPanelCtrl.UUID = $.uuid();
+
+                TreatPanelCtrl.prototype.curPresciptionItems=[];
+                TreatPanelCtrl.prototype.initialize = function() {
+                  this.binds && this.binds();
+                };
+
+                TreatPanelCtrl.prototype.binds = function() {
+                  var $target = this.getJqTarget();
+                  var object = this;
+                  this.bind("initialized", this.onInitialized);
+                  this.bind("addPrescriptionItem", this.onAddPrescriptionItem);
+                  $target.bind("addPrescriptionItem",function(ev,data){
+                    object.trigger("addPrescriptionItem",data);
+                  });
+                };
+
+                TreatPanelCtrl.prototype.onInitialized = function(ev) {
+                  var $target = this.getJqTarget();
+                  var object = this;
+                  this.mainView = new MainView(object);
+                  this.mainView.render();
+                }
+                
+                TreatPanelCtrl.prototype.onAddPrescriptionItem = function(ev,data){
+                  this.mainView.grdPrescription.datagrid("appendRow", data);
+                  this.mainView.pnlPrescription.panel({title:"处方信息:&nbsp;共"+this.mainView.grdPrescription.datagrid("getRows").length+"种药品"});
+                }
+
+                return $.registerFunc(TreatPanelCtrl,
+                    TreatPanelCtrl.prototype.initialize);
+              })(jQuery)
+        })
+  })(jQuery);
+  //The end of definations 
+  (function($) {
+    $(function() {
+      $("html").height("100%");
+      $("body").height("100%");
+      $("#main").treatPanel();
+    });
+  })(jQuery);
+  -->
+</script>
+</head>
+<body style="padding: 0px; margin: 0px;">
+	<div id="main" style="width: 100%; height: 100%;"></div>
+	<div id="editWindow1"></div>
+</body>
+</html>

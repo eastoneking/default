@@ -30,25 +30,28 @@
 	</select>
 <!-- 按类别查询 -->
 	<select id="getByTypeCode" parameterType="string" resultType="YaopinCKBean">
-				select  id,
-				kc_ypbmid,
-				kc_ypbmnumber,
-				kc_ypleibie,
-				kc_ypname,
-				kc_yppihao,
-				kc_scpici,
-				kc_scriqi,
-				kc_yxriqi,
-				kc_cbjiage,
-				kc_zdjiage,
-				kc_lsjiage,
-				kc_rkriqi,
-				kc_laiyuan,
-				kc_shengchanshang,
-				kc_danwei,
-				kc_shuliang,
-				kc_status
-		  from yl_kc
+				select  a.id,
+				a.kc_ypbmid,
+				a.kc_ypbmnumber,
+				a.kc_ypleibie,
+				a.kc_ypname,
+				a.kc_yppihao,
+				a.kc_scpici,
+				a.kc_scriqi,
+				a.kc_yxriqi,
+				a.kc_cbjiage,
+				a.kc_zdjiage,
+				a.kc_lsjiage,
+				a.kc_rkriqi,
+				a.kc_laiyuan,
+				a.kc_shengchanshang,
+				a.kc_danwei,
+				a.kc_shuliang,
+				a.kc_status,
+				b.useMethod,
+				b.useAmount,
+				b.useFrequence
+		  from yl_kc a left join ylsys_ypbianma b on ( a.kc_ypbmid=b.id )
 		  where kc_shuliang > '0'
 	</select>
 	

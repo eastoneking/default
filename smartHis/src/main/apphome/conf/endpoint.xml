@@ -83,4 +83,13 @@
             </bean>
         </property>
     </bean>
+    <bean id="ep.queryHisPatients" class="eastone.endpoint.fac.HttpJsonIaEpFactory"
+        scope="prototype" lazy-init="true">
+        <property name="controller">
+            <bean class="eastone.controller.fac.HttpIaCtrlFactory"
+                lazy-init="true">
+                <property name="business" ref="bizQueryHisPatients"></property>
+            </bean>
+        </property>
+    </bean>
 </beans>

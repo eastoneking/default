@@ -846,3 +846,114 @@ jq.extend({
     }
   );
 })($ === jQuery ? $ : jQuery.noConflict());
+
+
+(function($){
+  
+  $.uuid = function guid() {
+    var S4 = function () {
+      return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+   }
+   return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4()).toUpperCase();
+  };
+  
+  $.registerFunc = function(clz, funInit){
+    var c = clz
+    c.FUNC_INITIALIZE = funInit;
+    var res = function(options){
+      var target = this;
+      var object = null;
+      object = $.data(target[0],c.UUID);
+      var len = arguments.length;
+      if(!object){
+        options = $.extend({}, c.OPTIONS||{}, options||{});
+        object = new c(options);
+        object.getTarget = function(){return $.data(this,c.UUID);};
+        object.getJqTarget = function(){return $(this.getTarget());};
+        $.proxyTrigger(object);
+        $.proxyBind(object);
+        $.data(target[0], c.UUID, object);
+        $.data(object, c.UUID, target[0]);
+        object.options = options;
+        c.FUNC_INITIALIZE&&c.FUNC_INITIALIZE.apply(object);
+        object.trigger("initialized");
+      }else if(len>0&& typeof arguments[0] == 'string'){
+        var func = object[arguments[0]];
+        var args = [];
+        for(var i=1;i<arguments.length;i++){
+          args[i-1]=arguments[i];
+        }
+        func.apply(object,args);
+      }else if(len>0&& typeof arguments[0] == "function"){
+        var func = arguments[0];
+        var args = [];
+        for(var i=1;i<arguments.length;i++){
+          args[i-1]=arguments[i];
+        }
+        func.apply(object, args);
+      }else if(len>0 && typeof arguments[0] == "object"){
+        for(var i=0;i<arguments.length;i++){
+          object.options = $.extend(object.options,arguments[i]);
+          object.trigger("updateOptions");
+        }
+      }else if(len==0){
+        $.removeData(object,c.UUID);
+        object = new c(c.OPTIONS);
+        $.data(target[0],c.UUID,object);
+        $.data(object,c.UUID,target[0]);
+        object.getTarget = function(){return $.data(this,c.UUID);};
+        object.getJqTarget = function(){return $(this.getTarget());};
+        $.proxyTrigger(object);
+        $.proxyBind(object);
+        object.trigger("initialized");
+      }else{
+        //do nothing.
+      }
+    }
+    return res;
+  }
+  
+  $.lsSave = function(key,value){
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+  
+  $.lsLoad = function(key){
+    var res = undefined;
+    res = JSON.parse(localStorage.getItem(key));
+    return res;
+  }
+  
+  $.ssSave = function(key,value){
+    sessionStorage.setItem(key, JSON.stringify(value));
+  }
+  
+  $.ssLoad = function(key){
+    var res = undefined;
+    res = JSON.parse(sessionStorage.getItem(key));
+    return res;
+  }
+  
+  $.proxyTrigger = function(obj){
+    if(!obj.trigger){
+      obj.trigger=function(){
+        var $obj = $(obj);
+        $obj.trigger.apply($obj, arguments);
+      }
+    }
+  }
+  
+
+  $.proxyBind = function(obj){
+    if(!obj.bind){
+      obj.bind=function(){
+        var $obj = $(obj);
+        $obj.bind.apply($obj, arguments);
+      }
+    }
+  }
+  
+  $.getContextPath=function(){
+    return global_param.context_name;
+  }
+  
+})($ === jQuery ? $ : jQuery.noConflict())
