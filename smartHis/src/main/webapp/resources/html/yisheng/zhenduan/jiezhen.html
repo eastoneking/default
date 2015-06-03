@@ -21,6 +21,43 @@
 <script src="/YLManager/resources/js/goldcow-all.js"
 	type="text/javascript"></script>
 <script type="text/javascript">
+(function ($) {
+  var printAreaCount = 0;
+  $.fn.printArea = function () {
+      var ele = $(this);
+      var idPrefix = "printArea_";
+      removePrintArea(idPrefix + printAreaCount);
+      printAreaCount++;
+      var iframeId = idPrefix + printAreaCount;
+      var iframeStyle = 'position:absolute;width:0px;height:0px;left:-500px;top:-500px;';
+      iframe = document.createElement('IFRAME');
+      $(iframe).attr({
+          style: iframeStyle,
+          id: iframeId
+      });
+      document.body.appendChild(iframe);
+      var doc = iframe.contentWindow.document;
+      $(document).find("link").filter(function () {
+          return $(this).attr("rel").toLowerCase() == "stylesheet";
+      }).each(
+              function () {
+                  doc.write('<link type="text/css" rel="stylesheet" href="'
+                          + $(this).attr("href") + '" >');
+              });
+      doc.write('<div class="' + $(ele).attr("class") + '">' + $(ele).html()
+              + '</div>');
+      doc.close();
+      var frameWindow = iframe.contentWindow;
+      frameWindow.close();
+      frameWindow.focus();
+      frameWindow.print();
+  }
+  var removePrintArea = function (id) {
+      $("iframe#" + id).remove();
+  };
+})(jQuery);
+</script>
+<script type="text/javascript">
 <!--
   //The beginning of definations --相关插件定义
   (function($) {
@@ -47,6 +84,7 @@
                     + '<label for="patientsName" class="field">姓名：</label>'
                     + '</div>'
                     + '<div class="Dialog-form-item">'
+                    + '<input id="patientsId" name="patientsId" type="hidden"/>'
                     + '<input id="patientsName" name="kc_shuliang" type="text" class="easyui-validatebox" data-options="required:true" />'
                     + '</div>'
                     + '</div>'
@@ -92,6 +130,7 @@
                   var object = this;
                   this.content = $(PtsDtlVw.DETAIL_TEMPLATE);
                   $target.append(this.content);
+                  this.txtId = this.content.find("#patientsId");
                   this.txtName  = this.content.find("#patientsName");
                   this.txtAge  = this.content.find("#ghage");
                   this.selSex = this.content.find("#ghsex");
@@ -126,8 +165,10 @@
                 
                 PtsDtlVw.prototype.updateHis=function(p){
                   //alert(JSON.stringify(p))
+                  this.txtId.val(p.ghnumber);
                   this.txtName.val(p.ghname);
                   this.txtAge.val(p.ghage);
+                  //alert(p.ghsex);
                   this.selSex.combobox("select",p.ghsex);
                   this.txtTel.val("");
                   this.txtResult.val("");
@@ -186,13 +227,14 @@
                       var c = ps[this.pos];
                       cur
                           .html(c.ghname
-                              + (c.ghsex ? ("," + (c.ghsex == "0" ? "男" : "女"))
-                                  : "")
+                              //+ (c.ghsex ? ("," + (c.ghsex == "0" ? "男" : "女"))
+                              //    : "")
                               + (c.ghage ? ("," + c.ghage + "岁") : "")
-                              + (c.ghriqi ? (",上次就诊时间是" + (c.ghriqi.length > 10 ? c.ghriqi
+                              + (c.ghriqi ? (",上次:" + (c.ghriqi.length > 10 ? c.ghriqi
                                   .substring(0, 10)
                                   : c.ghriqi))
-                                  : ""));
+                                  : ""))
+                              ;
                       cur.data("patients", c);
                       if ((cur.offset().top + cur.outerHeight()) > ($target
                           .offset().top + $target.height())) {
@@ -252,6 +294,7 @@
                   this.target = ctrl.getTarget();
                   this.$target = ctrl.getJqTarget();
                   this.panel = null;
+                  $(this).on("openPrintWin", this.onOpenPrintWin);
                 }
 
                 MainView.LAYOUT_TEMPLATE = '<div class="easyui-layout">'
@@ -259,7 +302,7 @@
                     //+'<div data-options="region:\'south\',split:false" style="height:50px;"></div>'
                     + '<div data-options="region:\'west\',split:false" title="近期患者" style="width:300px"></div>'
                     + '<div data-options="region:\'center\'" title="处方信息">'
-                    + '<table/>'
+                    + '<table id="tblPrescription"/>'
                     + '</div>' + '</div>';
 
                 MainView.prototype.panel = null;
@@ -267,6 +310,151 @@
                 MainView.prototype.pnlHisPatients = null;
                 MainView.prototype.pnlPrescription = null;
                 MainView.prototype.grdPrescription = null;
+                
+                function buildPrescription4Print(p){
+                  var res = 
+                     "<div style='width:100%'>"
+                    +"  <table style='width:100%'>"
+                    +"    <tr>"
+                    +"    <th colspan='6' align='center'>处方清单</th>"
+                    +"    </tr>"
+                    +"    <tr>"
+                    +"    <td colspan='6' align='center'>"+$.dateUtils("format", new Date())+"</td>"
+                    +"    </tr>"
+                     +"    <tr>"
+                    +"      <td align='right'>患者:</td>"
+                    +"      <td align='left'><u>"+p.name+"</u></td>"
+                    +"      <td align='right'>年龄:</td>"
+                    +"      <td align='left'><u>"+p.age+"</u></td>"
+                    +"      <td align='right'>性别:</td>"
+                    +"      <td align='left'><u>"+p.sex+"</u></td>"
+                    +"    </tr>"
+                    +"    <tr>"
+                    +"      <td colspan='6'>"
+                    +"        <table style='border-collapse: collapse;width:100%'>"
+                    +"          <tr>"
+                    +"            <td colspan='9' style='border:1px solid black;'>确诊结果:</td>"
+                    +"          </tr>"
+                    +"          <tr>"
+                    +"            <td colspan='9' style='border:1px solid black;height:48px'>"+p.result+"</td>"
+                    +"          </tr>"
+                    +"          <tr>"
+                    +"            <td colspan='9' style='border:1px solid black;'>药品:</td>"
+                    +"          </tr>"
+                    +"          <tr>"
+                    +"            <td style='border:1px solid black;'>编号</td>"
+                    +"            <td style='border:1px solid black;'>名称</td>"
+                    +"            <td style='border:1px solid black;'>单位</td>"
+                    +"            <td style='border:1px solid black;'>数量</td>"
+                    +"            <td style='border:1px solid black;'>用法</td>"
+                    +"            <td style='border:1px solid black;'>用量</td>"
+                    +"            <td style='border:1px solid black;'>频率</td>"
+                    +"            <td style='border:1px solid black;'>单价</td>"
+                    +"            <td style='border:1px solid black;'>价格</td>"
+                    +"          </tr>";
+                    var sum = 0;
+                    for(var i=0;i<p.prescription.length;i++){
+                      var c=p.prescription[i];
+	                    res = res
+	                    +"          <tr>"
+	                    +"            <td style='border:1px solid black;'>"+c.zdyp_ypbmnumber+"</td>"
+	                    +"            <td style='border:1px solid black;'>"+c.zdyp_ypname+"</td>"
+	                    +"            <td style='border:1px solid black;'>"+c.zdyp_ypdanwei+"</td>"
+	                    +"            <td style='border:1px solid black;'>"+c.zdyp_ypshuliang+"</td>"
+	                    +"            <td style='border:1px solid black;'>"+c.useMethod+"</td>"
+	                    +"            <td style='border:1px solid black;'>"+c.useAmount+"</td>"
+	                    +"            <td style='border:1px solid black;'>"+c.useFrequence+"</td>"
+	                    +"            <td style='border:1px solid black;'>"+c.zdyp_ypbcxsjiage+"</td>"
+                        +"            <td style='border:1px solid black;'>"+(c.zdyp_ypshuliang*c.zdyp_ypbcxsjiage)+"</td>"
+	                    +"          </tr>";
+	                    sum+=c.zdyp_ypshuliang*c.zdyp_ypbcxsjiage;
+                    }
+                    res=res
+                    +"          <tr>"
+                    +"            <td colspan='8' style='border:1px solid black;text-align:right;'>合计:</td>"
+                    +"            <td colspan='8' style='border:1px solid black;'>"+sum+"元</td>"
+                    +"          </tr>"
+                    +"        </table>"
+                    +"      </td>"
+                    +"    </tr>"
+                    +"    <tr>"
+                    +"      <td colspan='5' style='text-align:right;'>医生:</td>"
+                    +"      <td style='text-align:left;'>"+p.curUser.user_name+"</td>"
+                    +"    </tr>"
+                    +"  </table>"
+                    +"</div>"
+                    ;
+                  return res;
+                };
+                
+                function printWork(str) {
+                  var orderhtml = str;
+                  
+                  /* 创建iframe */
+                  var headobj = document.getElementsByTagName("head").item(0); //提取head  
+                  printFrame = document.getElementById("lldxi_printRegionFrame_2012_0112");
+                  if (printFrame) { document.body.removeChild(printFrame); }
+                  printFrame = document.createElement("iframe");
+                  printFrame.setAttribute("src", "about:blank");
+                  printFrame.setAttribute("id", "lldxi_printRegionFrame_2012_0112");
+                  printFrame.setAttribute("marginheight", "0");
+                  printFrame.setAttribute("marginwidth", "0");
+                  printFrame.style.display = "none";
+                  document.body.appendChild(printFrame);
+                  if (window.ActiveXObject)//ie
+                  {
+                      var htmlobj = printFrame.contentWindow.document.createElement("html"); var bodyobj = printFrame.contentWindow.document.createElement("body");
+                      bodyobj.innerHTML = orderhtml; htmlobj.appendChild(headobj.cloneNode(true)); htmlobj.appendChild(bodyobj);
+                      printFrame.contentWindow.document.appendChild(htmlobj); printFrame.contentWindow.document.execCommand("Print", true);
+                  }
+                  else {
+                      var htmlstr = "<html><head><title></title></head><body>" + orderhtml + "<script type=\"text/javascript\">window.print();<\/script><\/body>" + "<\/html>";
+                      printFrame.contentWindow.document.write(htmlstr);
+                  }
+              }
+                
+                /**
+                 * 打开打印窗口.
+                 */
+                MainView.prototype.onOpenPrintWin = function(ev,p){
+                  //alert(JSON.stringify(p));
+                  var winId="_WIN_TMP_"+(Math.ceil(Math.random()*10000));
+                  $("body").append("<div id='"+winId+"' style='visiable:hidden'/>");
+                  var win = $("#"+winId);
+                  var printhtml = buildPrescription4Print(p);
+                  var d = win.dialog({
+                    title: '处方打印',
+                    width: 600,
+                    height: 500,
+                    closed: false,
+                    cache: false,
+                    modal: true,
+                    content:printhtml,
+                    buttons:[{
+                      text:'打印',
+                      handler:function(){
+                        $.a("postJson", global_param.context_name + "/fn/jiezhen", p, function(data){
+                          console.log(data);
+                          $(printhtml).printArea();
+                        }, function(){
+                          alert("系统错误");
+                        });
+                        //$(printhtml).printArea();
+                        //printWork(printhtml);
+                      }
+                  },{
+                    text:'关闭',
+                    handler:function(){
+                      win.dialog("close");
+                      win.detach();
+                    }
+                }]
+                    });
+                  d.dialog("center");
+                  //alert(d.dialog("body")[0]);
+                  //$("#"+winId).append("1234");
+                  //.text(JSON.stringify(p));
+                };
 
                 MainView.prototype.render = function() {
                   var object = this;
@@ -323,7 +511,28 @@
                     }, {
                       iconCls : "icon-print",
                       handler : function() {
-                        alert("打印");
+                        //打印按钮
+                        var patients = (function(){
+                          var res = new Object();
+                          var $t = object.$target;
+                          res.name = $t.find("#patientsName").val();
+                          res.age = $t.find("#ghage").val();
+                          res.sex = $t.find("#ghsex").combobox("getText");
+                          res.tel = $t.find("#txtTel").val();
+                          res.result = $t.find("#txtResult").val();
+                          res.status = ($t.find("#btnStatus").linkbutton("options").text=="新患者")?true:false;
+                          res.prescription=$t.find("#tblPrescription").datagrid("getRows");
+                          if(res.status){
+                            res.uuid = ($.uuid()).replace(/\-/g,'');
+                          }else{
+                            res.uuid = $t.find("#patientsId").val();
+                          }
+                          res.curUser=$.curUser();
+                          return res;
+                        })();
+                        console.log(JSON.stringify(patients));
+                        
+                        $(object).trigger("openPrintWin", patients);
                       }
                     } ]
                   });

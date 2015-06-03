@@ -77,7 +77,7 @@
 				kc_status
 		  from yl_kc
 		<where>
-			   1=1 and kc_shuliang != '0'
+			   1=1 
 			   <if test="zd_yishengid != null and  zd_yishengid != '' ">
 				and zd_yishengid =  #{zd_yishengid}
 			</if>

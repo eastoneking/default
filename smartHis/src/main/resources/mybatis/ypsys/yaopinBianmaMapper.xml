@@ -22,7 +22,7 @@
 		 where id = #{id}
 	</select>
 	<!-- 按类别查询 -->
-	<select id="getByTypeCode" parameterType="string" resultType="YaopinBianmaBean">
+	<select id="getByTypeCode" parameterType="String" resultType="YaopinBianmaBean">
 		select id,
 				ypbmname,
 				ypbmnumber,
@@ -37,6 +37,7 @@
                 useAmount,
                 useFrequence
 		  from ylsys_ypbianma
+		  order by ypbmname
 	</select>
 	<!-- 分页查询 ，返回List<HashMap>对象， -->
 	<select id="list" parameterType="map" resultType="YaopinBianmaBean">
@@ -52,7 +53,8 @@
 				ypbmdanwei,
                 useMethod,
                 useAmount,
-                useFrequence
+                useFrequence,
+                #{q} as q
 		  from ylsys_ypbianma
 		<where>
 			   1=1
@@ -65,11 +67,12 @@
 			<if test="ypbmleibiename != null  and ypbmleibiename != '' ">
 				and ypbmleibiename = #{ypbmleibiename}
 			</if>
+			<if test="q != null and q != ''">
+			     and 1=2
+			</if>
 		</where>
-		<if test="sortname != null and sortorder != null">
-			order by ${sortname} ${sortorder}
-		</if>
-				<if test="offset != null and pagesize !=null">
+		order by ypbmname
+		<if test="offset != null and pagesize !=null">
 			LIMIT ${offset}, ${pagesize}
 		</if>
 	</select>

@@ -4,4 +4,15 @@
     <select id="selTest" parameterType="hashmap" resultType="hashmap">
         select 1 as "c1", 'aaa' as "C2"
     </select>
+    
+    <update id="updKuCunAmount" parameterType="hashmap">
+        update yl_kc
+        <set>
+            <if test="kc_shuliang != null">
+                kc_shuliang = #{kc_shuliang}
+            </if>
+    
+        </set>
+        where id = #{id}
+    </update>
 </mapper>

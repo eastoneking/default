@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>ZYYL</title>
+<title>天河社区卫生服务站</title>
 <link href="/YLManager/resources/css/goldcow-all.css" rel="stylesheet"
 	type="text/css" />
 <link href="/YLManager/resources/css/app.css" rel="stylesheet"
@@ -13,154 +13,166 @@
 	type="text/css" media="screen" />
 <script src="/YLManager/resources/js/goldcow-all.js"></script>
 <script type="text/javascript">
-	// 当前路径
-	var current = "${ctx}/home/welcome";
-	// 点击菜单后打开链接
-	function openLeft(FuncTitle, title, href) {
-		var centerURL = "${ctx}" + href;
-		alert(centerURL);
-		alert(centerURL);
-		if (href == "") {
-			return false;
-		}
-		// 当前路径，用于超时判断
-		current = centerURL;
-		// 修改iframe路径
-		$('#cc').attr('src', centerURL);
-		return false;
-	}
+  // 当前路径
+  var current = "${ctx}/home/welcome";
+  // 点击菜单后打开链接
+  function openLeft(FuncTitle, title, href) {
+    var centerURL = "${ctx}" + href;
+    alert(centerURL);
+    alert(centerURL);
+    if (href == "") {
+      return false;
+    }
+    // 当前路径，用于超时判断
+    current = centerURL;
+    // 修改iframe路径
+    $('#cc').attr('src', centerURL);
+    return false;
+  }
 
-	$(function() {
-// 		alert(global_param.html_path);
-// 		alert("http://192.168.173.82:8080/YLManager/resources/html/");
-// 		global_param.html_path = "http://192.168.173.82:8080/YLManager/resources/html/";
-		function treeInit(data) {
-			var $ulTree = $('<ul/>').tree({
-				data : data,
-				onClick : linkTo,
-				onDblClick : function(node) {
-					if (node.state == 'closed') {
-						$(this).tree('expand', node.target);
-					} else {
-						$(this).tree('collapse', node.target);
-					}
-				}
-			});
-			return $ulTree;
-		}
-		;
+  $(function() {
+    // 		alert(global_param.html_path);
+    // 		alert("http://192.168.173.82:8080/YLManager/resources/html/");
+    // 		global_param.html_path = "http://192.168.173.82:8080/YLManager/resources/html/";
+    function treeInit(data) {
+      var $ulTree = $('<ul/>').tree({
+        data : data,
+        onClick : linkTo,
+        onDblClick : function(node) {
+          if (node.state == 'closed') {
+            $(this).tree('expand', node.target);
+          } else {
+            $(this).tree('collapse', node.target);
+          }
+        }
+      });
+      return $ulTree;
+    }
+    ;
 
-		 function linkTo(node) {
-	         if (node.attributes && node.attributes.url && node.attributes.url.length > 0) {
-	            if(!$('#tt').tabs('exists', node.text)) {
-	                //添加tab页面时绑定右键菜单
-	                $('#tt').tabs({
-	                	onAdd:function(title,index){
-// 	                		alert(title+"-----"+index);
-	                		tabMenuClose(title,index);
-	                	}
-	                });
-	                $('#tt').tabs('add',{
-	                   title:node.text,
-	                   content:'<iframe style="width: 100%; height: 100%;" frameborder="0" src="' + global_param.html_path + node.attributes.url + '.html"></iframe>',
-	                   closable:true
-	                });
-	                $('#tt').tabs('select', node.text);
-// 	                tabClose();
-// 					tabCloseEven();
-// 					tabMenuClose();
-// 			        tabMenuCloseEven();
-	            } else {
-	                $('#tt').tabs('select', node.text);
-	                
-	                var tab = $('#tt').tabs('getSelected');  // 获取选择的面板
-	                tab.panel('refresh');
+    function linkTo(node) {
+      if (node.attributes && node.attributes.url
+          && node.attributes.url.length > 0) {
+        if (!$('#tt').tabs('exists', node.text)) {
+          //添加tab页面时绑定右键菜单
+          $('#tt').tabs({
+            onAdd : function(title, index) {
+              // 	                		alert(title+"-----"+index);
+              tabMenuClose(title, index);
+            }
+          });
+          $('#tt')
+              .tabs(
+                  'add',
+                  {
+                    title : node.text,
+                    content : '<iframe style="width: 100%; height: 100%;" frameborder="0" src="'
+                        + global_param.html_path
+                        + node.attributes.url
+                        + '.html"></iframe>',
+                    closable : true
+                  });
+          $('#tt').tabs('select', node.text);
+          // 	                tabClose();
+          // 					tabCloseEven();
+          // 					tabMenuClose();
+          // 			        tabMenuCloseEven();
+        } else {
+          $('#tt').tabs('select', node.text);
 
-	            }
-	            $(".easyui-accordion .tree-node-selected").removeClass("tree-node-selected");
-	         }
-	      }
-		var _menu = util.ajax("/YLManager/system/menu/getUserMenu");
-		var i, l, menus = [], tmpMap = [], idField = 'id', textField = 'text', parentField = "parent_id";
-		for (i = 0, l = _menu.length; i < l; i++) {
-			tmpMap[_menu[i][idField]] = _menu[i];
-			if (_menu[i].url && _menu[i].url != "") {
-				_menu[i].attributes = {
-					url : _menu[i].url
-				};
-			}
-		}
-		for (i = 0, l = _menu.length; i < l; i++) {
-			if (tmpMap[_menu[i][parentField]]
-					&& _menu[i][idField] != _menu[i][parentField]) {
-				if (!tmpMap[_menu[i][parentField]]['children'])
-					tmpMap[_menu[i][parentField]]['children'] = [];
-				_menu[i]['text'] = _menu[i][textField];
-				tmpMap[_menu[i][parentField]]['children'].push(_menu[i]);
-			} else {
-				if (!_menu[i][parentField]) {
-					_menu[i]['text'] = _menu[i][textField];
-					menus.push(_menu[i]);
-				}
-			}
-		}
+          var tab = $('#tt').tabs('getSelected'); // 获取选择的面板
+          tab.panel('refresh');
 
-		for (var i = 0; i < menus.length; i++) {
-			var selected = false;
-			if (i == 0) {// 默认打开的菜单
-				selected = true;
-			}
-			$("#menuDiv").accordion('add', {
-				title : menus[i].text,
-				selected : selected,
-				content : treeInit(menus[i].children)
-			})
-		}
+        }
+        $(".easyui-accordion .tree-node-selected").removeClass(
+            "tree-node-selected");
+      }
+    }
+    var _menu = util.ajax("/YLManager/system/menu/getUserMenu");
+    var i, l, menus = [], tmpMap = [], idField = 'id', textField = 'text', parentField = "parent_id";
+    for (i = 0, l = _menu.length; i < l; i++) {
+      tmpMap[_menu[i][idField]] = _menu[i];
+      if (_menu[i].url && _menu[i].url != "") {
+        _menu[i].attributes = {
+          url : _menu[i].url
+        };
+      }
+    }
+    for (i = 0, l = _menu.length; i < l; i++) {
+      if (tmpMap[_menu[i][parentField]]
+          && _menu[i][idField] != _menu[i][parentField]) {
+        if (!tmpMap[_menu[i][parentField]]['children'])
+          tmpMap[_menu[i][parentField]]['children'] = [];
+        _menu[i]['text'] = _menu[i][textField];
+        tmpMap[_menu[i][parentField]]['children'].push(_menu[i]);
+      } else {
+        if (!_menu[i][parentField]) {
+          _menu[i]['text'] = _menu[i][textField];
+          menus.push(_menu[i]);
+        }
+      }
+    }
 
-		// 初始化编辑窗口
-		util.window('settingWindow', {
-			title : '个人设置'
-		});
-			$.post(globalUtil.getTimestampUrl('/getUser'), null, function(userbean) {
-				$("#display_name").html(userbean.user_name);
-				$("#user_name").html("欢迎您："+userbean.display_name);
-			});
-	});
+    for (var i = 0; i < menus.length; i++) {
+      var selected = false;
+      if (i == 0) {// 默认打开的菜单
+        selected = true;
+      }
+      $("#menuDiv").accordion('add', {
+        title : menus[i].text,
+        selected : selected,
+        content : treeInit(menus[i].children)
+      })
+    }
 
-	function home() {
-		return;
-		$(".easyui-accordion .choose").removeClass("choose");
-		$('#cc').attr('src', "${ctx}/home/welcome");
-		$('body').layout('panel', 'center').panel({
-			title : "首页"
-		});
-	}
+    // 初始化编辑窗口
+    util.window('settingWindow', {
+      title : '个人设置'
+    });
+    $.post(globalUtil.getTimestampUrl('/getUser'), null, function(userbean) {
+      // alert(JSON.stringify(userbean))
+      $.curUser(userbean);
+      //alert(JSON.stringify($.curUser()))
+      $("#display_name").html(userbean.user_name);
+      $("#user_name").html("欢迎您：" + userbean.display_name);
+    });
+  });
 
-	function westTreeParentClick(selfnode, node) {
+  function home() {
+    return;
+    $(".easyui-accordion .choose").removeClass("choose");
+    $('#cc').attr('src', "${ctx}/home/welcome");
+    $('body').layout('panel', 'center').panel({
+      title : "首页"
+    });
+  }
 
-	}
-	function sysClose() {
-		var url = "/YLManager/logout";
-		$.ajax({
-			type : "POST",
-			url : url,
-			success : function(msg) {
-				location.href="/YLManager/login.html";
-			}
-		});
-	}
+  function westTreeParentClick(selfnode, node) {
+
+  }
+  function sysClose() {
+    var url = "/YLManager/logout";
+    $.ajax({
+      type : "POST",
+      url : url,
+      success : function(msg) {
+        location.href = "/YLManager/login.html";
+      }
+    });
+  }
 </script>
 </head>
 <body>
 	<div class="easyui-layout" fit="true"
 		style="width: 100%; height: 100%;">
 		<!-- 页面头部 -->
-		<div data-options="region:'north',border:true,split:false" class="headerDiv" >
+		<div data-options="region:'north',border:true,split:false"
+			class="headerDiv">
 			<div style="margin: 0; float: left;">
-<!-- 				<ul class="top_txt_ul"> -->
-<!-- 			<li style="margin: 0; float: left;"> HIS系统</li> -->
-<!-- 			    	</ul> -->
-<!-- 				<img src="/YLManager/resources/GSCimages/layout/logo.png"> -->
+				<!-- 				<ul class="top_txt_ul"> -->
+				<!-- 			<li style="margin: 0; float: left;"> HIS系统</li> -->
+				<!-- 			    	</ul> -->
+				<!-- 				<img src="/YLManager/resources/GSCimages/layout/logo.png"> -->
 			</div>
 			<div class="top_right_con">
 				<div class="top_txt">
@@ -171,34 +183,39 @@
 				</div>
 				<div class="top_right">
 					<ul class="top_right_ul">
-						<li class="top_right_ul_li1"><a href="javascript:void(0)" onclick="">主页</a></li>
+						<li class="top_right_ul_li1"><a href="javascript:void(0)"
+							onclick="">主页</a></li>
 						<li class="top_right_ul_li2"><a href="javascript:void(0)">帮助</a></li>
-						<li class="top_right_ul_li3"><a href="javascript:void(0)" onclick="sysClose()">退出系统</a></li>
+						<li class="top_right_ul_li3"><a href="javascript:void(0)"
+							onclick="sysClose()">退出系统</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 		<!-- 菜单 -->
 		<div class="layout_menu"
-         data-options="title:'导航菜单',region:'west',border:true,split:true,collapsible:true,width:200,minWidth:50,maxWidth:500">
-         <div id="menuDiv" class="easyui-accordion" border="false" fit="true"></div>
-      </div>
+			data-options="title:'导航菜单',region:'west',border:true,split:true,collapsible:true,width:200,minWidth:50,maxWidth:500">
+			<div id="menuDiv" class="easyui-accordion" border="false" fit="true"></div>
+		</div>
 		<!-- 显示区域 -->
-		<div data-options="region:'center',border:false" style="overflow: hidden;">
-         <div id="tt" class="easyui-tabs" data-options="fit:true">
-            <div title="欢迎使用" style="padding: 0px; overflow: hidden;" data-options="fit:true,border:false">
-                <iframe style="width: 100%; height: 100%;" frameborder="0" src="/YLManager/resources/html/welcome/center.html"></iframe>
-            </div>
-         </div>
-      </div>
+		<div data-options="region:'center',border:false"
+			style="overflow: hidden;">
+			<div id="tt" class="easyui-tabs" data-options="fit:true">
+				<div title="欢迎使用" style="padding: 0px; overflow: hidden;"
+					data-options="fit:true,border:false">
+					<iframe style="width: 100%; height: 100%;" frameborder="0"
+						src="/YLManager/resources/html/welcome/center.html"></iframe>
+				</div>
+			</div>
+		</div>
 	</div>
-      <div id="tabMenu" class="easyui-menu" style="width: 150px;">
-            <div id="tab-tabclose">关闭</div>
-            <div id="tab-tabcloseall">关闭所有</div>
-            <div id="tab-tabcloseother">关闭其他</div>
-            <div id="tab-tabcloseleft">关闭左侧</div>
-            <div id="tab-tabcloseright">关闭右侧</div>
-         </div>
+	<div id="tabMenu" class="easyui-menu" style="width: 150px;">
+		<div id="tab-tabclose">关闭</div>
+		<div id="tab-tabcloseall">关闭所有</div>
+		<div id="tab-tabcloseother">关闭其他</div>
+		<div id="tab-tabcloseleft">关闭左侧</div>
+		<div id="tab-tabcloseright">关闭右侧</div>
+	</div>
 	<!-- 个人设置窗口 -->
 	<div id="settingWindow"></div>
 </body>

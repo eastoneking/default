@@ -102,7 +102,7 @@
 		ghriqi,ghypfeiyong,ghfeiyong)
 			values(#{ghnumber},#{ghname}, #{ghsex}, #{ghage}, 21,
 			 '全科', '普通号', #{ghstatus}, #{ghyishengid}, #{ghyisheng},
-			now(),#{ghypfeiyong},#{ghfeiyong});
+			now(),#{ghypfeiyong},#{ghfeiyong})
 	</insert>
 
 	<!-- 更新表中数据，返回受影响的记录条数 -->

@@ -857,6 +857,13 @@ jq.extend({
    return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4()).toUpperCase();
   };
   
+  $.uuid32 = function guid() {
+    var S4 = function () {
+      return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+   }
+   return (S4()+S4()+S4()+S4()+S4()+S4()+S4()+S4()).toUpperCase();
+  };
+  
   $.registerFunc = function(clz, funInit){
     var c = clz
     c.FUNC_INITIALIZE = funInit;
@@ -932,6 +939,15 @@ jq.extend({
     res = JSON.parse(sessionStorage.getItem(key));
     return res;
   }
+  
+  $.SMART_HIS_CUR_USER_KEY="__smartHis.current.usr";
+  
+  $.curUser = function(user){
+    if(user){
+      $.ssSave($.SMART_HIS_CUR_USER_KEY,user);
+    }
+    return $.ssLoad($.SMART_HIS_CUR_USER_KEY);
+  };
   
   $.proxyTrigger = function(obj){
     if(!obj.trigger){

@@ -16,6 +16,28 @@
 			idField : 'id',
 			sort : 'id', // 排序的列
 			order : 'desc', // 顺序
+			onDblClickCell:function(idx,field,value){
+			  if(field=="kc_shuliang"){
+			    $('#grid').datagrid("beginEdit",idx);
+			  }else{
+			    $('#grid').datagrid("endEdit",idx);
+			  }
+			},
+			onAfterEdit:function(idx,row,changes){
+			  var res = true;
+			  console.log(row);
+			  $.a(
+			      "postJson",
+			      global_param.context_name + '/fn/updateKuCun',
+			      row,
+			      function(){
+			      },
+			      function(ex){
+			        console.log(ex);
+			        res = false;
+			        });
+			  return res;
+			},
 			columns : [ [{
 				title : '药品类别',
 				field : 'kc_ypleibie',
@@ -50,7 +72,8 @@
 			},  {
 				title : '数量',
 				field : 'kc_shuliang',
-				width : 20
+				width : 20,
+				editor:"text"
 // 				formatter : function(value, row, index) {
 // 					return doubleNumber(row.subscriptionnum,6);
 // 				}
@@ -75,11 +98,13 @@
 // 				iconCls : 'icon-add',
 // 				handler : addFunc
 // 			},
+/*
 			{
 				text : '明细',
 				iconCls : 'icon-modify',
 				handler : updateFunc
 			}
+*/
 // 			, {
 // 				text : '删除',
 // 				iconCls : 'icon-delete',

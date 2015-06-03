@@ -86,17 +86,18 @@ public class IaBizProcStrategyCtx<K> extends AbstractStrategyContext<K> implemen
      * @see eastone.common.strategy.AbstractStrategyContext#proccessStrategry(eastone.common.strategy.Strategy)
      * @author wangds 2015年5月4日 上午9:24:32.
      */
+    @SuppressWarnings("unchecked")
     @Override
     protected <S extends Strategy<K>> void proccessStrategry(S strategy) {
         strategy.setContext(this);
         
-        BizProcStrategy<?> s = null;
+        BizProcStrategy<K> s = null;
         if(strategy instanceof BizProcStrategy){
-            s = (BizProcStrategy<?>)strategy;
+            s = (BizProcStrategy<K>)strategy;
         }
-        IaBizProcStrategy<?, ?, ?> ias = null;
+        IaBizProcStrategy<Object, Object, K> ias = null;
         if(strategy instanceof IaBizProcStrategy){
-            ias = (IaBizProcStrategy<?,?,?>)strategy;
+            ias = (IaBizProcStrategy<Object,Object,K>)strategy;
         }
         BizProcSectionEnum sect = this.getSection();
         switch(sect){

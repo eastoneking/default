@@ -6,8 +6,11 @@
       panelWidth : 500,
       idField : 'kc_ypbmnumber',
       textField : 'kc_ypbmnumber',
-      mode : 'remote',
-      // 				mode:'mode',  
+      mode : 'local',
+      // 				mode:'mode', 
+      filter:function(q,row){
+        return row["kc_ypname"].indexOf(q)>=0&&row["kc_shuliang"]>0;
+      },
       fitColumns : true,
       url : global_param.context_name + "/select/getByCode/getyaopinkucun",
       columns : [ [ {
@@ -41,6 +44,8 @@
       } ] ],
       onSelect : function(index, row) {
         $("#zdyp_ypid").val(row.id);
+        $("#zdyp_ypbcxsjiage").val(row.zdyp_ypbcxsjiage);
+        $("#zdyp_ypcbjiage").val(row.zdyp_ypcbjiage);
         $("#zdyp_ypbmid").val(row.kc_ypbmid);
         $("#zdyp_ypname").val(row.kc_ypname);
         $("#kc_shuliang").val(row.kc_shuliang);
@@ -98,6 +103,8 @@
           });
     }
     var item = {
+        ypid:$("#zdyp_ypid").val(),
+        ypbmid:$("#zdyp_ypbmid").val(),
         zdyp_ypbmnumber:$("#zdyp_ypbmnumber").combo("getText"),
         zdyp_ypname:$("#zdyp_ypname").val(),
         zdyp_ypnamekc_shuliang:$("#zdyp_ypnamekc_shuliang").val(),
@@ -109,6 +116,8 @@
         useMethod:$("#useMethod").combo("getText"),
         useAmount:$("#useAmount").combo("getText"),
         useFrequence:$("#useFrequence").combo("getText"),
+        zdyp_ypbcxsjiage:$("#zdyp_ypbcxsjiage").val(),
+        zdyp_ypcbjiage:$("#zdyp_ypcbjiage").val()
     };
     
     $("body div#main").trigger("addPrescriptionItem", item);
@@ -148,6 +157,8 @@
 							data-options="required:true" /> <input id="zdyp_ypid"
 							name="zdyp_ypid" type="hidden" /> <input id="zdyp_ypbmid"
 							name="zdyp_ypbmid" type="hidden" />
+							<input id="zdyp_ypbcxsjiage" type="hidden"/>
+							<input id="zdyp_ypcbjiage" type="hidden"/>
 					</div>
 				</div>
 				<div class="float-l">

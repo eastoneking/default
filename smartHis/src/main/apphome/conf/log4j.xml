@@ -28,11 +28,11 @@
     </layout>
   </appender>
   <logger name="net.sf.json.JSONObject" >
-      <level value="error"></level>
+      <level value="debug"></level>
     <appender-ref ref="ap_net.sf.json.JSONObject"/>
   </logger>
 	<root>
-		<priority value="DEBUG" />
+		<priority value="info" />
 		<appender-ref ref="Console" />
 		<appender-ref ref="file" />
 	</root>

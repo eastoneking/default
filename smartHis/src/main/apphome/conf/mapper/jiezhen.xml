@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hztech.smartHis.query.jiezhen">
+
+	<select id="testList" parameterType="hashmap" resultType="hashmap">
+
+		<foreach collection="prescription" item="item" index="index"
+			open="" close="" separator="union all">
+			(SELECT #{uuid} as b, #{item.zdyp_ypname}
+			as a, #{index} as `idx` from dual
+			where 1=1)
+		</foreach>
+
+	</select>
+	<insert id="insPatientsJiezhen" parameterType="hashmap">
+		insert into
+		yl_ghtaizhang
+		(
+		ghnumber,ghname, ghsex, ghage, ghkeshiid,
+		ghkeshiname,ghtype,ghstatus,ghyishengid,ghyisheng,
+		ghriqi,ghypfeiyong,ghfeiyong
+		) values (
+		#{uuid},#{name}, #{sex}, #{age},
+		21,
+		'全科', '普通号', 0, #{curUser.id}, #{curUser.user_name}, now(), 0, 0
+		)
+	</insert>
+<!-- 
+(select max(id) from yl_yszhenduan where zd_ghnumber=#{uuid}),
+            #{item.ypid},
+            (select max(id) from yl_ghtaizhang where
+            ghnumber='${uuid}'),
+            '${uuid}',
+            #{item.zdyp_ypbmnumber},
+            #{item.zdyp_ypbcxsjiage}, #{item.zdyp_ypbmnumber},
+            #{item.zdyp_ypname},
+            #{item.zdyp_ypshuliang}, #{item.zdyp_ypdanwei},
+            #{item.zdyp_ypshengchanshang},#{item.zdyp_danxiangjine},
+            #{item.zdyp_ypleibie}, #{item.zdyp_ypcbjiage},
+            #{item.zdyp_ypbcxsjiage}, #{item.zdyp_ypzdjiage}
+            <if test="useMethod != null">,#{item.useMethod}</if>
+            <if test="useAmount != null">,#{item.useAmount}</if>
+            <if test="useFrequence != null">,#{item.useFrequence}</if>
+ -->
+	<insert id="insChuKuOnJieZhen" parameterType="hashmap">
+	   <foreach collection="prescription" item="item" index="index"
+            open="" close="" separator=";">
+		insert into yl_kcck(
+		  zdyp_zdid, zdyp_ypid, zdyp_ghid, zdyp_ghnumber,
+		  zdyp_ypbmid,zdyp_ypbcxsjiage,zdyp_ypbmnumber,zdyp_ypname,
+		  zdyp_ypshuliang,
+		  zdyp_ypdanwei,zdyp_ypshengchanshang,zdyp_danxiangjine,
+		  zdyp_ypleibie, zdyp_ypcbjiage,zdyp_yplsjiage,zdyp_ypzdjiage,zdyp_ypcktime)
+		values(
+		(select max(id) from yl_yszhenduan where zd_ghnumber=#{uuid}),
+		#{item.ypid}, (select max(id) from yl_ghtaizhang where
+            ghnumber='${uuid}'), #{uuid},
+		#{item.ypbmid}, #{item.zdyp_ypbcxsjiage}, #{item.zdyp_ypbmnumber},
+		#{item.zdyp_ypname},
+		#{item.zdyp_ypshuliang}, #{item.zdyp_ypdanwei}, #{item.zdyp_ypshengchanshang},#{item.zdyp_danxiangjine},
+		#{item.zdyp_ypleibie}, #{item.zdyp_ypcbjiage}, #{item.zdyp_ypbcxsjiage},
+		#{item.zdyp_ypzdjiage},now())
+		</foreach>
+	</insert>
+
+	<update id="updYaoPinKuCun" parameterType="hashmap">
+		<foreach collection="prescription" item="item" index="index"
+			open="" close="" separator=";">
+			update yl_kc
+			<set>
+				kc_shuliang = kc_shuliang - #{item.zdyp_ypshuliang}
+			</set>
+			where id = #{item.ypid}
+		</foreach>
+	</update>
+
+
+	<insert id="insChufangYaopin" parameterType="hashmap"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into yl_yszdyaopin (
+		zdyp_zdid, zdyp_ypid, zdyp_ghid,
+		zdyp_ghnumber,zdyp_ypbmid,zdyp_ypbcxsjiage,zdyp_ypbmnumber,zdyp_ypname,
+		zdyp_ypshuliang
+		,zdyp_ypdanwei
+		,zdyp_ypshengchanshang
+		,zdyp_danxiangjine
+		,zdyp_ypleibie
+		, zdyp_ypcbjiage
+		,zdyp_yplsjiage
+		,zdyp_ypzdjiage
+		<if test="useMethod != null">,useMethod</if>
+		<if test="useAmount != null">,useAmount</if>
+		<if test="useFrequence != null">,useFrequence</if>
+		)values
+		<foreach collection="prescription" item="item" index="index"
+			open="" close="" separator=",">
+			(
+			(select max(id) from yl_yszhenduan where zd_ghnumber=#{uuid}),
+			#{item.ypid},
+			(select max(id) from yl_ghtaizhang where
+			ghnumber='${uuid}'),
+			'${uuid}',
+			#{item.zdyp_ypbmnumber},
+			#{item.zdyp_ypbcxsjiage}, #{item.zdyp_ypbmnumber},
+			#{item.zdyp_ypname},
+			#{item.zdyp_ypshuliang}, #{item.zdyp_ypdanwei},
+			#{item.zdyp_ypshengchanshang},#{item.zdyp_danxiangjine},
+			#{item.zdyp_ypleibie}, #{item.zdyp_ypcbjiage},
+			#{item.zdyp_ypbcxsjiage}, #{item.zdyp_ypzdjiage}
+			<if test="useMethod != null">,#{item.useMethod}</if>
+			<if test="useAmount != null">,#{item.useAmount}</if>
+			<if test="useFrequence != null">,#{item.useFrequence}</if>
+			)
+		</foreach>
+	</insert>
+	<!-- {"name":"张世玺","age":"18","sex":"男","tel":"","result":"","status":false,"prescription": 
+		[{"ypid":"19","zdyp_ypbmnumber":"010021","zdyp_ypname":"铺地蓝软胶囊","zdyp_ypshuliang":"1", 
+		"zdyp_ypleibie":"发热","zdyp_ypdanwei":"盒（36片）","zdyp_ypshengchanshang":"太极药业","useMethod":"", 
+		"useAmount":"","useFrequence":"一日一次","zdyp_ypbcxsjiage":"35","zdyp_ypcbjiage":"19"}], 
+		"uuid":"201505192","curUser":{"id":1,"user_name":"admin","password":"e10adc3949ba59abbe56e057f20f883e", 
+		"newpassword":null,"display_name":"超级管理员","sex":1,"phone_number":"18341913136","email":"123456@qq.com", 
+		"note":"","status":null,"salt":null,"create_time":1418798656000,"dept_id":null,"idcard":null,"deptid":null}} -->
+	<select id="insPrescriptionJiezhen" parameterType="hashmap"
+		resultType="hashmap">
+
+		<foreach collection="prescription" item="item" index="index"
+			open="" close="" separator="union all">
+			(SELECT #{uuid} as b, #{item.zdyp_ypname}
+			as a, #{index} as `idx` from dual
+			where 1=1)
+		</foreach>
+
+	</select>
+	<insert id="insPatientsZhenduan" parameterType="hashmap">
+		insert into
+		yl_yszhenduan
+		(
+		zd_yishengid, zd_yishengname, zd_ghid,
+		zd_riqi,zd_ghtype,zd_ghnumber,
+		zd_ghname,zd_ghsex,zd_ghage,zd_status,zd_fystatus,zd_ghks,zd_version,
+		zd_ghriqi,zdContent
+		) values (
+		#{curUser.id}, #{curUser.user_name},
+		(select max(id) from yl_ghtaizhang where ghnumber=#{uuid}),
+		now(),'普通号',
+		#{uuid}, #{name}, #{sex},#{age}, 1,
+		1, '全科',1,
+		now(),#{result}
+		)
+	</insert>
+</mapper>

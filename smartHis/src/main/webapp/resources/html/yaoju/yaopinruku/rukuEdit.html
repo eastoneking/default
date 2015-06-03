@@ -1,138 +1,234 @@
 <script type="text/javascript">
-	$(function() {
-		util.datebox("kc_scriqi");
-		util.datebox("kc_yxriqi");
-// 		util.datebox("kc_rkriqi");
-		// 类别下拉框
-		$('#kc_ypbmnumber').combogrid({
-  				panelWidth:400,
-			    idField:'ypbmnumber',
-			    textField:'ypbmnumber',
-                mode:'remote',  
-// 				mode:'mode',  
-                fitColumns:true,
-			    url:global_param.context_name + "/select/getByCode/getyaopinbianma",
-			    columns:[[
-						 {field:'ypbmnumber',title:'药品编码',width:100},
-						 {field:'ypbmname',title:'药品名字',width:60},
-			       	     {field:'yppihao',title:'生产批号',width:100},
-			  			 {field:'ypbmshengchanshang',title:'生产商',width:100},
-			  			 {field:'ypbmleibiename',title:'药品类别',width:40}
-			    ]],
-	 			onSelect:function(index,row){
-	 				$("#kc_ypbmid").val(row.id);
-	 				$("#kc_ypname").val(row.ypbmname);
-	 				$("#kc_yppihao").val(row.yppihao);
-// 	 				$("#kc_ypname").val(row.ypbmshengchanshang);
-	 				$("#kc_ypleibie").val(row.ypbmleibiename);
-	 				$("#kc_shengchanshang").val(row.ypbmshengchanshang);
-// 	 				$("#kc_shengchanshang").val(row.ypbmdanwei);
-	 				$("#kc_danwei").val(row.ypbmdanwei);
-		    	}
- 		});
-		var param = util.getWindowParam();
-		// 得到url中id值
-		if (param.id) {
-			var data = util.ajax(global_param.context_name
-					+ '/yaoju/ruku/getById', {
-				"id" : param.id
-			});
-			$("#_form").form("load", data);
-		}
-// 		var keshengouliang = util.ajax(global_param.context_name
-// 				+ '/keshi/keshiweihu/keshengouliang');
-// 		$("#keshengouliang").val(doubleNumber(keshengouliang,6));
+  $(function() {
+    util.datebox("kc_scriqi");
+    util.datebox("kc_yxriqi");
+    //util.datebox("kc_rkriqi");
+    // 类别下拉框
+    $('#kc_ypbmnumber').combogrid({
+      panelWidth : 400,
+      idField : 'ypbmnumber',
+      textField : 'ypbmnumber',
+      //mode:'remote',  
+      mode : 'remote',
+      filter : function(q, row) {
+        return row["ypbmname"].indexOf(q) >= 0;
+      },
+      //mode:'mode',
+      fitColumns : true,
+      url : global_param.context_name + "/ypsys/yaopinbianma/list",//"/select/getByCode/getyaopinbianma",
+      loadFilter : function(data) {
+        var rs = [];
+        var q = $("#kc_ypbmnumber").combogrid("getText");
+        for (var i = 0; i < data.rows.length; i++) {
+          if (data.rows[i].ypbmname.indexOf(q) >= 0) {
+            rs[rs.length] = data.rows[i];
+          }
+        }
 
-	});
-	function submitForm() {
-		if(!$("#_form").form('enableValidation').form('validate')){
-			return;
-		}
-		var result = util.submit('_form');
-		if (result) {
-			if (result == "success") {
-// 				util.alert("操作成功");
-				util.show('操作成功');
-				$('#grid').datagrid('reload');
-				util.closeWindow('editWindow');
-			} else  {
-// 				util.error("请选初始化造币");
-				util.show('操作失败');
-			} 
-		}
-	}
-	function clearNoNum(obj)  
-	{  
-	   obj.value = obj.value.replace(/[^\d.]/g,"");  //清除“数字”和“.”以外的字符  
-	   obj.value = obj.value.replace(/^\./g,"");  //验证第一个字符是数字而不是.  
-	  obj.value = obj.value.replace(/\.{2,}/g,"."); //只保留第一个. 清除多余的  
-	  obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");  
-	  obj.value=obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');//只能输入两个小数  
-	}
+        return {
+          total : rs.length,
+          rows : rs
+        };
+      },
+      columns : [ [ {
+        field : 'ypbmnumber',
+        title : '药品编码',
+        width : 100
+      }, {
+        field : 'ypbmname',
+        title : '药品名字',
+        width : 60
+      }, {
+        field : 'yppihao',
+        title : '生产批号',
+        width : 100
+      }, {
+        field : 'ypbmshengchanshang',
+        title : '生产商',
+        width : 100
+      }, {
+        field : 'ypbmleibiename',
+        title : '药品类别',
+        width : 40
+      } ] ],
+      onSelect : function(index, row) {
+        $("#kc_ypbmid").val(row.id);
+        $("#kc_ypname").val(row.ypbmname);
+        $("#kc_yppihao").val(row.yppihao);
+        // 	 				$("#kc_ypname").val(row.ypbmshengchanshang);
+        $("#kc_ypleibie").val(row.ypbmleibiename);
+        $("#kc_shengchanshang").val(row.ypbmshengchanshang);
+        // 	 				$("#kc_shengchanshang").val(row.ypbmdanwei);
+        $("#kc_danwei").val(row.ypbmdanwei);
+      }
+    });
+    var param = util.getWindowParam();
+    // 得到url中id值
+    if (param.id) {
+      var data = util.ajax(global_param.context_name + '/yaoju/ruku/getById', {
+        "id" : param.id
+      });
+      $("#_form").form("load", data);
+    }
+    // 		var keshengouliang = util.ajax(global_param.context_name
+    // 				+ '/keshi/keshiweihu/keshengouliang');
+    // 		$("#keshengouliang").val(doubleNumber(keshengouliang,6));
+
+  });
+  function submitForm() {
+    if (!$("#_form").form('enableValidation').form('validate')) {
+      return;
+    }
+    var result = util.submit('_form');
+    if (result) {
+      if (result == "success") {
+        // 				util.alert("操作成功");
+        util.show('操作成功');
+        $('#grid').datagrid('reload');
+        util.closeWindow('editWindow');
+      } else {
+        // 				util.error("请选初始化造币");
+        util.show('操作失败');
+      }
+    }
+  }
+  function clearNoNum(obj) {
+    obj.value = obj.value.replace(/[^\d.]/g, ""); //清除“数字”和“.”以外的字符  
+    obj.value = obj.value.replace(/^\./g, ""); //验证第一个字符是数字而不是.  
+    obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个. 清除多余的  
+    obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$",
+        ".");
+    obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3');//只能输入两个小数  
+  }
 </script>
 <div class="easyui-layout" fit="true">
 	<div region="center" border="false" class="Dialog-Bg">
-	    <div class="Dialog-formDiv clearfix">
-		<form id="_form" action="/YLManager/yaoju/ruku/save" method="post">
-			<input id="id" name="id" type="hidden" />
-			<input id="kc_id" name="kc_id" type="hidden" />
-			<div class="float-l clearboth">
-			    <div class="Dialog-form-title2">
-			        <label for="kc_ypbmnumber" class="field">药品编码：</label>
-			    </div>
-			    <div class="Dialog-form-item">
-			        <input id="kc_ypbmnumber" name="kc_ypbmnumber" type="text"  style="width: 158px;" />
-			        <input id="kc_ypbmid" name="kc_ypbmid" type="hidden"  />
-			    </div>
-			</div>
-			<div class="float-l">
-			    <div class="Dialog-form-title2">
-			        <label for="kc_ypname" class="field">药品名称：</label>
-			    </div>
-			    <div class="Dialog-form-item">
-			        <input id="kc_ypname" name="kc_ypname" type="text" class="easyui-validatebox" data-options="required:true" readonly="readonly"/>
-			    </div>
-			</div>
-			<div class="float-l">
-			    <div class="Dialog-form-title2">
-			        <label for="kc_shuliang" class="field">药品数量：</label>
-			    </div>
-			    <div class="Dialog-form-item">
-			        <input id="kc_shuliang" name="kc_shuliang" onkeyup="clearNoNum(this);" type="text" class="easyui-validatebox" data-options="required:true" />
-			    </div>
-			</div>
-							<div class="float-l">
-			    <div class="Dialog-form-title2">
-			        <label for="kc_danwei" class="field">药品单位：</label>
-			    </div>
-			    <div class="Dialog-form-item">
-			        <input id="kc_danwei" name="kc_danwei" type="text" class="easyui-validatebox" data-options="required:true" readonly="readonly"/>
-			    </div>
-			</div>
-			<div class="float-l clearboth2">
-			    <div class="Dialog-form-title2">
-			        <label for="kc_ypleibie" class="field">药品类别：</label>
-			    </div>
-			    <div class="Dialog-form-item">
-			        <input id="kc_ypleibie" name="kc_ypleibie" class="easyui-validatebox" data-options="required:true" type="text" style="width: 152px"readonly="readonly"/>
-			    </div>
-			</div>
-			<div class="float-l">
-			    <div class="Dialog-form-title2">
-			        <label for="kc_yppihao" class="field">药品批号：</label>
-			    </div>
-			    <div class="Dialog-form-item">
-			        <input id="kc_yppihao" name="kc_yppihao" type="text" class="easyui-validatebox" data-options="required:true"readonly="readonly"/>
-			    </div>
-			</div>
-			<div class="float-l">
-			    <div class="Dialog-form-title2">
-			        <label for="kc_shengchanshang" class="field">生产商：</label>
-			    </div>
-			    <div class="Dialog-form-item">
-			        <input id="kc_shengchanshang" name="kc_shengchanshang" type="text" class="easyui-validatebox" data-options="required:true"readonly="readonly"/>
-			    </div>
-			</div>
+		<div class="Dialog-formDiv clearfix">
+			<form id="_form" action="/YLManager/yaoju/ruku/save" method="post">
+				<input id="id" name="id" type="hidden" /> <input id="kc_id"
+					name="kc_id" type="hidden" />
+				<div class="float-l clearboth">
+					<div class="Dialog-form-title2">
+						<label for="kc_ypbmnumber" class="field">药品编码：</label>
+					</div>
+					<div class="Dialog-form-item">
+						<input id="kc_ypbmnumber" name="kc_ypbmnumber" type="text"
+							style="width: 158px;" /> <input id="kc_ypbmid" name="kc_ypbmid"
+							type="hidden" />
+					</div>
+				</div>
+				<div class="float-l">
+					<div class="Dialog-form-title2">
+						<label for="kc_ypname" class="field">药品名称：</label>
+					</div>
+					<div class="Dialog-form-item">
+						<input id="kc_ypname" name="kc_ypname" type="text"
+							class="easyui-validatebox" data-options="required:false"
+							readonly="readonly" />
+					</div>
+				</div>
+				<div class="float-l">
+					<div class="Dialog-form-title2">
+						<label for="kc_danwei" class="field">药品单位：</label>
+					</div>
+					<div class="Dialog-form-item">
+						<input id="kc_danwei" name="kc_danwei" type="text"
+							class="easyui-validatebox" data-options="required:false"
+							readonly="readonly" />
+					</div>
+				</div>
+				<div class="float-l">
+					<div class="Dialog-form-title2">
+						<label for="kc_shuliang" class="field">药品数量：</label>
+					</div>
+					<div class="Dialog-form-item">
+						<input id="kc_shuliang" name="kc_shuliang"
+							onkeyup="clearNoNum(this);" type="text"
+							class="easyui-validatebox" data-options="required:true" value="0" />
+					</div>
+				</div>
+				<div class="float-l">
+					<div class="Dialog-form-title2">
+						<label for="kc_cbjiage" class="field">成本价格：</label>
+					</div>
+					<div class="Dialog-form-item">
+						<input id="kc_cbjiage" name="kc_cbjiage"
+							onkeyup="clearNoNum(this);" type="text"
+							class="easyui-validatebox" data-options="required:false" />
+					</div>
+				</div>
+				<div class="float-l">
+					<div class="Dialog-form-title2">
+						<label for="kc_lsjiage" class="field">零售价格：</label>
+					</div>
+					<div class="Dialog-form-item">
+						<input id="kc_lsjiage" name="kc_lsjiage"
+							onkeyup="clearNoNum(this);" type="text"
+							class="easyui-validatebox" data-options="required:false" />
+					</div>
+				</div>
+
+				<div class="float-l">
+					<div class="Dialog-form-title2">
+						<label for="kc_scriqi" class="field">生产日期：</label>
+					</div>
+					<div class="Dialog-form-item">
+						<input id="kc_scriqi" name="kc_scriqi" type="text"
+							class="easyui-validatebox" data-options="required:false" />
+					</div>
+				</div>
+
+				<div class="float-l">
+					<div class="Dialog-form-title2">
+						<label for="kc_yxriqi" class="field">有效日期：</label>
+					</div>
+					<div class="Dialog-form-item">
+						<input id="kc_yxriqi" name="kc_yxriqi" type="text"
+							class="easyui-validatebox" data-options="required:false" />
+					</div>
+				</div>
+				<!-- 
+                    <div class="float-l">
+                <div class="Dialog-form-title2">
+                    <label for="kc_zdjiage" class="field">最低价格：</label>
+                </div>
+                <div class="Dialog-form-item">
+                    <input id="kc_zdjiage" name="kc_zdjiage"  onkeyup="clearNoNum(this);"type="text" class="easyui-validatebox" data-options="required:true"/>
+                </div>
+            </div>
+             -->
+
+				<div class="float-l clearboth2">
+					<div class="Dialog-form-title2">
+						<label for="kc_ypleibie" class="field">药品类别：</label>
+					</div>
+					<div class="Dialog-form-item">
+						<input id="kc_ypleibie" name="kc_ypleibie"
+							class="easyui-validatebox" data-options="required:false"
+							type="text" style="width: 152px" readonly="readonly" />
+					</div>
+				</div>
+				<div class="float-l">
+					<div class="Dialog-form-title2">
+						<label for="kc_yppihao" class="field">药品批号：</label>
+					</div>
+					<div class="Dialog-form-item">
+						<input id="kc_yppihao" name="kc_yppihao" type="text"
+							class="easyui-validatebox" data-options="required:false"
+							readonly="readonly" />
+					</div>
+				</div>
+				<div class="float-l">
+					<div class="Dialog-form-title2">
+						<label for="kc_shengchanshang" class="field">生产商：</label>
+					</div>
+					<div class="Dialog-form-item">
+						<input id="kc_shengchanshang" name="kc_shengchanshang" type="text"
+							class="easyui-validatebox" data-options="required:false"
+							readonly="readonly" />
+					</div>
+				</div>
+				<!-- 
 			<div class="float-l">
 			    <div class="Dialog-form-title2">
 			        <label for="kc_scpici" class="field">药品批次：</label>
@@ -141,81 +237,50 @@
 			        <input id="kc_scpici" name="kc_scpici" type="text" class="easyui-validatebox" data-options="required:true"/>
 			    </div>
 			</div>
+			 -->
+
+
+				<input id="kc_zdjiage" name="kc_zdjiage" type="hidden" value="0" />
+				<!-- 					<div class="float-l"> -->
+				<!-- 			    <div class="Dialog-form-title2"> -->
+				<!-- 			        <label for="kc_rkriqi" class="field">入库日期：</label> -->
+				<!-- 			    </div> -->
+				<!-- 			    <div class="Dialog-form-item"> -->
+				<!-- 			        <input id="kc_rkriqi" name="kc_rkriqi" type="text" class="easyui-validatebox" data-options="required:true"/> -->
+				<!-- 			    </div> -->
+				<!-- 			</div> -->
+
 				<div class="float-l">
-			    <div class="Dialog-form-title2">
-			        <label for="kc_scriqi" class="field">生产日期：</label>
-			    </div>
-			    <div class="Dialog-form-item">
-			        <input id="kc_scriqi" name="kc_scriqi" type="text" class="easyui-validatebox" data-options="required:true"/>
-			    </div>
-			</div>
-			
-				<div class="float-l">
-			    <div class="Dialog-form-title2">
-			        <label for="kc_yxriqi" class="field">有效日期：</label>
-			    </div>
-			    <div class="Dialog-form-item">
-			        <input id="kc_yxriqi" name="kc_yxriqi" type="text" class="easyui-validatebox" data-options="required:true"/>
-			    </div>
-			</div>
-			
-					<div class="float-l">
-			    <div class="Dialog-form-title2">
-			        <label for="kc_cbjiage" class="field">成本价格：</label>
-			    </div>
-			    <div class="Dialog-form-item">
-			        <input id="kc_cbjiage" name="kc_cbjiage"  onkeyup="clearNoNum(this);" type="text" class="easyui-validatebox" data-options="required:true"/>
-			    </div>
-			</div>
-						
-					<div class="float-l">
-			    <div class="Dialog-form-title2">
-			        <label for="kc_zdjiage" class="field">最低价格：</label>
-			    </div>
-			    <div class="Dialog-form-item">
-			        <input id="kc_zdjiage" name="kc_zdjiage"  onkeyup="clearNoNum(this);"type="text" class="easyui-validatebox" data-options="required:true"/>
-			    </div>
-			</div>
-						<div class="float-l">
-			    <div class="Dialog-form-title2">
-			        <label for="kc_lsjiage" class="field">零售价格：</label>
-			    </div>
-			    <div class="Dialog-form-item">
-			        <input id="kc_lsjiage" name="kc_lsjiage"  onkeyup="clearNoNum(this);" type="text" class="easyui-validatebox" data-options="required:true"/>
-			    </div>
-			</div>
-<!-- 					<div class="float-l"> -->
-<!-- 			    <div class="Dialog-form-title2"> -->
-<!-- 			        <label for="kc_rkriqi" class="field">入库日期：</label> -->
-<!-- 			    </div> -->
-<!-- 			    <div class="Dialog-form-item"> -->
-<!-- 			        <input id="kc_rkriqi" name="kc_rkriqi" type="text" class="easyui-validatebox" data-options="required:true"/> -->
-<!-- 			    </div> -->
-<!-- 			</div> -->
-				<div class="float-l">
-			    <div class="Dialog-form-title2">
-			        <label for="kc_laiyuan" class="field">药品来源：</label>
-			    </div>
-			    <div class="Dialog-form-item">
-			        <input id="kc_laiyuan" name="kc_laiyuan" type="text" class="easyui-validatebox" data-options="required:true"/>
-			    </div>
-			</div>
-<!-- 				<div class="float-l"> -->
-<!-- 			    <div class="Dialog-form-title2"> -->
-<!-- 			        <label for="kc_status" class="field">药品状态：</label> -->
-<!-- 			    </div> -->
-<!-- 			    <div class="Dialog-form-item"> -->
-<!-- 			        <input id="kc_status" name="kc_status" type="text" class="easyui-validatebox" data-options="required:true"/> -->
-<!-- 			    </div> -->
-<!-- 			</div> -->
-		</form>
+					<div class="Dialog-form-title2">
+						<label for="kc_laiyuan" class="field">药品来源：</label>
+					</div>
+					<div class="Dialog-form-item">
+						<input id="kc_laiyuan" name="kc_laiyuan" type="text"
+							class="easyui-validatebox" data-options="required:false" />
+					</div>
+				</div>
+
+				<!-- 				<div class="float-l"> -->
+				<!-- 			    <div class="Dialog-form-title2"> -->
+				<!-- 			        <label for="kc_status" class="field">药品状态：</label> -->
+				<!-- 			    </div> -->
+				<!-- 			    <div class="Dialog-form-item"> -->
+				<!-- 			        <input id="kc_status" name="kc_status" type="text" class="easyui-validatebox" data-options="required:true"/> -->
+				<!-- 			    </div> -->
+				<!-- 			</div> -->
+			</form>
 		</div>
 	</div>
 	<div data-options="region:'south',border:false" class="Dialog-footer">
-	    <input id="" class="btn-save" onmouseover="this.className='btn-save-over'"
-	    onmouseout="this.className='btn-save'" onmousedown="this.className='btn-save-down'" type="button" onclick="submitForm();" />
-	    <input id="" class="btn-cancel" onmouseover="this.className='btn-cancel-over'"
-	    onmouseout="this.className='btn-cancel'" onmousedown="this.className='btn-cancel-down'" type="button" onclick="util.closeWindow('editWindow');" />
+		<input id="" class="btn-save"
+			onmouseover="this.className='btn-save-over'"
+			onmouseout="this.className='btn-save'"
+			onmousedown="this.className='btn-save-down'" type="button"
+			onclick="submitForm();" /> <input id="" class="btn-cancel"
+			onmouseover="this.className='btn-cancel-over'"
+			onmouseout="this.className='btn-cancel'"
+			onmousedown="this.className='btn-cancel-down'" type="button"
+			onclick="util.closeWindow('editWindow');" />
 		<!-- <a class="easyui-linkbutton" href="javascript:void(0);"
 			onclick="submitForm();">保存</a> <a class="easyui-linkbutton"
 			href="javascript:void(0);" onclick="util.closeWindow('editWindow');">取消</a> -->

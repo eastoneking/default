@@ -92,4 +92,22 @@
             </bean>
         </property>
     </bean>
+    
+    <bean id="ep.jiezhen" class="eastone.endpoint.fac.HttpJsonIaEpFactory"
+        scope="prototype" lazy-init="true">
+        <property name="controller">
+            <bean class="eastone.controller.fac.HttpIaCtrlFactory" lazy-init="true">
+                <property name="business" ref="bizJiezhen"></property>
+            </bean>
+        </property>
+    </bean>
+    <bean id="ep.updateKuCun" class="eastone.endpoint.fac.HttpJsonIaEpFactory"
+        scope="prototype" lazy-init="true">
+        <property name="controller">
+            <bean class="eastone.controller.fac.HttpIaCtrlFactory" lazy-init="true">
+                <property name="business" ref="bizUpdateKuCun"></property>
+            </bean>
+        </property>
+    </bean>
+    
 </beans>
