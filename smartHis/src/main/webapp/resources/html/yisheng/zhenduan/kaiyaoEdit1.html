@@ -6,13 +6,26 @@
       panelWidth : 500,
       idField : 'kc_ypbmnumber',
       textField : 'kc_ypbmnumber',
-      mode : 'local',
+      mode : 'remote',
       // 				mode:'mode', 
-      filter:function(q,row){
-        return row["kc_ypname"].indexOf(q)>=0&&row["kc_shuliang"]>0;
-      },
+      
       fitColumns : true,
       url : global_param.context_name + "/select/getByCode/getyaopinkucun",
+      loadFilter : function(data) {
+        var rs = [];
+        var q = $("#zdyp_ypbmnumber").combogrid("getText");
+        console.log(q)
+        console.log(data);
+        for (var i = 0; i < data.length; i++) {
+          if (data[i].kc_ypname.indexOf(q) >= 0) {
+            rs[rs.length] = data[i];
+          }
+        }
+        return {
+          total : rs.length,
+          rows : rs
+        };
+      },
       columns : [ [ {
         field : 'kc_ypbmnumber',
         title : '药品编码',

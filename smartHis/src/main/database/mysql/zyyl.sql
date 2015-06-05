@@ -1066,4 +1066,21 @@ insert into `dict_base` (`id`,`text`,`class`) values ('2d40d0fe-fdd4-11e4-ac83-e
 insert into `dict_base` (`id`,`text`,`class`) values ('555d6052-fdd4-11e4-ac83-e60c8472ae15','注射','药品使用方式');
 
 
-select uuid();
+DROP TABLE IF EXISTS `T_ServiceDetail`;
+CREATE TABLE `T_ServiceDetail` (
+  `serviceId` varchar(36),
+  `serviceClassId` varchar(10),
+  `serviceClassName` varchar(50),
+  `servicePrice` numeric(15,4),
+  `serviceCount` Integer,
+  `serviceTotal` numeric(15,4),
+  `docId` varchar(36),
+  `docName` varchar(50),
+  `prescriptionId` varchar(36),
+  `bizTm` timestamp,
+  PRIMARY KEY (`serviceId`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+select * from T_ServiceDetail;
+
+

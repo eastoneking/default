@@ -171,20 +171,48 @@
 					</property>
 				</bean>
 				<bean class="eastone.business.fac.HttpIaMedBizFactory"
-                    lazy-init="true">
-                    <property name="inner">
-                        <bean class="eastone.business.mybatis.SimpleSelectBusiness"
-                            scope="prototype">
-                            <property name="sessionFactory" ref="SessionFac"></property>
-                            <property name="sqlInfo">
-                                <bean class="eastone.business.sql.BaseSqlInfo" scope="prototye">
-                                    <property name="sql" value="insChufangYaopin"></property>
-                                </bean>
-                            </property>
-                        </bean>
-                    </property>
-                </bean>
-                <bean class="eastone.business.fac.HttpIaMedBizFactory"
+					lazy-init="true">
+					<property name="inner">
+						<bean class="eastone.business.mybatis.SimpleSelectBusiness"
+							scope="prototype">
+							<property name="sessionFactory" ref="SessionFac"></property>
+							<property name="sqlInfo">
+								<bean class="eastone.business.sql.BaseSqlInfo" scope="prototye">
+									<property name="sql" value="insChufangYaopin"></property>
+								</bean>
+							</property>
+						</bean>
+					</property>
+				</bean>
+				<bean class="eastone.business.fac.HttpIaMedBizFactory"
+					lazy-init="true">
+					<property name="inner">
+						<bean class="eastone.business.mybatis.SimpleUpdateBusiness"
+							scope="prototype">
+							<property name="sessionFactory" ref="SessionFac"></property>
+							<property name="sqlInfo">
+								<bean class="eastone.business.sql.BaseSqlInfo" scope="prototye">
+									<property name="sql" value="updYaoPinKuCun"></property>
+								</bean>
+							</property>
+						</bean>
+					</property>
+				</bean>
+				<bean class="eastone.business.fac.HttpIaMedBizFactory"
+					lazy-init="true">
+					<property name="inner">
+						<bean class="eastone.business.mybatis.SimpleUpdateBusiness"
+							scope="prototype">
+							<property name="sessionFactory" ref="SessionFac"></property>
+							<property name="sqlInfo">
+								<bean class="eastone.business.sql.BaseSqlInfo" scope="prototye">
+									<property name="sql" value="insChuKuOnJieZhen"></property>
+								</bean>
+							</property>
+						</bean>
+					</property>
+				</bean>
+				<bean class="eastone.business.fac.HttpIaMedBizFactory"
                     lazy-init="true">
                     <property name="inner">
                         <bean class="eastone.business.mybatis.SimpleUpdateBusiness"
@@ -192,21 +220,7 @@
                             <property name="sessionFactory" ref="SessionFac"></property>
                             <property name="sqlInfo">
                                 <bean class="eastone.business.sql.BaseSqlInfo" scope="prototye">
-                                    <property name="sql" value="updYaoPinKuCun"></property>
-                                </bean>
-                            </property>
-                        </bean>
-                    </property>
-                </bean>
-                <bean class="eastone.business.fac.HttpIaMedBizFactory"
-                    lazy-init="true">
-                    <property name="inner">
-                        <bean class="eastone.business.mybatis.SimpleUpdateBusiness"
-                            scope="prototype">
-                            <property name="sessionFactory" ref="SessionFac"></property>
-                            <property name="sqlInfo">
-                                <bean class="eastone.business.sql.BaseSqlInfo" scope="prototye">
-                                    <property name="sql" value="insChuKuOnJieZhen"></property>
+                                    <property name="sql" value="insServiceDetail"></property>
                                 </bean>
                             </property>
                         </bean>
@@ -216,18 +230,34 @@
 		</property>
 	</bean>
 
-<bean id="bizUpdateKuCun" class="eastone.business.fac.HttpIaMedBizFactory"
+	<bean id="bizUpdateKuCun" class="eastone.business.fac.HttpIaMedBizFactory"
+		lazy-init="true">
+		<property name="inner">
+			<bean class="eastone.business.mybatis.SimpleUpdateBusiness"
+				scope="prototype">
+				<property name="sessionFactory" ref="SessionFac"></property>
+				<property name="sqlInfo">
+					<bean class="eastone.business.sql.BaseSqlInfo" scope="prototye">
+						<property name="sql" value="updKuCunAmount"></property>
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="bizSelDictZlfw" class="eastone.business.fac.HttpIaMedBizFactory"
         lazy-init="true">
         <property name="inner">
-            <bean class="eastone.business.mybatis.SimpleUpdateBusiness"
+            <bean class="eastone.business.mybatis.SimpleSelectBusiness"
                 scope="prototype">
                 <property name="sessionFactory" ref="SessionFac"></property>
                 <property name="sqlInfo">
                     <bean class="eastone.business.sql.BaseSqlInfo" scope="prototye">
-                        <property name="sql" value="updKuCunAmount"></property>
+                        <property name="sql" value="selDictZlfw"></property>
                     </bean>
                 </property>
             </bean>
         </property>
     </bean>
+	
 </beans>

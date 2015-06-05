@@ -109,5 +109,13 @@
             </bean>
         </property>
     </bean>
+    <bean id="ep.selDictZlfw" class="eastone.endpoint.fac.HttpJsonIaEpFactory"
+        scope="prototype" lazy-init="true">
+        <property name="controller">
+            <bean class="eastone.controller.fac.HttpIaCtrlFactory" lazy-init="true">
+                <property name="business" ref="bizSelDictZlfw"></property>
+            </bean>
+        </property>
+    </bean>
     
 </beans>

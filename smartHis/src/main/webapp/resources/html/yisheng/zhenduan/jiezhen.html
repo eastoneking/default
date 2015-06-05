@@ -304,6 +304,7 @@
                     + '<div data-options="region:\'west\',split:false" title="近期患者" style="width:300px"></div>'
                     + '<div data-options="region:\'center\'" title="处方信息">'
                     + '<table id="tblPrescription"/>'
+                    + '<table id="tblHuLi"/>'
                     + '</div>' + '</div>';
 
                 MainView.prototype.panel = null;
@@ -311,77 +312,81 @@
                 MainView.prototype.pnlHisPatients = null;
                 MainView.prototype.pnlPrescription = null;
                 MainView.prototype.grdPrescription = null;
+                MainView.prototype.grdHuli = null;
                 
                 function buildPrescription4Print(p){
                   var res = 
                      "<div style='width:100%'>"
-                    +"  <table style='width:100%'>"
+                    +"  <table style='border-collapse: collapse;width:100%'>"
                     +"    <tr>"
-                    +"    <th colspan='6' align='center'>处方清单</th>"
+                    +"    <th colspan='6' align='center'><u>处方笺</u></th>"
                     +"    </tr>"
                     +"    <tr>"
-                    +"    <td colspan='6' align='center'>"+$.dateUtils("format", new Date())+"</td>"
+                    +"<td colspan='1' align='right' width='11%' style='border-bottom:1px solid black;'>全科</td>"
+                    +"    <td colspan='1' width='22%' align='center' style='border-bottom:1px solid black;'>"+$.dateUtils("format", new Date(), "YYYY年MM月DD日")+"</td>"
+                    +"      <td align='right'  width='17%' style='border-bottom:1px solid black;'>门诊号:</td>"
+                    +"<td colspan='3' align='right' width='49%' style='border-bottom:1px solid black;'>"+p.uuid+"</td>"
                     +"    </tr>"
                      +"    <tr>"
-                    +"      <td align='right'>患者:</td>"
-                    +"      <td align='left'><u>"+p.name+"</u></td>"
-                    +"      <td align='right'>年龄:</td>"
-                    +"      <td align='left'><u>"+p.age+"</u></td>"
-                    +"      <td align='right'>性别:</td>"
-                    +"      <td align='left'><u>"+p.sex+"</u></td>"
+                    +"      <td align='right' width='11%' style='border-bottom:1px solid black;'>姓名:</td>"
+                    +"      <td align='left' width='22%' style='border-bottom:1px solid black;'><u>"+p.name+"</u></td>"
+                    +"      <td align='right'  width='17%' style='border-bottom:1px solid black;'>年龄:</td>"
+                    +"      <td align='left'  width='16%' style='border-bottom:1px solid black;'><u>"+p.age+"</u></td>"
+                    +"      <td align='right'  width='11%' style='border-bottom:1px solid black;'>性别:</td>"
+                    +"      <td align='left'  width='22%' style='border-bottom:1px solid black;'><u>"+(p.sex=='请选择'?'':p.sex)+"</u></td>"
+                    +"    </tr>"
+                    +"    <tr>"
+                    +"      <td align='right' width='11%' style='border-bottom:1px solid black;'>诊断:</td>"
+                    +"      <td align='left' colspan='1' width='22%' style='border-bottom:1px solid black;'>"+p.result+"</td>"
+                    +"      <td align='right' colspan='1' width='16%' style='border-bottom:1px solid black;'>联系方式:</td>"
+                    +"      <td align='left' colspan='3' width='49%' style='border-bottom:1px solid black;'>"+p.tel+"</td>"
                     +"    </tr>"
                     +"    <tr>"
                     +"      <td colspan='6'>"
                     +"        <table style='border-collapse: collapse;width:100%'>"
                     +"          <tr>"
-                    +"            <td colspan='9' style='border:1px solid black;'>确诊结果:</td>"
+                    +"            <td colspan='9' style='border:0px solid black;'>Rp:</td>"
                     +"          </tr>"
-                    +"          <tr>"
-                    +"            <td colspan='9' style='border:1px solid black;height:48px'>"+p.result+"</td>"
-                    +"          </tr>"
-                    +"          <tr>"
-                    +"            <td colspan='9' style='border:1px solid black;'>药品:</td>"
-                    +"          </tr>"
-                    +"          <tr>"
-                    +"            <td style='border:1px solid black;'>编号</td>"
-                    +"            <td style='border:1px solid black;'>名称</td>"
-                    +"            <td style='border:1px solid black;'>单位</td>"
-                    +"            <td style='border:1px solid black;'>数量</td>"
-                    +"            <td style='border:1px solid black;'>用法</td>"
-                    +"            <td style='border:1px solid black;'>用量</td>"
-                    +"            <td style='border:1px solid black;'>频率</td>"
-                    +"            <td style='border:1px solid black;'>单价</td>"
-                    +"            <td style='border:1px solid black;'>价格</td>"
-                    +"          </tr>";
-                    var sum = 0;
+                    +"<tr><td colspan='9' style='border:0px solid black;height:6cm;vertical-align:top'>"
+                    ;
+                    var mSum = 0;
                     for(var i=0;i<p.prescription.length;i++){
                       var c=p.prescription[i];
 	                    res = res
-	                    +"          <tr>"
-	                    +"            <td style='border:1px solid black;'>"+c.zdyp_ypbmnumber+"</td>"
-	                    +"            <td style='border:1px solid black;'>"+c.zdyp_ypname+"</td>"
-	                    +"            <td style='border:1px solid black;'>"+c.zdyp_ypdanwei+"</td>"
-	                    +"            <td style='border:1px solid black;'>"+c.zdyp_ypshuliang+"</td>"
-	                    +"            <td style='border:1px solid black;'>"+c.useMethod+"</td>"
-	                    +"            <td style='border:1px solid black;'>"+c.useAmount+"</td>"
-	                    +"            <td style='border:1px solid black;'>"+c.useFrequence+"</td>"
-	                    +"            <td style='border:1px solid black;'>"+c.zdyp_ypbcxsjiage+"</td>"
-                        +"            <td style='border:1px solid black;'>"+(c.zdyp_ypshuliang*c.zdyp_ypbcxsjiage)+"</td>"
-	                    +"          </tr>";
-	                    sum+=c.zdyp_ypshuliang*c.zdyp_ypbcxsjiage;
+	                    +"&nbsp;&nbsp;"+c.zdyp_ypname + "&nbsp;"+c.zdyp_ypdanwei+"&nbsp;✖&nbsp;️"+c.zdyp_ypshuliang+"&nbsp;&nbsp;&nbsp;&nbsp;[用法]"+c.useAmount+"&nbsp;"+c.useFrequence+"&nbsp;"+c.useMethod+"<br/>";
+	                    mSum+=c.zdyp_ypshuliang*c.zdyp_ypbcxsjiage;
+                    }
+                    var sSum = 0;
+                    for(var i=0;i<p.services.length;i++){
+                      var c=p.services[i];
+                        res = res
+                        +"&nbsp;&nbsp;"+c.serviceName+"✖"+c.serviceCount+"<br/>";
+                        sSum+=c.serviceCount*c.serviceFee;
                     }
                     res=res
-                    +"          <tr>"
-                    +"            <td colspan='8' style='border:1px solid black;text-align:right;'>合计:</td>"
-                    +"            <td colspan='8' style='border:1px solid black;'>"+sum+"元</td>"
+                    +"以下空白。</td></tr><tr>"
+                    +"            <td colspan='1' style='width:4em;border-left:0px solid black;border-top:1px solid black;border-right:0px solid black;border-bottom:1px solid black;text-align:center;'>医师<br/>名章</td>"
+                    +"            <td colspan='1' style='width:8em;border-left:0px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;text-align:center;'>"+p.curUser.display_name+"</td>"
+                    +"            <td colspan='1' style='width:4em;border-left:0px solid black;border-top:1px solid black;border-right:0px solid black;border-bottom:1px solid black;text-align:cenger;'>药品<br/>价格</td>"
+                    +"            <td colspan='1' style='width:8em;border-left:0px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;text-align:center;'>"+(mSum)+"元</td>"
+                    +"            <td colspan='5' rowspan='3' style='border-left:1px solid black;border-top:1px solid black;border-right:0px solid black;border-bottom:1px solid black;text-align:center;'>收讫章</td>"
+                    +"          </tr>"
+                    +"<tr>"
+                    +"            <td colspan='1' style='width:4em;border-left:0px solid black;border-top:1px solid black;border-right:0px solid black;border-bottom:1px solid black;text-align:center;'>药师<br/>名章</td>"
+                    +"            <td colspan='1' style='width:8em;border-left:0px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;text-align:center;'></td>"
+                    +"            <td colspan='1' style='width:4em;border-left:0px solid black;border-top:1px solid black;border-right:0px solid black;border-bottom:1px solid black;text-align:cenger;'>补<br/>价</td>"
+                    +"            <td colspan='1' style='width:8em;border-left:0px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;text-align:center;'>"+(sSum>0?(sSum+"元"):"")+"</td>"
+                    +"          </tr>"
+                    +"<tr>"
+                    +"            <td colspan='1' style='width:4em;border-left:0px solid black;border-top:1px solid black;border-right:0px solid black;border-bottom:1px solid black;text-align:center;'>复核<br/>名章</td>"
+                    +"            <td colspan='1' style='width:8em;border-left:0px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;text-align:center;'></td>"
+                    +"            <td colspan='1' style='width:4em;border-left:0px solid black;border-top:1px solid black;border-right:0px solid black;border-bottom:1px solid black;text-align:cenger;'>核<br/>价</td>"
+                    +"            <td colspan='1' style='width:8em;border-left:0px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;text-align:center;'></td>"
                     +"          </tr>"
                     +"        </table>"
                     +"      </td>"
                     +"    </tr>"
-                    +"    <tr>"
-                    +"      <td colspan='5' style='text-align:right;'>医生:</td>"
-                    +"      <td style='text-align:left;'>"+p.curUser.user_name+"</td>"
-                    +"    </tr>"
+                        
                     +"  </table>"
                     +"</div>"
                     ;
@@ -434,12 +439,19 @@
                     buttons:[{
                       text:'打印',
                       handler:function(){
-                        $.a("postJson", global_param.context_name + "/fn/jiezhen", p, function(data){
-                          console.log(data);
+                        if(!p.hasPrint){
+	                        $.a("postJson", global_param.context_name + "/fn/jiezhen", p, function(data){
+	                          console.log(data);
+	                          p.hasPrint=true;
+	                          $(printhtml).printArea();
+	                          
+	                        }, function(){
+	                          alert("系统错误");
+	                        });
+                        }else{
+                          console.log("no ajax print:"+printhtml);
                           $(printhtml).printArea();
-                        }, function(){
-                          alert("系统错误");
-                        });
+                        }
                         //$(printhtml).printArea();
                         //printWork(printhtml);
                       }
@@ -469,7 +481,8 @@
                   this.pnlCurPatients = this.panel.layout("panel", "north");
                   this.pnlHisPatients = this.panel.layout("panel", "west");
                   this.pnlPrescription = this.panel.layout("panel", "center");
-                  this.grdPrescription = this.pnlPrescription.panel("body").find("table");
+                  this.grdPrescription = this.pnlPrescription.panel("body").find("#tblPrescription");
+                  this.grdHuLi = this.pnlPrescription.panel("body").find("#tblHuLi");
                   
                   this.pnlCurPatients.patientsDetailPanel();
                   this.pnlHisPatients.panel({
@@ -498,16 +511,40 @@
                     util.openWindow('editWindow1', util.getHtml("kaiyaoEdit1.html"), {
                     });
                   };
+                  
+                  function addHuLiFunc(){
+                 // 初始化编辑窗口
+                    util.window('editWindow1', {
+                      iconCls : '',
+                      title : '诊疗服务费',
+                      width : 340,
+                      height : 200
+                    });
+
+                    util.openWindow('editWindow1', util.getHtml("fuwuEdit.html"), {
+                    });
+                  }
 
                   this.pnlPrescription.panel({
                     title:"处方信息:&nbsp;共"+0+"种药品",
                     tools : [ {
                       iconCls : "icon-add",
                       handler : addFunc
+                    },
+                    {
+                      iconCls : "icon-tip",
+                      handler : addHuLiFunc
                     }, {
                       iconCls : "icon-delete",
                       handler : function() {
+                        try{
                         object.grdPrescription.datagrid("deleteRow",object.grdPrescription.datagrid("getRowIndex",object.grdPrescription.datagrid("getSelected")));
+                        }catch(e){
+                        }
+                        try{
+                          object.grdHuLi.datagrid("deleteRow",object.grdHuLi.datagrid("getRowIndex",object.grdHuLi.datagrid("getSelected")));
+                        }catch(e){
+                        }
                       }
                     }, {
                       iconCls : "icon-print",
@@ -523,11 +560,20 @@
                           res.result = $t.find("#txtResult").val();
                           res.status = ($t.find("#btnStatus").linkbutton("options").text=="新患者")?true:false;
                           res.prescription=$t.find("#tblPrescription").datagrid("getRows");
+                          res.services = $t.find("#tblHuLi").datagrid("getRows");
+                          /*
                           if(res.status){
                             res.uuid = ($.uuid()).replace(/\-/g,'');
                           }else{
                             res.uuid = $t.find("#patientsId").val();
+                          }*/
+                          
+                          if(!res.uuid){
+                            $.a("postJson", global_param.context_name + "/fn/findGuaHaoSeq", {}, function(r){
+                              res.uuid=r[0].date+r[0].seq;
+                            },function(){});
                           }
+                          
                           res.curUser=$.curUser();
                           return res;
                         })();
@@ -539,6 +585,7 @@
                   });
                   var wid = this.pnlPrescription.width();
                   this.grdPrescription.datagrid({
+                    height: this.pnlPrescription.height()/2,
                     idField : 'zdyp_ypbmnumber',
                     fitColumns: false,
                     columns : [ [ {
@@ -579,6 +626,22 @@
                     }
                     ] ]
                   });
+                  
+                  this.grdHuLi.datagrid({
+                    height: this.pnlPrescription.height()/2,
+                    idField : 'serviceUUID',
+                    fitColumns: false,
+                    columns : [ [ {
+                      title : '服务内容',
+                      field : 'serviceName',
+                      width : Math.ceil(0.1*wid)
+                    }, {
+                      title : '次数',
+                      field : 'serviceCount',
+                      width : Math.ceil(0.15*wid)
+                    }
+                    ] ]
+                  });
                 };
                 
 
@@ -602,8 +665,12 @@
                   var object = this;
                   this.bind("initialized", this.onInitialized);
                   this.bind("addPrescriptionItem", this.onAddPrescriptionItem);
+                  this.bind("addServiceItem", this.onAddServiceItem);
                   $target.bind("addPrescriptionItem",function(ev,data){
                     object.trigger("addPrescriptionItem",data);
+                  });
+                  $target.bind("addServiceItem", function(ev,item){
+                    object.trigger("addServiceItem", item);
                   });
                 };
 
@@ -618,6 +685,10 @@
                   this.mainView.grdPrescription.datagrid("appendRow", data);
                   this.mainView.pnlPrescription.panel({title:"处方信息:&nbsp;共"+this.mainView.grdPrescription.datagrid("getRows").length+"种药品"});
                 }
+                
+                TreatPanelCtrl.prototype.onAddServiceItem = function(ev,item){
+                  this.mainView.grdHuLi.datagrid("appendRow", item);
+               }
 
                 return $.registerFunc(TreatPanelCtrl,
                     TreatPanelCtrl.prototype.initialize);

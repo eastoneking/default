@@ -148,4 +148,27 @@
 		now(),#{result}
 		)
 	</insert>
+	
+	<insert id="insServiceDetail" parameterType="hashmap">
+	insert into `T_ServiceDetail` (
+	 `serviceId`,`serviceClassId`,`serviceClassName`,
+    `servicePrice`,`serviceCount`,`serviceTotal`,
+    `docId`, `docName`,`prescriptionId`,`bizTm`
+    ) values <foreach collection="services" item="item" index="index"
+            open="" close="" separator=",">
+            (
+            #{item.serviceUUID},
+            #{item.serviceId},
+            #{item.serviceName},
+            cast(#{item.serviceFee} as DECIMAL),
+            cast(#{item.serviceCount} as signed),
+            cast(#{item.serviceFee} as DECIMAL)*cast(#{item.serviceCount} as signed),
+            #{curUser.id},
+            #{curUser.user_name},
+            (select max(id) from yl_yszhenduan where zd_ghnumber=#{uuid}),
+            now()
+            )
+        </foreach>
+	
+	</insert>
 </mapper>
