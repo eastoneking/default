@@ -1,0 +1,105 @@
+<script type="text/javascript">
+  $(function() {
+    var param = util.getWindowParam();
+    var dictZlfw = [];
+    $.a(
+        "postJson",
+        global_param.context_name + "/fn/selDictZlfw",
+        {},
+        function(rs){
+          dictZlfw = rs;
+        },
+        function(){console.log(arguments);}
+    );
+    
+    // 类别下拉框
+    $('#fwnr').combobox({
+      valueField : 'zlfwId',
+      textField : 'name',
+      data:dictZlfw
+    });
+
+  });
+  function submitForm() {
+
+    var item = {
+        serviceId:$("#fwnr").combobox("getValue"),
+        serviceCount:$("#fwcs").val(),
+        serviceUUID:$.uuid()
+    };
+    
+    if(item.serviceCount>0){
+      var dictZlfw = [];
+      $.a(
+          "postJson",
+          global_param.context_name + "/fn/selDictZlfw",
+          {},
+          function(rs){
+            dictZlfw = rs;
+          },
+          function(){console.log(arguments);}
+      );
+      $(dictZlfw).each(
+          function(){
+            if(item.serviceId==this.zlfwId){
+              item.serviceFee = this.value;
+              item.serviceName = this.name;
+              return false;
+            }
+          }
+      );
+      console.log(item);
+      $("body div#main").trigger("addServiceItem", item);
+    }
+    
+    util.closeWindow('editWindow1');
+
+  }
+  function initJinE() {
+    
+  }
+</script>
+<div class="easyui-layout" fit="true">
+	<div region="center" border="false" class="Dialog-Bg">
+		<div class="Dialog-formDiv clearfix">
+			<form id="_form" action="/YLManager/kaiyao/kaiyao/save" method="post">
+				<input id="id" name="id" type="hidden" /> <input id="zdyp_ghnumber"
+					name="zdyp_ghnumber" type="hidden" /> <input id="zdyp_ghid"
+					name="zdyp_ghid" type="hidden" /> <input id="zdyp_zdid"
+					name="zdyp_zdid" type="hidden" />
+				<div class="float-l clearboth">
+					<div class="Dialog-form-title2">
+						<label for="fwnr" class="field">服务内容：</label>
+					</div>
+					<div class="Dialog-form-item">
+						<input id="fwnr" name="fwnr" type="text"
+							style="width: 158px;" class="easyui-validatebox"
+							data-options="required:true" />
+					</div>
+				</div>
+				
+				<div class="float-l">
+					<div class="Dialog-form-title2">
+						<label for="fwcs" class="field">服务次数：</label>
+					</div>
+					<div class="Dialog-form-item">
+						<input id="fwcs" name="fwcs" type="text"
+							class="easyui-numberspinner" onblur="initJinE();"
+							data-options="required:true,width:158,value:0,min:0" />
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div data-options="region:'south',border:false" class="Dialog-footer">
+		<input id="" class="btn-save"
+			onmouseover="this.className='btn-save-over'"
+			onmouseout="this.className='btn-save'"
+			onmousedown="this.className='btn-save-down'" type="button"
+			onclick="submitForm();" /> <input id="" class="btn-cancel"
+			onmouseover="this.className='btn-cancel-over'"
+			onmouseout="this.className='btn-cancel'"
+			onmousedown="this.className='btn-cancel-down'" type="button"
+			onclick="util.closeWindow('editWindow1');" />
+	</div>
+</div>

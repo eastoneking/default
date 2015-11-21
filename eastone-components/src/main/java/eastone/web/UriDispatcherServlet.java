@@ -47,8 +47,8 @@ public class UriDispatcherServlet extends AbstractAboutUriDispatherServlet {
             throw new ServletException(e);
         }
         String path = uri.getPath();
-        int iSepIdx = path.indexOf("/");
-        String res = path.substring(iSepIdx);
+        int iSepIdx = path.lastIndexOf("/");
+        String res = path.substring(iSepIdx+1);
         return res;
     }
 
