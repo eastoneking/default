@@ -98,12 +98,11 @@ public final class AesUtil extends GeneralParentObject {
       NoSuchProviderException, NoSuchPaddingException, InvalidKeyException,
       InvalidAlgorithmParameterException {
     Cipher res = null;
-
     final SecretKey secretkey = new SecretKeySpec(key, ALGORITHM_SHORT_NAME);
     final IvParameterSpec ivparameter = new IvParameterSpec(ivp);
     res = Cipher.getInstance(ALGORITHM_LONG_NAME, PROVIDER_NAME);
     res.init(mode, secretkey, ivparameter);
-
+    
     return res;
   }
 
@@ -153,15 +152,16 @@ public final class AesUtil extends GeneralParentObject {
     return res;
   }
 
-  /**
+  /*
    * 生成初始矩阵.
    * @return 初始矩阵.
-   */
+   
   public static byte[] generateIvParameter() {
     byte[] t = new byte[IV_SIZE];
     new SecureRandom().nextBytes(t);
     return t;
   }
+  */
 
   /**
    * 加密.
