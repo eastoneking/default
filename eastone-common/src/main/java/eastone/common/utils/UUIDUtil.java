@@ -28,6 +28,6 @@ public class UUIDUtil {
         StringBuffer buf = new StringBuffer(uuid.toString());
         buf.deleteCharAt(23).deleteCharAt(18).deleteCharAt(13).deleteCharAt(8);
         return buf.toString();
-    }
+    } 
 
 }
