@@ -26,7 +26,7 @@ import eastone.common.context.BeanContextFactory;
 public class SpringMongodbTestCase {
     
     @SuppressWarnings("unchecked")
-    //@Test
+    @Test
     public void test(){
         BeanContext ctx = BeanContextFactory.getBeanContext();
         ctx.appendContext("classpath:eastone/mongodb/test/test1.xml");
@@ -34,7 +34,7 @@ public class SpringMongodbTestCase {
         DB db = x.getDb();
         TestCase.assertEquals("ecourse",db.getName());
         
-        long c = x.count(Query.query(Criteria.where("name").is("wangds1")), E01Teacher.class);
+        long c = x.count(Query.query(Criteria.where("name").is("wangds")), E01Teacher.class);
         System.out.println(c);
         
         
