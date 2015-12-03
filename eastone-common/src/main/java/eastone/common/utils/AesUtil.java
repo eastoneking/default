@@ -151,6 +151,27 @@ public final class AesUtil extends GeneralParentObject {
     }
     return res;
   }
+  
+  /**
+   * 获得密钥.
+   * @return 密钥.
+   */
+  public static byte[] generateKey(int size) {
+    byte[] res = null;
+    KeyGenerator keyGen = null;
+    SecretKey key = null;
+    try {
+      keyGen = KeyGenerator.getInstance(ALGORITHM_SHORT_NAME, PROVIDER_NAME);
+      keyGen.init(size,new SecureRandom());
+      key = keyGen.generateKey();
+      res = key.getEncoded();
+    } catch (NoSuchAlgorithmException e) {
+      staticLogger(AesUtil.class).error(e.getMessage(), e);
+    } catch (NoSuchProviderException e) {
+      staticLogger(AesUtil.class).error(e.getMessage(), e);
+    }
+    return res;
+  }
 
   /*
    * 生成初始矩阵.

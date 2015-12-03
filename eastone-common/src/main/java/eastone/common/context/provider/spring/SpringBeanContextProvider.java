@@ -42,7 +42,7 @@ public class SpringBeanContextProvider implements BeanContext<String> {
         if (size < 1) {
             return res;
         }
-        Object key = inputs[0];
+        Object  key = inputs[0];
         if (key != null) {
             if (key instanceof String) {
                 int len = size - 1;
