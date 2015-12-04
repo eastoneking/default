@@ -6,13 +6,15 @@ package eastone.business;
 
 import eastone.common.context.DefaultMapAsEnvironment;
 import eastone.common.context.Environment;
+import eastone.common.processor.ProcessorWithResult;
 
 /**
  * 抽象Http交互业务.
  * @author wangds
  *
  */
-public abstract class AbstractHttpInteractionBusiness<IN,OUT> extends AbstractHttpBusiness implements HttpInteractionBusiness<IN, OUT> {
+public abstract class AbstractHttpInteractionBusiness<IN,OUT> extends AbstractHttpBusiness 
+    implements HttpInteractionBusiness<IN, OUT>, ProcessorWithResult<OUT> {
 
 
     private Environment ctx = new DefaultMapAsEnvironment();
@@ -57,6 +59,23 @@ public abstract class AbstractHttpInteractionBusiness<IN,OUT> extends AbstractHt
         return output;
     }
     
+    /*
+     * @see eastone.common.processor.ResultContainer#setResult(java.lang.Object)
+     * @author wangds 2015年12月4日 下午9:00:33.
+     */
+    @Override
+    public void setResult(OUT out) {
+        this.setOutput(out);
+    }
+    
+    /*
+     * @see eastone.common.processor.ResultContainer#getResult()
+     * @author wangds 2015年12月4日 下午9:00:52.
+     */
+    @Override
+    public OUT getResult() {
+        return this.getOutput();
+    }
 
     /*
      * @see eastone.common.context.Context#status(java.lang.Object[])
