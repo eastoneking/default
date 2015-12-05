@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Sat Dec 05 17:06:24 CST 2015:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-0151-7164-6924-00000623dd48 
+Sat Dec 05 22:38:47 CST 2015:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-0151-7294-b6b4-00000623f858 
 on database directory /Users/wangds/git/default/eastone-components/testDb with class loader sun.misc.Launcher$AppClassLoader@f52d950 
 Loaded from file:/Users/wangds/.m2/repository/org/apache/derby/derby/10.10.1.1/derby-10.10.1.1.jar
 java.vendor=Oracle Corporation
@@ -12,5 +12,5 @@ os.version=10.11.1
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
-Sat Dec 05 17:06:25 CST 2015:
-Shutting down instance a816c00e-0151-7164-6924-00000623dd48 on database directory /Users/wangds/git/default/eastone-components/testDb with class loader sun.misc.Launcher$AppClassLoader@f52d950 
+Sat Dec 05 22:38:48 CST 2015:
+Shutting down instance a816c00e-0151-7294-b6b4-00000623f858 on database directory /Users/wangds/git/default/eastone-components/testDb with class loader sun.misc.Launcher$AppClassLoader@f52d950 

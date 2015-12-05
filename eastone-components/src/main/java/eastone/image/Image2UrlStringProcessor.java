@@ -21,9 +21,21 @@ public class Image2UrlStringProcessor extends AbstractProcessorWithResult<String
     private static final String DATA_PREFIX = "data:";
     private static final String BASE64_FLAG = ";base64,";
     private static final int LENG_FIX_STRING = DATA_PREFIX.length()+BASE64_FLAG.length();
-    private String type;
+    private String type = TYPE_PNG;
     private byte[] imageData;
+    public Image2UrlStringProcessor(){
+    }
     
+    /**
+     * The constructor of Image2UrlStringProcessor.
+     * @author wangds 2015年12月5日 下午10:36:30.
+     * @param imageData
+     */
+    public Image2UrlStringProcessor(byte[] imageData) {
+        super();
+        this.imageData = imageData;
+    }
+
     public Image2UrlStringProcessor(String type, byte[] imageData){
         this.type = type;
         this.imageData = imageData;

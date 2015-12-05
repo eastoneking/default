@@ -8,12 +8,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageFilter;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
-import org.slf4j.Logger;
 
 import com.jhlabs.image.WaterFilter;
 import com.octo.captcha.component.image.backgroundgenerator.BackgroundGenerator;
@@ -36,8 +30,6 @@ import com.octo.captcha.image.ImageCaptcha;
 import com.octo.captcha.image.ImageCaptchaFactory;
 import com.octo.captcha.image.gimpy.GimpyFactory;
 
-import eastone.common.GeneralParentObject;
-import eastone.common.utils.CloseableUtils;
 import eastone.space.Size;
 import eastone.space.SizeImpl;
 
@@ -47,7 +39,7 @@ import eastone.space.SizeImpl;
  * @author wangds
  *
  */
-public class CaptchaImageEngine extends ListImageCaptchaEngine {
+public class CaptchaImageEngine extends ListImageCaptchaEngine implements ImageCodeEngine {
 
 
     /**
@@ -74,40 +66,31 @@ public class CaptchaImageEngine extends ListImageCaptchaEngine {
     }
     
     
-    /**
-     * 获得上一次获得的图片中的验证码文本.
-     * <p>获得图片之后再使用.</p>
-     * @author wangds 2015年12月5日 下午8:28:57.
-     * @return the code.
+    /*
+     * @see eastone.component.jcaptcha.ImageCodeEngine#getCode()
+     * @author wangds 2015年12月5日 下午10:37:42.
      */
+    @Override
     public String getCode() {
         return code;
     }
     
+    /*
+     * @see eastone.component.jcaptcha.ImageCodeEngine#fetchNewImage()
+     * @author wangds 2015年12月5日 下午10:37:42.
+     */
+    @Override
     public synchronized BufferedImage fetchNewImage(){
         ImageCaptcha ic =  imageFac.getImageCaptcha();
         BufferedImage res = ic.getImageChallenge();
         return res;
     }
     
-    public byte[] fetchNewImagePng(){
-        byte[] res = null;
-        BufferedImage buf = this.fetchNewImage();
-        ByteArrayOutputStream bas = null;
-        try {
-            bas = new ByteArrayOutputStream();
-            ImageIO.write(buf, "png", bas);
-            bas.flush();
-            res = bas.toByteArray();
-        } catch (IOException e) {
-            Logger log = GeneralParentObject.staticLogger(this.getClass());
-            log.error(e.getLocalizedMessage(), e);
-        }finally{
-            CloseableUtils.close(bas);
-        }
-        return res;
-    }
-    
+    /*
+     * @see eastone.component.jcaptcha.ImageCodeEngine#fetchSize()
+     * @author wangds 2015年12月5日 下午10:37:42.
+     */
+    @Override
     public Size<Integer> fetchSize(){
         return new SizeImpl<Integer>(width, height);
     }
