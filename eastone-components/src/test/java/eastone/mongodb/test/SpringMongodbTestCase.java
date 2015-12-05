@@ -8,10 +8,8 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.TextQuery;
 
 import com.mongodb.DB;
 
@@ -25,7 +23,7 @@ import eastone.common.context.BeanContextFactory;
  */
 public class SpringMongodbTestCase {
     
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Test
     public void test(){
         BeanContext ctx = BeanContextFactory.getBeanContext();

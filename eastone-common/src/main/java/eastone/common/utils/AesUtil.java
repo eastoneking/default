@@ -38,10 +38,10 @@ import eastone.common.GeneralParentObject;
  */
 public final class AesUtil extends GeneralParentObject {
 
-  /**
+  /*
    * IV大小.
    */
-  private static final int IV_SIZE = 16;
+  //private static final int IV_SIZE = 16;
 
   /**
    * BC包中AES算法名.
