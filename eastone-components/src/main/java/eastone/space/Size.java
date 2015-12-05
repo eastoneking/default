@@ -13,8 +13,8 @@ import java.io.Serializable;
  */
 public interface Size<T> extends Serializable{
 
-    T getWidth();
-    void setWidth(T width);
-    T getHeight();
-    void setHeight(T height);
+    public void width(T w);
+    public T width();
+    public void height(T h);
+    public T height();
 }

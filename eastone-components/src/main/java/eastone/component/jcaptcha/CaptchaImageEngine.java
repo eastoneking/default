@@ -30,8 +30,8 @@ import com.octo.captcha.image.ImageCaptcha;
 import com.octo.captcha.image.ImageCaptchaFactory;
 import com.octo.captcha.image.gimpy.GimpyFactory;
 
+import eastone.space.ISize;
 import eastone.space.Size;
-import eastone.space.SizeImpl;
 
 /**
  * .
@@ -92,7 +92,7 @@ public class CaptchaImageEngine extends ListImageCaptchaEngine implements ImageC
      */
     @Override
     public Size<Integer> fetchSize(){
-        return new SizeImpl<Integer>(width, height);
+        return new ISize(width, height);
     }
 
 

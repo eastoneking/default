@@ -12,7 +12,7 @@ import eastone.common.GeneralParentObject;
  * @author wangds
  *
  */
-public class SizeImpl<T extends Number> extends GeneralParentObject implements Size<T> {
+public class ISize extends GeneralParentObject implements Size<Integer> {
     /**
      * SizeImpl.java.
      * @author wangds 2015年12月5日 下午8:56:10.
@@ -21,17 +21,17 @@ public class SizeImpl<T extends Number> extends GeneralParentObject implements S
     /**
      * 宽.
      */
-    private T width;
+    private int width;
     /**
      * 高.
      */
-    private T height;
+    private int height;
     
     /**
      * The constructor of SizeImpl.
      * @author wangds 2015年12月5日 下午8:57:25.
      */
-    public SizeImpl() {
+    public ISize() {
     }
     /**
      * The constructor of SizeImpl.
@@ -39,7 +39,7 @@ public class SizeImpl<T extends Number> extends GeneralParentObject implements S
      * @param width
      * @param height
      */
-    public SizeImpl(T width, T height) {
+    public ISize(int width, int height) {
         this.width = width;
         this.height = height;
     }
@@ -48,7 +48,7 @@ public class SizeImpl<T extends Number> extends GeneralParentObject implements S
      * @author wangds 2015年12月5日 下午8:55:41.
      * @return the width.
      */
-    public T getWidth() {
+    public int getWidth() {
         return width;
     }
     /**
@@ -56,7 +56,7 @@ public class SizeImpl<T extends Number> extends GeneralParentObject implements S
      * @param thewidth the width to set
      * @author wangds 2015年12月5日 下午8:55:30.
      */
-    public void setWidth(T width) {
+    public void setWidth(int width) {
         this.width = width;
     }
     /**
@@ -64,7 +64,7 @@ public class SizeImpl<T extends Number> extends GeneralParentObject implements S
      * @author wangds 2015年12月5日 下午8:55:51.
      * @return the height.
      */
-    public T getHeight() {
+    public int getHeight() {
         return height;
     }
     /**
@@ -72,7 +72,39 @@ public class SizeImpl<T extends Number> extends GeneralParentObject implements S
      * @param theheight the height to set
      * @author wangds 2015年12月5日 下午8:55:57.
      */
-    public void setHeight(T height) {
+    public void setHeight(int height) {
         this.height = height;
+    }
+    /*
+     * @see eastone.space.Size#width(java.lang.Object)
+     * @author wangds 2015年12月6日 上午12:18:32.
+     */
+    @Override
+    public void width(Integer w) {
+        this.setWidth(w);
+    }
+    /*
+     * @see eastone.space.Size#width()
+     * @author wangds 2015年12月6日 上午12:18:32.
+     */
+    @Override
+    public Integer width() {
+        return this.getWidth();
+    }
+    /*
+     * @see eastone.space.Size#height(java.lang.Object)
+     * @author wangds 2015年12月6日 上午12:18:32.
+     */
+    @Override
+    public void height(Integer h) {
+        this.setHeight(h);
+    }
+    /*
+     * @see eastone.space.Size#height()
+     * @author wangds 2015年12月6日 上午12:18:32.
+     */
+    @Override
+    public Integer height() {
+        return this.getHeight();
     }
 }
